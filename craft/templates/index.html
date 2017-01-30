@@ -1,0 +1,165 @@
+{#
+ # Homepage template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layouts/site" %}
+
+{% set description = entry.description %}
+{% if entry.image %}
+  {% set image = entry.image.first() %}
+{% endif %}
+
+
+{% block styles %}
+  {{ parent() }}
+
+  <link rel="stylesheet" type="text/css" href="{{ siteUrl }}{{ rev('css/index.css') }}">
+{% endblock %}
+
+
+{% block scripts %}
+  {{ parent() }}
+
+  <script defer src="{{ siteUrl ~ rev('js/index.js') }}" data-turbolinks-track="reload"></script>
+{% endblock %}
+
+
+{% block schema %}
+  {% set author = entry.author ? entry.author : globals.siteAuthor.first() %}
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "ItemList",
+      "@id": "{{ url(entry.url) }}",
+      "name": "{{ siteName }}",
+      "description": "{{ globals.siteDescription }}",
+      {% if image %}
+      "image": {
+        "@type": "ImageObject",
+        "author": "{{ author.name }}",
+        "contentUrl": "{{ image.url }}",
+        "url": "{{ siteUrl }}{{ image.url }}",
+        "datePublished": "{{ image.dateCreated.w3c }}",
+        "name": "{{ image.title }}",
+        "height": "{{ image.height }}",
+        "width": "{{ image.width }}"
+      },
+      {% endif %}
+      {% set blogs = craft.entries.section('blogs').limit(null) %}
+      "numberOfItems": "{{ blogs | length }}",
+      "itemListElement": [
+        {% for blog in blogs %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "item": {
+            "@type": "Blog",
+            "author": {
+              "@type": "Person",
+              "givenName": "{{ blog.blogFirstName }}"{% if blog.blogLastName %},
+              "familyName": "{{ blog.blogLastName }}"{% endif %}
+            },
+            {% for language in blog.blogLanguages %}
+            "inLanguage": "{{ language.title }}",
+            {% endfor %}
+            "url": "{{ blog.blogLink }}"
+          }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endblock %}
+
+
+{% block links %}
+  {{ parent() }}
+
+  <meta name="msvalidate.01" content="B9F4E5A6EB3F584936548E454FA92129" />
+{% endblock %}
+
+
+{% block body %}
+  {% cache %}
+  {% spaceless %}
+  <article class="page">
+
+
+    {% block hero %}
+      <header class="hero">
+        <h1 class="hero-title">{{ helpers.striptags(description) }}</h1>
+
+        {{ elements.share(title) }}
+
+        {{ elements.heroImage(image, entry.heroImage) }}
+
+      </header>
+    {% endblock %}
+
+
+    <div class="content content-style">
+      <div class="search form-group full">
+        <input class="form-input" type="search" name="js-search" id="js-search" placeholder="Search to filter the blogs..." autocomplete="off" required>
+        <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <span class="form-highlight"></span>
+      </div>
+
+        {# Get the categories related to my "blogs" entries in structure order. #}
+        {% set blogs = craft.entries.section('blogs').limit(null) %}
+        {% set colleges = craft.categories.relatedTo(blogs) %}
+
+        {# Loop the colleges. #}
+        {% for college in colleges %}
+
+        <section class="college js-college">
+          <h2 id="{{ college.title | lower | replace(' ', '-') }}" class="college-title">{{ college.title }}</h1>
+
+          <p class="college-body">
+
+          {# Get and loop through blogs related to this college. #}
+          {% set allBlogsInCollege = craft.entries.relatedTo(college).order('blogYear desc') | group('blogYear') %}
+          {% for year, allBlogsInYear in allBlogsInCollege %}
+          <span class="js-list" id="{{ college.title | lower | replace(' ', '-') }}-{{ year }}">
+            <span class="college-year js-year">{{ year }}</span>
+            <span class="list js-years">
+
+            {% for blog in allBlogsInYear %}
+              <span class="college-blog" data-year="{{ blog.blogYear }}">
+                <a href="{{ blog.blogLink }}" target="_blank" rel="noopener noreferrer" class="link name">{{ blog.blogFirstName }}</a> | <span class="country">{% for country in blog.blogCountries %}{{ country.title }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
+                {% if blog.blogCountries.total() and blog.blogLanguages.total() %} - {% endif %}<span class="language">{% for language in blog.blogLanguages %}{{ language.title }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
+              </span>
+            {% endfor %}
+
+            </span>
+          </span>
+          {% endfor %}
+
+          </p>
+        </section>
+        {% endfor %}
+
+      {{ elements.share(title) }}
+
+    </div>
+  </article>
+  {% endspaceless %}
+  {% endcache %}
+{% endblock %}

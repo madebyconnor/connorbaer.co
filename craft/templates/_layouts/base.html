@@ -1,0 +1,143 @@
+{#
+ # The base layout template
+ # ------------------------
+ #
+ # This template defines the base HTML structure for our site: the DTD, the
+ # `<html>`, `<head>`, `<title>`, and `<body>` tags, plus some `<meta>` tags and
+ # a `<link rel="stylesheet">` tag that includes our main CSS file.
+ #
+ # This is the only place in our templates where we'll ever need to define that
+ # stuff. All other templates will extend this one.
+ #
+ # This template is never accessed directly; instead it is extended by two child
+ # templates:
+ #
+ #   * `_layouts/site.html`: A sub-layout, which in turn is extended by all the
+ #                           main site templates.
+ #
+ #   * `offline.html`:       The template that we serve when the site is offline
+ #
+ # Any templates that extend this template can optionally set a `title` variable,
+ # which will be output within the `<title>` tag, before the site name:
+ #
+ #     <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+ #
+ # They can also optionally set a `bodyClass` variable, which will be output
+ # within the `<body>` tag's `class=` attribute.
+ #
+ #     <body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>
+ #
+ # This template also defines 3 `block` regions, which child templates are free to
+ # override:
+ #
+ #   * `head`: This block wraps the entire default contents of our `<head>` tag.
+ #             If a child template wishes to add more to the head, they can do so
+ #             like this:
+ #
+ #                 {% block head %}
+ #                     {{ parent() }}
+ #                     <!-- additional stuff -->
+ #                 {% endblock %}
+ #
+ #             Calling `{{ parent() }}` will output the contents of the `head`
+ #             block that are already defined in this template.
+ #
+ #   * `body`: This block is placed directly after the opening `<body>` tag.
+ #             Child templates can use this to define the main body contents.
+ #
+ #   * `foot`: This block is placed directly before the closing `</body>` tag.
+ #             Child templates can use this to include Javascript files, etc.
+-#}
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+<!doctype html>
+<html lang="{{ craft.locale }}">
+
+{% cache %}
+{% spaceless %}
+<head>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+	{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{{ siteUrl }}{{ rev('css/styles.css') }}">
+	{% endblock %}
+
+
+	{% block typography %}
+	  {# Typekit #}
+		{% if globals.siteTypekitKey %}
+	  <script src="https://use.typekit.net/{{ globals.siteTypekitKey }}.js"></script>
+	  <script>
+	    try {
+	      Typekit.load({
+	        async: true
+	      });
+	    } catch (e) {}
+	  </script>
+		{% endif %}
+	{% endblock %}
+
+
+  {% block scripts %}
+		<script defer src="https://twemoji.maxcdn.com/2/twemoji.min.js"></script>
+		<script defer src="{{ siteUrl ~ rev('js/scripts.js') }}"></script>
+  {% endblock %}
+
+
+  {% block schema %}{% endblock %}
+
+
+  {% include '_includes/site/seo' %}
+
+  {% include '_includes/site/icons' %}
+
+
+  {% for block in navigation.siteNavigation %}
+    {% if block.type == "navSingle" or block.type == "navSection" %}
+      {% set navLink = block.navEntry.first().url %}
+    {% elseif block.type == "navExternal" %}
+      {% set navLink = block.navLink %}
+    {% endif %}
+
+    <link rel="preconnect" href="{{ navLink }}">
+  {% endfor %}
+
+
+	{% block links %}
+	  <link rel="canonical" href="{{ entry.url }}">
+		<link rel="home" href="{{ siteUrl }}" />
+		<link rel="alternate" type="application/atom+xml" title="Atom" href="/feed.atom">
+	{% endblock %}
+
+
+</head>
+{% endspaceless %}
+{% endcache %}
+
+<body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>
+
+
+  {% block main %}{% endblock %}
+
+
+  {% if not craft.request.isLivePreview %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', '{{ globals.siteGoogleAnalyticsKey }}', 'auto');
+      ga('require', 'linkid');
+
+      document.addEventListener('turbolinks:load', function () {
+        ga('send', 'pageview', window.location.pathname);
+      });
+    </script>
+  {% endif %}
+</body>
+</html>
