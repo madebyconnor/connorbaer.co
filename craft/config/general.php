@@ -25,10 +25,10 @@ return array(
 
 	'local' => array(
 		'devMode' => true,
-		'testToEmailAddress' => 'madebyconnor@icloud.com',
+		'testToEmailAddress' => 'connor.baer@me.com',
 	),
 
-	'uwcblogs.com' => array(
+	'connorbaer.co' => array(
 		'devMode' => false,
 	),
 );

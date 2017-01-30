@@ -1,7 +1,7 @@
 {
-  "version": "3.3.0",
-  "name": "uwcblogs",
-  "description": "A collection of over 350 blogs written by UWC students in 28 languages from 76 countries at the 17 United World Colleges.",
+  "version": "2.0.0",
+  "name": "connorbaer",
+  "description": "Problem-solving is my passion. This is my website.",
   "icons": {
     "60": "/favicons/firefox_app_60x60.png",
     "128": "/favicons/firefox_app_128x128.png",

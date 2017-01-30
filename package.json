@@ -1,27 +1,28 @@
 {
-  "name": "uwcblogs",
-  "version": "3.3.0",
-  "description": "A collection of over 350 blogs written by UWC students in 28 languages from 76 countries at the 17 United World Colleges.",
+  "name": "connorbaer",
+  "version": "2.0.0",
+  "description": "Problem-solving is my passion. This is my website.",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uwc/uwcblogs.git"
+    "url": "git+https://github.com/connor-baer/connorbaer.co.git"
   },
   "keywords": [
-    "uwc",
-    "blog",
-    "blogs",
-    "list"
+    "connor",
+    "baer",
+    "developer",
+    "ai",
+    "designer"
   ],
   "author": "Connor Bär",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/uwc/uwcblogs/issues"
+    "url": "https://github.com/connor-baer/connorbaer.co/issues"
   },
-  "homepage": "https://uwcblogs.com",
+  "homepage": "https://connorbaer.co",
   "dependencies": {
     "choices.js": "^2.6.1",
     "lazysizes": "^3.0.0-rc3",
