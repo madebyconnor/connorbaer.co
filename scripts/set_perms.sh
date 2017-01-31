@@ -16,6 +16,8 @@ GLOBAL_FILE_PERMS=644    # `-rw-r--r--`
 WRITEABLE_DIR_PERMS=775  # `-rwxrwxr-x`
 WRITEABLE_FILE_PERMS=664 # `-rw-rw-r--`
 
+cd $LOCAL_SCRIPTS_PATH
+
 # Make sure the `.env.sh` exists
 if [[ ! -f ".env.sh" ]] ; then
     echo 'File ".env.sh" is missing, aborting.'

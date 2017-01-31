@@ -24,6 +24,7 @@
   },
   "homepage": "https://connorbaer.co",
   "dependencies": {
+    "browser-sync": "^2.18.7",
     "choices.js": "^2.6.1",
     "lazysizes": "^3.0.0-rc3",
     "list.js": "^1.4.0",

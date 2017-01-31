@@ -1,3 +1,40 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2d8734becc4c452ab3c4db9875435a55)](https://www.codacy.com/app/connor_baer/uwcblogs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=uwc/uwcblogs&amp;utm_campaign=Badge_Grade) [![Greenkeeper badge](https://badges.greenkeeper.io/connor-baer/connorbaer.co.svg)](https://greenkeeper.io/)
 
-# Connor Bär
+# Connor Bär 🐻
+
+Hi, I'm Connor! I enjoy life as a web developer and machine learning engineer. Problem solving is my passion. [Say hi](https://twitter.com/connor_baer)!
+
+[This is my website](https://connorbaer.co). It's built with [CraftCMS](https://craftcms.com) and a lot of ❤️.
+
+
+## Features
+
+* Mobile-first css architecture
+* 490 accessible color combinations
+* 8px baseline grid
+* Multiple debugging utilities to reduce layout struggles
+* Single-purpose class structure
+* Optimized for maximum gzip compression
+* Lightweight (~14kB)
+* Usable across projects
+* Growing open source component library
+* Works well with plain html, react, ember, angular, rails, and more
+* Infinitely nestable responsive grid system
+* Built with Postcss
+
+
+## Getting started
+
+1. [Download](https://github.com/connor-baer/connorbaer.co/archive/master.zip) or clone the repository.
+2. Duplicate the `example.env.sh` file in the scripts directory, and rename it to `.env.sh`. Then open up the `.env.sh` file into your favorite editor, and replace `REPLACE_ME` with the appropriate settings. Detailed instructions can be found [here](https://github.com/nystudio107/craft-scripts).
+3. Run the install script from the command line: `./install_craft.sh`. This will download [CraftCMS](https://craftcms.com), move all necessary files into place and set the appropriate permissions.
+4. Follow the CraftCMS [installation instructions](https://craftcms.com/docs/installing) **starting at step 3**. We've already completed the first two steps.
+5. You're all set. Enjoy!
+
+## Help
+
+If you have a question or need help, feel free to open an issue.
+
+## License
+
+MIT

@@ -8,6 +8,8 @@
 # @since     1.0.1
 # @license   MIT
 
+cd $LOCAL_SCRIPTS_PATH
+
 # Make sure the `.env.sh` exists
 if [[ ! -f ".env.sh" ]] ; then
     echo 'File ".env.sh" is missing, aborting.'

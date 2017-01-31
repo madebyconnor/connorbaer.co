@@ -8,6 +8,9 @@
 # @since     1.0.2
 # @license   MIT
 
+# Make sure we're in the right directory
+cd $LOCAL_SCRIPTS_PATH
+
 # Make sure the `.env.sh` exists
 if [[ ! -f ".env.sh" ]] ; then
     echo 'File ".env.sh" is missing, aborting.'
@@ -16,12 +19,10 @@ fi
 
 source ".env.sh"
 
-cd $LOCAL_ROOT_PATH
-
 # Download and unzip the latest CraftCMS
 mkdir craft-install
 cd craft-install/
-wget -O latest.zip https://craftcms.com/latest.zip?accept_license=yes
+wget -Oq latest.zip https://craftcms.com/latest.zip?accept_license=yes
 unzip latest.zip
 cd ..
 
@@ -34,4 +35,5 @@ mv craft-install/craft/config/db.php craft/config/db.php
 rm -rf craft-install
 
 # Set the appropriate permissions
-./scripts/set_perms.sh
+cd scripts
+./set_perms.sh
