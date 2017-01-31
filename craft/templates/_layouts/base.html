@@ -85,6 +85,11 @@
   {% block scripts %}
 		<script defer src="https://twemoji.maxcdn.com/2/twemoji.min.js"></script>
 		<script defer src="{{ siteUrl ~ rev('js/scripts.js') }}"></script>
+
+		{# -- ServiceWorker & loadjs -- #}
+    <script>
+      {{ source( '../../source/' ~ rev('js/loadjs.js')) }}
+    </script>
   {% endblock %}
 
 

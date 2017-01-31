@@ -153,7 +153,7 @@ module.exports = {
       appName: pkg.name,
       appDescription: pkg.description,
       developerName: pkg.author,
-      background: '#000000',
+      background: '#ffffff',
       path: '/favicons/',
       url: pkg.homepage,
       display: 'standalone',
