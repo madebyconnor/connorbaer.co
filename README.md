@@ -6,23 +6,6 @@ Hi, I'm Connor! I enjoy life as a web developer and machine learning engineer. P
 
 [This is my website](https://connorbaer.co). It's built with [CraftCMS](https://craftcms.com) and a lot of ❤️.
 
-
-## Features
-
-* Mobile-first css architecture
-* 490 accessible color combinations
-* 8px baseline grid
-* Multiple debugging utilities to reduce layout struggles
-* Single-purpose class structure
-* Optimized for maximum gzip compression
-* Lightweight (~14kB)
-* Usable across projects
-* Growing open source component library
-* Works well with plain html, react, ember, angular, rails, and more
-* Infinitely nestable responsive grid system
-* Built with Postcss
-
-
 ## Getting started
 
 1. [Download](https://github.com/connor-baer/connorbaer.co/archive/master.zip) or clone the repository.
