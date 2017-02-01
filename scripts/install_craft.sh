@@ -34,6 +34,13 @@ mv craft-install/craft/config/db.php craft/config/db.php
 # Clean up
 rm -rf craft-install
 
+# Create asset folders
+for DIR in "${LOCAL_ASSETS_DIRS[@]}"
+do
+  mkdir $LOCAL_ASSETS_PATH$DIR
+  echo "*** Created asset folder $DIR"
+done
+
 # Set the appropriate permissions
 cd scripts
 ./set_perms.sh

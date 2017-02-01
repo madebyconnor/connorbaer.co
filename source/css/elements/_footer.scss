@@ -27,8 +27,8 @@
 
     &:hover,
     &:focus {
-      transform: scale(1.1);
-      fill: palette(red);
+      transform: rotate(360deg);
+      fill: palette(madebyconnor);
     }
   }
 }

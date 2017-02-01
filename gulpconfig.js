@@ -60,15 +60,24 @@ module.exports = {
 
   update: {
     // Copies dependencies from package managers to `_scss` and renames them to allow for them to be imported as a Sass file.
-    src: [
-      modules + 'normalize.css/normalize.css',
-      modules + 'open-color/open-color.scss',
-      modules + 'choices.js/assets/styles/scss/choices.scss',
-    ],
-    dest: src + 'css/dependencies/',
-    rename: {
-      prefix: '_',
-      extname: '.scss',
+    styles: {
+      src: [
+        modules + 'normalize.css/normalize.css',
+        modules + 'open-color/open-color.scss',
+        modules + 'choices.js/assets/styles/scss/choices.scss',
+      ],
+      rename: {
+        prefix: '_',
+        extname: '.scss',
+      },
+      dest: src + 'css/dependencies/',
+    },
+    scripts: {
+      src: [
+        modules + 'smooth-scroll/dist/js/smooth-scroll.min.js',
+        modules + 'lazysizes/lazysizes.min.js',
+      ],
+      dest: src + 'js/',
     },
   },
 
@@ -106,42 +115,17 @@ module.exports = {
   // 7. Scripts //
 
   scripts: {
-    bundles: { // Bundles are defined by a name and an array of chunks (below) to concatenate; warning: this method offers no dependency management!
-      scripts: ['navigation', 'core'],
-      index: ['search', 'index'],
-      submit: ['choices', 'submit'],
-    },
-    chunks: { // Chunks are arrays of paths or globs matching a set of source files; this way you can organize a bunch of scripts that go together into pieces that can then be bundled (above)
-      // The core chunk is loaded no matter what; put essential scripts that you want loaded by your theme in here.
-      navigation: [
-        modules + 'smooth-scroll/dist/js/smooth-scroll.js',
-        modules + 'lazysizes/lazysizes.min.js',
-      ],
-      search: [
-        modules + 'list.js/dist/list.min.js',
-      ],
-      choices: [
-        modules + 'choices.js/assets/scripts/dist/choices.min.js',
-      ],
-      core: [
-        src + 'js/core.js',
-      ],
-      index: [
-        src + 'js/index.js',
-      ],
-      submit: [
-        src + 'js/submit.js',
-      ],
-    },
-    dest: dist + assets + 'js/', // Where the scripts end up in your theme.
+    src: src + 'js/*.js',
     lint: {
-      src: [src + 'js/**/*.js'], // Linting checks the quality of the code; we only lint custom scripts, not those under the various modules, so we're relying on the original authors to ship quality code.
+      src: [src + 'js/*.js', '!' + src + 'js/*.min.js'], // Linting checks the quality of the code; we only lint custom scripts, not those under the various modules, so we're relying on the original authors to ship quality code.
     },
     minify: {
-      src: dist + assets + '**/**/*.js',
       uglify: {}, // Default options.
-      dest: dist + assets,
+      rename: {
+        extname: '.min.js',
+      },
     },
+    dest: dist + assets + 'js/',
   },
 
 

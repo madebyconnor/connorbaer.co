@@ -1,10 +1,15 @@
 {
-  "css/amp.css": "css/amp-723bcfead8.css",
-  "css/index.css": "css/index-f36abaf760.css",
-  "css/posts.css": "css/posts-8033c2e573.css",
-  "css/styles.css": "css/styles-49f2fa2ab3.css",
-  "css/submit.css": "css/submit-db8532ce5b.css",
-  "js/index.js": "js/index-b4cf09c087.js",
-  "js/scripts.js": "js/scripts-10858ea50e.js",
-  "js/submit.js": "js/submit-d129632f29.js"
+  "css/amp.css": "css/amp-e8b4f48b61.css",
+  "css/index.css": "css/index-44ab65f1e1.css",
+  "css/posts.css": "css/posts-f06fee6698.css",
+  "css/styles.css": "css/styles-38c43814d0.css",
+  "css/submit.css": "css/submit-48cc411b7c.css",
+  "js/core.min.js": "js/core-9a5d3cc454.min.js",
+  "js/index.min.js": "js/index-3d5df62676.min.js",
+  "js/lazysizes.min.js": "js/lazysizes-8bbdca1d5c.min.js",
+  "js/lazysizes.min.min.js": "js/lazysizes-e79dc9248f.min.min.js",
+  "js/smooth-scroll.min.js": "js/smooth-scroll-5c29133238.min.js",
+  "js/smooth-scroll.min.min.js": "js/smooth-scroll-b40d3699e2.min.min.js",
+  "js/submit.min.js": "js/submit-1746e77bac.min.js",
+  "js/sw.min.js": "js/sw-66dbc1e0ae.min.js"
 }
