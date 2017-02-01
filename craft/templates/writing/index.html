@@ -93,33 +93,8 @@
 
     <div class="content content-style">
 
-      <!-- Begin MailChimp Signup Form -->
-      <aside id="mc_embed_signup" class="sidebar">
-        <h4>Subscribe!</h4>
-        <p class="message">Get an insight into life at UWC! One post a month, absolutely no spam.</p>
-        <form action="//connor-baer.us7.list-manage.com/subscribe/post?u=b1caba133f37d9e536b7ee6c6&amp;id=ace6c7cedf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
-          <div id="mc_embed_signup_scroll" class="section-inputs">
-
-            <div class="mc-field-group form-group section-form-group">
-              <input type="text" value="" name="FNAME" class="required form-input" id="mce-FNAME" placeholder="First Name" required="">
-              <span class="form-highlight"></span>
-            </div>
-
-            <div class="mc-field-group form-group section-form-group">
-              <input type="email" value="" name="EMAIL" class="required email form-input" id="mce-EMAIL" placeholder="Email Address" required="">
-              <span class="form-highlight"></span>
-            </div>
-
-            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b1caba133f37d9e536b7ee6c6_ace6c7cedf" tabindex="-1" value=""></div>
-            <div class="clear"><input type="submit" value="Subscribe →" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-          </div>
-        </form>
-      </aside>
-      <!--End mc_embed_signup-->
-
       <div class="section-writing">
-        {% for post in craft.entries.section('newsletter').find() %}
+        {% for post in craft.entries.section('writing').find() %}
         <article>
           <h3 class="newsletter-header"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
 

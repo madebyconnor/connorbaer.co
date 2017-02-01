@@ -8,7 +8,7 @@ const gulp    = require('gulp'),
 
 // Check custom scripts for errors.
 gulp.task('scripts-lint', () => {
-  return gulp.src(config.lint.src)
+  return gulp.src(config.src)
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('default')); // No need to pipe this anywhere.
 });
