@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Craft-Permissions
+# Craft-Scripts
 # @author    nystudio107
 # @copyright Copyright (c) 2016 nystudio107
 # @link      https://nystudio107.com/
-# @package   craft-permissions
+# @package   craft-scripts
 # @since     1.0.1
 # @license   MIT
 
@@ -27,7 +27,7 @@ CRAFT_CACHE_TABLES=(
                 )
 
 # Make sure we're in the right directory
-cd $LOCAL_SCRIPTS_PATH
+cd "${0%/*}"
 
 # Make sure the `.env.sh` exists
 if [[ ! -f ".env.sh" ]] ; then

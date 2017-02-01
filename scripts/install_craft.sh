@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# Craft-Install
+# Craft-Scripts
 # @author    connor-baer
 # @copyright Copyright (c) 2017 connor-baer
 # @link      https://connorbaer.co/
-# @package   craft-install
+# @package   craft-scripts
 # @since     1.0.2
 # @license   MIT
 
 # Make sure we're in the right directory
-cd $LOCAL_SCRIPTS_PATH
+cd "${0%/*}"
 
 # Make sure the `.env.sh` exists
 if [[ ! -f ".env.sh" ]] ; then

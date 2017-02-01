@@ -1,8 +1,8 @@
-# Craft Scripts Environment
+# Craft Scripts
 # @author    nystudio107
 # @copyright Copyright (c) 2016 nystudio107
 # @link      https://nystudio107.com/
-# @package   craft-scripts-environment
+# @package   craft-scripts
 # @since     1.0.1
 # @license   MIT
 #
@@ -16,7 +16,6 @@
 # Local path constants; paths should always have a trailing /
 LOCAL_ROOT_PATH="REPLACE_ME"
 LOCAL_ASSETS_PATH=$LOCAL_ROOT_PATH"public/uploads/"
-LOCAL_SCRIPTS_PATH=$LOCAL_ROOT_PATH"scripts/"
 
 # Local user & group that should own the Craft CMS install
 LOCAL_CHOWN_USER="admin"

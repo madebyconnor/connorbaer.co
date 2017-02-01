@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Craft-Permissions
+# Craft-Scripts
 # @author    nystudio107
 # @copyright Copyright (c) 2016 nystudio107
 # @link      https://nystudio107.com/
-# @package   craft-permissions
+# @package   craft-scripts
 # @since     1.0.1
 # @license   MIT
 
@@ -16,7 +16,7 @@ GLOBAL_FILE_PERMS=644    # `-rw-r--r--`
 WRITEABLE_DIR_PERMS=775  # `-rwxrwxr-x`
 WRITEABLE_FILE_PERMS=664 # `-rw-rw-r--`
 
-cd $LOCAL_SCRIPTS_PATH
+cd "${0%/*}"
 
 # Make sure the `.env.sh` exists
 if [[ ! -f ".env.sh" ]] ; then
