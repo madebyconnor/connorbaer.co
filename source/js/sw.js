@@ -5,8 +5,10 @@
   const pagesCacheName = version + 'pages';
   const imagesCacheName = version + 'images';
   const offlinePages = [
-    '/blog/index',
     '/offline',
+    '/creating/',
+    '/writing',
+    '/eating',
     '/'
   ];
 
