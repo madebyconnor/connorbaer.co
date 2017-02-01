@@ -1,8 +1,8 @@
 {% block seo %}
 
-  {% set seoDescription = globals.siteDescription %}
-  {% set seoImage = globals.siteLogo.first() %}
-  {% set seoTwitter = globals.siteTwitter %}
+  {% set seoDescription = site.description | striptags %}
+  {% set seoImage = site.logo.first() %}
+  {% set seoTwitter = site.twitterHandle %}
 
   {% if description is defined %}
     {% set seoDescription = description | striptags %}

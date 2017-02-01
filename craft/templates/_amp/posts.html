@@ -26,8 +26,8 @@
 
 
 {% block schema %}
-  {% set author = entry.author ? entry.author : globals.siteAuthor.first() %}
-  {% set logo = globals.siteLogo.first %}
+  {% set author = entry.author ? entry.author : site.author.first() %}
+  {% set logo = site.logo.first %}
 
   <script type="application/ld+json">
     {
@@ -61,10 +61,10 @@
       "publisher": {
         "@type": "Organization",
         "name": "{{ siteName }}",
-        "description": "{{ globals.siteDescription }}",
+        "description": "{{ site.description | striptags }}",
         "logo": {
           "@type": "ImageObject",
-          "author": "{{ globals.siteAuthor.first().name }}",
+          "author": "{{ site.author.first().name }}",
           "contentUrl": "{{ logo.url }}",
           "url": "{{ siteUrl }}{{ logo.url }}",
           "datePublished": "{{ logo.dateCreated.w3c }}",

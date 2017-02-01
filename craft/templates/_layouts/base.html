@@ -69,8 +69,8 @@
 
 	{% block typography %}
 	  {# Typekit #}
-		{% if globals.siteTypekitKey %}
-	  <script src="https://use.typekit.net/{{ globals.siteTypekitKey }}.js"></script>
+		{% if site.typekitKey %}
+	  <script src="https://use.typekit.net/{{ site.typekitKey }}.js"></script>
 	  <script>
 	    try {
 	      Typekit.load({
@@ -87,9 +87,7 @@
 		<script defer src="{{ siteUrl ~ rev('js/scripts.js') }}"></script>
 
 		{# -- ServiceWorker & loadjs -- #}
-    <script>
-      {{ source( '../../source/' ~ rev('js/loadjs.js')) }}
-    </script>
+
   {% endblock %}
 
 
@@ -101,7 +99,7 @@
   {% include '_includes/site/icons' %}
 
 
-  {% for block in navigation.siteNavigation %}
+  {% for block in navigation.navigation %}
     {% if block.type == "navSingle" or block.type == "navSection" %}
       {% set navLink = block.navEntry.first().url %}
     {% elseif block.type == "navExternal" %}
@@ -136,7 +134,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', '{{ globals.siteGoogleAnalyticsKey }}', 'auto');
+      ga('create', '{{ site.googleAnalyticsKey }}', 'auto');
       ga('require', 'linkid');
 
       document.addEventListener('turbolinks:load', function () {

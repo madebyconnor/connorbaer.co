@@ -51,9 +51,9 @@
         </div>
       </div>
 
-      {% set siteAuthor = globals.siteAuthor.first() %}
+      {% set siteAuthor = site.author.first() %}
 
-      <h6 class="footer-text">© {{ now.year }} <a href="https://twitter.com/{{ globals.siteTwitter }}" aria-label="Follow {{ siteAuthor.fullName }} on Twitter.">{{ siteAuthor.fullName }}</a>. All rights reserved.</h6>
+      <h6 class="footer-text">© {{ now.year }} <a href="https://twitter.com/{{ site.twitterHandle }}" aria-label="Follow {{ siteAuthor.fullName }} on Twitter.">{{ siteAuthor.fullName }}</a>. All rights reserved.</h6>
     </div>
   </footer>
 {% endspaceless %}

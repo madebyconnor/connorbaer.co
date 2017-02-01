@@ -40,7 +40,7 @@
 
 
 {% block schema %}
-  {% set author = entry.author ? entry.author : globals.siteAuthor.first() %}
+  {% set author = entry.author ? entry.author : site.author.first() %}
 
   <script type="application/ld+json">
     {
@@ -48,7 +48,7 @@
       "@type": "ItemList",
       "@id": "{{ url(entry.url) }}",
       "name": "{{ siteName }}",
-      "description": "{{ globals.siteDescription }}",
+      "description": "{{ site.description | striptags }}",
       {% if image %}
       "image": {
         "@type": "ImageObject",

@@ -7,7 +7,7 @@
     <updated>{{ now.atom }}</updated>
     <id>{{ craft.request.url }}</id>
     <author>
-        {% set siteAuthor = globals.siteAuthor.first() %}
+        {% set siteAuthor = site.author.first() %}
         {% if siteAuthor %}
             <name>{{ siteAuthor.friendlyName }}</name>
             <email>{{ siteAuthor.email }}</email>

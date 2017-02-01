@@ -2,7 +2,7 @@
 
 <ul class="nav">
 
-  {% for block in navigation.siteNavigation %}
+  {% for block in navigation.navigation %}
 
     {% if block.type == "navSingle" or block.type == "navSection" %}
       {% set navLink = block.navEntry.first().url %}
