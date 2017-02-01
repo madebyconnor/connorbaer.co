@@ -110,7 +110,7 @@ module.exports = {
   scripts: {
     src: tmplts + '*.js',
     lint: {
-      src: [tmplts + '*.js'], // Linting checks the quality of the code; we only lint custom scripts, not those under the various modules, so we're relying on the original authors to ship quality code.
+      src: [tmplts + '*.js', '!' + tmplts + '*.min.js'], // Linting checks the quality of the code; we only lint custom scripts, not those under the various modules, so we're relying on the original authors to ship quality code.
     },
     minify: {
       uglify: {}, // Default options.
