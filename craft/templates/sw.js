@@ -11,6 +11,15 @@
     '/eating',
     '/'
   ];
+  const staticAssets = [
+    '{{ siteUrl ~ rev('js/lazysizes.min.js') }}',
+    '{{ siteUrl ~ rev('js/twemoji.min.js') }}',
+    '{{ siteUrl ~ rev('js/system.min.js') }}',
+    '{{ siteUrl ~ rev('js/vue.min.js') }}',
+    '{{ siteUrl ~ rev('js/vue-resource.min.js') }}',
+
+    '{{ siteUrl ~ rev('css/styles.css') }}',
+  ];
 
   function stashInCache(cacheName, request, response) {
     caches.open(cacheName).then(cache=>cache.put(request, response));

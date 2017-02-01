@@ -47,4 +47,4 @@ gulp.task('scripts-deps', () => {
 });
 
 // Master script task; lint -> bundle -> minify.
-gulp.task('scripts', ['scripts-minify', 'scripts-deps']);
+gulp.task('scripts', ['scripts-deps']);

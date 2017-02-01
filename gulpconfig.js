@@ -124,7 +124,7 @@ module.exports = {
         modules + 'smooth-scroll/dist/js/smooth-scroll.min.js',
         modules + 'lazysizes/lazysizes.min.js',
       ],
-      dest: src + 'js/',
+      dest: dist + assets + 'js/',
     },
   },
 
