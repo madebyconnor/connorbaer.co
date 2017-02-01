@@ -20,12 +20,4 @@ gulp.task('update-styles', () => {
     .pipe(gulp.dest(config.styles.dest));
 });
 
-
-// Copy JavaScript dependencies to the public assets folder.
-gulp.task('update-scripts', () => {
-  return gulp.src(config.scripts.src)
-    .pipe(plugins.changed(config.scripts.dest))
-    .pipe(gulp.dest(config.scripts.dest));
-});
-
-gulp.task('update', ['update-styles', 'update-scripts', 'update-node']);
+gulp.task('update', ['update-styles', 'update-node']);

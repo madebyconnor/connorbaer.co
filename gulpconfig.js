@@ -72,13 +72,6 @@ module.exports = {
       },
       dest: src + 'css/dependencies/',
     },
-    scripts: {
-      src: [
-        modules + 'smooth-scroll/dist/js/smooth-scroll.min.js',
-        modules + 'lazysizes/lazysizes.min.js',
-      ],
-      dest: src + 'js/',
-    },
   },
 
 
@@ -115,9 +108,9 @@ module.exports = {
   // 7. Scripts //
 
   scripts: {
-    src: src + 'js/*.js',
+    src: tmplts + '*.js',
     lint: {
-      src: [src + 'js/*.js', '!' + src + 'js/*.min.js'], // Linting checks the quality of the code; we only lint custom scripts, not those under the various modules, so we're relying on the original authors to ship quality code.
+      src: [tmplts + '*.js'], // Linting checks the quality of the code; we only lint custom scripts, not those under the various modules, so we're relying on the original authors to ship quality code.
     },
     minify: {
       uglify: {}, // Default options.
@@ -125,7 +118,14 @@ module.exports = {
         extname: '.min.js',
       },
     },
-    dest: dist + assets + 'js/',
+    dest: tmplts,
+    deps: {
+      src: [
+        modules + 'smooth-scroll/dist/js/smooth-scroll.min.js',
+        modules + 'lazysizes/lazysizes.min.js',
+      ],
+      dest: src + 'js/',
+    },
   },
 
 

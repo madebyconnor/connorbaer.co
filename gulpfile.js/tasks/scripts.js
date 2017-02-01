@@ -26,5 +26,25 @@ gulp.task('scripts-minify', ['scripts-lint'], () => {
     .pipe(gulp.dest(config.dest));
 });
 
+// Minify scripts in place.
+gulp.task('scripts-minify', ['scripts-lint'], () => {
+  return gulp.src(config.src)
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.babel({
+        presets: ['es2015']
+    }))
+    .pipe(plugins.uglify(config.minify.uglify))
+    .pipe(plugins.rename(config.minify.rename))
+    .pipe(plugins.sourcemaps.write('./'))
+    .pipe(gulp.dest(config.dest));
+});
+
+// Copy JavaScript dependencies to the public assets folder.
+gulp.task('scripts-deps', () => {
+  return gulp.src(config.deps.src)
+    .pipe(plugins.changed(config.deps.dest))
+    .pipe(gulp.dest(config.deps.dest));
+});
+
 // Master script task; lint -> bundle -> minify.
-gulp.task('scripts', ['scripts-minify']);
+gulp.task('scripts', ['scripts-minify', 'scripts-deps']);
