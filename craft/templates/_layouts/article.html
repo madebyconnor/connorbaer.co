@@ -106,7 +106,7 @@
         </a>
         <div class="author-text">
           <h4><a href="mailto:{{ author.email }}" aria-label="Send {{ author.name }} a message.">{{ author.name }}</a></h4>
-          <p>{{ striptags(site.description) }}</p>
+          <p>{{ site.description | striptags }}</p>
         </div>
       </aside>
       {% endif %}

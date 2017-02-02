@@ -67,21 +67,6 @@
 	{% endblock %}
 
 
-	{% block typography %}
-	  {# Typekit #}
-		{% if site.typekitKey %}
-	  <script src="https://use.typekit.net/{{ site.typekitKey }}.js"></script>
-	  <script>
-	    try {
-	      Typekit.load({
-	        async: true
-	      });
-	    } catch (e) {}
-	  </script>
-		{% endif %}
-	{% endblock %}
-
-
   {% block scripts %}
 		{# ServiceWorker #}
 		<script>
@@ -113,7 +98,26 @@
 	    });
 		</script>
 
-		<script src="{{ rev('js/lazysizes.min.js') }}" async=""></script>
+	  {# Typekit #}
+		{% if site.typekitKey %}
+	  <script>
+		loadjs(['https://use.typekit.net/{{ site.typekitKey }}.js'], 'typekit');
+		loadjs.ready('typekit', {
+			success: function() {
+				try {
+		      Typekit.load({
+		        async: true
+		      });
+		    } catch (e) {}
+			}
+		});
+	  </script>
+		{% endif %}
+
+		{# Lazysizes #}
+	  <script>
+		loadjs(['{{ rev('js/lazysizes.min.js') }}'], 'lazysizes');
+	  </script>
   {% endblock %}
 
 

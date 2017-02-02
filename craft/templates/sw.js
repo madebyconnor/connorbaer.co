@@ -12,13 +12,11 @@
     '/'
   ];
   const staticAssets = [
-    '{{ siteUrl ~ rev('js/lazysizes.min.js') }}',
-    '{{ siteUrl ~ rev('js/twemoji.min.js') }}',
-    '{{ siteUrl ~ rev('js/system.min.js') }}',
-    '{{ siteUrl ~ rev('js/vue.min.js') }}',
-    '{{ siteUrl ~ rev('js/vue-resource.min.js') }}',
-
     '{{ siteUrl ~ rev('css/styles.css') }}',
+
+    'https://use.typekit.net/{{ site.typekitKey }}.js',
+    '{{ siteUrl ~ rev('js/lazysizes.min.js') }}',
+    'https://twemoji.maxcdn.com/2/twemoji.min.js',
   ];
 
   function stashInCache(cacheName, request, response) {
