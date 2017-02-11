@@ -63,7 +63,7 @@
 
 
 	{% block styles %}
-    <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ rev('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ 'css/styles.css' }}">
 	{% endblock %}
 
 
@@ -116,7 +116,7 @@
 
 		{# Lazysizes #}
 	  <script>
-		loadjs(['{{ rev('js/lazysizes.min.js') }}'], 'lazysizes');
+		loadjs(['js/lazysizes.min.js'], 'lazysizes');
 	  </script>
   {% endblock %}
 

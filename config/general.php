@@ -6,22 +6,27 @@
  * list of the default settings in `vendor/craftcms/cms/src/config/defaults/general.php`.
  */
 
+// Ensure our urls have the right scheme.
+define( 'URI_SCHEME', ( isset( $_SERVER['HTTPS'] ) ) ? 'https://' : 'http://' );
+// The site url.
+define( 'SITE_URL',   URI_SCHEME . $_SERVER['SERVER_NAME'] . '/' );
+
 return [
-    // Base site URL
-    'siteUrl' => null,
-
-    // Default Week Start Day (0 = Sunday, 1 = Monday...)
-    'defaultWeekStartDay' => 0,
-
-    // Enable CSRF Protection (recommended, will be enabled by default in Craft 3)
-    'enableCsrfProtection' => true,
-
-    // Whether "index.php" should be visible in URLs (true, false, "auto")
-    'omitScriptNameInUrls' => 'auto',
-
-    // Control Panel trigger word
-    'cpTrigger' => 'admin',
-
-    // Dev Mode (see https://craftcms.com/support/dev-mode)
-    'devMode' => false,
+	'*' => array(
+		'defaultWeekStartDay' => 1,
+		'omitScriptNameInUrls' => true,
+		'generateTransformsBeforePageLoad' => true,
+		'environmentVariables' => array(
+			'baseAssetsPath' => './uploads/',
+			'baseAssetsUrl' => '/uploads/',
+		),
+		'siteUrl' => SITE_URL,
+	),
+	'local' => array(
+		'devMode' => true,
+		'testToEmailAddress' => 'connor.baer@me.com',
+	),
+	'*.co' => array(
+		'devMode' => false,
+	),
 ];

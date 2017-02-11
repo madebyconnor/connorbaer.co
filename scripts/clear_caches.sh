@@ -13,9 +13,9 @@ WRITEABLE_DIR_PERMS=775  # `-rwxrwxr-x`
 
 # Local directories relative to LOCAL_ROOT_PATH that should be removed to clear the cache
 CRAFT_CACHE_DIRS=(
-                "craft/storage/runtime/cache"
-                "craft/storage/runtime/compiled_templates"
-                "craft/storage/runtime/state"
+                "storage/runtime/cache"
+                "storage/runtime/compiled_templates"
+                "storage/runtime/state"
                 )
 
 # Craft Database table prefix

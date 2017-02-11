@@ -22,14 +22,14 @@
 {% block styles %}
   {{ parent() }}
 
-  <link rel="stylesheet" type="text/css" href="{{ siteUrl }}{{ rev('css/submit.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ 'css/submit.css' }}">
 {% endblock %}
 
 
 {% block scripts %}
   {{ parent() }}
 
-  <script defer src="{{ siteUrl ~ rev('js/submit.js') }}" data-turbolinks-track="reload"></script>
+  <script defer src="{{ siteUrl ~ 'js/submit.js' }}" data-turbolinks-track="reload"></script>
 {% endblock %}
 
 
