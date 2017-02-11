@@ -22,7 +22,8 @@
   svg {
     width: 40px;
     height: 40px;
-    transition: fill $short, transform $short;
+    transition: fill $short, transform $long;
+    vertical-align: middle;
     fill: palette(gray, darker);
 
     &:hover,

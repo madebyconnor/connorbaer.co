@@ -78,7 +78,7 @@ module.exports = {
   // 5. Clean //
 
   clean: {
-    tidy: [dist + '**/.DS_Store'], // A glob pattern matching junk files to clean out of `build`; feel free to add to this array.
+    tidy: [dist + '**/.DS_Store', dist + assets + 'revisions.json'], // A glob pattern matching junk files to clean out of `build`; feel free to add to this array.
     css: [dist + assets + 'css/'], // Clean this out before creating a new distribution copy.
     js: [dist + assets + 'js/'], // Clean this out before creating a new distribution copy.
   },

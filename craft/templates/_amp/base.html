@@ -70,10 +70,8 @@
 </style>
 
 
-  {% block schema %}{% endblock %}
+  {% hook 'seomaticRender' %}
 
-
-  {% include '_includes/site/seo' %}
 
   {% include '_includes/site/icons' %}
 
