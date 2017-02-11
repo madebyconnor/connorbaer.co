@@ -7,7 +7,7 @@
  */
 
 // Ensure our urls have the right scheme.
-define( 'URI_SCHEME', ( isset( $_SERVER['HTTPS'] ) ) ? "https://" : "http://" );
+define( 'URI_SCHEME', ( isset( $_SERVER['HTTPS'] ) ) ? 'https://' : 'http://' );
 
 // The site url.
 define( 'SITE_URL',   URI_SCHEME . $_SERVER['SERVER_NAME'] . '/' );
@@ -16,6 +16,7 @@ return array(
 	'*' => array(
 		'defaultWeekStartDay' => 1,
 		'omitScriptNameInUrls' => true,
+		'generateTransformsBeforePageLoad' => true,
 		'environmentVariables' => array(
 			'baseAssetsPath' => './uploads/',
 			'baseAssetsUrl' => '/uploads/',
@@ -28,7 +29,7 @@ return array(
 		'testToEmailAddress' => 'connor.baer@me.com',
 	),
 
-	'connorbaer.co' => array(
+	'*.co' => array(
 		'devMode' => false,
 	),
 );

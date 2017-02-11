@@ -7,13 +7,39 @@
 
 
 {#
- # 1. Date
- # 2. Share
- # 3. Hero Image
+ # 1. Image Transforms
+ # 2. Date
+ # 3. Share
+ # 4. Hero Image
 -#}
 
 
-{# 1. Date #}
+{# 1. Image Transforms #}
+
+{% set large = {
+    mode: 'crop',
+    width: 1440,
+    height: 810,
+    quality: 90,
+    position: 'top-center'
+} %}
+
+{% set medium = {
+    mode: 'fit',
+    width: 720,
+    height: 720,
+    quality: 80,
+} %}
+
+{% set small = {
+    mode: 'fit',
+    width: 360,
+    height: 360,
+    quality: 70,
+} %}
+
+
+{# 2. Date #}
 
 {% macro date(date) %}
 	<div class="meta">
@@ -22,7 +48,7 @@
 {% endmacro %}
 
 
-{# 2. Share #}
+{# 3. Share #}
 
 {% macro share(title) %}
 	<div class="meta share">
@@ -43,14 +69,14 @@
 {% endmacro %}
 
 
-{# 3. Hero Image #}
+{# 4. Hero Image #}
 
 {% macro heroImage(image, processedImage) %}
-	{% if not craft.request.isLivePreview and processedImage %}
-		{{ processedImage | raw }}
-	{% elseif image %}
-		<img class="hero-image"
-				 src="{{ image.url }}"
+	{% if image %}
+		<img class="hero-image lazyload"
+				 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+				 data-sizes="90vw"
+				 data-srcset="{{ image.getUrl(large) }} {{ image.getWidth(large) }}, {{ image.getUrl(medium) }} {{ image.getWidth(medium) }}, {{ image.getUrl(small) }} {{ image.getWidth(small) }}"
 				 alt="{{ image.title }}">
 	{% endif %}
 {% endmacro %}
