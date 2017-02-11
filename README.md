@@ -1,4 +1,4 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2d8734becc4c452ab3c4db9875435a55)](https://www.codacy.com/app/connor_baer/uwcblogs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=uwc/uwcblogs&amp;utm_campaign=Badge_Grade) [![Greenkeeper badge](https://badges.greenkeeper.io/connor-baer/connorbaer.co.svg)](https://greenkeeper.io/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0200cfc81a1146bc87ed0407fdd4cd29)](https://www.codacy.com/app/connor_baer/connorbaer-co?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=connor-baer/connorbaer.co&amp;utm_campaign=Badge_Grade) [![Greenkeeper badge](https://badges.greenkeeper.io/connor-baer/connorbaer.co.svg)](https://greenkeeper.io/)
 
 # Connor Bär 🐻
 
