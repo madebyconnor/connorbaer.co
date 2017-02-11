@@ -1,0 +1,79 @@
+/*
+
+  CUSTOM
+
+  Add custom styles here.
+
+*/
+
+
+// METABAR
+
+.metabar-logo {
+  transition: fill 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  fill: $black;
+
+  &:hover,
+  &:focus {
+    transform: rotate(360deg);
+    fill: $primary;
+  }
+}
+
+.metabar-name {
+  height: 1.25rem;
+  transition: fill 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  fill: $black;
+
+  &:hover,
+  &:focus {
+    fill: $primary;
+  }
+}
+
+.metabar-toggle:checked + label {
+  .open {
+    display: none;
+  }
+
+  .close {
+    display: inline-block;
+  }
+}
+
+@media #{$breakpoint-small} {
+  .metabar-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateY(-2rem);
+    transition: transform 0.25s ease-out, opacity 0.25s ease-out, visibility 0.25s ease-out;
+    background-color: $white-90;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+
+    .metabar-toggle:checked ~ & {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .metabar-wrapper {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    padding: 2rem;
+    transform: translateY(-50%);
+    text-align: center;
+  }
+}
+
+
+.turbolinks-progress-bar {
+  height: 4px;
+  background-color: $primary;
+}

@@ -1,0 +1,36 @@
+/*
+
+  ADDITIONS
+
+  Add additional styles here.
+
+*/
+
+
+// BORDER COLORS
+
+.b--primary {
+  border-color: $primary;
+}
+
+// SKINS
+
+.primary {
+  color: $primary;
+}
+
+.bg-primary {
+  background-color: $primary;
+}
+
+// SKINS:PSEUDO
+
+.hover-primary:hover,
+.hover-primary:focus {
+  color: $primary;
+}
+
+.hover-bg-primary:hover,
+.hover-bg-primary:focus {
+  background-color: $primary;
+}

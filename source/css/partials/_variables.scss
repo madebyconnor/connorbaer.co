@@ -1,0 +1,34 @@
+/*
+
+  VARIABLES
+
+  Add custom variables here.
+
+*/
+
+
+// COLORS
+
+@import "partials/open-color";
+
+$black: $oc-gray-9;
+$near-black: $oc-gray-8;
+$dark-gray: $oc-gray-7;
+$mid-gray: $oc-gray-6;
+$gray: $oc-gray-5;
+$silver: $oc-gray-4;
+$light-silver: $oc-gray-3;
+$moon-gray: $oc-gray-2;
+$light-gray: $oc-gray-1;
+$near-white: $oc-gray-0;
+
+$primary: #f9423a;
+
+
+// MEDIA QUERIES
+
+$breakpoint-small: "screen and (max-width: 37.5em)";
+$breakpoint-not-small: "screen and (min-width: 37.5em)";
+$breakpoint-medium: "screen and (min-width: 37.5em) and (max-width: 56.25em)";
+$breakpoint-large: "screen and (min-width: 56.25em)";
+$breakpoint-huge: "screen and (min-width: 75em)";

@@ -44,15 +44,8 @@
 
 // 3. Metabar //
 
-.metabar-toggle {
-  display: none;
-}
-
 .metabar-label {
-  display: none;
-
   @include mappy-query(phone) {
-    display: block;
     height: 40px;
     cursor: pointer;
 

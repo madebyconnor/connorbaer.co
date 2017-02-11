@@ -62,15 +62,14 @@ module.exports = {
     // Copies dependencies from package managers to `_scss` and renames them to allow for them to be imported as a Sass file.
     styles: {
       src: [
-        modules + 'normalize.css/normalize.css',
-        modules + 'open-color/open-color.scss',
         modules + 'choices.js/assets/styles/scss/choices.scss',
+        modules + 'open-color/open-color.scss',
       ],
       rename: {
         prefix: '_',
         extname: '.scss',
       },
-      dest: src + 'css/dependencies/',
+      dest: src + 'css/partials/',
     },
   },
 

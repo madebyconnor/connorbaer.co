@@ -8,30 +8,50 @@
 -#}
 
 {% block metabar %}
-{% cache %}
-{% spaceless %}
-  <aside id="metabar" class="metabar">
-    <div class="metabar-wrapper">
-      <div class="metabar-left">
-        <a class="metabar-logo" href="https://madebyconnor.co/#" {% if craft.request.url != 'https://madebyconnor.co/' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="Visit 'Made by Connor'" title="Made by Connor">
 
-          {% include '_includes/site/logo.svg' %}
+  {% cache %}
+  {% spaceless %}
 
-        </a>
-        <span class="metabar-spacer"></span>
-        <a class="metabar-title" href="{{ siteUrl }}" aria-label="Visit the homepage." title="Visit the homepage.">{{ siteName }}</a>
-      </div>
-      <div class="metabar-right">
-        <input type="checkbox" id="metabar-toggle" class="metabar-toggle"/>
-        <label for="metabar-toggle" class="metabar-label"><span></span></label>
-        <nav class="metabar-nav">
+  <header id="metabar" class="w-100 ph3 pv4 ph5-m ph6-l cf mw9 center">
+    <div class="fl ph3 v-mid tl">
+      <a class="dib v-mid" href="https://madebyconnor.co/#" {% if craft.request.url != 'https://madebyconnor.co/' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="Visit 'Made by Connor'" title="Made by Connor">
 
-          {% include '_includes/site/navigation' %}
+        {% include '_includes/site/logo.svg' %}
 
-        </nav>
-      </div>
+      </a>
+      <a class="dib pl3 v-mid" href="{{ siteUrl }}" aria-label="Visit the homepage." title="Home">
+
+        {% include '_includes/site/name.svg' %}
+
+      </a>
     </div>
-  </aside>
-{% endspaceless %}
-{% endcache %}
+
+    <div class="fr ph3 tr flex items-center h2">
+      <input type="checkbox" id="metabar-toggle" class="metabar-toggle dn"/>
+      <label for="metabar-toggle" class="dn-ns relative mid-gray ttu tracked z-9999 pointer"><span class="open dib">Menu</span><span class="close dn">Close</span></label>
+      <nav class="metabar-nav">
+        <div class="metabar-wrapper">
+
+        {% for block in navigation.navigation %}
+
+          {% if block.type == "navSingle" or block.type == "navSection" %}
+            {% set navLink = block.navEntry.first().url %}
+            {% set navTitle = block.navEntry.first().title %}
+          {% elseif block.type == "navExternal" %}
+            {% set navLink = block.navLink %}
+            {% set navTitle = block.navTitle %}
+          {% endif %}
+
+          <a href="{{ navLink }}" class="db dib-ns mv3 mv0-ns ml4-ns f1 f5-ns fw7 fw5-ns hover-primary link mid-gray{% if craft.request.firstSegment == block.navEntry.first().uri %} primary{% endif %}" title="{{ navTitle }}">{{ navTitle }}</a>
+
+        {% endfor %}
+
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  {% endspaceless %}
+  {% endcache %}
+
 {% endblock %}

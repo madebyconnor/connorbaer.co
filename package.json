@@ -27,8 +27,7 @@
     "browser-sync": "^2.18.7",
     "lazysizes": "^3.0.0-rc3",
     "mappy-breakpoints": "^0.2.3",
-    "normalize.css": "^5.0.0",
-    "open-color": "^1.4.0",
+    "open-color": "^1.4.2",
     "smooth-scroll": "github:cferdinandi/smooth-scroll",
     "tachyons-sass": "^4.7.1",
     "typi": "^2.3.0"

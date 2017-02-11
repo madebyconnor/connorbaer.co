@@ -63,7 +63,7 @@
 
 
 	{% block styles %}
-    <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ rev('css/styles.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ siteUrl ~ rev('css/tachyons.css') }}">
 	{% endblock %}
 
 
@@ -151,7 +151,7 @@
 {% endspaceless %}
 {% endcache %}
 
-<body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>
+<body class="{% if bodyClass is defined %}{{ bodyClass }} {% endif %}w-100 sans-serif">
 
 
   {% block main %}{% endblock %}

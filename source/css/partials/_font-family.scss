@@ -1,0 +1,42 @@
+/*
+
+   FONT FAMILY GROUPS
+   Docs: http://tachyons.io/docs/typography/font-family/
+
+*/
+
+
+.sans-serif {
+  font-family: "freight-sans-pro", "FreightSans Pro", "pt sans", arial, sans-serif;
+}
+
+.serif {
+  font-family: "freight-text-pro", "FreightText Pro", "times new roman", times, serif;
+}
+
+.headline {
+  font-family: "freight-display-pro", "FreightDisp Pro", "times new roman", times, serif;
+}
+
+.system-sans-serif {
+  font-family: -apple-system, BlinkMacSystemFont,
+               "avenir next", avenir,
+               "helvetica neue", helvetica,
+               ubuntu,
+               roboto, noto,
+               "segoe ui", arial,
+               sans-serif;
+}
+
+.system-serif {
+  font-family: georgia,
+               times,
+               serif;
+}
+
+code,
+.code {
+  font-family: Consolas,
+               monaco,
+               monospace;
+}
