@@ -15,7 +15,7 @@
 {% set title = entry.title %}
 {% set description = entry.description %}
 {% if entry.image %}
-  {% set image = entry.image.first() %}
+  {% set image = entry.image.one() %}
 {% endif %}
 
 

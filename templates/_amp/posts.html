@@ -21,12 +21,12 @@
 {% set title = entry.title %}
 {% set description = entry.description %}
 {% if entry.image %}
-  {% set image = entry.image.first() %}
+  {% set image = entry.image.one() %}
 {% endif %}
 
 
 {% block schema %}
-  {% set author = entry.author ? entry.author : site.author.first() %}
+  {% set author = entry.author ? entry.author : site.author.one() %}
   {% set logo = site.logo.first %}
 
   <script type="application/ld+json">
@@ -64,7 +64,7 @@
         "description": "{{ site.description | striptags }}",
         "logo": {
           "@type": "ImageObject",
-          "author": "{{ site.author.first().name }}",
+          "author": "{{ site.author.one().name }}",
           "contentUrl": "{{ logo.url }}",
           "url": "{{ siteUrl }}{{ logo.url }}",
           "datePublished": "{{ logo.dateCreated.w3c }}",
@@ -104,7 +104,7 @@
         <article class="next-post">
           <h4 class="next-header">Next Post</h4>
           {% if entry.next.image %}
-          <div class="next-image" style="background-image: url('{{ entry.next.image.first().url }}')"></div>
+          <div class="next-image" style="background-image: url('{{ entry.next.image.one().url }}')"></div>
           {% endif %}
           <h5 class="next-title"><a href="{{ entry.next.url }}">{{ entry.next.title }}</a></h5>
         </article>

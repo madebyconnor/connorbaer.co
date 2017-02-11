@@ -22,7 +22,7 @@
   <footer id="footer" class="footer">
     <div class="footer-wrapper">
       <div class="footer-logo">
-        <a class="metabar-logo" href="https://madebyconnor.co/#" {% if craft.request.url != 'http://madebyconnor.io' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="Visit 'Made by Connor'" title="Made by Connor">
+        <a class="metabar-logo" href="https://madebyconnor.co/#" {% if craft.app.request.url != 'http://madebyconnor.io' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="Visit 'Made by Connor'" title="Made by Connor">
         {% include '_includes/site/logo.svg' %}
         </a>
       </div>
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      {% set siteAuthor = site.author.first() %}
+      {% set siteAuthor = site.author.one() %}
 
       <h6 class="footer-text">© {{ now.year }} <a href="https://twitter.com/{{ site.twitterHandle }}" aria-label="Follow {{ siteAuthor.fullName }} on Twitter.">{{ siteAuthor.fullName }}</a>. All rights reserved.</h6>
     </div>

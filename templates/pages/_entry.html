@@ -17,7 +17,7 @@
 
 {% set title = entry.title %}
 {% set description = entry.description %}
-{% set image = entry.image.first() %}
+{% set image = entry.image.one() %}
 
 {% block body %}
 

@@ -15,12 +15,12 @@
 {% set title = entry.title %}
 {% set description = entry.description %}
 {% if entry.image %}
-  {% set image = entry.image.first() %}
+  {% set image = entry.image.one() %}
 {% endif %}
 
 
 {% block schema %}
-  {% set author = entry.author ? entry.author : site.author.first() %}
+  {% set author = entry.author ? entry.author : site.author.one() %}
   {% set logo = site.logo.first %}
 
   <script type="application/ld+json">
@@ -58,7 +58,7 @@
         "description": "{{ site.description | striptags }}",
         "logo": {
           "@type": "ImageObject",
-          "author": "{{ site.author.first().name }}",
+          "author": "{{ site.author.one().name }}",
           "contentUrl": "{{ logo.url }}",
           "url": "{{ siteUrl }}{{ logo.url }}",
           "datePublished": "{{ logo.dateCreated.w3c }}",
@@ -127,7 +127,7 @@
           {% if post.postAuthor %}<a href="{{ post.postSourceLink }}" rel="author">{{ post.postAuthor }}</a> · {% endif %}<time class="meta-text" datetime="{{ entry.postDate.w3c }}">{{ entry.postDate | date("F d, Y") }}</time>
         </div>
 
-        {% set image = post.image.first() %}
+        {% set image = post.image.one() %}
 
         {% if image %}
           {% set transformedImages = craft.imager.transformImage(image,

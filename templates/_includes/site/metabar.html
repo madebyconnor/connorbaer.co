@@ -13,7 +13,7 @@
   <aside id="metabar" class="metabar">
     <div class="metabar-wrapper">
       <div class="metabar-left">
-        <a class="metabar-logo" href="https://madebyconnor.co/#" {% if craft.request.url != 'https://madebyconnor.co/' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="Visit 'Made by Connor'" title="Made by Connor">
+        <a class="metabar-logo" href="https://madebyconnor.co/#" {% if craft.app.request.pathInfo != 'https://madebyconnor.co/' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="Visit 'Made by Connor'" title="Made by Connor">
 
           {% include '_includes/site/logo.svg' %}
 

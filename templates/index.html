@@ -17,46 +17,18 @@
  # http://craftcms.com/docs/routing
  #}
 
+
 {% extends "_layouts/site" %}
 
-{% set description = entry.description %}
-{% if entry.image %}
-  {% set image = entry.image.first() %}
-{% endif %}
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
 
 
 {% block styles %}
   {{ parent() }}
 
-  <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ 'css/index.css' }}">
-{% endblock %}
-
-
-
-{% block schema %}
-  {% set author = entry.author ? entry.author : site.author.first() %}
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org/",
-      "@type": "ItemList",
-      "@id": "{{ url(entry.url) }}",
-      "name": "{{ siteName }}",
-      "description": "{{ site.description | striptags }}",
-      {% if image %}
-      "image": {
-        "@type": "ImageObject",
-        "author": "{{ author.name }}",
-        "contentUrl": "{{ image.url }}",
-        "url": "{{ siteUrl }}{{ image.url }}",
-        "datePublished": "{{ image.dateCreated.w3c }}",
-        "name": "{{ image.title }}",
-        "height": "{{ image.height }}",
-        "width": "{{ image.width }}"
-      }
-      {% endif %}
-    }
-  </script>
+  <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ 'assets/css/index.css' }}">
 {% endblock %}
 
 
@@ -75,9 +47,7 @@
 
     {% block hero %}
       <header class="hero">
-        <h1 class="hero-title">{{ helpers.striptags(description) }}</h1>
-
-        {{ elements.heroImage(image, entry.heroImage) }}
+        <h1 class="hero-title">{{ helpers.striptags(entry.description) }}</h1>
 
       </header>
     {% endblock %}
