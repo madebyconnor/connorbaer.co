@@ -22,9 +22,9 @@
 var pkg   = require('./package.json'), // Allows access to the project metadata from the package.json file.
   project = pkg.name, // The name of the project, pulled from the package.json.
   src     = 'source/', // The raw material of the theme: custom scripts, SCSS source files, images, etc.; do not delete this folder!
-  dist    = 'public/', // The webroot directory that will be accessible on your server.
+  dist    = 'web/', // The webroot directory that will be accessible on your server.
   assets  = 'assets/', // A folder for your assets in the source and/or distribution directory.
-  tmplts  = 'craft/templates/', // The CraftCMS template folder.
+  tmplts  = 'templates/', // The CraftCMS template folder.
   bower   = 'bower_components/', // Bower packages.
   modules = 'node_modules/' // NPM packages.
 ;
