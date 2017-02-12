@@ -53,7 +53,10 @@
       <aside class="content-next">
         <article class="next-post">
           <h4 class="next-header">Next Post</h4>
-          {{ elements.firstImage(entry.next) }}
+          {% set matrixBlock = entry.next.body.type('image').one() %}
+{% if matrixBlock %}
+  {% set firstImage = matrixBlock.image.one() %}
+{% endif %}
           {% if firstImage is defined %}
             <div class="next-image" style="background-image: url('{{ firstImage.url }}')"></div>
           {% endif %}

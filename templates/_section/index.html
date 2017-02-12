@@ -48,12 +48,15 @@
 
           {{ elements.date(post.postDate) }}
 
-          {{ elements.firstImage(post) }}
-          {% if firstImage is defined %}
+          {% set matrixBlock = post.body.type('image').one() %}
+          {% if matrixBlock %}
+            {% set image = matrixBlock.image.one() %}
+          {% endif %}
+          {% if image is defined %}
         		<img class="newsletter-image lazyload"
         				 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
         				 data-sizes="auto"
-        				 data-srcset="{{ image.getUrl(medium) }} {{ image.getWidth(medium) }}, {{ image.getUrl(small) }} {{ image.getWidth(small) }}"
+        				 data-srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}, {{ image.getUrl('small') }} {{ image.getWidth('small') }}"
         				 alt="{{ image.title }}">
         	{% endif %}
 
