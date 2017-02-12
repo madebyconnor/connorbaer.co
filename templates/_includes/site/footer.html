@@ -60,7 +60,7 @@
         </div>
       </div>
 
-      <h6 class="footer-text">© {{ now.year }} {{ footer.contentOwner }}. All rights reserved.</h6>
+      <h6 class="footer-text">© {{ "now" | date("Y") }} {{ footer.contentOwner }}. All rights reserved.</h6>
     </div>
   </footer>
 {% endspaceless %}
