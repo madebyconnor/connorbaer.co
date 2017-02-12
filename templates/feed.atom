@@ -6,15 +6,8 @@
     <link type="application/atom+xml" rel="self" href="{{ craft.app.request.url }}"/>
     <updated>{{ now.atom }}</updated>
     <id>{{ craft.app.request.url }}</id>
-    <author>
-        {% set siteAuthor = site.author.one() %}
-        {% if siteAuthor %}
-            <name>{{ siteAuthor.friendlyName }}</name>
-            <email>{{ siteAuthor.email }}</email>
-        {% endif %}
-    </author>
 
-    {% for entry in craft.entries.section('news').find() %}
+    {% for entry in craft.entries.section('news').all() %}
         <entry>
             <id>{{ entry.url }}</id>
             <link type="text/html" rel="alternate" href="{{ entry.url }}"/>

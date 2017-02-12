@@ -144,7 +144,7 @@ module.exports = {
       logging: false,
       online: false,
       replace: true,
-      html: tmplts + '_includes/site/icons.html',
+      html: tmplts + '_includes/icons.html',
       pipeHTML: true,
       icons: {
         android: true,         // Create Android homescreen icon. `boolean`
