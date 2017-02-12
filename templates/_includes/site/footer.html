@@ -40,20 +40,27 @@
           <nav>
             <ul class="nav">
 
-              {% for item, url in footerNav %}
-                <li class="nav-link">
-                  <a href="{{ url(url) }}" target="_blank" rel="noopener noreferrer" aria-label="{{ item }}">{{ item }}</a>
-                </li>
-              {% endfor %}
+              {% for block in footer.navigation %}
 
+                {% if block.type == "navSingle" or block.type == "navSection" %}
+                  {% set navLink = block.navEntry.one().url %}
+                  {% set navTitle = block.navEntry.one().title %}
+                {% elseif block.type == "navExternal" %}
+                  {% set navLink = block.navLink %}
+                  {% set navTitle = block.navTitle %}
+                {% endif %}
+
+                <li class="nav-link">
+                  <a href="{{ navLink }}" target="_blank" rel="noopener noreferrer" title="{{ navTitle }}">{{ navTitle }}</a>
+                </li>
+
+              {% endfor %}
             </ul>
           </nav>
         </div>
       </div>
 
-      {% set siteAuthor = site.author.one() %}
-
-      <h6 class="footer-text">© {{ now.year }} <a href="https://twitter.com/{{ site.twitterHandle }}" aria-label="Follow {{ siteAuthor.fullName }} on Twitter.">{{ siteAuthor.fullName }}</a>. All rights reserved.</h6>
+      <h6 class="footer-text">© {{ now.year }} {{ footer.contentOwner }}. All rights reserved.</h6>
     </div>
   </footer>
 {% endspaceless %}
