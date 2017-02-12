@@ -16,6 +16,11 @@
 {% extends "_layouts/site" %}
 
 
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+
+
 {% block links %}
   {{ parent() }}
 
@@ -42,14 +47,15 @@
 
       {# {{ entry.body }} #}
 
-      {{ elements.share(title) }}
+      {{ elements.share(entry.title) }}
 
       {% if entry.next %}
       <aside class="content-next">
         <article class="next-post">
           <h4 class="next-header">Next Post</h4>
-          {% if entry.next.image %}
-          <div class="next-image" style="background-image: url('{{ entry.next.image.one().url }}')"></div>
+          {{ elements.firstImage(entry.next) }}
+          {% if firstImage is defined %}
+            <div class="next-image" style="background-image: url('{{ firstImage.url }}')"></div>
           {% endif %}
           <h5 class="next-title"><a href="{{ entry.next.url }}">{{ entry.next.title }}</a></h5>
         </article>

@@ -13,6 +13,11 @@
 {% extends "_layouts/site" %}
 
 
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+
+
 {% block styles %}
   {{ parent() }}
 
@@ -42,17 +47,14 @@
 
           {{ elements.date(post.postDate) }}
 
-          {% set image = post.image.one() %}
-
-          {% if image %}
-            <a href="{{ post.url }}" title="{{ post.title }}">
-              <img class="newsletter-image lazyload"
-                   src="{{ craft.imager.base64Pixel(2,1) }}"
-                   data-sizes="100vw"
-                   data-srcset="{{ craft.imager.srcset(transformedImages) }}"
-                   alt="{{ image.title }}">
-            </a>
-          {% endif %}
+          {{ elements.firstImage(post) }}
+          {% if firstImage is defined %}
+        		<img class="newsletter-image lazyload"
+        				 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        				 data-sizes="auto"
+        				 data-srcset="{{ image.getUrl(medium) }} {{ image.getWidth(medium) }}, {{ image.getUrl(small) }} {{ image.getWidth(small) }}"
+        				 alt="{{ image.title }}">
+        	{% endif %}
 
           <p class="newsletter-body">{{ helpers.striptags(post.description) }}</p>
         </article>
