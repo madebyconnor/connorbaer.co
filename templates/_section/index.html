@@ -1,0 +1,64 @@
+{#
+ # Newsletter index template
+ # -------------------
+ #
+ # This template is loaded whenever http://example.com/newsletter is
+ # requested, because it is located at newsletter/index.html
+ # in your craft/templates/ folder.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layouts/site" %}
+
+
+{% block styles %}
+  {{ parent() }}
+
+  <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ 'css/posts.css' }}">
+{% endblock %}
+
+
+{% block body %}
+  <article class="page">
+
+
+    {% block hero %}
+      <header class="hero">
+        <h1 class="hero-title">{{ helpers.striptags(entry.description) }}</h1>
+
+      </header>
+    {% endblock %}
+
+
+    <div class="content content-style">
+
+      <div class="section-writing">
+        {% set section = craft.app.request.segments | first %}
+        {% for post in craft.entries.section(section).all() %}
+        <article>
+          <h3 class="newsletter-header"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+
+          {{ elements.date(post.postDate) }}
+
+          {% set image = post.image.one() %}
+
+          {% if image %}
+            <a href="{{ post.url }}" title="{{ post.title }}">
+              <img class="newsletter-image lazyload"
+                   src="{{ craft.imager.base64Pixel(2,1) }}"
+                   data-sizes="100vw"
+                   data-srcset="{{ craft.imager.srcset(transformedImages) }}"
+                   alt="{{ image.title }}">
+            </a>
+          {% endif %}
+
+          <p class="newsletter-body">{{ helpers.striptags(post.description) }}</p>
+        </article>
+        {% endfor %}
+
+      </div>
+    </div>
+  </article>
+{% endblock %}

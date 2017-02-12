@@ -15,18 +15,13 @@
 
 {% extends "_layouts/site" %}
 
-{% set title = entry.title %}
-{% set description = entry.description %}
-{% set image = entry.image.one() %}
 
 {% block body %}
 
   <article class="page sans">
     {% block hero %}
       <header class="hero">
-        <h1 class="hero-title">{{ helpers.striptags(description) }}</h1>
-
-        {{ elements.heroImage(image, entry.heroImage) }}
+        <h1 class="hero-title">{{ helpers.striptags(entry.description) }}</h1>
 
       </header>
     {% endblock %}
@@ -34,7 +29,7 @@
     <div class="content content-style">
       {{ entry.body }}
 
-      {{ elements.share(title) }}
+      {{ elements.share(entry.title) }}
     </div>
   </article>
 
