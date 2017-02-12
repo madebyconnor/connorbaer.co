@@ -12,10 +12,10 @@
     '/'
   ];
   const staticAssets = [
-    '{{ siteUrl ~ 'css/styles.css' }}',
+    '{{ siteUrl ~ 'assets/css/styles.css' }}',
 
     'https://use.typekit.net/{{ site.typekitKey }}.js',
-    '{{ siteUrl ~ 'js/lazysizes.min.js' }}',
+    '{{ siteUrl ~ 'assets/js/lazysizes.min.js' }}',
     'https://twemoji.maxcdn.com/2/twemoji.min.js',
   ];
 

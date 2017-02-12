@@ -17,11 +17,13 @@
 {% import '_includes/helpers' as helpers %}
 
 
+{% set section = craft.app.request.segments | first %}
+
 
 {% block styles %}
   {{ parent() }}
 
-  <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ 'css/posts.css' }}">
+  <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ 'assets/css/posts.css' }}">
 {% endblock %}
 
 
@@ -39,8 +41,7 @@
 
     <div class="content content-style">
 
-      <div class="section-writing">
-        {% set section = craft.app.request.segments | first %}
+      <div class="section">
         {% for post in craft.entries.section(section).all() %}
         <article>
           <h3 class="newsletter-header"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
