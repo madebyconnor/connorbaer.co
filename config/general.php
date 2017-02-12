@@ -16,10 +16,6 @@ return [
 		'defaultWeekStartDay' => 1,
 		'omitScriptNameInUrls' => true,
 		'generateTransformsBeforePageLoad' => true,
-		'environmentVariables' => array(
-			'baseAssetsPath' => './uploads/',
-			'baseAssetsUrl' => '/uploads/',
-		),
 		'siteUrl' => SITE_URL,
 	),
 	'local' => array(
