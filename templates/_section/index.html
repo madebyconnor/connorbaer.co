@@ -61,17 +61,19 @@
             <h3 class="ts-header2 mt0"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
 
             {% set matrixBlock = post.body.type('image').one() %}
+
             {% if matrixBlock %}
               {% set image = matrixBlock.image.one() %}
-            {% endif %}
-            {% if image is defined %}
-              <a href="{{ post.url }}" title="{{ post.title }}">
-                <img class="lazyload"
-                     src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                     data-sizes="auto"
-                     data-srcset="{{ image.getUrl('large21x9') }} {{ image.getWidth('large21x9') }}w, {{ image.getUrl('medium21x9') }} {{ image.getWidth('medium21x9') }}w, {{ image.getUrl('small21x9') }} {{ image.getWidth('small21x9') }}w"
-                     alt="{{ image.title }}">
-              </a>
+
+              {% if image is defined %}
+                <a href="{{ post.url }}" title="{{ post.title }}">
+                  <img class="lazyload"
+                       src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                       data-sizes="auto"
+                       data-srcset="{{ image.getUrl('large21x9') }} {{ image.getWidth('large21x9') }}w, {{ image.getUrl('medium21x9') }} {{ image.getWidth('medium21x9') }}w, {{ image.getUrl('small21x9') }} {{ image.getWidth('small21x9') }}w"
+                       alt="{{ image.title }}">
+                </a>
+              {% endif %}
             {% endif %}
 
             {{ elements.date(post.postDate) }}
