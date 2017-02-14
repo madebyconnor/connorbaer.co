@@ -32,17 +32,28 @@
 .navigation-logo {
   display: inline-block;
 
-  svg {
+  svg,
+  img {
     width: 40px;
     height: 40px;
     transition: fill $an-short, transform $an-long;
     vertical-align: middle;
+  }
+
+  svg {
     fill: $oc-gray-8;
 
     &:hover,
     &:focus {
       transform: rotate(360deg);
       fill: $oc-madebyconnor-6;
+    }
+  }
+
+  img {
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
     }
   }
 }
