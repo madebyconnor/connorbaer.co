@@ -40,10 +40,10 @@
 
 
 {% macro getPosition(block) %}
-	{% spaceless %}
+	{% minify %}
 		{% set positionedTypes = ['text', 'pullQuote', 'image', 'quote'] %}
 		{{ block.type.handle in positionedTypes and block.position ? block.position : 'center' }}
-	{% endspaceless %}
+	{% endminify %}
 {% endmacro %}
 
 

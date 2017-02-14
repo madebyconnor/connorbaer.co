@@ -24,11 +24,12 @@
   },
   "homepage": "https://connorbaer.co",
   "dependencies": {
-    "browser-sync": "^2.18.7",
+    "browser-sync": "^2.18.8",
     "lazysizes": "^3.0.0-rc4",
     "mappy-breakpoints": "^0.2.3",
     "normalize.css": "^5.0.0",
     "open-color": "^1.4.0",
+    "prismjs": "^1.6.0",
     "typi": "^2.3.0"
   },
   "devDependencies": {

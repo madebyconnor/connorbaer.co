@@ -56,7 +56,7 @@
 <html amp lang="{{ craft.app.language }}">
 
 {% cache %}
-{% spaceless %}
+{% minify %}
 <head>
   <meta charset="utf-8">
   <script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -88,7 +88,7 @@
     <link rel="alternate" type="application/atom+xml" title="Atom" href="/feed.atom">
   {% endblock %}
 </head>
-{% endspaceless %}
+{% endminify %}
 {% endcache %}
 
 <body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>

@@ -34,6 +34,13 @@
         <h1 class="hero-title">{{ title }}</h1>
 
         {{ elements.date(entry.postDate) }}
+        <amp-img class="hero-image"
+             src="{{ transformedImages[0].url }}"
+             width="1000"
+             height="600"
+             layout="responsive"
+             alt="{{ image.title }}"></amp-img>
+
 
       </header>
     {% endblock %}

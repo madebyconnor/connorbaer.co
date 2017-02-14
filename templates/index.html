@@ -25,38 +25,16 @@
 {% import '_includes/helpers' as helpers %}
 
 
-{% block styles %}
-  {{ parent() }}
-
-  <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ 'assets/css/index.css' }}">
-{% endblock %}
-
-
-{% block links %}
-  {{ parent() }}
-
-  <meta name="msvalidate.01" content="B9F4E5A6EB3F584936548E454FA92129" />
-{% endblock %}
-
-
 {% block body %}
   {% cache %}
-  {% spaceless %}
+  {% minify %}
+
   <article class="page">
-
-
-    {% block hero %}
-      <header class="hero">
-        <h1 class="hero-title">{{ helpers.striptags(entry.description) }}</h1>
-
-      </header>
-    {% endblock %}
-
-
-    <div class="content content-style">
-
-    </div>
+    <header class="w100">
+      <h1 class="w3 ts-title">{{ helpers.striptags(entry.description) }}</h1>
+    </header>
   </article>
-  {% endspaceless %}
+
+  {% endminify %}
   {% endcache %}
 {% endblock %}

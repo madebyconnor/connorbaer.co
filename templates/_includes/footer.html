@@ -8,61 +8,42 @@
 -#}
 
 
-{% block footer %}
-{% cache %}
-{% spaceless %}
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
 
-  {# Define the footer navigation #}
-  {% set footerNav = {
-    "Creating": "https://connorbaer.co/creating",
-    "Writing":  "https://connorbaer.co/writing",
-    "Eating":   "https://connorbaer.co/eating"
-  } %}
+
+{% block footer %}
+  {% cache %}
+  {% minify %}
 
   <footer id="footer" class="footer">
-    <div class="footer-wrapper">
-      <div class="footer-logo">
-        <a class="metabar-logo" href="https://madebyconnor.co/#" {% if craft.app.request.url != 'http://madebyconnor.io' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="Visit 'Made by Connor'" title="Made by Connor">
-        {% include '_includes/logo.svg' %}
-        </a>
-      </div>
-      <div class="footer-navigation">
-        <div class="footer-links">
-          <h4 class="footer-title">{{ siteName }}</h4>
+    <div class="w100">
+      <div class="pv3 cf">
+        <div class="w1 pv2 fl-left">
+
+          {% include '_includes/logo' %}
+
+        </div>
+        <div class="w1 pv2 fl-left">
+          <h4 class="ts-header3 ff-sans fw-semibold mt0">{{ siteName }}</h4>
           <nav>
 
-            {% include '_includes/navigation' %}
+            {{ elements.navigation(navigation) }}
 
           </nav>
         </div>
-        <div class="footer-links">
-          <h4 class="footer-title">More by Connor</h4>
+        <div class="w1 pv2 fl-left">
+          <h4 class="ts-header3 ff-sans fw-semibold mt0">More by Connor</h4>
           <nav>
-            <ul class="nav">
 
-              {% for block in footer.navigation %}
+            {{ elements.navigation(footer) }}
 
-                {% if block.type == "navSingle" or block.type == "navSection" %}
-                  {% set navLink = block.navEntry.one().url %}
-                  {% set navTitle = block.navEntry.one().title %}
-                {% elseif block.type == "navExternal" %}
-                  {% set navLink = block.navLink %}
-                  {% set navTitle = block.navTitle %}
-                {% endif %}
-
-                <li class="nav-link">
-                  <a href="{{ navLink }}" target="_blank" rel="noopener noreferrer" title="{{ navTitle }}">{{ navTitle }}</a>
-                </li>
-
-              {% endfor %}
-            </ul>
           </nav>
         </div>
+        <h6 class="footer-text w2 right pv2 ts-app">© {{ "now" | date("Y") }} {{ footer.contentOwner }}. All rights reserved.</h6>
       </div>
-
-      <h6 class="footer-text">© {{ "now" | date("Y") }} {{ footer.contentOwner }}. All rights reserved.</h6>
     </div>
   </footer>
-{% endspaceless %}
-{% endcache %}
+  {% endminify %}
+  {% endcache %}
 {% endblock %}

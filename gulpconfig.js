@@ -120,6 +120,7 @@ module.exports = {
       src: [
         modules + 'smooth-scroll/dist/js/smooth-scroll.min.js',
         modules + 'lazysizes/lazysizes.min.js',
+        modules + 'prismjs/prism.js',
       ],
       dest: dist + assets + 'js/',
     },

@@ -55,7 +55,7 @@
 <html lang="{{ craft.app.language }}">
 
 {% cache %}
-{% spaceless %}
+{% minify %}
 <head>
 	<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -143,7 +143,7 @@
 
 
 </head>
-{% endspaceless %}
+{% endminify %}
 {% endcache %}
 
 <body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>

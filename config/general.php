@@ -20,7 +20,9 @@ return [
 	),
 	'local' => array(
 		'devMode' => true,
+		'enableTemplateCaching' => false,
 		'testToEmailAddress' => 'connor.baer@me.com',
+		'userSessionDuration' => 'P2W',
 	),
 	'*.co' => array(
 		'devMode' => false,

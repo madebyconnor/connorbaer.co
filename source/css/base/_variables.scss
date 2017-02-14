@@ -1,0 +1,89 @@
+/*
+  VARIABLES
+
+  Media queries
+  Spacing
+  Typography
+  Colors
+  Animations
+*/
+
+
+// Media queries
+
+$bp-small-only: "screen and (max-width: 37.4375em)";
+$bp-small: "screen and (min-width: 37.5em)";
+$bp-medium: "screen and (min-width: 56.25em)";
+$bp-large: "screen and (min-width: 75em)";
+
+
+// Spacing
+
+$sp-tiny: 0.5rem;
+$sp-small: $sp-tiny * 2;
+$sp-medium: $sp-tiny * 3;
+$sp-large: $sp-tiny * 5;
+$sp-huge: $sp-tiny * 8;
+
+
+// Typography
+
+$ff-sans: "freight-sans-pro", "FreightSans Pro", Arial, sans-serif;
+$fw-sans-normal: 500;
+$fw-sans-semibold: 600;
+
+$ff-serif: "freight-text-pro", "FreightText Pro", "Times New Roman", Times, serif;
+$fw-serif-normal: 500;
+$fw-serif-bold: 700;
+
+$ff-disp: "freight-display-pro", "FreightDisp Pro", "Palatino Linotype", Palatino, serif;
+$fw-disp-semibold: 600;
+$fw-disp-bold: 900;
+
+$ff-mono: "Courier New", Courier, monospace;
+
+$fs-xxx-large: 3rem; // 48px
+$fs-xx-large: 2.25rem; // 36px
+$fs-x-large: 1.5rem; // 24px
+$fs-large: 1.25rem; // 20px
+$fs-normal: 1rem; // 16px
+$fs-small: .875rem; // 14px
+
+$lh-large: 1.75;
+$lh-normal: 1.5;
+$lh-small: 1.25;
+
+$ls-large: .5px;
+$ls-small: .2px;
+$ls-normal: 1;
+
+
+// Colors
+
+$oc-primary-0: #eefcf5;
+$oc-primary-1: #cbf6e0;
+$oc-primary-2: #a9efcc;
+$oc-primary-3: #86e9b8;
+$oc-primary-4: #64e3a3;
+$oc-primary-5: #41dc8f;
+$oc-primary-6: #26d07c;
+$oc-primary-7: #20ac66;
+$oc-primary-8: #19ba52;
+$oc-primary-9: #13673d;
+
+$oc-madebyconnor-0: #fff5f4;
+$oc-madebyconnor-1: #ffd8d5;
+$oc-madebyconnor-2: #ffb8b6;
+$oc-madebyconnor-3: #ff9998;
+$oc-madebyconnor-4: #ff7b78;
+$oc-madebyconnor-5: #ff5e59;
+$oc-madebyconnor-6: #f9423a;
+$oc-madebyconnor-7: #ef2c26;
+$oc-madebyconnor-8: #e51e08;
+$oc-madebyconnor-9: #d01107;
+
+
+// Animations//
+
+$an-short: .15s cubic-bezier(0, 0, 0.2, 1);
+$an-long: .3s cubic-bezier(0, 0, 0.2, 1);

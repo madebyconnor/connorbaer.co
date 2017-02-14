@@ -26,6 +26,8 @@
 
   {% include '_includes/metabar' %}
 
+  {% cache %}
+  {% minify %}
   <main id="main">
 
 
@@ -33,6 +35,8 @@
 
 
   </main>
+  {% endminify %}
+  {% endcache %}
 
   {% include '_includes/footer' %}
 

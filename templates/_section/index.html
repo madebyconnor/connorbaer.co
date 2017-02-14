@@ -20,51 +20,67 @@
 {% set section = craft.app.request.segments | first %}
 
 
-{% block styles %}
-  {{ parent() }}
-
-  <link rel="stylesheet" type="text/css" href="{{ siteUrl ~ 'assets/css/posts.css' }}">
-{% endblock %}
-
-
 {% block body %}
-  <article class="page">
+  <div class="w100">
 
+    {% set featured = craft.entries.section(section).featured('1') %}
 
-    {% block hero %}
-      <header class="hero">
-        <h1 class="hero-title">{{ helpers.striptags(entry.description) }}</h1>
-
-      </header>
-    {% endblock %}
-
-
-    <div class="content content-style">
-
-      <div class="section">
-        {% for post in craft.entries.section(section).all() %}
-        <article>
-          <h3 class="newsletter-header"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-
-          {{ elements.date(post.postDate) }}
+    {% if featured %}
+      {% for post in featured %}
+        <article class="pv3 cf">
 
           {% set matrixBlock = post.body.type('image').one() %}
           {% if matrixBlock %}
             {% set image = matrixBlock.image.one() %}
           {% endif %}
           {% if image is defined %}
-        		<img class="newsletter-image lazyload"
-        				 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-        				 data-sizes="auto"
-        				 data-srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}, {{ image.getUrl('small') }} {{ image.getWidth('small') }}"
-        				 alt="{{ image.title }}">
-        	{% endif %}
+            <a class="w2 fl-left" href="{{ post.url }}" title="{{ post.title }}">
+              <img class="img-responsive"
+                   src="{{ image.getUrl('medium') }}"
+                   sizes="(min-width: 56.25em) 60vw, 95vw"
+                   srcset="{{ image.getUrl('large') }} {{ image.getWidth('large') }}w, {{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
+                   alt="{{ image.title }}">
+            </a>
+          {% endif %}
 
-          <p class="newsletter-body">{{ helpers.striptags(post.description) }}</p>
+          <div class="w1 fl-right">
+            <h2 class="ts-header1"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+            {{ elements.date(post.postDate) }}
+            <p class="ts-body">{{ post.description }}</p>
+          </div>
         </article>
-        {% endfor %}
+      {% endfor %}
+    {% endif %}
 
+    {% set posts = craft.entries.section(section).featured('not 1') %}
+
+    {% if posts %}
+      <div class="pv3 cf">
+        {% for post in posts %}
+          <article class="w1 fl-left">
+            <h3 class="ts-header2 mt0"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+
+            {% set matrixBlock = post.body.type('image').one() %}
+            {% if matrixBlock %}
+              {% set image = matrixBlock.image.one() %}
+            {% endif %}
+            {% if image is defined %}
+              <a href="{{ post.url }}" title="{{ post.title }}">
+                <img class="lazyload"
+                     src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                     data-sizes="auto"
+                     data-srcset="{{ image.getUrl('large21x9') }} {{ image.getWidth('large21x9') }}w, {{ image.getUrl('medium21x9') }} {{ image.getWidth('medium21x9') }}w, {{ image.getUrl('small21x9') }} {{ image.getWidth('small21x9') }}w"
+                     alt="{{ image.title }}">
+              </a>
+            {% endif %}
+
+            {{ elements.date(post.postDate) }}
+            <p class="ts-body">{{ post.description }}</p>
+          </article>
+        {% endfor %}
       </div>
+    {% endif %}
+
     </div>
-  </article>
+  </div>
 {% endblock %}

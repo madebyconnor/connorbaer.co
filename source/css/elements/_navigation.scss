@@ -1,48 +1,77 @@
-// ==== NAVIGATION ==== //
+/*
+  NAVIGATION
 
-// Style the navigation here.
+  General
+  Metabar
+  Footer
+*/
 
-// 1. General
-// 2. Turbolinks
-// 3. Metabar
 
-// 1. General //
+// General //
 
-.nav {
+.navigation {
   display: block;
   list-style: none;
 }
 
-.nav-link {
-  color: palette(gray);
-  font-family: $sans;
-  font-size: $fs--1;
-  font-weight: $sans-semibold;
-  letter-spacing: .5px;
-
-  a {
-    transition: color $short;
-    color: palette(gray);
+.navigation-link {
+  .link {
+    color: $oc-gray-6;
 
     &:hover,
     &:focus {
-      color: palette($primary);
+      color: $oc-primary-6;
     }
   }
 
-  .nav-active {
-    color: palette($primary);
+  .navigation-active {
+    color: $oc-primary-6;
   }
 }
 
-// 2. Turbolinks //
+.navigation-logo {
+  display: inline-block;
 
-.turbolinks-progress-bar {
-  height: 4px;
-  background-color: palette($primary);
+  svg {
+    width: 40px;
+    height: 40px;
+    transition: fill $an-short, transform $an-long;
+    vertical-align: middle;
+    fill: $oc-gray-8;
+
+    &:hover,
+    &:focus {
+      transform: rotate(360deg);
+      fill: $oc-madebyconnor-6;
+    }
+  }
 }
 
-// 3. Metabar //
+
+// Metabar //
+
+.metabar-spacer {
+  display: inline-block;
+  width: 2px;
+  height: 25px;
+  margin-right: 11px;
+  margin-left: 13px;
+  background-color: $oc-gray-3;
+  vertical-align: middle;
+}
+
+.metabar-title {
+  transition: color $an-short;
+  color: $oc-gray-8;
+  font-size: 25px;
+  font-weight: $fw-sans-semibold;
+  vertical-align: middle;
+
+  &:hover,
+  &:focus {
+    color: $oc-primary-6;
+  }
+}
 
 .metabar-toggle {
   display: none;
@@ -51,7 +80,7 @@
 .metabar-label {
   display: none;
 
-  @include mappy-query(phone) {
+  @media #{$bp-small-only} {
     display: block;
     height: 40px;
     cursor: pointer;
@@ -64,9 +93,7 @@
       z-index: 9999999;
 
       &::before {
-        @include font(app);
-
-        font-size: $fs-0;
+        font-size: $fs-normal;
         letter-spacing: 1px;
         text-transform: uppercase;
         content: "Menu";
@@ -79,8 +106,8 @@
   }
 }
 
-.metabar-nav {
-  @include mappy-query(phone) {
+.metabar-navigation {
+  @media #{$bp-small-only} {
     position: fixed;
     top: 0;
     right: 0;
@@ -88,11 +115,11 @@
     left: 0;
     padding: 2rem;
     transform: translateY(-2rem);
-    transition: transform $long, opacity $long, visibility $long;
-    background-color: transparentize(palette(white), .05);
+    transition: transform $an-long, opacity $an-long, visibility $an-long;
+    background-color: transparentize($oc-white, .05);
     opacity: 0;
     visibility: hidden;
-    z-index: 1000;
+    z-index: 9999;
 
     .metabar-toggle:checked ~ & {
       transform: translateY(0);
@@ -100,7 +127,7 @@
       visibility: visible;
     }
 
-    .nav {
+    .navigation {
       position: absolute;
       top: 50%;
       width: calc(100% - 4rem);
@@ -108,25 +135,44 @@
       text-align: center;
     }
 
-    .nav-link {
-      @include font(title);
-
+    .navigation-link {
       display: block;
       margin: 1rem 0;
     }
   }
 
-  @include mappy-query(tablet) {
-    .nav {
+  @media #{$bp-small} {
+    .navigation {
       text-align: right;
     }
 
-    .nav-link {
+    .navigation-link {
       display: inline-block;
       height: 40px;
       margin-left: 2rem;
       padding: 0;
       vertical-align: bottom;
+    }
+  }
+}
+
+
+// Footer //
+
+.footer {
+  margin-top: $sp-medium;
+  border-top: 2px solid $oc-gray-3;
+}
+
+.footer-text {
+  color: $oc-gray-4;
+
+  .link {
+    color: inherit;
+
+    &:hover,
+    &:focus {
+      color: $oc-primary-6;
     }
   }
 }

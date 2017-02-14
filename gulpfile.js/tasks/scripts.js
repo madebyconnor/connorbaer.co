@@ -18,21 +18,8 @@ gulp.task('scripts-minify', ['scripts-lint'], () => {
   return gulp.src(config.src)
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.babel({
-        presets: ['es2015']
-    }))
-    .pipe(plugins.uglify(config.minify.uglify))
-    .pipe(plugins.rename(config.minify.rename))
-    .pipe(plugins.sourcemaps.write('./'))
-    .pipe(gulp.dest(config.dest));
-});
-
-// Minify scripts in place.
-gulp.task('scripts-minify', ['scripts-lint'], () => {
-  return gulp.src(config.src)
-    .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.babel({
-        presets: ['es2015']
-    }))
+        presets: ['es2015'],
+      }))
     .pipe(plugins.uglify(config.minify.uglify))
     .pipe(plugins.rename(config.minify.rename))
     .pipe(plugins.sourcemaps.write('./'))
@@ -43,6 +30,7 @@ gulp.task('scripts-minify', ['scripts-lint'], () => {
 gulp.task('scripts-deps', () => {
   return gulp.src(config.deps.src)
     .pipe(plugins.changed(config.deps.dest))
+    .pipe(plugins.uglify(config.minify.uglify))
     .pipe(gulp.dest(config.deps.dest));
 });
 

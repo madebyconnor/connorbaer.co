@@ -7,31 +7,36 @@
  # An `entry` variable is expected to be defined.
 -#}
 
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+
 {% block metabar %}
-{% cache %}
-{% spaceless %}
-  <aside id="metabar" class="metabar">
-    <div class="metabar-wrapper">
-      <div class="metabar-left">
-        <a class="metabar-logo" href="https://madebyconnor.co/#" {% if craft.app.request.pathInfo != 'https://madebyconnor.co/' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="Visit 'Made by Connor'" title="Made by Connor">
+  {% cache %}
+  {% minify %}
 
-          {% include '_includes/logo.svg' %}
+  <header id="metabar" class="w100 ff-sans">
+    <div class="w3 pv4 cf">
+      <div class="fl-left">
 
-        </a>
+        {% include '_includes/logo' %}
+
         <span class="metabar-spacer"></span>
         <a class="metabar-title" href="{{ siteUrl }}" aria-label="Visit the homepage." title="Visit the homepage.">{{ siteName }}</a>
       </div>
-      <div class="metabar-right">
+      <div class="fl-right">
         <input type="checkbox" id="metabar-toggle" class="metabar-toggle"/>
-        <label for="metabar-toggle" class="metabar-label"><span></span></label>
-        <nav class="metabar-nav">
+        <label for="metabar-toggle" class="metabar-label button"><span></span></label>
+        <nav class="metabar-navigation">
 
-          {% include '_includes/navigation' %}
+          {{ elements.navigation(navigation) }}
 
         </nav>
       </div>
     </div>
-  </aside>
-{% endspaceless %}
-{% endcache %}
+  </header>
+
+  {% endminify %}
+  {% endcache %}
 {% endblock %}
