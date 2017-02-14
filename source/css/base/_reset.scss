@@ -32,15 +32,11 @@ footer, header, hgroup, menu, nav, section {
 html {
   background-color: $oc-gray-8;
   color: $oc-gray-8;
-  font-size: 14px;
+  font-size: 16px;
   line-height: $lh-large;
   font-feature-settings: "lnum", "salt";
   word-wrap: break-word;
   box-sizing: border-box;
-
-  @media #{$bp-small} {
-    font-size: 16px;
-  }
 
   @media #{$bp-medium} {
     font-size: 18px;

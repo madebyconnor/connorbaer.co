@@ -36,6 +36,10 @@
       color: $oc-primary-6;
       text-shadow: .03em 0 $oc-white, -.03em 0 $oc-white, 0 .03em $oc-white, 0 -.03em $oc-white, .06em 0 $oc-white, -.06em 0 $oc-white, .09em 0 $oc-white, -.09em 0 $oc-white, .12em 0 $oc-white, -.12em 0 $oc-white, .15em 0 $oc-white, -.15em 0 $oc-white;
 
+      &::selection {
+        text-shadow: .03em 0 $oc-primary-1, -.03em 0 $oc-primary-1, 0 .03em $oc-primary-1, 0 -.03em $oc-primary-1, .06em 0 $oc-primary-1, -.06em 0 $oc-primary-1, .09em 0 $oc-primary-1, -.09em 0 $oc-primary-1, .12em 0 $oc-primary-1, -.12em 0 $oc-primary-1, .15em 0 $oc-primary-1, -.15em 0 $oc-primary-1;
+      }
+
       &::before,
       &::after,
       *,
@@ -172,6 +176,10 @@ strong {
   &:focus {
     background-image: linear-gradient($oc-primary-6, $oc-primary-6), linear-gradient($oc-primary-6, $oc-primary-6), linear-gradient($oc-primary-6, $oc-primary-6);
     text-shadow: .03em 0 $oc-white, -.03em 0 $oc-white, 0 .03em $oc-white, 0 -.03em $oc-white, .06em 0 $oc-white, -.06em 0 $oc-white, .09em 0 $oc-white, -.09em 0 $oc-white, .12em 0 $oc-white, -.12em 0 $oc-white, .15em 0 $oc-white, -.15em 0 $oc-white;
+
+    &::selection {
+      text-shadow: .03em 0 $oc-primary-1, -.03em 0 $oc-primary-1, 0 .03em $oc-primary-1, 0 -.03em $oc-primary-1, .06em 0 $oc-primary-1, -.06em 0 $oc-primary-1, .09em 0 $oc-primary-1, -.09em 0 $oc-primary-1, .12em 0 $oc-primary-1, -.12em 0 $oc-primary-1, .15em 0 $oc-primary-1, -.15em 0 $oc-primary-1;
+    }
 
     &::before,
     &::after,
