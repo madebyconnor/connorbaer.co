@@ -50,15 +50,18 @@
           </div>
         </article>
       {% endfor %}
+
+      <div class="w3">
+        <hr>
+      </div>
     {% endif %}
 
-    {% set posts = craft.entries.section(section).featured('not 1') %}
+    {% set posts = craft.entries.section(section).featured('not 1').limit('6') %}
 
     {% if posts %}
       <div class="pv3 cf">
         {% for post in posts %}
           <article class="w1 fl-left">
-            <h3 class="ts-header2 mt0"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
 
             {% set matrixBlock = post.body.type('image').one() %}
 
@@ -76,7 +79,7 @@
               {% endif %}
             {% endif %}
 
-            {{ elements.date(post.postDate) }}
+            <h3 class="ts-header2"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
             <p class="ts-body">{{ post.description }}</p>
           </article>
         {% endfor %}
