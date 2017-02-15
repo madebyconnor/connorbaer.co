@@ -59,9 +59,9 @@
     {% set posts = craft.entries.section(section).featured('not 1').limit('6') %}
 
     {% if posts %}
-      <div class="pv3 cf">
+      <div class="pv1 cf">
         {% for post in posts %}
-          <article class="w1 fl-left">
+          <article class="w1 fl-left pv2">
 
             {% set matrixBlock = post.body.type('image').one() %}
 
@@ -79,7 +79,7 @@
               {% endif %}
             {% endif %}
 
-            <h3 class="ts-header2"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <h3 class="pv1 ts-header2"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
             <p class="ts-body">{{ post.description }}</p>
           </article>
         {% endfor %}

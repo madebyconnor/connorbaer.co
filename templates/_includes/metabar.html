@@ -16,23 +16,19 @@
   {% cache %}
   {% minify %}
 
-  <header id="metabar" class="w100 ff-sans">
-    <div class="w3 pv4 cf">
+  <header id="metabar" class="metabar w100">
+    <div class="w3 cf">
       <div class="fl-left">
 
         {% include '_includes/logo' %}
 
-        <span class="metabar-spacer"></span>
-        <a class="metabar-title" href="{{ siteUrl }}" aria-label="Visit the homepage." title="Visit the homepage.">{{ siteName }}</a>
+        {% include '_includes/name' %}
+
       </div>
-      <div class="fl-right">
-        <input type="checkbox" id="metabar-toggle" class="metabar-toggle"/>
-        <label for="metabar-toggle" class="metabar-label button"><span></span></label>
-        <nav class="metabar-navigation">
+      <div class="metabar-navigation fl-right">
 
           {{ elements.navigation(navigation) }}
 
-        </nav>
       </div>
     </div>
   </header>

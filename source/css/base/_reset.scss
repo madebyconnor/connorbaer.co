@@ -38,6 +38,10 @@ html {
   word-wrap: break-word;
   box-sizing: border-box;
 
+  @media screen and (max-width: 22.5em) {
+    font-size: 14px;
+  }
+
   @media #{$bp-medium} {
     font-size: 18px;
   }
@@ -59,10 +63,19 @@ html {
 }
 
 body {
+  position: relative;
   min-width: 100vw;
   min-height: 100vh;
   background-color: $oc-white;
   overflow-x: hidden;
+}
+
+.main {
+  padding-top: 6.625rem;
+
+  @media #{$bp-small} {
+    padding-top: 4.8rem;
+  }
 }
 
 a {

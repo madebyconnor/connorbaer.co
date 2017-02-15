@@ -9,48 +9,30 @@
 
 // General //
 
-.navigation {
-  display: block;
-  list-style: none;
-}
+.navigation-logo,
+.navigation-name {
+  display: inline-block;
+  vertical-align: middle;
 
-.navigation-link {
-  .link {
-    color: $oc-gray-6;
+  svg,
+  img {
+    transition: fill $an-short, transform $an-long;
+    vertical-align: middle;
+    fill: $oc-gray-9;
 
     &:hover,
     &:focus {
-      color: $oc-primary-6;
+      fill: $oc-primary-6;
     }
-  }
-
-  .navigation-active {
-    color: $oc-primary-6;
   }
 }
 
 .navigation-logo {
-  display: inline-block;
-
   svg,
   img {
-    width: 40px;
-    height: 40px;
-    transition: fill $an-short, transform $an-long;
-    vertical-align: middle;
-  }
+    width: 2.25rem;
+    height: 2.25rem;
 
-  svg {
-    fill: $oc-gray-8;
-
-    &:hover,
-    &:focus {
-      transform: rotate(360deg);
-      fill: $oc-madebyconnor-6;
-    }
-  }
-
-  img {
     &:hover,
     &:focus {
       transform: scale(1.1);
@@ -58,111 +40,95 @@
   }
 }
 
+.navigation-name {
+  margin-left: $sp-small;
 
-// Metabar //
-
-.metabar-spacer {
-  display: inline-block;
-  width: 2px;
-  height: 25px;
-  margin-right: 11px;
-  margin-left: 13px;
-  background-color: $oc-gray-3;
-  vertical-align: middle;
+  svg {
+    height: 1.2rem;
+  }
 }
 
-.metabar-title {
-  transition: color $an-short;
-  color: $oc-gray-8;
-  font-size: 25px;
-  font-weight: $fw-sans-semibold;
-  vertical-align: middle;
+.navigation-link {
+  .link {
+    color: $oc-gray-6;
+    font-family: $ff-sans;
+    font-size: $fs-normal;
+    letter-spacing: $ls-small;
 
-  &:hover,
-  &:focus {
+    &:hover,
+    &:focus {
+      color: $oc-primary-6;
+    }
+  }
+
+  &.navigation-active .link {
     color: $oc-primary-6;
   }
 }
 
-.metabar-toggle {
-  display: none;
-}
 
-.metabar-label {
-  display: none;
+// Metabar //
+
+.metabar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding-top: $sp-large;
+  background-color: $oc-white;
 
   @media #{$bp-small-only} {
-    display: block;
-    height: 40px;
-    cursor: pointer;
+    padding-top: $sp-small;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+  }
+}
 
-    span {
-      display: block;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 9999999;
+@media #{$bp-small-only} {
+  .headroom {
+    position: fixed;
+    transition: transform $an-long;
+    will-change: transform;
+  }
 
-      &::before {
-        font-size: $fs-normal;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        content: "Menu";
-      }
+  .headroom--pinned {
+    transform: translateY(0%);
+  }
 
-      .metabar-toggle:checked + &::before {
-        content: "Close";
-      }
-    }
+  .headroom--unpinned {
+    transform: translateY(-54%);
   }
 }
 
 .metabar-navigation {
+  .navigation-list {
+    display: flex;
+  }
+
   @media #{$bp-small-only} {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 2rem;
-    transform: translateY(-2rem);
-    transition: transform $an-long, opacity $an-long, visibility $an-long;
-    background-color: transparentize($oc-white, .05);
-    opacity: 0;
-    visibility: hidden;
-    z-index: 9999;
+    width: 100%;
+    padding-top: $sp-tiny;
 
-    .metabar-toggle:checked ~ & {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .navigation {
-      position: absolute;
-      top: 50%;
-      width: calc(100% - 4rem);
-      transform: translateY(-50%);
+    .navigation-link {
+      width: 100%;
+      padding: $sp-tiny;
+      border-bottom: 2px solid transparent;
       text-align: center;
     }
 
-    .navigation-link {
-      display: block;
-      margin: 1rem 0;
+    .navigation-active {
+      border-bottom: 2px solid $oc-primary-6;
     }
   }
 
   @media #{$bp-small} {
-    .navigation {
-      text-align: right;
+    .navigation-list {
+      align-items: center;
+      height: 2.25rem;
     }
 
     .navigation-link {
       display: inline-block;
-      height: 40px;
-      margin-left: 2rem;
-      padding: 0;
-      vertical-align: bottom;
+      margin-left: $sp-large;
     }
   }
 }
@@ -172,7 +138,7 @@
 
 .footer {
   margin-top: $sp-medium;
-  border-top: 2px solid $oc-gray-3;
+  box-shadow: inset 0 3px 6px 0 rgba(0, 0, 0, 0.1);
 }
 
 .footer-text {

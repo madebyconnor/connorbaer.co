@@ -10,25 +10,27 @@
 {# Navigation #}
 
 {% macro navigation(global) %}
-  <ul class="navigation">
+  <nav>
+    <ul class="navigation-list">
 
-    {% for block in global.navigation %}
+      {% for block in global.navigation %}
 
-      {% if block.type == "navSingle" or block.type == "navSection" %}
-        {% set navLink = block.navEntry.one().url %}
-        {% set navTitle = block.navEntry.one().title %}
-      {% elseif block.type == "navExternal" %}
-        {% set navLink = block.navLink %}
-        {% set navTitle = block.navTitle %}
-      {% endif %}
+        {% if block.type == "navSingle" or block.type == "navSection" %}
+          {% set navLink = block.navEntry.one().url %}
+          {% set navTitle = block.navEntry.one().title %}
+        {% elseif block.type == "navExternal" %}
+          {% set navLink = block.navLink %}
+          {% set navTitle = block.navTitle %}
+        {% endif %}
 
-      <li class="navigation-link">
-        <a href="{{ navLink }}" class="ts-app link{% if not block.type == "navExternal" %}{% if craft.app.request.segments | first == block.navEntry.one().uri %} navigation-active{% endif %}{% endif %}" title="{{ navTitle }}">{{ navTitle }}</a>
-      </li>
+        <li class="navigation-link{% if block.navEntry %}{% if craft.app.request.segments | first == block.navEntry.one().uri %} navigation-active{% endif %}{% endif %}">
+          <a href="{{ navLink }}" class="link" title="{{ navTitle }}">{{ navTitle }}</a>
+        </li>
 
-    {% endfor %}
+      {% endfor %}
 
-  </ul>
+    </ul>
+  </nav>
 {% endmacro %}
 
 
