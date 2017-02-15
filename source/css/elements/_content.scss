@@ -1,12 +1,26 @@
 /*
   CONTENT
 
+  Hero
   Text
   Image
   Quote
   Code
   Embed
 */
+
+
+// Hero //
+
+.content-hero {
+  padding-top: $sp-medium;
+  padding-bottom: $sp-medium;
+
+  @media #{$bp-small} {
+    padding-top: $sp-large;
+    padding-bottom: $sp-large;
+  }
+}
 
 
 // Text //

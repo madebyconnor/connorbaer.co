@@ -34,13 +34,15 @@
             {% set image = matrixBlock.image.one() %}
           {% endif %}
           {% if image is defined %}
-            <a class="w2 fl-left" href="{{ post.url }}" title="{{ post.title }}">
-              <img class="img-responsive"
-                   src="{{ image.getUrl('medium') }}"
-                   sizes="(min-width: 56.25em) 60vw, 95vw"
-                   srcset="{{ image.getUrl('large') }} {{ image.getWidth('large') }}w, {{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
-                   alt="{{ image.title }}">
-            </a>
+            <div class="w2 fl-left">
+              <a href="{{ post.url }}" title="{{ post.title }}">
+                <img class="img-responsive"
+                     src="{{ image.getUrl('medium') }}"
+                     sizes="(min-width: 56.25em) 60vw, 95vw"
+                     srcset="{{ image.getUrl('large') }} {{ image.getWidth('large') }}w, {{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
+                     alt="{{ image.title }}">
+              </a>
+            </div>
           {% endif %}
 
           <div class="w1 fl-right">
@@ -50,10 +52,6 @@
           </div>
         </article>
       {% endfor %}
-
-      <div class="w3">
-        <hr>
-      </div>
     {% endif %}
 
     {% set posts = craft.entries.section(section).featured('not 1').limit('6') %}

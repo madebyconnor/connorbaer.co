@@ -74,11 +74,12 @@
 
 .ts-body,
 %ts-body {
-  margin-top: $sp-tiny;
-  margin-bottom: $sp-tiny;
+  margin-top: $sp-small;
+  margin-bottom: $sp-small;
   font-family: $ff-serif;
   font-size: $fs-normal;
   font-weight: $fw-serif-normal;
+  line-height: $lh-large;
 }
 
 .ts-quote,
