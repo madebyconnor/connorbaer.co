@@ -132,7 +132,7 @@ module.exports = {
   icons: {
     src: src + 'favicons/*(*.png|*.jpg|*.jpeg)',
     favicons: {
-      appName: pkg.name,
+      appName: 'Connor Bär',
       appDescription: pkg.description,
       developerName: pkg.author,
       background: '#ffffff',
