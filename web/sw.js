@@ -13,10 +13,10 @@
     '/eating'
   ];
   const staticAssets = [
-    '{{ siteUrl ~ 'assets/css/styles.css' }}',
+    'https://connorbaer.co/assets/css/styles.css',
 
     'https://use.typekit.net/fcv7rfe.js',
-    '{{ siteUrl ~ 'assets/js/lazysizes.min.js' }}',
+    'https://connorbaer.co/assets/js/lazysizes.min.js',
     'https://unpkg.com/headroom.js',
     'https://twemoji.maxcdn.com/2/twemoji.min.js',
   ];
