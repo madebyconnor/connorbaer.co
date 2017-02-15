@@ -1,0 +1,89 @@
+{#
+ # Newsletter index template
+ # -------------------
+ #
+ # This template is loaded whenever http://example.com/newsletter is
+ # requested, because it is located at newsletter/index.html
+ # in your craft/templates/ folder.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layouts/site" %}
+
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+
+{% set section = craft.app.request.segments | first %}
+
+
+{% block body %}
+  <div class="w100">
+
+    {% set featured = craft.entries.section(section).featured('1') %}
+
+    {% if featured %}
+      {% for post in featured %}
+        <article class="content-hero cf">
+
+          {% set matrixBlock = post.body.type('image').one() %}
+          {% if matrixBlock %}
+            {% set image = matrixBlock.image.one() %}
+          {% endif %}
+          {% if image is defined %}
+            <div class="w2 fl-left">
+              <a href="{{ post.url }}" title="{{ post.title }}">
+                <picture>
+                  <source srcset="{{ image.getUrl('large16x9') }}" media="(min-width: 56.25em)">
+                  <source srcset="{{ image.getUrl('square') }}" media="(min-width: 37.5em) and (max-width: 56.25em)">
+                  <source srcset="{{ image.getUrl('small16x9') }}" media="(max-width: 37.5em)">
+                  <img class="img-responsive" src="{{ image.getUrl('medium') }}" alt="{{ image.title }}">
+                </picture>
+              </a>
+            </div>
+          {% endif %}
+
+          <div class="w1 fl-right">
+            <h2 class="ts-header1"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+            <p class="ts-body">{{ post.description }}</p>
+          </div>
+        </article>
+      {% endfor %}
+    {% endif %}
+
+    {% set posts = craft.entries.section(section).featured('not 1').limit('6') %}
+
+    {% if posts %}
+      <div class="pv1 cf">
+        {% for post in posts %}
+          <article class="w1 fl-left mv2">
+
+            {% set matrixBlock = post.body.type('image').one() %}
+
+            {% if matrixBlock %}
+              {% set image = matrixBlock.image.one() %}
+
+              {% if image is defined %}
+                <a href="{{ post.url }}" title="{{ post.title }}">
+                  <img class="lazyload"
+                       src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                       data-sizes="auto"
+                       data-srcset="{{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
+                       alt="{{ image.title }}">
+                </a>
+              {% endif %}
+            {% endif %}
+
+            <h3 class="pv1 ts-header2"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <p class="ts-body">{{ post.description }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    </div>
+  </div>
+{% endblock %}

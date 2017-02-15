@@ -1,0 +1,41 @@
+{#
+ # Page entry template
+ # -------------------
+ #
+ # This template gets loaded whenever a Page entry’s URL is
+ # requested. That’s because the Page section’s Template setting is
+ # set to page/_entry”, the path to this template.
+ #
+ # When this template is loaded, it will already have an ‘entry’
+ # variable, set to the requested Page entry.
+ #
+ # See this entry for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layouts/site" %}
+
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+
+
+{% block body %}
+
+  <article class="page sans">
+    {% block hero %}
+      <header class="hero">
+        <h1 class="hero-title">{{ helpers.striptags(entry.description) }}</h1>
+
+      </header>
+    {% endblock %}
+
+    <div class="content content-style">
+      {{ entry.body }}
+
+      {{ elements.share(entry.title) }}
+    </div>
+  </article>
+
+{% endblock %}
