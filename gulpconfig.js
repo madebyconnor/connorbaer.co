@@ -140,7 +140,7 @@ module.exports = {
       url: pkg.homepage,
       display: 'standalone',
       orientation: 'portrait',
-      start_url: './?utm_source=web_app_manifest',
+      start_url: '/?utm_source=web_app_manifest',
       version: pkg.version,
       logging: false,
       online: false,
