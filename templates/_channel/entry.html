@@ -31,54 +31,69 @@
 {% block body %}
 
   <article>
-    <header class="w100">
+    <header class="w100 content-hero">
       <div class="w3">
         <h1 class="ts-title">{{ entry.title }}</h1>
         {{ elements.date(entry.postDate) }}
       </div>
     </header>
 
-    <div class="pv3 cf">
+    {# Initialize a few variables #}
+    {% set lazyImage = false %}
+    {% set loadPrism = true %}
+    {% set prevPosition = '' %}
 
-      {% set lazyImage = false %}
-      {% set loadPrism = true %}
+    {% for block in entry.body %}
 
-      {% for block in entry.body %}
+      {# Set position for current block #}
+      {% set position = block.position %}
+      {% if block.type.handle == 'text' %}
+        {% set position = 'right' %}
+      {% endif %}
 
-        {% if block.position %}
-          {% switch block.position %}
-            {% case 'left' %}
-              <section class="w100">
-                <div class="w1 fl-left">
-            {% case 'center' %}
-              <section class="w100">
-                <div class="w3">
-            {% case 'right' %}
-              <section class="w100">
-                <div class="w2 fl-right">
-            {% case 'full' %}
-              <section>
-                <div>
-          {% endswitch %}
-        {% else %}
-          <section class="w100">
+      {# Start a new section if previous block is not positioned in the sidebar (left) #}
+      {% if prevPosition != 'left' %}
+        {% switch position %}
+          {% case 'full' %}
+            <section class="content">
+          {% default %}
+            <section class="content w100 cf">
+        {% endswitch %}
+      {% endif %}
+
+        {# Determine float and width based on current position #}
+        {% switch position %}
+          {% case 'left' %}
+            <div class="w1 fl-left mb4">
+          {% case 'center' %}
+            <div class="w3">
+          {% case 'right' %}
             <div class="w2 fl-right">
-        {% endif %}
+          {% case 'full' %}
+            <div>
+        {% endswitch %}
 
-            {% include ('_layouts/partials/_block_' ~ block.type.handle) %}
+          {# Output the appropriate block #}
+          {% include ('_layouts/partials/_block_' ~ block.type.handle) %}
 
-            {% if block.type.handle == "image" %}
-              {% set lazyImage = true %}
-            {% elseif block.type.handle == "code" %}
-              {% set loadPrism = false %}
-            {% endif %}
+          {# Reset variables #}
+          {% if block.type.handle == "image" %}
+            {% set lazyImage = true %}
+          {% elseif block.type.handle == "code" %}
+            {% set loadPrism = false %}
+          {% endif %}
 
-          </div>
+        </div>
+
+      {% if position != 'left' %}
         </section>
-      {% endfor %}
+      {% endif %}
 
-    </div>
-    <div class="w100 pv3 cf">
+      {# Position current block becomes position of previous block #}
+      {% set prevPosition = position %}
+    {% endfor %}
+
+    <div class="w100 mv4 cf">
       <div class="w2 fl-right">
         {{ elements.share(entry.title) }}
       </div>

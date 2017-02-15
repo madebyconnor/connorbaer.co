@@ -10,15 +10,31 @@
 */
 
 
+.content {
+  margin-top: $sp-large;
+  margin-bottom: $sp-large;
+
+  div * {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
 // Hero //
 
 .content-hero {
-  padding-top: $sp-medium;
-  padding-bottom: $sp-medium;
+  margin-top: $sp-large;
+  margin-bottom: $sp-large;
 
   @media #{$bp-small} {
-    padding-top: $sp-large;
-    padding-bottom: $sp-large;
+    margin-top: $sp-huge;
+    margin-bottom: $sp-huge;
   }
 }
 
@@ -75,6 +91,7 @@
   > p {
     @extend %ts-quote;
   }
+
   cite {
     display: block;
   }

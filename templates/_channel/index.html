@@ -27,7 +27,7 @@
 
     {% if featured %}
       {% for post in featured %}
-        <article class="pv3 cf">
+        <article class="content-hero cf">
 
           {% set matrixBlock = post.body.type('image').one() %}
           {% if matrixBlock %}
@@ -47,7 +47,6 @@
 
           <div class="w1 fl-right">
             <h2 class="ts-header1"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-            {{ elements.date(post.postDate) }}
             <p class="ts-body">{{ post.description }}</p>
           </div>
         </article>
@@ -59,7 +58,7 @@
     {% if posts %}
       <div class="pv1 cf">
         {% for post in posts %}
-          <article class="w1 fl-left pv2">
+          <article class="w1 fl-left mv2">
 
             {% set matrixBlock = post.body.type('image').one() %}
 

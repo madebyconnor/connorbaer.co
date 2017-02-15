@@ -18,29 +18,29 @@
 
   <footer id="footer" class="footer">
     <div class="w100">
-      <div class="pv3 cf">
-        <div class="w1 pv2 fl-left">
+      <div class="cf">
+        <div class="w1 mv2 fl-left">
 
           {% include '_includes/logo' %}
 
         </div>
-        <div class="w1 pv2 fl-left">
-          <h4 class="ts-header3 ff-sans fw-semibold mt0">{{ siteName }}</h4>
+        <div class="footer-links w1 mv2 fl-left">
+          <h4 class="ts-header3 ff-sans fw-semibold">{{ siteName }}</h4>
           <nav>
 
             {{ elements.navigation(navigation) }}
 
           </nav>
         </div>
-        <div class="w1 pv2 fl-left">
-          <h4 class="ts-header3 ff-sans fw-semibold mt0">More by Connor</h4>
+        <div class="footer-links w1 mv2 fl-left">
+          <h4 class="ts-header3 ff-sans fw-semibold">More by Connor</h4>
           <nav>
 
             {{ elements.navigation(footer) }}
 
           </nav>
         </div>
-        <h6 class="footer-text w2 fl-right pv2 ts-app">© {{ "now" | date("Y") }} {{ footer.contentOwner }}. All rights reserved.</h6>
+        <h6 class="footer-text w2 fl-right mv2 ts-app">© {{ "now" | date("Y") }} {{ footer.contentOwner }}. All rights reserved.</h6>
       </div>
     </div>
   </footer>

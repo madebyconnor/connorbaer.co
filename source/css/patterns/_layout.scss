@@ -83,6 +83,18 @@ $max-width: 60rem;
   content: "";
 }
 
+.cl::after {
+  display: table;
+  clear: left;
+  content: "";
+}
+
+.cr::after {
+  display: table;
+  clear: right;
+  content: "";
+}
+
 
 // Spacing //
 
@@ -90,20 +102,85 @@ $max-width: 60rem;
   margin: 0;
 }
 
+
 .mt0 {
   margin-top: 0;
 }
 
-.mr0 {
-  margin-right: 0;
+.mt1 {
+  margin-top: $sp-tiny;
 }
+
+.mt2 {
+  margin-top: $sp-small;
+}
+
+.mt3 {
+  margin-top: $sp-medium;
+}
+
+.mt4 {
+  margin-top: $sp-large;
+}
+
+.mt5 {
+  margin-top: $sp-huge;
+}
+
 
 .mb0 {
   margin-bottom: 0;
 }
 
-.ml0 {
-  margin-left: 0;
+.mb1 {
+  margin-bottom: $sp-tiny;
+}
+
+.mb2 {
+  margin-bottom: $sp-small;
+}
+
+.mb3 {
+  margin-bottom: $sp-medium;
+}
+
+.mb4 {
+  margin-bottom: $sp-large;
+}
+
+.mb5 {
+  margin-bottom: $sp-huge;
+}
+
+
+.mv0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.mv1 {
+  margin-top: $sp-tiny;
+  margin-bottom: $sp-tiny;
+}
+
+.mv2 {
+  margin-top: $sp-small;
+  margin-bottom: $sp-small;
+}
+
+.mv3 {
+  margin-top: $sp-medium;
+  margin-bottom: $sp-medium;
+}
+
+.mv4 {
+  margin-top: $sp-large;
+  margin-bottom: $sp-large;
+}
+
+.mv5 {
+  margin-top: $sp-huge;
+  margin-bottom: $sp-huge;
 }
 
 
@@ -132,31 +209,6 @@ $max-width: 60rem;
 }
 
 
-.pt0 {
-  padding-top: 0;
-}
-
-.pt1 {
-  padding-top: $sp-tiny;
-}
-
-.pt2 {
-  padding-top: $sp-small;
-}
-
-.pt3 {
-  padding-top: $sp-medium;
-}
-
-.pt4 {
-  padding-top: $sp-large;
-}
-
-.pt5 {
-  padding-top: $sp-huge;
-}
-
-
 .pr0 {
   padding-right: 0;
 }
@@ -182,31 +234,6 @@ $max-width: 60rem;
 }
 
 
-.pb0 {
-  padding-bottom: 0;
-}
-
-.pb1 {
-  padding-bottom: $sp-tiny;
-}
-
-.pb2 {
-  padding-bottom: $sp-small;
-}
-
-.pb3 {
-  padding-bottom: $sp-medium;
-}
-
-.pb4 {
-  padding-bottom: $sp-large;
-}
-
-.pb5 {
-  padding-bottom: $sp-huge;
-}
-
-
 .pl0 {
   padding-left: 0;
 }
@@ -229,37 +256,6 @@ $max-width: 60rem;
 
 .pl5 {
   padding-left: $sp-huge;
-}
-
-
-.pv0 {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.pv1 {
-  padding-top: $sp-tiny;
-  padding-bottom: $sp-tiny;
-}
-
-.pv2 {
-  padding-top: $sp-small;
-  padding-bottom: $sp-small;
-}
-
-.pv3 {
-  padding-top: $sp-medium;
-  padding-bottom: $sp-medium;
-}
-
-.pv4 {
-  padding-top: $sp-large;
-  padding-bottom: $sp-large;
-}
-
-.pv5 {
-  padding-top: $sp-huge;
-  padding-bottom: $sp-huge;
 }
 
 

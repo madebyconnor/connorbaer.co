@@ -20,8 +20,7 @@
     vertical-align: middle;
     fill: $oc-gray-9;
 
-    &:hover,
-    &:focus {
+    &:hover {
       fill: $oc-primary-6;
     }
   }
@@ -52,8 +51,12 @@
   .link {
     color: $oc-gray-6;
     font-family: $ff-sans;
-    font-size: $fs-normal;
+    font-size: 16px;
     letter-spacing: $ls-small;
+
+    @media #{$bp-small} {
+      font-size: 18px;
+    }
 
     &:hover,
     &:focus {
@@ -138,7 +141,15 @@
 
 .footer {
   margin-top: $sp-medium;
+  padding-top: $sp-medium;
+  padding-bottom: $sp-medium;
   box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.1);
+
+  @media #{$bp-small-only} {
+    .footer-links {
+      width: 50%;
+    }
+  }
 }
 
 .footer-text {
