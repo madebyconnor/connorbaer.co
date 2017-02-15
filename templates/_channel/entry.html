@@ -49,6 +49,8 @@
       {% set position = block.position %}
       {% if block.type.handle == 'text' %}
         {% set position = 'right' %}
+      {% elseif block.type.handle == 'html' %}
+        {% set position = 'full' %}
       {% endif %}
 
       {# Start a new section if previous block is not positioned in the sidebar (left) #}
