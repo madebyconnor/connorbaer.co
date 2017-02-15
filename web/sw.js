@@ -18,7 +18,6 @@
     'https://use.typekit.net/fcv7rfe.js',
     'https://connorbaer.co/assets/js/lazysizes.min.js',
     'https://unpkg.com/headroom.js',
-    'https://twemoji.maxcdn.com/2/twemoji.min.js',
   ];
 
   function stashInCache(cacheName, request, response) {
