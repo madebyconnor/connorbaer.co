@@ -87,9 +87,23 @@
 
 // Quote //
 
-.content-quote {
+.content-pullQuote {
   > p {
     @extend %ts-quote;
+  }
+
+  cite {
+    display: block;
+  }
+}
+
+.content-blockQuote {
+  > p {
+    @extend %ts-body;
+
+    padding-left: $sp-small;
+    border-left: 3px solid $oc-primary-6;
+    color: $oc-gray-6;
   }
 
   cite {
