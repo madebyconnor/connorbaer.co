@@ -136,6 +136,7 @@ module.exports = {
       appDescription: pkg.description,
       developerName: pkg.author,
       background: '#ffffff',
+      theme_color: '#000000',
       path: '/favicons/',
       url: pkg.homepage,
       display: 'standalone',
@@ -148,13 +149,7 @@ module.exports = {
       html: tmplts + '_includes/icons.html',
       pipeHTML: true,
       icons: {
-        android: true,         // Create Android homescreen icon. `boolean`
-        appleIcon: true,       // Create Apple touch icons. `boolean` or `{ offset: offsetInPercentage }`
-        appleStartup: false,   // Create Apple startup images. `boolean`
         coast: { offset: 15 }, // Create Opera Coast icon with offset 15%. `boolean` or `{ offset: offsetInPercentage }`
-        favicons: true,        // Create regular favicons. `boolean`
-        firefox: true,         // Create Firefox OS icons. `boolean` or `{ offset: offsetInPercentage }`
-        windows: true,         // Create Windows 8 tile icons. `boolean`
         yandex: false,         // Create Yandex browser icon. `boolean`
       },
     },
