@@ -36,7 +36,6 @@
           {% if image is defined %}
             <div class="w2 fl-left">
               <a href="{{ post.url }}" title="{{ post.title }}">
-
                 <picture>
                   <source srcset="{{ image.getUrl('large16x9') }}" media="(min-width: 56.25em)">
                   <source srcset="{{ image.getUrl('square') }}" media="(min-width: 37.5em) and (max-width: 56.25em)">
@@ -72,7 +71,7 @@
                   <img class="lazyload"
                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                        data-sizes="auto"
-                       data-srcset="{{ image.getUrl('large16x9') }} {{ image.getWidth('large16x9') }}w, {{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
+                       data-srcset="{{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
                        alt="{{ image.title }}">
                 </a>
               {% endif %}
