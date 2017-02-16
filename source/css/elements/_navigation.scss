@@ -105,6 +105,7 @@
   left: 0;
   padding-top: $sp-large;
   background-color: $oc-white;
+  z-index: 9999;
 
   @media #{$bp-small-only} {
     padding-top: $sp-small;
@@ -148,6 +149,7 @@
 @media #{$bp-small-only} {
   .footer {
     box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.1);
+    z-index: 9999;
   }
 
   .footer-navigation {
