@@ -21,10 +21,9 @@ return [
 	),
 	'connorbaer.co' => array(
 		'devMode' => false,
-		'siteUrl' => 'https://connorbaer.co',
-	),
-	'recipes.connorbaer.co' => array(
-		'devMode' => false,
-		'siteUrl' => 'https://recipes.connorbaer.co',
+		'siteUrl' => array(
+			'default' => 'https://connorbaer.co',
+			'eating' => 'https://connorbaer.co/eating',
+		),
 	),
 ];
