@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  const version = 'cb1.1::';
+  const version = 'cb1.2::';
   const staticCacheName = version + 'static';
   const pagesCacheName = version + 'pages';
   const imagesCacheName = version + 'images';
