@@ -36,12 +36,11 @@
           {% if image is defined %}
             <div class="w2 fl-left">
               <a href="{{ post.url }}" title="{{ post.title }}">
-                <picture>
-                  <source srcset="{{ image.getUrl('large16x9') }}" media="(min-width: 56.25em)">
-                  <source srcset="{{ image.getUrl('square') }}" media="(min-width: 37.5em) and (max-width: 56.25em)">
-                  <source srcset="{{ image.getUrl('small16x9') }}" media="(max-width: 37.5em)">
-                  <img class="img-responsive" src="{{ image.getUrl('medium') }}" alt="{{ image.title }}">
-                </picture>
+                <img class="img-responsive"
+                     src="{{ image.getUrl('medium') }}"
+                     sizes="100vw, (min-width: 37.5em) 40vw, (min-width: 56.25em) 60vw"
+                     srcset="{{ image.getUrl('large16x9') }} {{ image.getWidth('large16x9') }}w, {{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
+                     alt="{{ image.title }}">
               </a>
             </div>
           {% endif %}
@@ -77,7 +76,7 @@
               {% endif %}
             {% endif %}
 
-            <h3 class="pv1 ts-header2"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <h3 class="mv2 ts-header2"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
             <p class="ts-body">{{ post.description }}</p>
           </article>
         {% endfor %}

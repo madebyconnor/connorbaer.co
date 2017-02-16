@@ -2,6 +2,7 @@
   MEDIA
 
   Images
+  SVG
   Videos
 */
 
@@ -16,9 +17,13 @@ img[data-sizes="auto"] {
   vertical-align: middle; // Make sure images are scaled correctly.
 }
 
+
+// SVG //
+
 .svg-small {
-  width: 1rem;
-  height: 1rem;
+  width: $sp-small;
+  height: $sp-small;
+  margin-right: $sp-tiny;
   vertical-align: middle;
   fill: $oc-gray-6;
 

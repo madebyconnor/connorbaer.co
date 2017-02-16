@@ -91,7 +91,7 @@
         </section>
       {% endif %}
 
-      {# Position current block becomes position of previous block #}
+      {# Position of current block becomes position of previous block #}
       {% set prevPosition = position %}
     {% endfor %}
 
@@ -101,5 +101,45 @@
       </div>
     </div>
   </article>
+
+  {# Related entries #}
+  {% set relatedPosts = craft.entries({
+    section: entry.section.handle,
+    relatedTo: ['or ', entry.tags, entry.category],
+    id: 'not ' ~ entry.id,
+    limit: '3',
+  }) %}
+
+  {% if relatedPosts | length == '3' %}
+    <div class="w100 mv4 cf">
+      <div class="pv1 cf">
+        <h2 class="w3 ts-header2">Related Posts</h2>
+
+        {% for post in relatedPosts %}
+          <article class="w1 fl-left mv2">
+
+            {% set matrixBlock = post.body.type('image').one() %}
+
+            {% if matrixBlock %}
+              {% set image = matrixBlock.image.one() %}
+
+              {% if image is defined %}
+                <a href="{{ post.url }}" title="{{ post.title }}">
+                  <img class="lazyload"
+                       src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                       data-sizes="auto"
+                       data-srcset="{{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
+                       alt="{{ image.title }}">
+                </a>
+              {% endif %}
+            {% endif %}
+
+            <h3 class="mv2 ts-header3"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+          </article>
+        {% endfor %}
+
+      </div>
+    </div>
+  {% endif %}
 
 {% endblock %}

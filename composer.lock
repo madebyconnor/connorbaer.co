@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "72bde652c53f9f51aa58fb13d26e1684",
+    "content-hash": "489e826e0b843989390918e3e113fe82",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1015,6 +1015,58 @@
             "description": "Minify is a PHP5 app that helps you follow several rules for client-side performance. It combines multiple CSS or Javascript files, removes unnecessary whitespace and comments, and serves them with gzip encoding and optimal client-side cache headers",
             "homepage": "http://code.google.com/p/minify/",
             "time": "2016-03-08T11:49:57+00:00"
+        },
+        {
+            "name": "nystudio107/craft3-cookies",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nystudio107/craft3-cookies.git",
+                "reference": "cfcea234ab0c1d9ecb566b4ac5e71834d0a8ce4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nystudio107/craft3-cookies/zipball/cfcea234ab0c1d9ecb566b4ac5e71834d0a8ce4c",
+                "reference": "cfcea234ab0c1d9ecb566b4ac5e71834d0a8ce4c",
+                "shasum": ""
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Cookies",
+                "handle": "cookies",
+                "schemaVersion": "1.0.0",
+                "hasSettings": false,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/nystudio107/craft3-cookies/CHANGELOG.md",
+                "class": "nystudio107\\cookies\\Cookies",
+                "components": {
+                    "cookies": "nystudio107\\cookies\\services\\CookiesService"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "nystudio107\\cookies\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "nystudio107",
+                    "homepage": "https://nystudio107.com/"
+                }
+            ],
+            "description": "A simple plugin for setting and getting cookies from within Craft CMS templates.",
+            "keywords": [
+                "Craft",
+                "cms",
+                "cookies",
+                "craft-plugin",
+                "craftcms"
+            ],
+            "time": "2017-02-09T07:50:44+00:00"
         },
         {
             "name": "nystudio107/craft3-minify",

@@ -7,10 +7,14 @@
   Elements
 */
 
+// Dependencies //
+
 // Normalize: make browsers render things more consistently, from https://necolas.github.io/normalize.css/.
 @import "dependencies/normalize";
 // Open Color: an open-source color scheme, from https://yeun.github.io/open-color/.
 @import "dependencies/open-color";
+// Prism: a lightweight, extensible syntax highlighter, from http://prismjs.com/.
+@import "dependencies/prism";
 
 
 // Base //
@@ -21,14 +25,14 @@
 
 // Patterns //
 
-@import "patterns/layout";
 @import "patterns/type";
+@import "patterns/layout";
+@import "patterns/media";
 @import "patterns/form";
-// @import "patterns/syntax";
 
 
 // Elements //
 
 @import "elements/navigation";
 @import "elements/content";
-@import "elements/meta";
+@import "elements/elements";

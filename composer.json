@@ -25,7 +25,8 @@
     "craftcms/plugin-installer": "^1.0.0",
     "vlucas/phpdotenv": "^2.4.0",
     "roave/security-advisories": "dev-master",
-    "nystudio107/craft3-minify": "^1.2"
+    "nystudio107/craft3-minify": "^1.2",
+    "nystudio107/craft3-cookies": "^1.1"
   },
   "scripts": {
     "post-root-package-install": [

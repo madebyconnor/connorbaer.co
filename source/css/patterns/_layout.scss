@@ -9,7 +9,7 @@
 
 // Widths //
 
-$max-width: 60rem;
+$max-width: 56rem;
 
 .w1 {
   display: block;
@@ -19,8 +19,6 @@ $max-width: 60rem;
 
   @media #{$bp-small} {
     width: (100% / 3);
-    padding-right: $sp-medium;
-    padding-left: $sp-medium;
   }
 }
 
@@ -32,8 +30,6 @@ $max-width: 60rem;
 
   @media #{$bp-small} {
     width: (100% / 1.5);
-    padding-right: $sp-medium;
-    padding-left: $sp-medium;
   }
 }
 
@@ -43,11 +39,6 @@ $max-width: 60rem;
   padding-right: $sp-small;
   padding-left: $sp-small;
   clear: both;
-
-  @media #{$bp-small} {
-    padding-right: $sp-medium;
-    padding-left: $sp-medium;
-  }
 }
 
 .w100 {
@@ -58,6 +49,11 @@ $max-width: 60rem;
   margin-left: auto;
   padding-right: $sp-small;
   padding-left: $sp-small;
+
+  @media #{$bp-small} {
+    padding-right: $sp-large;
+    padding-left: $sp-large;
+  }
 }
 
 

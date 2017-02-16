@@ -47,7 +47,27 @@
   }
 }
 
+.navigation-list {
+  display: flex;
+
+  @media #{$bp-small} {
+    align-items: center;
+    height: 2.25rem;
+  }
+}
+
 .navigation-link {
+  display: inline-block;
+  padding-right: $sp-small;
+  padding-left: $sp-small;
+
+  @media #{$bp-small-only} {
+    width: 100%;
+    padding: $sp-tiny;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+  }
+
   .link {
     color: $oc-gray-6;
     font-family: $ff-sans;
@@ -64,8 +84,14 @@
     }
   }
 
-  &.navigation-active .link {
-    color: $oc-primary-6;
+  &.navigation-active {
+    @media #{$bp-small-only} {
+      border-bottom: 2px solid $oc-primary-6;
+    }
+
+    .link {
+      color: $oc-primary-6;
+    }
   }
 }
 
@@ -86,6 +112,11 @@
   }
 }
 
+.metabar-brand {
+  padding-right: $sp-small;
+  padding-left: $sp-small;
+}
+
 @media #{$bp-small-only} {
   .headroom {
     position: fixed;
@@ -103,56 +134,41 @@
 }
 
 .metabar-navigation {
-  .navigation-list {
-    display: flex;
-  }
-
   @media #{$bp-small-only} {
     width: 100%;
     padding-top: $sp-tiny;
-
-    .navigation-link {
-      width: 100%;
-      padding: $sp-tiny;
-      border-bottom: 2px solid transparent;
-      text-align: center;
-    }
-
-    .navigation-active {
-      border-bottom: 2px solid $oc-primary-6;
-    }
-  }
-
-  @media #{$bp-small} {
-    .navigation-list {
-      align-items: center;
-      height: 2.25rem;
-    }
-
-    .navigation-link {
-      display: inline-block;
-      margin-left: $sp-large;
-    }
+    padding-right: $sp-small;
+    padding-left: $sp-small;
   }
 }
 
 
 // Footer //
 
-.footer {
-  margin-top: $sp-medium;
-  padding-top: $sp-medium;
-  padding-bottom: $sp-medium;
-  box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.1);
+@media #{$bp-small-only} {
+  .footer {
+    box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.1);
+  }
 
-  @media #{$bp-small-only} {
-    .footer-links {
-      width: 50%;
-    }
+  .footer-navigation {
+    display: none;
+  }
+
+  .footer-logo {
+    width: auto;
   }
 }
 
-.footer-text {
+.footer-links {
+  padding-top: $sp-medium;
+  padding-bottom: $sp-medium;
+}
+
+.footer-legal {
+  border-top: 1px solid $oc-gray-1;
+}
+
+.footer-copyright {
   color: $oc-gray-4;
 
   .link {

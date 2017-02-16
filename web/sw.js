@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  const version = 'cb1.0::';
+  const version = 'cb1.1::';
   const staticCacheName = version + 'static';
   const pagesCacheName = version + 'pages';
   const imagesCacheName = version + 'images';
@@ -10,7 +10,6 @@
     '/404',
     '/creating',
     '/writing',
-    '/eating'
   ];
   const staticAssets = [
     'https://connorbaer.co/assets/css/styles.css',
@@ -18,6 +17,8 @@
     'https://use.typekit.net/fcv7rfe.js',
     'https://connorbaer.co/assets/js/lazysizes.min.js',
     'https://unpkg.com/headroom.js',
+    'https://connorbaer.co/assets/js/rellax.min.js',
+    'https://connorbaer.co/assets/js/prism.js',
   ];
 
   function stashInCache(cacheName, request, response) {

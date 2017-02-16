@@ -17,30 +17,26 @@
   {% minify %}
 
   <footer id="footer" class="footer">
-    <div class="w100">
-      <div class="cf">
-        <div class="w1 mv2 fl-left">
+    <div class="footer-links w100 cf">
+      <div class="footer-logo w1 mv2 fl-left">
 
-          {% include '_includes/logo' %}
+        {% include '_includes/logo' %}
 
-        </div>
-        <div class="footer-links w1 mv2 fl-left">
-          <h4 class="ts-header3 ff-sans fw-semibold">{{ siteName }}</h4>
-          <nav>
+      </div>
+      <div class="footer-navigation mv2 fl-left">
 
-            {{ elements.navigation(navigation) }}
+        {{ elements.navigation(navigation) }}
 
-          </nav>
-        </div>
-        <div class="footer-links w1 mv2 fl-left">
-          <h4 class="ts-header3 ff-sans fw-semibold">More by Connor</h4>
-          <nav>
+      </div>
+      <div class="footer-social mv2 fl-right">
 
-            {{ elements.navigation(footer) }}
+        {{ elements.social() }}
 
-          </nav>
-        </div>
-        <h6 class="footer-text w2 fl-right mv2 ts-app">© {{ "now" | date("Y") }} {{ footer.contentOwner }}. All rights reserved.</h6>
+      </div>
+    </div>
+    <div class="footer-legal cf">
+      <div class="w100">
+        <h6 class="footer-copyright w2 mv1 fl-right ts-app">© {{ "now" | date("Y") }} {{ footer.contentOwner }}. All rights reserved.</h6>
       </div>
     </div>
   </footer>
