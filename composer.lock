@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "489e826e0b843989390918e3e113fe82",
+    "content-hash": "3773b4b0dd6963752533d464806689c4",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1122,6 +1122,55 @@
                 "minify"
             ],
             "time": "2017-02-09T07:45:15+00:00"
+        },
+        {
+            "name": "nystudio107/craft3-recipe",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nystudio107/craft3-recipe.git",
+                "reference": "7e83ba1a5d5d1dd39311be9cb46c71b0a3052426"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nystudio107/craft3-recipe/zipball/7e83ba1a5d5d1dd39311be9cb46c71b0a3052426",
+                "reference": "7e83ba1a5d5d1dd39311be9cb46c71b0a3052426",
+                "shasum": ""
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Recipe",
+                "handle": "recipe",
+                "schemaVersion": "1.0.0",
+                "hasSettings": false,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/nystudio107/craft3-recipe/master/CHANGELOG.md",
+                "class": "nystudio107\\recipe\\Recipe"
+            },
+            "autoload": {
+                "psr-4": {
+                    "nystudio107\\recipe\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "nystudio107",
+                    "homepage": "https://nystudio107.com"
+                }
+            ],
+            "description": "A comprehensive recipe FieldType for Craft CMS that includes metric/imperial conversion, portion calculation, and JSON-LD microdata support",
+            "keywords": [
+                "Craft",
+                "cms",
+                "craft-plugin",
+                "craftcms",
+                "recipe"
+            ],
+            "time": "2017-02-15T23:58:39+00:00"
         },
         {
             "name": "pixelandtonic/imagine",
