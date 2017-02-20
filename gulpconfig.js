@@ -1,8 +1,3 @@
-/* jshint -W117 */
-/* jshint -W098 */
-/* jshint -W070 */
-
-
 // ==== GULP CONFIGURATION ==== //
 
 // 1. Variables
@@ -19,7 +14,7 @@
 
 // 1. Variables //
 
-var pkg   = require('./package.json'), // Allows access to the project metadata from the package.json file.
+const pkg   = require('./package.json'), // Allows access to the project metadata from the package.json file.
   project = pkg.name, // The name of the project, pulled from the package.json.
   src     = 'source/', // The raw material of the theme: custom scripts, SCSS source files, images, etc.; do not delete this folder!
   dist    = 'web/', // The webroot directory that will be accessible on your server.
@@ -92,7 +87,7 @@ module.exports = {
     cssnano: {
       autoprefixer: {
         add: true,
-        browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4'], // This tool is magic and you should use it in all your projects :)
+        browsers: ['> 3%', 'last 2 versions'], // This tool is magic and you should use it in all your projects :)
       },
     },
     libsass: { // Requires the libsass implementation of Sass (included in this package)
@@ -108,23 +103,24 @@ module.exports = {
   // 7. Scripts //
 
   scripts: {
-    src: [tmplts + '*.js', '!' + tmplts + '*.min.js'],
+    src: {
+      combined: [
+        modules + 'lazysizes/lazysizes.js',
+        modules + 'Right-Height/dist/js/right-height.js',
+        modules + 'headroom.js/dist/headroom.js',
+      ],
+      single: [
+        modules + 'prismjs/prism.js',
+        modules + 'rellax/rellax.js',
+      ],
+    },
     minify: {
       uglify: {}, // Default options.
       rename: {
         extname: '.min.js',
       },
     },
-    dest: tmplts,
-    deps: {
-      src: [
-        modules + 'smooth-scroll/dist/js/smooth-scroll.min.js',
-        modules + 'lazysizes/lazysizes.min.js',
-        modules + 'prismjs/prism.js',
-        modules + 'rellax/rellax.min.js',
-      ],
-      dest: dist + assets + 'js/',
-    },
+    dest: dist + assets + 'js/',
   },
 
 

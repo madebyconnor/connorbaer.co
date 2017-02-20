@@ -16,6 +16,7 @@
 
 # Install by running `composer update` #
 /vendor/
+/composer.lock
 
 # Compiled source #
 ###################

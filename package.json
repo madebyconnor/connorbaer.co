@@ -24,6 +24,7 @@
   },
   "homepage": "https://connorbaer.co",
   "dependencies": {
+    "Right-Height": "github:cferdinandi/right-height",
     "browser-sync": "^2.18.8",
     "headroom.js": "^0.9.3",
     "lazysizes": "^3.0.0-rc4",

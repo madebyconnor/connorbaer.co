@@ -21,7 +21,7 @@
 
 
 {% block body %}
-  <div class="w100">
+  <div class="wfull">
 
     {% set featured = craft.entries.section(section).featured('1') %}
 
@@ -34,7 +34,7 @@
             {% set image = matrixBlock.image.one() %}
           {% endif %}
           {% if image is defined %}
-            <div class="w2 fl-left">
+            <div class="w2-3 fl-left">
               <a href="{{ post.url }}" title="{{ post.title }}">
                 <picture>
                   <source srcset="{{ image.getUrl('large16x9') }}" media="(min-width: 56.25em)">
@@ -46,8 +46,8 @@
             </div>
           {% endif %}
 
-          <div class="w1 fl-right">
-            <h2 class="ts-header1"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+          <div class="w1-3 fl-right">
+            <h2 class="ts-title2"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
             <p class="ts-body">{{ post.description }}</p>
           </div>
         </article>
@@ -59,7 +59,7 @@
     {% if posts %}
       <div class="pv1 cf">
         {% for post in posts %}
-          <article class="w1 fl-left mv2">
+          <article class="w1-3 fl-left mv2">
 
             {% set matrixBlock = post.body.type('image').one() %}
 
@@ -77,7 +77,7 @@
               {% endif %}
             {% endif %}
 
-            <h3 class="pv1 ts-header2"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <h3 class="pv1 ts-title3"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
             <p class="ts-body">{{ post.description }}</p>
           </article>
         {% endfor %}

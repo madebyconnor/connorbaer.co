@@ -92,29 +92,29 @@
 		});
 	  </script>
 
-		{# Lazysizes #}
+		{# Lazysizes, Right Height, Headroom #}
 	  <script>
-		loadjs(['{{ siteUrl ~ 'assets/js/lazysizes.min.js' }}'], 'lazysizes');
+		loadjs(['{{ siteUrl ~ 'assets/js/scripts.min.js' }}'], 'scripts');
+		loadjs.ready('scripts', {
+			success: function() {
+				rightHeight.init({
+			    selector: '.crds', // The selector for content containers (must use a valid CSS selector)
+			    selectorContent: '.crd', // The selector for content (must use a valid CSS selector)
+				});
+
+				const metabar = document.getElementById('metabar');
+				const headroom  = new Headroom(metabar);
+
+				headroom.init({
+					offset: 50,
+					tolerance: {
+							up: 25,
+							down: 0
+					}
+				});
+			}
+		});
 	  </script>
-
-		{# Headroom #}
-		<script>
-			loadjs(['https://unpkg.com/headroom.js'], 'headroom');
-			loadjs.ready('headroom', {
-				success: function() {
-					var metabar = document.getElementById('metabar');
-					var headroom  = new Headroom(metabar);
-
-					headroom.init({
-				    offset: 50,
-				    tolerance: {
-				        up: 25,
-				        down: 0
-				    }
-					});
-				}
-			});
-		</script>
   {% endblock %}
 
 

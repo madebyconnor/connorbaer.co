@@ -1,10 +1,28 @@
 /*
   MEDIA
 
+  Ratios
   Images
   SVG
   Videos
 */
+
+
+// Ratios //
+
+.r16-9 {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+
+  > * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
 
 
 // Images //
@@ -17,13 +35,29 @@ img[data-sizes="auto"] {
   vertical-align: middle; // Make sure images are scaled correctly.
 }
 
+.img-hover {
+  display: block;
+  overflow: hidden;
+
+  img {
+    transform: scale(1.05);
+    transition: transform $an-long;
+    backface-visibility: hidden;
+
+    &:hover,
+    &:focus {
+      transform: scale(1);
+    }
+  }
+}
+
 
 // SVG //
 
 .svg-small {
   width: $sp-small;
   height: $sp-small;
-  margin-right: $sp-tiny;
+  margin-right: $sp-small;
   vertical-align: middle;
   fill: $oc-gray-6;
 

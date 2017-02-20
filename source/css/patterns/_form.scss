@@ -1,27 +1,27 @@
-// ==== FORM ==== //
+/*
+  FORM
 
-// Style all form components here.
+  Buttons
+  Inputs
+  Labels
+  Highlight
+*/
 
-// 1. Buttons
-// 2. Inputs
-// 3. Labels
-// 4. Highlight
 
-
-// 1. Buttons //
+// Buttons //
 
 .button {
   display: inline-block;
-  margin: 1rem 0;
-  padding: .25rem .75rem;
+  margin: $sp-small 0;
+  padding: .5rem .75rem;
   transition: background-color $an-short, color $an-short;
   border: 3px solid $oc-primary-6;
-  border-radius: .5rem;
+  border-radius: $sp-tiny;
   outline: none;
   background-color: $oc-white;
   color: $oc-primary-6;
-  font-size: $fs-normal;
-  font-weight: $fw-sans-semibold;;
+  font-size: $fs-regular;
+  font-weight: $fw-sans-semibold;
   letter-spacing: 1px;
   text-decoration: none;
   cursor: pointer;
@@ -34,7 +34,7 @@
 }
 
 
-// 2. Inputs //
+// Inputs //
 
 .form-input {
   display: block;
@@ -42,7 +42,7 @@
   padding: .5rem .75rem;
   transition: border-color $an-short;
   border: 2px solid $oc-gray-6;
-  border-radius: .5rem;
+  border-radius: $sp-tiny;
   outline: none;
   background-color: $oc-white;
   font-family: $ff-sans;
@@ -93,12 +93,12 @@ textarea {
 }
 
 
-// 3. Labels //
+// Labels //
 
 .form-group {
   position: relative;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
+  margin-top: $sp-medium;
+  margin-bottom: $sp-small;
 }
 
 .form-icon {
@@ -111,7 +111,7 @@ textarea {
 }
 
 .form-hint {
-  margin-top: 1rem;
+  margin-top: $sp-small;
 }
 
 .form-error {
@@ -123,12 +123,14 @@ textarea {
 }
 
 .form-label {
+  @extend %ts-app;
+
   position: absolute;
   top: 0;
 }
 
 
-// 4. Highlighter //
+// Highlighter //
 
 .form-highlight {
   position: absolute;

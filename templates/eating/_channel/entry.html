@@ -31,9 +31,9 @@
 {% block body %}
 
   <article>
-    <header class="w100 content-hero">
-      <div class="w3">
-        <h1 class="ts-title">{{ entry.title }}</h1>
+    <header class="wfull content-hero">
+      <div class="w100">
+        <h1 class="ts-title1">{{ entry.title }}</h1>
         {{ elements.date(entry.postDate) }}
       </div>
     </header>
@@ -59,18 +59,18 @@
           {% case 'full' %}
             <section class="content">
           {% default %}
-            <section class="content w100 cf">
+            <section class="content wfull cf">
         {% endswitch %}
       {% endif %}
 
         {# Determine float and width based on current position #}
         {% switch position %}
           {% case 'left' %}
-            <div class="w1 fl-left mb4">
+            <div class="w1-3 fl-left mb4">
           {% case 'center' %}
-            <div class="w3">
+            <div class="w100">
           {% case 'right' %}
-            <div class="w2 fl-right">
+            <div class="w2-3 fl-right">
           {% case 'full' %}
             <div>
         {% endswitch %}
@@ -95,8 +95,8 @@
       {% set prevPosition = position %}
     {% endfor %}
 
-    <div class="w100 mv4 cf">
-      <div class="w2 fl-right">
+    <div class="wfull mv4 cf">
+      <div class="w2-3 fl-right">
         {{ elements.share(entry.title) }}
       </div>
     </div>

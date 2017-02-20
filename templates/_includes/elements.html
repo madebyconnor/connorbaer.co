@@ -3,6 +3,7 @@
  #
  # Navigation
  # Social
+ # Category
  # Date
  # Share
 -#}
@@ -60,12 +61,17 @@
 {% endmacro %}
 
 
+{# Category #}
+
+{% macro category(entry) %}
+	<p class="ts-app fw-semibold">{% for category in craft.categories.relatedTo(entry) %}<a href="{{ category.url }}" title="{{ category.title | capitalize }}">{{ category.title | capitalize }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+{% endmacro %}
+
+
 {# Date #}
 
 {% macro date(date) %}
-	<div>
-		<time class="ts-app" datetime="{{ date | date("Y-m-d") }}">{{ date | date("F d, Y") }}</time>
-	</div>
+	<time class="ts-app" datetime="{{ date | date("Y-m-d") }}">{{ date | date("F d, Y") }}</time>
 {% endmacro %}
 
 

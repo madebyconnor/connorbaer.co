@@ -10,7 +10,7 @@
       <img class="img-responsive"
            src="{{ image.getUrl('medium') }}"
            sizes="(min-width: 56.25em) 60vw, 95vw"
-           srcset="{{ image.getUrl('large') }} {{ image.getWidth('large') }}w, {{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
+           srcset="{{ image.getUrl('large16x9') }} {{ image.getWidth('large16x9') }}w, {{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
            alt="{{ image.title }}">
     {% endif %}
   {% endfor %}

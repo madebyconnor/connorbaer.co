@@ -1,23 +1,29 @@
 {#
  # MACRO HELPERS
  #
+ # Truncate
  # Strip Tags
- # Position
 -#}
+
+
+{# Truncate #}
+
+{% macro truncate(input, limit) %}
+	{% if input | length < limit %}
+		{{ input }}
+	{% else %}
+		{% set text = input | slice(0, limit) %}
+		{% set words = text | split(' ') %}
+		{% set number = words | length %}
+		{% set result = words | slice(0, number - 1) | join(' ') %}
+
+    {{ result }}…
+	{% endif %}
+{% endmacro %}
 
 
 {# Strip Tags #}
 
 {% macro striptags(input) %}
 	{{ input | striptags('<a><br><strong><em>') | raw }}
-{% endmacro %}
-
-
-{# Position #}
-
-{% macro position(input) %}
-	{% minify %}
-		{% set positionedTypes = ['text', 'image', 'quote'] %}
-		{{ block.type.handle in positionedTypes and block.position ? block.position : 'center' }}
-	{% endminify %}
 {% endmacro %}

@@ -17,12 +17,12 @@
   {% minify %}
 
   <footer id="footer" class="footer">
-    <div class="footer-links w100 cf">
-      <div class="footer-logo w1 mv2 fl-left">
+    <div class="wfull mv3 cf">
+      <a class="navigation-brand footer-brand w1-3 mv2 fl-left" href="{{ siteUrl }}#" title="Home">
 
         {% include '_includes/logo' %}
 
-      </div>
+      </a>
       <div class="footer-navigation mv2 fl-left">
 
         {{ elements.navigation(navigation) }}
@@ -34,9 +34,9 @@
 
       </div>
     </div>
-    <div class="footer-legal cf">
+    <div class="wfull">
       <div class="w100">
-        <h6 class="footer-copyright w2 mv1 fl-right ts-app">© {{ "now" | date("Y") }} {{ footer.contentOwner }}. All rights reserved.</h6>
+        <h6 class="footer-legal ts-app">© {{ "now" | date("Y") }} Connor Bär. All rights reserved.</h6>
       </div>
     </div>
   </footer>

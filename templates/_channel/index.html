@@ -21,63 +21,37 @@
 
 
 {% block body %}
-  <div class="w100">
+  <div class="wfull">
 
-    {% set featured = craft.entries.section(section).featured('1') %}
-
-    {% if featured %}
-      {% for post in featured %}
-        <article class="content-hero cf">
-
-          {% set matrixBlock = post.body.type('image').one() %}
-          {% if matrixBlock %}
-            {% set image = matrixBlock.image.one() %}
-          {% endif %}
-          {% if image is defined %}
-            <div class="w2 fl-left">
-              <a href="{{ post.url }}" title="{{ post.title }}">
-                <img class="img-responsive"
-                     src="{{ image.getUrl('medium') }}"
-                     sizes="100vw, (min-width: 37.5em) 40vw, (min-width: 56.25em) 60vw"
-                     srcset="{{ image.getUrl('large16x9') }} {{ image.getWidth('large16x9') }}w, {{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
-                     alt="{{ image.title }}">
-              </a>
-            </div>
-          {% endif %}
-
-          <div class="w1 fl-right">
-            <h2 class="ts-header1"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-            <p class="ts-body">{{ post.description }}</p>
-          </div>
-        </article>
-      {% endfor %}
-    {% endif %}
-
-    {% set posts = craft.entries.section(section).featured('not 1').limit('6') %}
+    {% set posts = craft.entries.section(section).all() %}
 
     {% if posts %}
-      <div class="pv1 cf">
+      <div class="cf ff-serif">
         {% for post in posts %}
-          <article class="w1 fl-left mv2">
+          <article class="w2-3 fl-left">
+            {% if post.featured %}
+              <h2 class="mt5 mb2 ts-title2"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
 
-            {% set matrixBlock = post.body.type('image').one() %}
+              {% set matrixBlock = post.body.type('image').one() %}
 
-            {% if matrixBlock %}
-              {% set image = matrixBlock.image.one() %}
-
+              {% if matrixBlock %}
+                {% set image = matrixBlock.image.one() %}
+              {% endif %}
               {% if image is defined %}
-                <a href="{{ post.url }}" title="{{ post.title }}">
-                  <img class="lazyload"
-                       src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                       data-sizes="auto"
-                       data-srcset="{{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
+                <a class="img-hover" href="{{ post.url }}" title="{{ post.title }}">
+                  <img class="img-responsive"
+                       src="{{ image.getUrl('medium') }}"
+                       sizes="100vw, (min-width: 37.5em) 40vw, (min-width: 56.25em) 60vw"
+                       srcset="{{ image.getUrl('large16x9') }} {{ image.getWidth('large16x9') }}w, {{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
                        alt="{{ image.title }}">
                 </a>
               {% endif %}
+              <p class="ts-body">{{ post.description }}</p>
+            {% else %}
+              <h3 class="mv2 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+              <p class="ts-body">{{ post.description }}</p>
             {% endif %}
 
-            <h3 class="mv2 ts-header2"><a class="link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-            <p class="ts-body">{{ post.description }}</p>
           </article>
         {% endfor %}
       </div>

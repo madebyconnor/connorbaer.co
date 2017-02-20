@@ -25,48 +25,35 @@
 {% import '_includes/helpers' as helpers %}
 
 
-{% block scripts %}
-  {{ parent() }}
-
-  {# Rellax #}
-  <script>
-  loadjs(['{{ siteUrl ~ 'assets/js/rellax.min.js' }}'], 'rellax');
-  loadjs.ready('rellax', {
-    success: function() {
-      var rellax = new Rellax('.js-rellax');
-    }
-  });
-  </script>
-{% endblock %}
-
-
 {% block body %}
   {% cache %}
   {% minify %}
 
-  <article class="w100">
-    <header class="w3 mv5">
-      <h1 class="ts-title js-rellax" data-rellax-speed="-2" data-rellax-percentage="0.5">{{ helpers.striptags(entry.description) }}</h1>
+  <article class="wfull">
+    <header class="content-hero w100 ff-sans">
+      <h1 class="ts-title1">{{ helpers.striptags(entry.title) }}</h1>
+      <h2 class="ts-large fw-normal">{{ helpers.striptags(entry.description) }}</h2>
     </header>
   </article>
 
-  <article class="w100">
-    <header class="w3 mv5">
-      <h1 class="ts-title js-rellax" data-rellax-speed="9">{{ helpers.striptags(entry.description) }}</h1>
-    </header>
-  </article>
+  <section class="wfull mv3 cf">
+    <h3 class="w100 mv1 ts-title4">Latest Posts</h3>
+    <div class="crds">
+      {% set posts = craft.entries.section('writing').limit('2') %}
 
-  <article class="w100">
-    <header class="w3 mv5">
-      <h1 class="ts-title js-rellax" data-rellax-speed="4">{{ helpers.striptags(entry.description) }}</h1>
-    </header>
-  </article>
-
-  <article class="w100">
-    <header class="w3 mv5">
-      <h1 class="ts-title js-rellax" data-rellax-speed="7">{{ helpers.striptags(entry.description) }}</h1>
-    </header>
-  </article>
+      {% if posts %}
+        {% for post in posts %}
+          <article class="w1-2 fl-left mv2 ff-serif">
+            <div class="crd crd-padding">
+              {{ elements.category(post) }}
+              <h3 class="mv2 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+              <p class="ts-body">{{ helpers.truncate(post.description | striptags(), 155) }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
 
   {% endminify %}
   {% endcache %}
