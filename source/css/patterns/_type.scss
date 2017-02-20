@@ -23,6 +23,15 @@
   .ff-serif & {
     font-weight: $fw-serif-bold;
   }
+
+  a {
+    transition: color $an-short;
+
+    &:hover,
+    &:focus {
+      color: $oc-primary-6;
+    }
+  }
 }
 
 .ts-title1,
@@ -95,34 +104,6 @@
 
 // Links & underlines //
 
-.ts-title1 a,
-%ts-title1 a,
-.ts-title2 a,
-%ts-title2 a,
-.ts-title3 a,
-%ts-title3 a {
-  background-size: .05em 2px, .05em 2px, 2px 2px;
-}
-
-.ts-quote a,
-%ts-quote a,
-.ts-large a,
-%ts-large a,
-.ts-body a,
-%ts-body a,
-.ts-app a,
-%ts-app a,
-.link {
-  background-size: .05em 1px, .05em 1px, 1px 1px;
-  color: $oc-primary-6;
-}
-
-.ts-title1 a,
-%ts-title1 a,
-.ts-title2 a,
-%ts-title2 a,
-.ts-title3 a,
-%ts-title3 a,
 .ts-quote a,
 %ts-quote a,
 .ts-large a,
@@ -134,6 +115,8 @@
 .link {
   background-repeat: no-repeat, no-repeat, repeat-x;
   background-position: 0% 90%, 100% 90%, 0% 90%;
+  background-size: .05em 1px, .05em 1px, 1px 1px;
+  color: $oc-primary-6;
 
   &:hover,
   &:focus {
