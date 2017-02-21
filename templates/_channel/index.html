@@ -78,8 +78,7 @@
     {% endcache %}
 
     {# All posts, except the featured one #}
-    {% cache %}
-    {% set posts = craft.entries.section(section).limit('10') | without(featured) %}
+    {% set posts = craft.entries.section(section).all() | without(featured) %}
 
     <div class="w66 cl ff-serif">
       {% for post in posts %}
@@ -110,7 +109,6 @@
         </article>
       {% endfor %}
     </div>
-    {% endcache %}
 
   </div>
 {% endblock %}
