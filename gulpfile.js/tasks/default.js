@@ -51,5 +51,6 @@ gulp.task('dist', (callback) => {
   [
     'revisions'
   ],
+  'service-worker',
   callback);
 });

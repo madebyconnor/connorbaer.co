@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  const version = 'cb1.3::';
+  const version = 'cb1.4::';
   const staticCacheName = version + 'static';
   const pagesCacheName = version + 'pages';
   const imagesCacheName = version + 'images';
@@ -14,10 +14,8 @@
   const staticAssets = [
     'https://connorbaer.co/assets/css/styles.css',
 
-    'https://use.typekit.net/fcv7rfe.js',
-    'https://connorbaer.co/assets/js/lazysizes.min.js',
+    'https://connorbaer.co/assets/js/scripts.css',
     'https://unpkg.com/headroom.js',
-    'https://connorbaer.co/assets/js/rellax.min.js',
     'https://connorbaer.co/assets/js/prism.js',
   ];
 

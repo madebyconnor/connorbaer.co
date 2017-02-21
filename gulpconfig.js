@@ -10,6 +10,7 @@
 // 8. Icons
 // 9. Revisions
 // 10. AMP
+// 11. Service Worker
 
 
 // 1. Variables //
@@ -174,7 +175,52 @@ module.exports = {
   amp: {
     src:     tmplts + '_amp/base-unstyled.html',
     dest:    tmplts + '_amp/',
-    cssSrc:  dist + assets + 'css/amp.css',
-    cssDest: dist + assets + 'css/',
+    css: {
+      src:  dist + assets + 'css/styles.css',
+      dest: dist + assets + 'css/',
+    },
+  },
+
+
+  // 11. Service Worker //
+
+  serviceWorker: {
+    root:    dist,
+    src:     assets + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}',
+    name:    'service-worker.js',
+    config: {
+      cacheId: pkg.name,
+      /*
+      dynamicUrlToDependencies: {
+        'dynamic/page1': [
+          path.join(rootDir, 'views', 'layout.jade'),
+          path.join(rootDir, 'views', 'page1.jade')
+        ],
+        'dynamic/page2': [
+          path.join(rootDir, 'views', 'layout.jade'),
+          path.join(rootDir, 'views', 'page2.jade')
+        ]
+      },
+      */
+      runtimeCaching: [{
+        // See https://github.com/GoogleChrome/sw-toolbox#methods
+        urlPattern: /runtime-caching/,
+        handler: 'cacheFirst',
+        // See https://github.com/GoogleChrome/sw-toolbox#options
+        options: {
+          cache: {
+            maxEntries: 1,
+            name: 'runtime-cache'
+          }
+        }
+      }],
+      staticFileGlobs: [
+        dist + assets + '/css/**.css',
+        dist + assets + '/js/**.js'
+      ],
+      stripPrefix: dist,
+      // verbose defaults to false, but for the purposes of this demo, log more.
+      verbose: true
+    },
   },
 };

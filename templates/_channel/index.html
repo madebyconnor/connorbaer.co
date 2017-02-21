@@ -34,7 +34,7 @@
     {% if featured %}
       <article class="w2-3 fl-left ff-serif">
 
-        {# First image in post #}
+        {# First image from matrix in post #}
         {% set imageBlock = featured.body.type('image').one() %}
 
         {% if imageBlock %}
@@ -67,7 +67,7 @@
         <a class="link" href="{{ category.url }}">{{ category.title }}</a>
 
         {# Get the count of entries related to `category` #}
-        {% set entryCount = craft.entries.relatedTo(category).total() %}
+        {% set entryCount = craft.entries.relatedTo(category).count() %}
 
         <span class="ts-app">{{ entryCount }} {% if entryCount > 1 %}posts{% else %}post{% endif %}</span>
       {% endfor %}
@@ -80,7 +80,7 @@
       {% for post in posts %}
         <article class="w1-2 fl-left mv3 cl">
 
-          {# First image in post #}
+          {# First image from matrix in post #}
           {% set matrixBlock = post.body.type('image').one() %}
 
           {% if matrixBlock %}

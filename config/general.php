@@ -17,10 +17,23 @@ return [
 		'enableTemplateCaching' => false,
 		'testToEmailAddress' => 'connor.baer@me.com',
 		'userSessionDuration' => 'P2W',
-		'siteUrl' => 'http://local.connorbaer',
+		'siteUrl' => array(
+			'default' => 'http://local.connorbaer',
+			'madeByConnor' => 'http://local.madebyconnor',
+		),
 	),
 	'connorbaer.co' => array(
 		'devMode' => false,
-		'siteUrl' => 'https://connorbaer.co',
+		'siteUrl' => array(
+			'default' => 'https://connorbaer.co/',
+			'madeByConnor' => 'https://madebyconnor.co/',
+		),
+	),
+	'madebyconnor.co' => array(
+		'devMode' => false,
+		'siteUrl' => array(
+			'default' => 'https://connorbaer.co/',
+			'madeByConnor' => 'https://madebyconnor.co/',
+		),
 	),
 ];
