@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
   const version = 'cb1.4::';
   const staticCacheName = version + 'static';
@@ -11,34 +11,22 @@
     '/creating',
     '/writing',
   ];
-  const staticAssets = [
-    'https://connorbaer.co/assets/css/styles.css',
-
-    'https://connorbaer.co/assets/js/scripts.css',
-    'https://unpkg.com/headroom.js',
-    'https://connorbaer.co/assets/js/prism.js',
-  ];
 
   function stashInCache(cacheName, request, response) {
     caches.open(cacheName).then(cache=>cache.put(request, response));
   }
 
   function updateStaticCache() {
-    caches.open(staticCacheName).then(cache=>{
-      return cache.addAll(offlinePages.map(url=>new Request(url,{
-        credentials: 'same-origin'
-      })));
-    });
-    return caches.open(staticCacheName).then(cache=>{
-      return cache.addAll(staticAssets.map(url=>new Request(url,{
-        credentials: 'same-origin'
+    caches.open(staticCacheName).then(cache=> {
+      return cache.addAll(offlinePages.map(url=>new Request(url, {
+        credentials: 'same-origin',
       })));
     });
   }
 
   function trimCache(cacheName, maxItems) {
-    caches.open(cacheName).then(cache=>{
-      cache.keys().then(keys=>{
+    caches.open(cacheName).then(cache=> {
+      cache.keys().then(keys=> {
         if (keys.length > maxItems) {
           cache.delete(keys[0]).then(trimCache(cacheName, maxItems));
         }
@@ -47,27 +35,27 @@
   }
 
   function clearOldCaches() {
-    return caches.keys().then(keys=>{
+    return caches.keys().then(keys=> {
       return Promise.all(keys.filter(key=>key.indexOf(version) !== 0).map(key=>caches.delete(key)));
     });
   }
 
-  self.addEventListener('install', event=>{
+  self.addEventListener('install', event=> {
     event.waitUntil(updateStaticCache().then(()=>self.skipWaiting()));
   });
 
-  self.addEventListener('activate', event=>{
+  self.addEventListener('activate', event=> {
       event.waitUntil(clearOldCaches().then(()=>self.clients.claim()));
-  });
+    });
 
-  self.addEventListener('message', event=>{
+  self.addEventListener('message', event=> {
     if (event.data.command === 'trimCaches') {
       trimCache(pagesCacheName, 35);
       trimCache(imagesCacheName, 20);
     }
   });
 
-  self.addEventListener('fetch', event=>{
+  self.addEventListener('fetch', event=> {
     let request = event.request;
     let url = new URL(request.url);
 
@@ -80,7 +68,7 @@
     }
 
     if (request.headers.get('Accept').indexOf('text/html') !== -1) {
-      event.respondWith(fetch(request).then(response=>{
+      event.respondWith(fetch(request).then(response=> {
         let copy = response.clone();
 
         if (offlinePages.includes(url.pathname) || offlinePages.includes(url.pathname + '/')) {
