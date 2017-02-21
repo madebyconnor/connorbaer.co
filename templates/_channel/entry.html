@@ -29,6 +29,8 @@
 
 
 {% block body %}
+  {% cache %}
+  {% minify %}
 
   <article class="ff-serif">
     <header class="wfull content-hero">
@@ -142,4 +144,6 @@
     </div>
   {% endif %}
 
+  {% endminify %}
+  {% endcache %}
 {% endblock %}

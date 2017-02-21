@@ -186,7 +186,6 @@ module.exports = {
 
   serviceWorker: {
     root:    dist,
-    src:     assets + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}',
     name:    'service-worker.js',
     config: {
       cacheId: pkg.name,

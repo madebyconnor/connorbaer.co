@@ -1,13 +1,13 @@
 {#
- # Entry template
+ # Page entry template
  # -------------------
  #
- # This template gets loaded whenever an entry’s URL is
- # requested. That’s because the section’s Template setting is
- # set to _section/entry”, the path to this template.
+ # This template gets loaded whenever a Page entry’s URL is
+ # requested. That’s because the Page section’s Template setting is
+ # set to page/_entry”, the path to this template.
  #
  # When this template is loaded, it will already have an ‘entry’
- # variable, set to the requested entry.
+ # variable, set to the requested Page entry.
  #
  # See this entry for more details on how Craft routes requests:
  # http://craftcms.com/docs/routing
@@ -21,21 +21,13 @@
 
 
 
-{% block links %}
-  {{ parent() }}
-
-  <link rel="amphtml" href="{{ entry.url }}/amp">
-{% endblock %}
-
-
 {% block body %}
+  {% cache %}
+  {% minify %}
 
-  <article>
-    <header class="wfull content-hero">
-      <div class="w100">
-        <h1 class="ts-title1">{{ entry.title }}</h1>
-        {{ elements.date(entry.postDate) }}
-      </div>
+  <article class="wfull cf">
+    <header class="content-hero w100 ff-sans">
+      <h1 class="ts-title1">{{ entry.title }}</h1>
     </header>
 
     {# Initialize a few variables #}
@@ -91,7 +83,7 @@
         </section>
       {% endif %}
 
-      {# Position current block becomes position of previous block #}
+      {# Position of current block becomes position of previous block #}
       {% set prevPosition = position %}
     {% endfor %}
 
@@ -102,4 +94,6 @@
     </div>
   </article>
 
+  {% endminify %}
+  {% endcache %}
 {% endblock %}
