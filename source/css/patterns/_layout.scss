@@ -37,6 +37,22 @@ $max-width: 60rem;
   }
 }
 
+.w33 {
+  width: 100%;
+
+  @media #{$bp-small} {
+    width: (100% / 3);
+  }
+}
+
+.w66 {
+  width: 100%;
+
+  @media #{$bp-small} {
+    width: (100% / 1.5);
+  }
+}
+
 .w100 {
   clear: both;
 }
@@ -46,7 +62,7 @@ $max-width: 60rem;
   margin-right: auto;
   margin-left: auto;
 
-  @media #{$bp-small} {
+  @media #{$bp-medium} {
     padding-right: $sp-large;
     padding-left: $sp-large;
   }

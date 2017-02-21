@@ -34,7 +34,7 @@
     <header class="wfull content-hero">
       <div class="w100">
         <h1 class="ts-title1">{{ entry.title }}</h1>
-        {{ elements.date(entry.postDate) }}
+        {{ elements.date(entry.postDate) }}{% if entry.category is not empty %}<span class="ts-app">&nbsp;·&nbsp;</span>{{ elements.category(entry) }}{% endif %}
       </div>
     </header>
 

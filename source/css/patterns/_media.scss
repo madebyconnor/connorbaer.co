@@ -40,13 +40,12 @@ img[data-sizes="auto"] {
   overflow: hidden;
 
   img {
-    transform: scale(1.05);
     transition: transform $an-long;
     backface-visibility: hidden;
 
     &:hover,
     &:focus {
-      transform: scale(1);
+      transform: scale(1.05);
     }
   }
 }

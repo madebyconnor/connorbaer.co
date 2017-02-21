@@ -18,6 +18,7 @@
 
 
 {% set section = craft.app.request.segments | first %}
+{% set category = craft.app.request.segments | last %}
 
 
 {% block body %}
@@ -25,14 +26,17 @@
 
     {# Page title #}
     <header class="content-hero w100 ff-serif">
-      <h1 class="ts-title1">{{ section | capitalize }}</h1>
+      <h1 class="ts-title1">{{ category | capitalize }}</h1>
+      {% if category.description is defined %}
+        <h2 class="ts-large fw-normal">{{ helpers.striptags(category.description) }}</h2>
+      {% endif %}
     </header>
 
     {# Most recent featured post #}
-    {% set featured = craft.entries.section(section).featured('1').one() %}
+    {% set featured = craft.entries.section(section).relatedTo(craft.categories.slug(category)).featured('1').one() %}
 
     {% if featured %}
-      <article class="w2-3 fl-left ff-serif">
+      <article class="wfull ff-serif">
 
         {# First image in post #}
         {% set imageBlock = featured.body.type('image').one() %}
@@ -59,26 +63,12 @@
       </article>
     {% endif %}
 
-    {# Categories #}
-    <aside class="w1-3 fl-right ff-sans">
-      <h1 class="mb2 ts-title4">Categories</h1>
-      {% set categories = craft.categories.group(section) %}
-      {% for category in categories %}
-        <a class="link" href="{{ category.url }}">{{ category.title }}</a>
-
-        {# Get the count of entries related to `category` #}
-        {% set entryCount = craft.entries.relatedTo(category).total() %}
-
-        <span class="ts-app">{{ entryCount }} {% if entryCount > 1 %}posts{% else %}post{% endif %}</span>
-      {% endfor %}
-    </aside>
-
     {# All posts, except the featured one #}
-    {% set posts = craft.entries.section(section).all() | without(featured) %}
+    {% set posts = craft.entries.section(section).relatedTo(craft.categories.slug(category)).all() | without(featured) %}
 
-    <div class="w66 cl ff-serif">
+    <div class="cf ff-serif">
       {% for post in posts %}
-        <article class="w1-2 fl-left mv3 cl">
+        <article class="w1-3 fl-left mv3 cl">
 
           {# First image in post #}
           {% set matrixBlock = post.body.type('image').one() %}

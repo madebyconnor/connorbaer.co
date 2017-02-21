@@ -56,7 +56,7 @@
   transition: color $an-short;
   font-family: $ff-sans;
   font-size: $fs-large;
-  font-weight: $fw-sans-bold;
+  font-weight: $fw-sans-semibold;
   letter-spacing: $ls-large;
   line-height: $lh-small;
   text-transform: uppercase;
@@ -78,6 +78,7 @@
 %ts-large {
   margin-top: $sp-small;
   margin-bottom: $sp-small;
+  color: $oc-gray-7;
   font-size: $fs-title3;
   font-weight: normal;
   line-height: $lh-normal;

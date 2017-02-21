@@ -19,14 +19,14 @@
 
         {% if block.type == "navSingle" or block.type == "navSection" %}
           {% set navLink = block.navEntry.one().url %}
-          {% set navTitle = block.navEntry.one().title %}
+          {% set navTitle = block.navTitle ? block.navTitle : block.navEntry.one().title %}
         {% elseif block.type == "navExternal" %}
           {% set navLink = block.navLink %}
           {% set navTitle = block.navTitle %}
         {% endif %}
 
-        <li class="navigation-link{% if block.navEntry %}{% if craft.app.request.segments | first == block.navEntry.one().uri %} navigation-active{% endif %}{% endif %}">
-          <a href="{{ navLink }}" class="link" title="{{ navTitle }}">{{ navTitle }}</a>
+        <li class="navigation-item {% if block.navEntry %}{% if craft.app.request.segments | first == block.navEntry.one().uri %} navigation-active{% endif %}{% endif %}">
+          <a class="navigation-link" href="{{ navLink }}" title="{{ navTitle }}">{{ navTitle | replace(' ', '&nbsp;') | raw }}</a>
         </li>
 
       {% endfor %}
@@ -64,7 +64,7 @@
 {# Category #}
 
 {% macro category(entry) %}
-	<p class="ts-app fw-semibold">{% for category in craft.categories.relatedTo(entry) %}<a href="{{ category.url }}" title="{{ category.title | capitalize }}">{{ category.title | capitalize }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+	<span class="ts-app">{% for category in craft.categories.relatedTo(entry) %}<a href="{{ category.url }}" title="{{ category.title | capitalize }}">{{ category.title | capitalize }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
 {% endmacro %}
 
 

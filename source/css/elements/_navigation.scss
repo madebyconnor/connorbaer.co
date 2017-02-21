@@ -35,24 +35,25 @@
 }
 
 .navigation-cta {
-  padding: .25rem .75rem;
-  transition: background-color $an-short, color $an-short;
-  border: 2px solid $oc-primary-6;
-  border-radius: $sp-small;
-  color: $oc-primary-6;
-  font-family: $ff-sans;
-  font-size: 16px;
-  font-weight: $fw-sans-semibold;
-  letter-spacing: $ls-small;
+  display: flex;
+  align-items: center;
+  height: 2.25rem;
 
-  @media #{$bp-small} {
+  a {
+    padding: .35rem .8rem;
+    transition: background-color $an-short, color $an-short;
+    border: 2px solid $oc-primary-6;
+    border-radius: $sp-small;
+    color: $oc-primary-6;
+    font-family: $ff-sans;
     font-size: 18px;
-  }
+    line-height: 1;
 
-  &:hover,
-  &:focus {
-    background-color: $oc-primary-6;
-    color: $oc-white;
+    &:hover,
+    &:focus {
+      background-color: $oc-primary-6;
+      color: $oc-white;
+    }
   }
 }
 
@@ -65,40 +66,35 @@
   }
 }
 
-.navigation-link {
-  display: inline-block;
-  padding-right: $sp-small;
-  padding-left: $sp-small;
+.navigation-item {
+  width: 100%;
+  transition: border-color $an-short;
+  border-bottom: 2px solid transparent;
+  text-align: center;
 
   @media #{$bp-small-only} {
-    width: 100%;
     padding: $sp-tiny;
-    border-bottom: 2px solid transparent;
-    text-align: center;
   }
 
-  .link {
-    color: $oc-gray-6;
-    font-family: $ff-sans;
-    font-size: 16px;
-    letter-spacing: $ls-small;
-
-    @media #{$bp-small} {
-      font-size: 18px;
-    }
-
-    &:hover,
-    &:focus {
-      color: $oc-primary-6;
-    }
+  @media #{$bp-small} {
+    margin: 0 $sp-small;
   }
 
+  &:hover,
+  &:focus,
   &.navigation-active {
-    @media #{$bp-small-only} {
-      border-bottom: 2px solid $oc-primary-6;
-    }
+    border-bottom: 2px solid $oc-primary-6;
+  }
+}
 
-    .link {
+.navigation-link {
+  transition: color $an-short;
+  color: $oc-gray-6;
+  font-family: $ff-sans;
+  font-size: 18px;
+
+  @media #{$bp-small-only} {
+    .navigation-active & {
       color: $oc-primary-6;
     }
   }
@@ -163,8 +159,8 @@
 .footer-legal {
   padding-top: $sp-small;
   padding-bottom: $sp-small;
-  border-top: 2px solid $oc-gray-1;
-  color: $oc-gray-3;
+  border-top: 2px solid $oc-gray-2;
+  color: $oc-gray-4;
 
   .link {
     color: inherit;

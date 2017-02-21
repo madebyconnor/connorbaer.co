@@ -8,13 +8,8 @@
 // Hero //
 
 .content-hero {
-  margin-top: $sp-large;
-  margin-bottom: $sp-large;
-
-  @media #{$bp-small} {
-    margin-top: $sp-huge;
-    margin-bottom: $sp-huge;
-  }
+  margin-top: $sp-huge;
+  margin-bottom: $sp-huge;
 }
 
 .content {

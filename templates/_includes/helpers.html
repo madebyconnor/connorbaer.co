@@ -8,7 +8,7 @@
 
 {# Truncate #}
 
-{% macro truncate(input, limit) %}
+{% macro truncate(input, limit = 155) %}
 	{% if input | length < limit %}
 		{{ input }}
 	{% else %}

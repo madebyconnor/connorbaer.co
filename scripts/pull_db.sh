@@ -19,8 +19,8 @@ fi
 source ".env.sh"
 
 # Temporary db dump path (remote & local)
-TMP_DB_PATH="/tmp/"$REMOTE_DB_NAME"-db-dump-"$(date '+%Y%m%d')".sql"
-BACKUP_DB_PATH="/tmp/"$LOCAL_DB_NAME"-db-backup-"$(date '+%Y%m%d')".sql"
+TMP_DB_PATH="/tmp/$REMOTE_DB_NAME-db-dump-$(date '+%Y%m%d').sql"
+BACKUP_DB_PATH="/tmp/$LOCAL_DB_NAME-db-backup-$(date '+%Y%m%d').sql"
 
 ssh $REMOTE_SSH_LOGIN -p $REMOTE_SSH_PORT "mysqldump --user='$REMOTE_DB_USER' --password='$REMOTE_DB_PASSWORD' --host=$REMOTE_DB_HOST --port=$REMOTE_DB_PORT '$REMOTE_DB_NAME' > $TMP_DB_PATH"
 scp -P $REMOTE_SSH_PORT -- $REMOTE_SSH_LOGIN:"$TMP_DB_PATH" "$TMP_DB_PATH"
