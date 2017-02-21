@@ -29,6 +29,7 @@
     </header>
 
     {# Most recent featured post #}
+    {% cache %}
     {% set featured = craft.entries.section(section).featured('1').one() %}
 
     {% if featured %}
@@ -58,8 +59,10 @@
         <p class="mv1 ts-body">{{ helpers.striptags(featured.description) }}</p>
       </article>
     {% endif %}
+    {% endcache %}
 
     {# Categories #}
+    {% cache %}
     <aside class="w1-3 fl-right ff-sans">
       <h1 class="mb2 ts-title4">Categories</h1>
       {% set categories = craft.categories.group(section) %}
@@ -72,8 +75,10 @@
         <span class="ts-app">{{ entryCount }} {% if entryCount > 1 %}posts{% else %}post{% endif %}</span>
       {% endfor %}
     </aside>
+    {% endcache %}
 
     {# All posts, except the featured one #}
+    {% cache %}
     {% set posts = craft.entries.section(section).all() | without(featured) %}
 
     <div class="w66 cl ff-serif">
@@ -105,6 +110,7 @@
         </article>
       {% endfor %}
     </div>
+    {% endcache %}
 
   </div>
 {% endblock %}
