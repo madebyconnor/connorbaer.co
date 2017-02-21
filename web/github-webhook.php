@@ -6,9 +6,12 @@ $repo          = '/srv/users/serverpilot/apps/connorbaer';
 $branch        = 'master';
 $output        = array();
 
-// Update the repo.
+// Log the date and time.
 $output[] = date( 'Y-m-d, H:i:s', time() ) . "\n";
-$output[] = "GitHub Pull\n============================\n" . shell_exec( 'cd ' . $repo . ' && git pull origin ' . $branch );
+// Update the repo.
+$output[] = "GitHub Pull\n============================\n" . shell_exec( 'cd ' . $repo . ' && git pull origin ' . $branch ) . "\n";
+// Update dependencies.
+$output[] = "Composer Update\n============================\n" . shell_exec( 'cd ' . $repo . ' && composer update' );
 
 // Redirect output to logs.
 file_put_contents( rtrim( getcwd(), '/' ) . '/github-log.txt', implode( "\n", $output ) . "\n----------------------------\n", FILE_APPEND );
