@@ -190,6 +190,7 @@ module.exports = {
     name:    'service-worker.js',
     config: {
       cacheId: pkg.name,
+      importScripts: [assets + 'js/sw.js'],
       /*
       dynamicUrlToDependencies: {
         'dynamic/page1': [
