@@ -288,5 +288,5 @@ toolbox.router.get(/runtime-caching/, toolbox.cacheFirst, {"cache":{"maxEntries"
 
 
 
-importScripts("assets/js/sw.js");
+importScripts("sw.js");
 
