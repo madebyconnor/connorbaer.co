@@ -18,22 +18,15 @@ return [
 		'testToEmailAddress' => 'connor.baer@me.com',
 		'userSessionDuration' => 'P2W',
 		'siteUrl' => array(
-			'default' => 'http://local.connorbaer',
-			'madeByConnor' => 'http://local.madebyconnor',
+			'default' => 'http://local.madebyconnor',
+			'de' => 'http://local.madebyconnorde',
 		),
 	),
-	'connorbaer.co' => array(
+	'madebyconnor.*' => array(
 		'devMode' => false,
 		'siteUrl' => array(
-			'default' => 'https://connorbaer.co/',
-			'madeByConnor' => 'https://madebyconnor.co/',
-		),
-	),
-	'madebyconnor.co' => array(
-		'devMode' => false,
-		'siteUrl' => array(
-			'default' => 'https://connorbaer.co/',
-			'madeByConnor' => 'https://madebyconnor.co/',
+			'default' => 'https://madebyconnor.co/',
+			'de' => 'https://madebyconnor.de/',
 		),
 	),
 ];
