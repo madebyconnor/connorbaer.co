@@ -24,13 +24,13 @@
 }
 
 .navigation-name {
-  height: 1.2rem;
+  height: 1.5rem;
 }
 
 .navigation-brand {
   &:hover .navigation-logo,
   &:focus .navigation-logo {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(360deg);
   }
 }
 
