@@ -2,7 +2,7 @@
 ignore_user_abort( true );
 set_time_limit( 0 );
 
-$repo          = '/srv/users/serverpilot/apps/connorbaer';
+$repo          = '/srv/users/serverpilot/apps/madebyconnor';
 $branch        = 'master';
 $output        = array();
 
