@@ -15,6 +15,7 @@ return [
 	'local' => array(
 		'devMode' => true,
 		'enableTemplateCaching' => false,
+		'isSystemOn' => true,
 		'testToEmailAddress' => 'connor.baer@me.com',
 		'userSessionDuration' => 'P2W',
 		'siteUrl' => array(

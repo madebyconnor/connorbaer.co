@@ -25,6 +25,9 @@
 {% import '_includes/helpers' as helpers %}
 
 
+{% set section = craft.app.request.segments | first %}
+
+
 {% block body %}
   {% cache %}
   {% minify %}
@@ -34,7 +37,7 @@
       <h1 class="ts-title1">{{ entry.title | capitalize }}</h1>
     </header>
 
-    {% set projects = craft.entries.section('creating').all() %}
+    {% set projects = craft.entries.section(section).all() %}
     {% set lazyImage = false %}
 
     {% if projects %}
