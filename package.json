@@ -1,16 +1,17 @@
 {
-  "name": "connorbaer",
-  "version": "3.0.0",
-  "description": "Problem-solving is my passion. This is my website.",
+  "name": "madebyconnor",
+  "version": "1.0.0",
+  "description": "Websites and apps. Made by Connor.",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/connor-baer/connorbaer.co.git"
+    "url": "git+https://github.com/madebyconnor/madebyconnor.git"
   },
   "keywords": [
+    "madebyconnor",
     "connor",
     "baer",
     "developer",
@@ -20,9 +21,9 @@
   "author": "Connor Bär",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/connor-baer/connorbaer.co/issues"
+    "url": "https://github.com/madebyconnor/madebyconnor/issues"
   },
-  "homepage": "https://connorbaer.co",
+  "homepage": "https://madebyconnor.co",
   "dependencies": {
     "Right-Height": "github:cferdinandi/right-height",
     "browser-sync": "^2.18.8",

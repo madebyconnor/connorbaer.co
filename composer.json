@@ -27,7 +27,6 @@
     "roave/security-advisories": "dev-master",
     "nystudio107/craft3-minify": "^1.2",
     "nystudio107/craft3-cookies": "^1.1",
-    "nystudio107/craft3-recipe": "^1.0",
     "craftcms/mailgun": "1.0.0.1"
   },
   "scripts": {
