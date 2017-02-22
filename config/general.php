@@ -19,21 +19,12 @@ return [
 		'userSessionDuration' => 'P2W',
 		'siteUrl' => array(
 			'default' => 'http://local.connorbaer',
-			'madeByConnor' => 'http://local.madebyconnor',
 		),
 	),
 	'connorbaer.co' => array(
 		'devMode' => false,
 		'siteUrl' => array(
 			'default' => 'https://connorbaer.co/',
-			'madeByConnor' => 'https://madebyconnor.co/',
-		),
-	),
-	'madebyconnor.co' => array(
-		'devMode' => false,
-		'siteUrl' => array(
-			'default' => 'https://connorbaer.co/',
-			'madeByConnor' => 'https://madebyconnor.co/',
 		),
 	),
 ];
