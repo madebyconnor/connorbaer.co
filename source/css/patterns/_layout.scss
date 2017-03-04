@@ -10,13 +10,14 @@
 
 // Widths //
 
-$max-width: 60rem;
+$mw-large: 72rem;
+$mw-medium: 45rem;
 
 .w1-2,
 .w1-3,
 .w2-3,
 .w100,
-.wfull {
+.mw-large {
   display: block;
   width: 100%;
   padding-right: $sp-small;
@@ -37,28 +38,23 @@ $max-width: 60rem;
   }
 }
 
-.w33 {
-  width: 100%;
-
-  @media #{$bp-small} {
-    width: (100% / 3);
-  }
-}
-
-.w66 {
-  width: 100%;
-
-  @media #{$bp-small} {
-    width: (100% / 1.5);
-  }
-}
-
 .w100 {
   clear: both;
 }
 
-.wfull {
-  max-width: $max-width;
+.mw-medium {
+  max-width: $mw-medium;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media #{$bp-medium} {
+    padding-right: $sp-large;
+    padding-left: $sp-large;
+  }
+}
+
+.mw-large {
+  max-width: $mw-large;
   margin-right: auto;
   margin-left: auto;
 

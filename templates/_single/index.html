@@ -13,7 +13,7 @@
  # http://craftcms.com/docs/routing
  #}
 
-{% extends "_layouts/site" %}
+{% extends "_layouts/base" %}
 
 
 {% import '_includes/elements' as elements %}
@@ -21,11 +21,11 @@
 
 
 
-{% block body %}
+{% block main %}
   {% cache %}
   {% minify %}
 
-  <article class="wfull cf">
+  <article class="mw-large cf">
     <header class="content-hero w100 ff-sans">
       <h1 class="ts-title1">{{ entry.title }}</h1>
     </header>
@@ -51,7 +51,7 @@
           {% case 'full' %}
             <section class="content">
           {% default %}
-            <section class="content wfull cf">
+            <section class="content mw-large cf">
         {% endswitch %}
       {% endif %}
 
@@ -87,7 +87,7 @@
       {% set prevPosition = position %}
     {% endfor %}
 
-    <div class="wfull mv4 cf">
+    <div class="mw-large mv4 cf">
       <div class="w2-3 fl-right">
         {{ elements.share(entry.title) }}
       </div>

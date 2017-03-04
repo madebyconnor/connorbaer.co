@@ -28,17 +28,41 @@ $sp-huge: $sp-tiny * 10;
 
 // Typography
 
-$ff-sans: "freight-sans-pro", "FreightSans Pro", Arial, sans-serif;
-$fw-sans-normal: 500;
-$fw-sans-semibold: 600;
+@font-face {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu"), url(https://fonts.gstatic.com/s/ubuntu/v9/zvCUQcxqeoKhyOlbifSAaevvDin1pK8aKteLpeZ5c0A.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+@font-face {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url(https://fonts.gstatic.com/s/ubuntu/v9/0ihfXUL2emPh0ROJezvraJBw1xU1rKptJj_0jans920.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+@font-face {
+  font-family: "Ubuntu";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Ubuntu Italic"), local("Ubuntu-Italic"), url(https://fonts.gstatic.com/s/ubuntu/v9/WB6rgjTg_oRfj6mlXZJbb3YhjbSpvc47ee6xR_80Hnw.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+@font-face {
+  font-family: "Ubuntu Mono";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Ubuntu Mono Bold"), local("UbuntuMono-Bold"), url(https://fonts.gstatic.com/s/ubuntumono/v6/ceqTZGKHipo8pJj4molytv79_ZuUxCigM2DespTnFaw.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+$ff-sans: "Ubuntu", Arial, sans-serif;
+$fw-sans-normal: 400;
 $fw-sans-bold: 700;
 
-$ff-serif: "freight-text-pro", "FreightText Pro", "Times New Roman", Times, serif;
-$fw-serif-normal: 500;
-$fw-serif-semibold: 700;
-$fw-serif-bold: 900;
-
-$ff-mono: "Courier New", Courier, monospace;
+$ff-mono: "Ubuntu Mono", Courier, monospace;
+$fw-mono-bold: 700;
 
 $fs-title1: 2.5rem; // 40px
 $fs-title2: 2rem; // 32px
@@ -64,21 +88,10 @@ $oc-primary-2: #a9efcc;
 $oc-primary-3: #86e9b8;
 $oc-primary-4: #64e3a3;
 $oc-primary-5: #41dc8f;
-$oc-primary-6: #26d07c;
+$oc-primary-6: #1fd68d;
 $oc-primary-7: #20ac66;
 $oc-primary-8: #19ba52;
 $oc-primary-9: #13673d;
-
-$oc-madebyconnor-0: #fff5f4;
-$oc-madebyconnor-1: #ffd8d5;
-$oc-madebyconnor-2: #ffb8b6;
-$oc-madebyconnor-3: #ff9998;
-$oc-madebyconnor-4: #ff7b78;
-$oc-madebyconnor-5: #ff5e59;
-$oc-madebyconnor-6: #f9423a;
-$oc-madebyconnor-7: #ef2c26;
-$oc-madebyconnor-8: #e51e08;
-$oc-madebyconnor-9: #d01107;
 
 
 // Animations//

@@ -12,25 +12,25 @@
 .navigation-logo,
 .navigation-name {
   display: inline-block;
+  color: $oc-gray-9;
   vertical-align: middle;
   fill: $oc-gray-9;
 }
 
 .navigation-logo {
-  height: 2.25rem;
-  margin-right: $sp-small;
-  transition: transform $an-short;
-  backface-visibility: hidden;
+  height: 2rem;
+  margin-right: .75rem;
 }
 
 .navigation-name {
-  height: 1.2rem;
-}
+  transition: color $an-short;
+  font-family: $ff-sans;
+  font-size: $fs-large;
+  font-weight: $fw-sans-bold;
 
-.navigation-brand {
-  &:hover .navigation-logo,
-  &:focus .navigation-logo {
-    transform: scale(1.1);
+  &:hover,
+  &:focus {
+    color: $oc-primary-6;
   }
 }
 
@@ -39,6 +39,10 @@
   align-items: center;
   height: 2.25rem;
 
+  @media #{$bp-small-only} {
+    display: none;
+  }
+
   a {
     padding: .35rem .8rem;
     transition: background-color $an-short, color $an-short;
@@ -46,7 +50,7 @@
     border-radius: $sp-small;
     color: $oc-primary-6;
     font-family: $ff-sans;
-    font-size: 18px;
+    font-size: $fs-regular;
     line-height: 1;
 
     &:hover,
@@ -91,7 +95,7 @@
   transition: color $an-short;
   color: $oc-gray-6;
   font-family: $ff-sans;
-  font-size: 18px;
+  font-size: $fs-regular;
 
   @media #{$bp-small-only} {
     .navigation-active & {
@@ -108,29 +112,27 @@
   top: 0;
   right: 0;
   left: 0;
-  padding-top: $sp-large;
-  background-color: $oc-white;
+  padding-top: $sp-medium;
   z-index: 9999;
 
   @media #{$bp-small-only} {
     padding-top: $sp-small;
+    background-color: $oc-white;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
-  }
-}
 
-@media #{$bp-small-only} {
-  .headroom {
-    position: fixed;
-    transition: transform $an-long;
-    will-change: transform;
-  }
+    .headroom & {
+      position: fixed;
+      transition: transform $an-long;
+      will-change: transform;
+    }
 
-  .headroom--pinned {
-    transform: translateY(0%);
-  }
+    .headroom--pinned & {
+      transform: translateY(0%);
+    }
 
-  .headroom--unpinned {
-    transform: translateY(-55%);
+    .headroom--unpinned & {
+      transform: translateY(-55%);
+    }
   }
 }
 
@@ -168,6 +170,99 @@
     &:hover,
     &:focus {
       color: $oc-primary-6;
+    }
+  }
+}
+
+
+// Dark theme //
+
+.hero-dark .metabar {
+  .navigation-logo,
+  .navigation-name {
+    color: $oc-gray-9;
+    fill: $oc-gray-9;
+  }
+
+  .navigation-name {
+    &:hover,
+    &:focus {
+      color: $oc-primary-6;
+    }
+  }
+
+  .navigation-cta a {
+    border-color: $oc-primary-6;
+    color: $oc-primary-6;
+
+    &:hover,
+    &:focus {
+      background-color: $oc-primary-6;
+      color: $oc-white;
+    }
+  }
+
+  .navigation-item {
+    &:hover,
+    &:focus,
+    &.navigation-active {
+      border-bottom-color: $oc-primary-6;
+    }
+  }
+
+  .navigation-link {
+    color: $oc-gray-6;
+
+    @media #{$bp-small-only} {
+      .navigation-active & {
+        color: $oc-primary-6;
+      }
+    }
+  }
+}
+
+// Light theme //
+
+.hero-light .metabar {
+  .navigation-logo,
+  .navigation-name {
+    color: $oc-white;
+    fill: $oc-white;
+  }
+
+  .navigation-name {
+    &:hover,
+    &:focus {
+      color: $oc-gray-2;
+    }
+  }
+
+  .navigation-cta a {
+    border-color: $oc-white;
+    color: $oc-white;
+
+    &:hover,
+    &:focus {
+      background-color: $oc-white;
+      color: $oc-gray-8;
+    }
+  }
+
+  .navigation-item {
+    &:hover,
+    &:focus,
+    &.navigation-active {
+      border-bottom-color: $oc-white;
+    }
+  }
+
+  .navigation-link {
+    color: $oc-white;
+
+    @media #{$bp-small-only} {
+      .navigation-active & {
+        color: $oc-white;
+      }
     }
   }
 }

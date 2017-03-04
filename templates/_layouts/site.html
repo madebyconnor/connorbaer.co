@@ -14,26 +14,3 @@
 -#}
 
 {% extends "_layouts/base" %}
-
-{# Set the `bodyClass` variable to the entry's section handle if there is one,
-   or the first URI segment (this is used by the parent template) #}
-{% if bodyClass is not defined %}
-  {% set bodyClass = entry is defined ? entry.section.handle : craft.app.request.segments | first %}
-{% endif %}
-
-
-{% block main %}
-
-  {% include '_includes/metabar' %}
-
-  <main id="main" class="main">
-
-
-    {% block body %}{% endblock %}
-
-
-  </main>
-
-  {% include '_includes/footer' %}
-
-{% endblock %}

@@ -16,12 +16,12 @@
   {% cache %}
   {% minify %}
 
-  <header id="metabar" class="metabar wfull">
+  <header id="metabar" class="metabar w100">
     <div class="cf">
       <a class="navigation-brand ph2 fl-left" href="{{ siteUrl }}#" title="Home">
 
         {% include '_includes/logo' %}
-        {% include '_includes/name' %}
+        <h1 class="navigation-name">{{ siteName }}</h1>
 
       </a>
       <div class="ph2 fl-right navigation-cta">

@@ -10,7 +10,7 @@
  # http://craftcms.com/docs/routing
  #}
 
-{% extends "_layouts/site" %}
+{% extends "_layouts/base" %}
 
 
 {% import '_includes/elements' as elements %}
@@ -21,8 +21,8 @@
 {% set category = craft.app.request.segments | last %}
 
 
-{% block body %}
-  <div class="wfull">
+{% block main %}
+  <div class="mw-large">
 
     {# Page title #}
     <header class="content-hero w100 ff-serif">
@@ -36,7 +36,7 @@
     {% set featured = craft.entries.section(section).relatedTo(craft.categories.slug(category)).featured('1').one() %}
 
     {% if featured %}
-      <article class="wfull ff-serif">
+      <article class="mw-large ff-serif">
 
         {# First image in post #}
         {% set imageBlock = featured.body.type('image').one() %}

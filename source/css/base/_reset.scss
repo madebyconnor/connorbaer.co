@@ -23,7 +23,7 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* HTML5 display-role reset for older browsers */
+// HTML5 display-role reset for older browsers.
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
@@ -32,12 +32,16 @@ footer, header, hgroup, menu, nav, section {
 html {
   background-color: $oc-gray-8;
   color: $oc-gray-8;
-  font-family: $ff-sans;
+  font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: $lh-large;
   font-feature-settings: "lnum", "salt";
   word-wrap: break-word;
   box-sizing: border-box;
+
+  &.fonts-loaded {
+    font-family: $ff-sans;
+  }
 
   @media screen and (max-width: 22.5em) {
     font-size: 14px;
@@ -71,14 +75,6 @@ body {
   overflow-x: hidden;
 }
 
-.main {
-  padding-top: 6.75rem;
-
-  @media #{$bp-small} {
-    padding-top: 5.25rem;
-  }
-}
-
 a {
   border: 0;
   color: inherit;
@@ -95,10 +91,10 @@ q {
   quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
   content: "";
   content: none;
 }

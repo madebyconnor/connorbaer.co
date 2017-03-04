@@ -64,14 +64,14 @@
 {# Category #}
 
 {% macro category(entry) %}
-	<span class="ts-app">{% for category in craft.categories.relatedTo(entry) %}<a href="{{ category.url }}" title="{{ category.title | capitalize }}">{{ category.title | capitalize }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
+	<span>{% for category in craft.categories.relatedTo(entry) %}<a href="{{ category.url }}" title="{{ category.title | capitalize }}">{{ category.title | capitalize }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
 {% endmacro %}
 
 
 {# Date #}
 
 {% macro date(date) %}
-	<time class="ts-app" datetime="{{ date | date("Y-m-d") }}">{{ date | date("F d, Y") }}</time>
+	<time datetime="{{ date | date("Y-m-d") }}">{{ date | date("F d, Y") }}</time>
 {% endmacro %}
 
 

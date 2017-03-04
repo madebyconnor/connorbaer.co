@@ -191,8 +191,8 @@
 	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
 
 	# CSS and JavaScript
-	ExpiresByType text/css                  "access plus 1 hour"
-	ExpiresByType application/javascript    "access plus 1 hour"
+	ExpiresByType text/css                  "access plus 1 year"
+	ExpiresByType application/javascript    "access plus 1 year"
 
 # </IfModule>
 
@@ -343,19 +343,23 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 </IfModule>
 
 
-# ------------------------------------------------------------
-# Relative 301 redirects
-# When necessary use rewrite rules like this so that they work in all environments
-# These rules must come before removal of index.php from the URL
-#
-# Make sure the following rules come before this one:
-# RewriteEngine on
-# RewriteBase /
-#
-# Test new rules as 302 redirects
-# ------------------------------------------------------------
+# ----------------------------------------------------------------------
+# Filename-based cache busting
+# ----------------------------------------------------------------------
 
-# RewriteRule ^old-url/?$ /new-url [R=301,L]
+# If you're not using a build process to manage your filename version
+# revving, you might want to consider enabling the following directives
+# to route all requests such as `/style.12345.css` to `/style.css`.
+#
+# To understand why this is important and even a better solution than
+# using something like `*.css?v231`, please see:
+# http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+)\.(\d+)\.(bmp|css|cur|gif|ico|jpe?g|js|png|svgz?|webp|webmanifest)$ $1.$3 [L]
+</IfModule>
 
 
 # ----------------------------------------------------------------------

@@ -2,58 +2,56 @@
  # Homepage template
  # ---------------
  #
- # When this template gets loaded, it will be because someone has accessed
- # http://yoursite.com/ (without any URI). Craft checks to see if you have
- # a Single section set to be the Homepage (as you do, by default), and
- # loads the section’s Template (this file). A special ‘entry’ variable
- # will already be set for you, assigned to the Homepage entry.
- #
- # It's worth noting that even if you didn't have a Homepage Single section,
- # as long as this template remains at craft/templates/index.html, it
- # would still be the one to get loaded when accessing http://yoursite.com/,
- # albeit without an ‘entry’ variable already set for you.
- #
- # See this page for more details on how Craft routes requests:
+ # See this page for details on how Craft routes requests:
  # http://craftcms.com/docs/routing
  #}
 
-
-{% extends "_layouts/site" %}
-
+{% extends "_layouts/base" %}
 
 {% import '_includes/elements' as elements %}
 {% import '_includes/helpers' as helpers %}
 
+{% block critical %}
+  <style>
+    {{ source(_self ~ '.min.css', ignore_missing = true) }}
+  </style>
+{% endblock %}
 
-{% block body %}
+{% block main %}
   {% cache %}
   {% minify %}
 
-  <article class="wfull">
-    <header class="content-hero w100 ff-sans">
-      <h1 class="ts-title1">{{ helpers.striptags(entry.title) }}</h1>
-      <h2 class="ts-large fw-normal">{{ helpers.striptags(entry.description) }}</h2>
+  {# -- HERO -- #}
+  <article>
+    <header class="hero">
+      <div class="mw-medium ta-center">
+        <div class="hero-text w100">
+          <h1 class="ts-title1">{{ helpers.striptags(entry.title) }}</h1>
+          <h2 class="mt1 ts-large">{{ helpers.striptags(entry.description) }}</h2>
+        </div>
+      </div>
     </header>
   </article>
 
-  <section class="wfull mv3 cf">
-    <h3 class="w100 mv1 ts-title4">Latest Posts</h3>
-    <div class="crds">
-      {% set posts = craft.entries.section('writing').limit('2') %}
+  {# -- LATEST POSTS -- #}
+  {% set posts = craft.entries.section('writing').limit('3') %}
 
-      {% if posts %}
-        {% for post in posts %}
-          <article class="w1-2 fl-left mv2 ff-serif">
-            <div class="crd crd-padding">
-              {{ elements.category(post) }}
-              <h3 class="mv2 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-              <p class="ts-body">{{ helpers.truncate(post.description | striptags(), 155) }}</p>
-            </div>
-          </article>
-        {% endfor %}
-      {% endif %}
-    </div>
-  </section>
+  {% if posts %}
+    <section class="mw-large mv4 cf">
+      <h3 class="w100 mv1 ts-title4">Latest Thoughts</h3>
+      <div class="crds">
+          {% for post in posts %}
+            <article class="w1-3 fl-left mv2 ff-serif">
+              <div class="crd crd-padding">
+                <h3 class="mt2 mb1 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+                <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+                <p class="mt1 ts-body">{{ helpers.truncate(post.description | striptags(), 155) }}</p>
+              </div>
+            </article>
+          {% endfor %}
+      </div>
+    </section>
+  {% endif %}
 
   {% endminify %}
   {% endcache %}

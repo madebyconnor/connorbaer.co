@@ -6,6 +6,15 @@ const gulp    = require('gulp'),
 ;
 
 
+// Minify scripts in place.
+gulp.task('scripts-combined', () => {
+  return gulp.src(config.src.combined)
+    .pipe(plugins.concat(config.combined))
+    .pipe(plugins.uglify(config.minify.uglify))
+    .pipe(plugins.rename(config.minify.rename))
+    .pipe(gulp.dest(config.dest));
+});
+
 // Copy third-party JavaScript to the public assets folder.
 gulp.task('scripts-single', () => {
   return gulp.src(config.src.single)
@@ -15,14 +24,14 @@ gulp.task('scripts-single', () => {
     .pipe(gulp.dest(config.dest));
 });
 
-// Minify scripts in place.
-gulp.task('scripts-combined', () => {
-  return gulp.src(config.src.combined)
-    .pipe(plugins.concat('scripts.js'))
+// Copy third-party JavaScript to the public assets folder.
+gulp.task('scripts-inline', () => {
+  return gulp.src(config.src.inline)
+    .pipe(plugins.changed(config.dest))
     .pipe(plugins.uglify(config.minify.uglify))
     .pipe(plugins.rename(config.minify.rename))
-    .pipe(gulp.dest(config.dest));
+    .pipe(gulp.dest(config.destInline));
 });
 
 // Master script task; lint -> bundle -> minify.
-gulp.task('scripts', ['scripts-single', 'scripts-combined']);
+gulp.task('scripts', ['scripts-combined', 'scripts-single', 'scripts-inline']);
