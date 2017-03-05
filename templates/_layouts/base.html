@@ -33,7 +33,7 @@
 -#}
 
 
-{% set staticAssetsVersion = "003" %}
+{% set staticAssetsVersion = "004" %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}
 
 
@@ -148,8 +148,6 @@
 
 </head>
 {% endcache %}
-
-
 
 {# -- BODY CLASS -- #}
 <body class="{% if entry is defined %}{{ (entry.color and entry.color != '#000000') or (entry.image and entry.image.one()) ? 'hero-light' : 'hero-dark' }}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">

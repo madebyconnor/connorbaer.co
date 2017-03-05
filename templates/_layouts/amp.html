@@ -49,31 +49,40 @@
  #             Child templates can use this to include Javascript files, etc.
 -#}
 
-{% import '_includes/elements' as elements %}
-{% import '_includes/helpers' as helpers %}
+
+{% set staticAssetsVersion = "004" %}
+{% set FontFaceObserver = getCookie("FontFaceObserver") %}
+
 
 <!doctype html>
-<html amp lang="{{ craft.app.language }}">
+<html amp lang="{{ craft.app.language }}"{% if FontFaceObserver %} class="fonts-loaded"{% endif %}>
 
 {% cache %}
-{% minify %}
 <head>
+
+{% block head %}
   <meta charset="utf-8">
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 
+  {# -- AMP DEFAULT -- #}
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
+  {# -- AMP CUSTOM -- #}
   <style amp-custom>
-    {{ source('amp.min.css') }}
+    {{ source('_layouts/amp.min.css') }}
   </style>
 
+  {# -- TITLE -- #}
+  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 
+  {# -- SEOMATIC -- #}
   {% hook 'seomaticRender' %}
 
-
+  {# -- ICONS -- #}
   {% include '_includes/icons' %}
 
+  {# -- PRECONNECT -- #}
   {% for block in navigation.navigation %}
     {% if block.type == "navSingle" or block.type == "navSection" %}
       {% set navLink = block.navEntry.one().url %}
@@ -84,20 +93,32 @@
     <link rel="preconnect" href="{{ navLink }}">
   {% endfor %}
 
-  {% block links %}
-    <link rel="canonical" href="{{ entry.url | replace('/amp', '') }}" />
-    <link rel="home" href="{{ siteUrl }}" />
-    <link rel="alternate" type="application/atom+xml" title="Atom" href="/feed.atom">
-  {% endblock %}
+  <link rel="canonical" href="{{ entry.url | replace('/amp', '') }}" />
+  <link rel="home" href="{{ siteUrl }}" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="/feed.atom">
+{% endblock %}
+
 </head>
-{% endminify %}
 {% endcache %}
 
-<body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>
+{# -- BODY CLASS -- #}
+<body class="{% if entry is defined %}{{ (entry.color and entry.color != '#000000') or (entry.image and entry.image.one()) ? 'hero-light' : 'hero-dark' }}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">
 
+{% block body %}
+
+  {# -- METABAR -- #}
+  {% include '_includes/metabar' %}
+
+  <main id="main">
 
     {% block main %}{% endblock %}
 
+  </main>
+
+  {# -- FOOTER -- #}
+  {% include '_includes/footer' %}
+
+{% endblock %}
 
 </body>
 </html>

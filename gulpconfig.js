@@ -123,8 +123,9 @@ module.exports = {
       ],
     },
     amp: {
-      src:  dist + assets + 'css/styles.css',
-      dest: tmplts + '_amp/',
+      src:  dist + assets + 'css/styles.min.css',
+      rename: 'amp.min.css',
+      dest: tmplts + '_layouts/',
     },
   },
 

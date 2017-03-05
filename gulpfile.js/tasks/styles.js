@@ -23,7 +23,7 @@ gulp.task('styles', () => {
 // Inject accelerated mobile pages CSS into the HTML head.
 gulp.task('styles-amp', () => {
   return gulp.src(config.amp.src)
-    .pipe(plugins.rename('amp.min.css'))
+    .pipe(plugins.rename(config.amp.rename))
     .pipe(gulp.dest(config.amp.dest));
 });
 

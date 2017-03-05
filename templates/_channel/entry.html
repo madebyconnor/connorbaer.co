@@ -49,29 +49,31 @@
       {# Set position for current block #}
       {% set position = block.position %}
       {% if block.type.handle == 'text' %}
-        {% set position = 'right' %}
+        {% set position = 'center' %}
       {% elseif block.type.handle == 'html' %}
         {% set position = 'full' %}
       {% endif %}
 
-      {# Start a new section if previous block is not positioned in the sidebar (left) #}
-      {% if prevPosition != 'left' %}
+      {# Start a new section if previous block is not positioned drop-left or drop-right #}
+      {% if prevPosition != 'drop-left' or 'drop-left' %}
         {% switch position %}
           {% case 'full' %}
             <section class="content">
+          {% case 'center' %}
+            <section class="content mw-medium">
           {% default %}
-            <section class="content mw-large cf">
+            <section class="content mw-large">
         {% endswitch %}
       {% endif %}
 
         {# Determine float and width based on current position #}
         {% switch position %}
-          {% case 'left' %}
-            <div class="w1-3 fl-left mb4">
+          {% case 'drop-left' %}
+            <div class="fl-left mb4">
           {% case 'center' %}
             <div class="w100">
-          {% case 'right' %}
-            <div class="w2-3 fl-right">
+          {% case 'drop-right' %}
+            <div class="fl-right mb4">
           {% case 'full' %}
             <div>
         {% endswitch %}
@@ -96,10 +98,9 @@
       {% set prevPosition = position %}
     {% endfor %}
 
-    <div class="mw-large mv4 cf">
-      <div class="w2-3 fl-right">
-        {{ elements.share(entry.title) }}
-      </div>
+    {# -- SHARE -- #}
+    <div class="mw-medium mv4 ta-center">
+      {{ elements.share(entry.title) }}
     </div>
   </article>
 

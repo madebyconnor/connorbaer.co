@@ -13,56 +13,36 @@
  # http://craftcms.com/docs/routing
  #}
 
-{% extends "_amp/site" %}
-
+{% extends "_layouts/amp" %}
 
 {% import '_includes/elements' as elements %}
 {% import '_includes/helpers' as helpers %}
 
-
 {% set section = craft.app.request.segments | first %}
 {% set entry = craft.entries.section(section).slug(slug)[0] %}
-
+{% set amp = true %}
 
 {% block main %}
+  {% cache %}
+  {% minify %}
 
-  <article class="post serif">
+  {# -- HERO -- #}
+  <article>
+    <header class="hero" {% if entry.image.one() %}style="background-image: url('{{ entry.image.one().getUrl('large16x9') }}')"{% endif %}>
+      <div class="mw-large ta-center">
+        <div class="hero-text w100">
+          <h1 class="mb1 ts-title1">{{ entry.title }}</h1>
+          <span class="ts-app">{{ elements.date(entry.postDate) }}{% if entry.category is not empty %}&nbsp;·&nbsp;{{ elements.category(entry) }}{% endif %}</span>
+        </div>
+      </div>
+    </header>
 
-
-    {% block hero %}
-      <header class="hero">
-        <h1 class="hero-title">{{ title }}</h1>
-
-        {{ elements.date(entry.postDate) }}
-        <amp-img class="hero-image"
-             src="{{ transformedImages[0].url }}"
-             width="1000"
-             height="600"
-             layout="responsive"
-             alt="{{ image.title }}"></amp-img>
-
-
-      </header>
-    {% endblock %}
-
-
-    <div class="content content-style">
-
-      {{ elements.share(entry.title) }}
-
-      {% if entry.next %}
-      <aside class="content-next">
-        <article class="next-post">
-          <h4 class="next-header">Next Post</h4>
-          {% if entry.next.image %}
-          <div class="next-image" style="background-image: url('{{ entry.next.image.one().url }}')"></div>
-          {% endif %}
-          <h5 class="next-title"><a href="{{ entry.next.url }}">{{ entry.next.title }}</a></h5>
-        </article>
-      </aside>
-      {% endif %}
-
+    {# -- CONTENT -- #}
+    <div class="mw-medium mv4">
+      <h2 class="ts-large">I am working on an <a href="https://www.ampproject.org" target="_blank" rel="noreferrer">AMP</a> implementation for my blog. Bear with me please! 🐼</h2>
     </div>
   </article>
 
+  {% endminify %}
+  {% endcache %}
 {% endblock %}

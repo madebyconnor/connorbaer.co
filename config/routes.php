@@ -19,5 +19,5 @@
  */
 
 return [
-
+	'writing/<slug>/amp' => [ 'template' => '_channel/amp' ],
 ];

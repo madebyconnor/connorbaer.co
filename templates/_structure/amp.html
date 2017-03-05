@@ -13,38 +13,29 @@
  # http://craftcms.com/docs/routing
  #}
 
-{% extends "_amp/site" %}
-
+{% extends "_layouts/amp" %}
 
 {% import '_includes/elements' as elements %}
 {% import '_includes/helpers' as helpers %}
 
-
 {% set section = craft.app.request.segments | first %}
 {% set entry = craft.entries.section(section).slug(slug)[0] %}
-
 
 {% block main %}
 
   <article class="post serif">
+    <header class="hero">
+      <h1 class="hero-title">{{ title }}</h1>
 
+      {{ elements.date(entry.postDate) }}
+      <amp-img class="hero-image"
+           src="{{ transformedImages[0].url }}"
+           width="1000"
+           height="600"
+           layout="responsive"
+           alt="{{ image.title }}"></amp-img>
 
-    {% block hero %}
-      <header class="hero">
-        <h1 class="hero-title">{{ title }}</h1>
-
-        {{ elements.date(entry.postDate) }}
-        <amp-img class="hero-image"
-             src="{{ transformedImages[0].url }}"
-             width="1000"
-             height="600"
-             layout="responsive"
-             alt="{{ image.title }}"></amp-img>
-
-
-      </header>
-    {% endblock %}
-
+    </header>
 
     <div class="content content-style">
 
