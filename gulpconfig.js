@@ -31,7 +31,7 @@ module.exports = {
   browsersync: {
     files: [dist + assets + '**/*', tmplts + '**/*'],
     port: 5000, // Port number for the live version of the site.
-    proxy: 'http://local.' + pkg.name + '/', // We need to use a proxy instead of the built-in server because CraftCMS has to do some server-side rendering for the website to work.
+    proxy: 'https://' + pkg.name + '.dev/', // We need to use a proxy instead of the built-in server because CraftCMS has to do some server-side rendering for the website to work.
     notify: false, // In-line notifications (the blocks of text saying whether you are connected to the BrowserSync server or not)
     ui: false, // Set to false if you don't need the browsersync UI
     open: false, // Set to false if you don't like the browser window opening automatically
@@ -102,7 +102,7 @@ module.exports = {
       },
     },
     critical: {
-      src: 'http://local.' + pkg.name + '/',
+      src: 'https://' + pkg.name + '.dev/',
       dest: '../' + tmplts,
       small: {
         height: 732,

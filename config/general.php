@@ -12,19 +12,21 @@ return [
 		'omitScriptNameInUrls' => true,
 		'generateTransformsBeforePageLoad' => true,
 	),
-	'local' => array(
+	'.dev' => array(
 		'devMode' => true,
 		'enableTemplateCaching' => false,
 		'testToEmailAddress' => 'connor.baer@me.com',
 		'userSessionDuration' => 'P2W',
 		'siteUrl' => array(
-			'default' => 'http://local.connorbaer',
+			'connorbaer' => 'https://connorbaer.dev/',
+			'madebyconnor' => 'https://madebyconnor.dev/',
 		),
 	),
-	'connorbaer.co' => array(
+	'.co' => array(
 		'devMode' => false,
 		'siteUrl' => array(
-			'default' => 'https://connorbaer.co/',
+			'connorbaer' => 'https://connorbaer.co/',
+			'madebyconnor' => 'https://madebyconnor.co/',
 		),
 	),
 ];

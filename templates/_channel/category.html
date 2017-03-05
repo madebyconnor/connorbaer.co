@@ -1,10 +1,6 @@
 {#
- # Newsletter index template
+ # Category template
  # -------------------
- #
- # This template is loaded whenever http://example.com/newsletter is
- # requested, because it is located at newsletter/index.html
- # in your craft/templates/ folder.
  #
  # See this page for more details on how Craft routes requests:
  # http://craftcms.com/docs/routing
@@ -12,31 +8,31 @@
 
 {% extends "_layouts/base" %}
 
-
 {% import '_includes/elements' as elements %}
 {% import '_includes/helpers' as helpers %}
-
 
 {% set section = craft.app.request.segments | first %}
 {% set category = craft.app.request.segments | last %}
 
-
 {% block main %}
-  <div class="mw-large">
+  {# -- HERO -- #}
+  <header class="hero">
+    <div class="mw-large ta-center">
+      <div class="hero-text w100">
+        <h1 class="ts-title1">{{ category | capitalize }}</h1>
+        {% if category.description is defined %}
+          <h2 class="ts-large fw-normal">{{ helpers.striptags(category.description) }}</h2>
+        {% endif %}
+      </div>
+    </div>
+  </header>
 
-    {# Page title #}
-    <header class="content-hero w100 ff-serif">
-      <h1 class="ts-title1">{{ category | capitalize }}</h1>
-      {% if category.description is defined %}
-        <h2 class="ts-large fw-normal">{{ helpers.striptags(category.description) }}</h2>
-      {% endif %}
-    </header>
-
-    {# Most recent featured post #}
+  <div class="mw-large mv4">
+    {# -- FEATURED -- #}
     {% set featured = craft.entries.section(section).relatedTo(craft.categories.slug(category)).featured('1').one() %}
 
     {% if featured %}
-      <article class="mw-large ff-serif">
+      <article>
 
         {# First image in post #}
         {% set imageBlock = featured.body.type('image').one() %}
@@ -63,10 +59,10 @@
       </article>
     {% endif %}
 
-    {# All posts, except the featured one #}
+    {# -- ALL POSTS -- #}
     {% set posts = craft.entries.section(section).relatedTo(craft.categories.slug(category)).all() | without(featured) %}
 
-    <div class="cf ff-serif">
+    <div class="cf">
       {% for post in posts %}
         <article class="w1-3 fl-left mv3 cl">
 
@@ -85,16 +81,11 @@
               </a>
             {% endif %}
           {% endif %}
-          <header class="mv2">
-            <h3 class="ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-          </header>
+          <h3 class="mt2 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+          <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
           <p class="mv1 ts-body">{{ helpers.truncate(post.description| striptags()) }}</p>
-          <footer class="mt1">
-            {{ elements.date(post.postDate) }}{% if post.category is not empty %}<span class="ts-app">&nbsp;·&nbsp;</span>{{ elements.category(post) }}{% endif %}
-          </footer>
         </article>
       {% endfor %}
     </div>
-
   </div>
 {% endblock %}

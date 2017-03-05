@@ -41,7 +41,7 @@
       <h3 class="w100 mv1 ts-title4">Latest Thoughts</h3>
       <div class="crds">
           {% for post in posts %}
-            <article class="w1-3 fl-left mv2 ff-serif">
+            <article class="w1-3 fl-left mv2">
               <div class="crd crd-padding">
                 <h3 class="mt2 mb1 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
                 <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
