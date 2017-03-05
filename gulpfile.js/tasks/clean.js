@@ -20,8 +20,8 @@ gulp.task('clean-wipe-js', () => {
 gulp.task('clean-wipe', ['clean-wipe-css', 'clean-wipe-js']);
 
 // Clean out junk files after build.
-gulp.task('clean-tidy', ['clean-wipe'], () => {
+gulp.task('clean-tidy', () => {
   return del(config.tidy);
 });
 
-gulp.task('clean', ['clean-tidy']);
+gulp.task('clean', ['clean-tidy', 'clean-wipe']);

@@ -1,6 +1,6 @@
 {
   "name": "connorbaer",
-  "version": "3.0.0",
+  "version": "4.0.3",
   "description": "Problem-solving is my passion. This is my website.",
   "main": "index.html",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/connor-baer/connorbaer.co.git"
+    "url": "git+https://github.com/connor-baer/connorbaer.git"
   },
   "keywords": [
     "connor",
@@ -20,7 +20,7 @@
   "author": "Connor Bär",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/connor-baer/connorbaer.co/issues"
+    "url": "https://github.com/connor-baer/connorbaer/issues"
   },
   "homepage": "https://connorbaer.co",
   "dependencies": {

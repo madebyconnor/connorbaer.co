@@ -117,12 +117,10 @@
 
   @media #{$bp-small-only} {
     padding-top: $sp-small;
-    background-color: $oc-white;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
 
     .headroom & {
       position: fixed;
-      transition: transform $an-long;
+      transition: transform $an-long, background-color $an-short;
       will-change: transform;
     }
 
@@ -132,6 +130,11 @@
 
     .headroom--unpinned & {
       transform: translateY(-55%);
+    }
+
+    .headroom--not-top & {
+      background-color: $oc-white;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
     }
   }
 }
