@@ -298,8 +298,16 @@
 }
 
 a.crd:hover,
-a.crd:focus {
-  box-shadow: 0 0 24px 0 rgba($oc-gray-9, 0.48);
+a.crd:focus,
+.crd-hover {
+  display: block;
+  transition: box-shadow $an-medium, transform $an-medium;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px -6px rgba($oc-gray-9, 0.36);
+  }
 }
 
 .crd-padding {

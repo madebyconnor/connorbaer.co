@@ -33,7 +33,7 @@
 -#}
 
 
-{% set staticAssetsVersion = "008" %}
+{% set staticAssetsVersion = "009" %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}
 
 
@@ -144,7 +144,7 @@
 {% endcache %}
 
 {# -- BODY CLASS -- #}
-<body class="{% if entry is defined %}{% if entry.color and entry.color != '#000000' %}has-color{% elseif entry.image and entry.image.one() %}has-image{% endif %}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">
+<body class="{% if entry is defined %}{% if entry.colors and entry.colors.type('color') %}has-color{% elseif entry.image and entry.image.one() %}has-image{% endif %}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">
 
 {% block body %}
 

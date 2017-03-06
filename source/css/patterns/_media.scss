@@ -35,22 +35,6 @@ img[data-sizes="auto"] {
   vertical-align: middle; // Make sure images are scaled correctly.
 }
 
-.img-hover {
-  display: block;
-  overflow: hidden;
-
-  img {
-    transition: transform $an-long;
-    backface-visibility: hidden;
-
-    &:hover,
-    &:focus {
-      transform: scale(1.05);
-    }
-  }
-}
-
-
 // SVG //
 
 .svg-small {

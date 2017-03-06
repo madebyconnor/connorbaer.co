@@ -29,7 +29,7 @@
 
   {# -- HERO -- #}
   <article>
-    <header class="hero" {% if entry.color and entry.color != '#000000' %}style="background-color: {{ entry.color }}"{% endif %}>
+    <header class="hero" {{ elements.radial(entry) }}>
       <div class="hero-content mw-large">
         <div class="hero-text ph2">
           <h1 class="mb2 ts-title1">{{ entry.title }}</h1>

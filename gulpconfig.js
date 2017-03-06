@@ -154,6 +154,7 @@ module.exports = {
           modules + 'prismjs/components/prism-scss.js',
           modules + 'prismjs/components/prism-twig.js',
         ],
+        particles: modules + 'particles.js/particles.js',
       },
       inline: [
         modules + 'fg-loadcss/src/loadCSS.js',

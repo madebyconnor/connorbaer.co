@@ -7,6 +7,7 @@
 
 .hero {
   position: relative;
+  background: radial-gradient(ellipse at top 66% center, $oc-gray-3, $oc-white);
   background-color: $oc-gray-1;
   background-repeat: no-repeat;
   background-position: center;
@@ -14,16 +15,19 @@
   overflow: hidden;
 }
 
-.hero-image {
+.hero-background {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 100%;
+  z-index: 9;
+}
+
+.hero-image {
   background-color: $oc-gray-6;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  z-index: 9;
 
   &::after {
     position: absolute;
@@ -38,6 +42,14 @@
   }
 }
 
+.hero-animation + .hero-content {
+  pointer-events: none;
+
+  a {
+    pointer-events: auto;
+  }
+}
+
 .hero-content {
   position: relative;
   padding-top: 7.125rem + $sp-large;
@@ -48,7 +60,9 @@
     padding-top: 4rem + $sp-large;
   }
 
-  .hero-image + & {
+  .hero-animation + &,
+  .hero-image + &,
+  .hero-map + & {
     padding-top: 7.125rem + $sp-huge;
     padding-bottom: $sp-huge;
 
@@ -61,7 +75,7 @@
     }
   }
 
-  .hero[style^="background-color"] & {
+  .hero[style^="background"] & {
     display: flex;
     align-items: center;
     justify-content: space-between;
