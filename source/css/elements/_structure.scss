@@ -1,5 +1,5 @@
 /*
-  PROJECT
+  STRUCTURE
 
   Feed
 */
@@ -7,13 +7,13 @@
 
 // Feed //
 
-.project-background {
+.item-background {
   display: flex;
   align-items: center;
   justify-content: space-around;
   background-color: $oc-primary-6;
 }
 
-.project-image {
+.item-image {
   width: 25%;
 }

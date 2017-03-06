@@ -38,18 +38,56 @@
 
   {% if posts %}
     <section class="mw-large mv4 cf">
-      <h3 class="w100 mv1 ts-title4">Latest Thoughts</h3>
-      <div class="crds">
-          {% for post in posts %}
-            <article class="w1-3 fl-left mv2">
-              <div class="crd crd-padding">
-                <h3 class="mt2 mb1 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-                <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
-                <p class="mt1 ts-body">{{ helpers.truncate(post.description | striptags(), 155) }}</p>
-              </div>
-            </article>
-          {% endfor %}
-      </div>
+      <h3 class="w100 mv3 ts-title4"><a href="/writing">Latest Thoughts</a></h3>
+        {% for post in posts %}
+          <article class="w1-3 fl-left">
+            <h3 class="mb1 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+          </article>
+        {% endfor %}
+    </section>
+  {% endif %}
+
+  {# -- LATEST PROJECTS -- #}
+  {% set items = craft.entries.section('creating').limit('3') %}
+  {% set lazyImage = false %}
+
+  {% if items %}
+    <section class="mw-large mv4">
+      <h3 class="w100 mv3 ts-title4"><a href="/creating">Latest Projects</a></h3>
+      {% for item in items %}
+        <div class="w100">
+          <div class="mv2 r16-9">
+            <a class="item-background" {% if item.color and item.color != '#000000' %}style="background-color: {{ item.color }}"{% endif %} href="{{ item.url }}" title="{{ item.title }}">
+
+              {% set images = item.images %}
+
+              {% if images %}
+                {% for image in images %}
+                  <div class="crd item-image">
+                    {% if lazyImage %}
+                      <img class="lazyload"
+                           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                           data-sizes="auto"
+                           data-srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
+                           alt="{{ image.title }}">
+                    {% else %}
+                      <img class="img-responsive"
+                           src="{{ image.getUrl('medium') }}"
+                           sizes="20vw"
+                           srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
+                           alt="{{ image.title }}">
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            </a>
+          </div>
+          <p class="mb1 ts-app">{{ item.client.one().title }}</p>
+          <h3 class="ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+        </div>
+        {% set lazyImage = true %}
+      {% endfor %}
     </section>
   {% endif %}
 

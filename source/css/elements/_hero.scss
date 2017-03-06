@@ -24,6 +24,18 @@
   background-position: center;
   background-size: cover;
   z-index: 9;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $oc-gray-9;
+    content: "";
+    opacity: .2;
+    z-index: 99;
+  }
 }
 
 .hero-content {
@@ -39,7 +51,6 @@
   .hero-image + & {
     padding-top: 7.125rem + $sp-huge;
     padding-bottom: $sp-huge;
-    background-color: rgba($oc-gray-9, .2);
 
     @media #{$bp-small} {
       padding-top: 4rem + $sp-huge;
@@ -48,6 +59,12 @@
     .hero-text {
       text-shadow: 0 0 12px rgba($oc-gray-9, .15);
     }
+  }
+
+  .hero[style^="background-color"] & {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 

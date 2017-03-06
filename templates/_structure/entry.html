@@ -29,11 +29,26 @@
 
   {# -- HERO -- #}
   <article>
-    <header class="hero project-background" {% if entry.color and entry.color != '#000000' %}style="background-color: {{ entry.color }}"{% endif %}>
+    <header class="hero" {% if entry.color and entry.color != '#000000' %}style="background-color: {{ entry.color }}"{% endif %}>
       <div class="hero-content mw-large">
-        <div class="hero-text w100">
-          <h1 class="ts-title1">{{ entry.title }}</h1>
+        <div class="hero-text ph2">
+          <h1 class="mb2 ts-title1">{{ entry.title }}</h1>
           <h2 class="ts-large">{{ entry.description }}</h2>
+        </div>
+        <div class="hero-images ph2">
+          {% set images = entry.images %}
+
+          {% if images %}
+            {% for image in images %}
+              <div class="crd">
+                <img class="img-responsive"
+                     src="{{ image.getUrl('medium') }}"
+                     sizes="20vw"
+                     srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
+                     alt="{{ image.title }}">
+              </div>
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
     </header>

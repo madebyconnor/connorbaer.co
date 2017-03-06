@@ -31,22 +31,22 @@
       </div>
     </header>
 
-    {# -- PROJECTS -- #}
-    {% set projects = craft.entries.section('creating').all() %}
+    {# -- Items -- #}
+    {% set items = craft.entries.section('creating').all() %}
     {% set lazyImage = false %}
 
-    {% if projects %}
+    {% if items %}
       <div class="mw-large">
-        {% for project in projects %}
+        {% for item in items %}
           <section class="w100 mv4 ff-sans">
             <div class="mv2 r16-9">
-              <a class="project-background" {% if project.color and project.color != '#000000' %}style="background-color: {{ project.color }}"{% endif %} href="{{ project.url }}" title="{{ project.title }}">
+              <a class="item-background" {% if item.color and item.color != '#000000' %}style="background-color: {{ item.color }}"{% endif %} href="{{ item.url }}" title="{{ item.title }}">
 
-                {% set images = project.images %}
+                {% set images = item.images %}
 
                 {% if images %}
                   {% for image in images %}
-                    <div class="crd project-image">
+                    <div class="crd item-image">
                       {% if lazyImage %}
                         <img class="lazyload"
                              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -65,8 +65,8 @@
                 {% endif %}
               </a>
             </div>
-            <p class="mb1 ts-app">{{ project.client.one().title }}</p>
-            <h3 class="ts-title3"><a href="{{ project.url }}" title="{{ project.title }}">{{ project.title }}</a></h3>
+            <p class="mb1 ts-app">{{ item.client.one().title }}</p>
+            <h3 class="ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
           </section>
           {% set lazyImage = true %}
         {% endfor %}
