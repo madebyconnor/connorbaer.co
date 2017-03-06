@@ -33,77 +33,26 @@
       <div class="mw-large">
         <div class="hero-text w100">
           <h1 class="ts-title1">{{ entry.title }}</h1>
-          {{ elements.date(entry.postDate) }}
+          <h2 class="ts-large">{{ entry.description }}</h2>
         </div>
       </div>
     </header>
 
     {# -- CONTENT -- #}
-    {# Initialize a few variables #}
-    {% set lazyImage = false %}
-    {% set loadPrism = true %}
-    {% set prevPosition = '' %}
+    <div class="blocks">
 
-    {% for block in entry.body %}
+      {# Body matrix #}
+      {% include '_includes/body' %}
 
-      {# Set position for current block #}
-      {% set position = block.position %}
-      {% if block.type.handle == 'text' %}
-        {% set position = 'right' %}
-      {% elseif block.type.handle == 'html' %}
-        {% set position = 'full' %}
-      {% endif %}
+    </div>
 
-      {# Start a new section if previous block is not positioned in the sidebar (left) #}
-      {% if prevPosition != 'left' %}
-        {% switch position %}
-          {% case 'full' %}
-            <section class="content">
-          {% default %}
-            <section class="content mw-large cf">
-        {% endswitch %}
-      {% endif %}
-
-        {# Determine float and width based on current position #}
-        {% switch position %}
-          {% case 'left' %}
-            <div class="w1-3 fl-left mb4">
-          {% case 'center' %}
-            <div class="w100">
-          {% case 'right' %}
-            <div class="w2-3 fl-right">
-          {% case 'full' %}
-            <div>
-        {% endswitch %}
-
-          {# Output the appropriate block #}
-          {% include ('_layouts/partials/_block_' ~ block.type.handle) %}
-
-          {# Reset variables #}
-          {% if block.type.handle == "image" %}
-            {% set lazyImage = true %}
-          {% elseif block.type.handle == "code" %}
-            {% set loadPrism = false %}
-          {% endif %}
-
-        </div>
-
-      {% if position != 'left' %}
-        </section>
-      {% endif %}
-
-      {# Position of current block becomes position of previous block #}
-      {% set prevPosition = position %}
-    {% endfor %}
-
-    <div class="mw-large mv4 cf">
-      <div class="w2-3 fl-right">
-        {{ elements.share(entry.title) }}
-      </div>
+    {# -- SHARE -- #}
+    <div class="mw-medium mv4 ta-center">
+      {{ elements.share(entry.title) }}
     </div>
   </article>
 
-  {# Related entries #}
+  {# -- RELATED ENTRIES -- #}
   {% set relatedPosts = craft.entries({
     section: entry.section.handle,
     relatedTo: ['or ', entry.tags, entry.category],

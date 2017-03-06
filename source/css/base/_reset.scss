@@ -63,10 +63,6 @@ html {
   box-sizing: inherit;
 }
 
-::selection {
-  background: $oc-primary-1;
-}
-
 body {
   position: relative;
   min-width: 100vw;

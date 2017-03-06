@@ -7,17 +7,15 @@
  # An `entry` variable is expected to be defined.
 -#}
 
-
 {% import '_includes/elements' as elements %}
 {% import '_includes/helpers' as helpers %}
-
 
 {% block footer %}
   {% cache %}
   {% minify %}
 
-  <footer id="footer" class="footer">
-    <div class="mw-large mv3 cf">
+  <footer id="footer" class="footer" {% if entry is defined %}{% if entry.color and entry.color != '#000000' %}style="background-color: {{ entry.color }}"{% endif %}{% endif %}>
+    <div class="mw-large mb3 cf">
       <a class="navigation-brand footer-brand w1-3 mv2 fl-left" href="{{ siteUrl }}#" title="Home">
 
         {% include '_includes/logo' %}

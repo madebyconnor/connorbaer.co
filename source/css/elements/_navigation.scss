@@ -35,12 +35,12 @@
 }
 
 .navigation-cta {
-  display: flex;
-  align-items: center;
-  height: 2.25rem;
+  display: none;
 
-  @media #{$bp-small-only} {
-    display: none;
+  @media #{$bp-small} {
+    display: flex;
+    align-items: center;
+    height: 2.25rem;
   }
 
   a {
@@ -112,44 +112,29 @@
   top: 0;
   right: 0;
   left: 0;
-  padding-top: $sp-medium;
+  padding-top: $sp-small;
   z-index: 9999;
 
-  @media #{$bp-small-only} {
-    padding-top: $sp-small;
-
-    .headroom & {
-      position: fixed;
-      transition: transform $an-long, background-color $an-short;
-      will-change: transform;
-    }
-
-    .headroom--pinned & {
-      transform: translateY(0%);
-    }
-
-    .headroom--unpinned & {
-      transform: translateY(-55%);
-    }
-
-    .headroom--not-top & {
-      background-color: $oc-white;
-      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
-    }
+  @media #{$bp-small} {
+    padding-top: $sp-medium;
   }
 }
 
 .metabar-navigation {
   @media #{$bp-small-only} {
     width: 100%;
-    padding-top: $sp-tiny;
-    padding-right: $sp-small;
-    padding-left: $sp-small;
+    padding: $sp-tiny $sp-small 0;
   }
 }
 
 
 // Footer //
+
+.footer {
+  padding-top: $sp-small;
+  padding-bottom: $sp-small;
+  background-color: $oc-gray-1;
+}
 
 @media #{$bp-small-only} {
   .footer-navigation {
@@ -178,59 +163,21 @@
 }
 
 
-// Dark theme //
-
-.hero-dark .metabar {
-  .navigation-logo,
-  .navigation-name {
-    color: $oc-gray-9;
-    fill: $oc-gray-9;
-  }
-
-  .navigation-cta a {
-    border-color: $oc-primary-6;
-    color: $oc-primary-6;
-
-    &:hover,
-    &:focus {
-      background-color: $oc-primary-6;
-      color: $oc-white;
-    }
-  }
-
-  .navigation-item {
-    &:hover,
-    &:focus,
-    &.navigation-active {
-      border-bottom-color: $oc-primary-6;
-    }
-  }
-
-  .navigation-link {
-    color: $oc-gray-6;
-
-    @media #{$bp-small-only} {
-      .navigation-active & {
-        color: $oc-primary-6;
-      }
-    }
-  }
-}
-
 // Light theme //
 
-.hero-light .metabar {
-  .navigation-logo,
+.has-color,
+.has-image .metabar {
+  .navigation-logo {
+    fill: $oc-white;
+  }
+
   .navigation-name {
     color: $oc-white;
-    text-shadow: 0 0 12px rgba($oc-gray-9, .15);
-    fill: $oc-white;
   }
 
   .navigation-cta a {
     border-color: $oc-white;
     color: $oc-white;
-    text-shadow: 0 0 12px rgba($oc-gray-9, .15);
 
     &:hover,
     &:focus {
@@ -249,12 +196,19 @@
 
   .navigation-link {
     color: $oc-white;
-    text-shadow: 0 0 12px rgba($oc-gray-9, .15);
 
     @media #{$bp-small-only} {
       .navigation-active & {
         color: $oc-white;
       }
     }
+  }
+}
+
+.has-image .metabar {
+  .navigation-name,
+  .navigation-cta,
+  .navigation-link {
+    text-shadow: 0 0 6px rgba($oc-gray-9, .25);
   }
 }

@@ -140,14 +140,21 @@ module.exports = {
       combined: [
         src + 'js/custom.js',
         modules + 'lazysizes/lazysizes.js',
-        modules + 'headroom.js/dist/headroom.js',
         modules + 'fontfaceobserver/fontfaceobserver.standalone.js',
         modules + 'Right-Height/dist/js/right-height.js',
       ],
-      single: [
-        modules + 'prismjs/prism.js',
-        modules + 'rellax/rellax.js',
-      ],
+      single: {
+        prism: [
+          modules + 'prismjs/prism.js',
+          modules + 'prismjs/components/prism-json.js',
+          modules + 'prismjs/components/prism-markdown.js',
+          modules + 'prismjs/components/prism-python.js',
+          modules + 'prismjs/components/prism-php.js',
+          modules + 'prismjs/components/prism-scss.js',
+          modules + 'prismjs/components/prism-twig.js',
+        ],
+        rellax: modules + 'rellax/rellax.js',
+      },
       inline: [
         modules + 'fg-loadcss/src/loadCSS.js',
         modules + 'fg-loadcss/src/cssrelpreload.js',

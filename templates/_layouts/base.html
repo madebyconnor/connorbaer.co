@@ -33,7 +33,7 @@
 -#}
 
 
-{% set staticAssetsVersion = "005" %}
+{% set staticAssetsVersion = "006" %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}
 
 
@@ -87,6 +87,7 @@
       const sans = new FontFaceObserver('Overpass', { weight: 400, });
       const sansItalic = new FontFaceObserver('Overpass', { weight: 400, style: 'italic' });
       const sansBold = new FontFaceObserver('Overpass', { weight: 700, });
+      const mono = new FontFaceObserver('Overpass Mono', { weight: 400, });
       const monoBold = new FontFaceObserver('Overpass Mono', { weight: 700, });
       const html = document.documentElement;
 
@@ -96,6 +97,7 @@
         sans.load(),
         sansItalic.load(),
         sansBold.load(),
+        mono.load(),
         monoBold.load(),
       ]).then(function () {
         html.classList.remove('fonts-loading');
@@ -109,16 +111,6 @@
       rightHeight.init({
         selector: '.crds',
         selectorContent: '.crd',
-      });
-
-      const headroom  = new Headroom(html);
-
-      headroom.init({
-        offset: 50,
-        tolerance: {
-            up: 25,
-            down: 0
-        }
       });
     }
   });
@@ -150,7 +142,7 @@
 {% endcache %}
 
 {# -- BODY CLASS -- #}
-<body class="{% if entry is defined %}{{ (entry.color and entry.color != '#000000') or (entry.image and entry.image.one()) ? 'hero-light' : 'hero-dark' }}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">
+<body class="{% if entry is defined %}{% if entry.color and entry.color != '#000000' %}has-color{% elseif entry.image and entry.image.one() %}has-image{% endif %}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">
 
 {% block body %}
 

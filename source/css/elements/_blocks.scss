@@ -1,6 +1,7 @@
 /*
   BLOCKS
 
+  Positions
   Text
   Image
   Quote
@@ -9,12 +10,61 @@
 */
 
 
-// Text //
-
-.block-text {
+.blocks {
   margin-top: $sp-medium;
   margin-bottom: $sp-medium;
 
+  @media #{$bp-small} {
+    margin-top: $sp-large;
+    margin-bottom: $sp-large;
+  }
+}
+
+
+// Positions //
+
+.position-center,
+.position-full,
+.position-drop-right,
+.position-drop-left {
+  margin-top: $sp-medium;
+  margin-bottom: $sp-medium;
+}
+
+.position-text {
+  margin-top: $sp-medium;
+  margin-bottom: $sp-medium;
+}
+
+@media #{$bp-small} {
+  .position-center,
+  .position-full {
+    margin-top: $sp-large;
+    margin-bottom: $sp-large;
+  }
+
+  .position-drop-right div,
+  .position-drop-left div {
+    width: 24rem;
+    margin-top: $sp-tiny;
+    margin-bottom: $sp-tiny;
+  }
+
+  .position-drop-right div {
+    margin-left: $sp-small;
+    float: right;
+  }
+
+  .position-drop-left div {
+    margin-right: $sp-small;
+    float: left;
+  }
+}
+
+
+// Text //
+
+.block-text {
   > h1 {
     @extend %ts-title2;
   }
@@ -27,7 +77,8 @@
     @extend %ts-title4;
   }
 
-  > p {
+  > p,
+  > blockquote {
     @extend %ts-body;
   }
 
@@ -55,39 +106,11 @@
   ul {
     list-style: disc;
   }
-}
 
-
-// Image //
-
-.block-image {
-  margin-top: $sp-large;
-  margin-bottom: $sp-large;
-}
-
-
-// Quote //
-
-.block-quote {
-  margin-top: $sp-large;
-  margin-bottom: $sp-large;
-
-  > p {
-    @extend %ts-quote;
-  }
-
-  cite {
-    display: block;
-  }
-
-  &.block-blockQuote {
-    > p {
-      @extend %ts-body;
-
-      padding-left: $sp-small;
-      border-left: 3px solid $oc-primary-6;
-      color: $oc-gray-6;
-    }
+  blockquote {
+    padding-left: $sp-small;
+    border-left: 3px solid $oc-primary-6;
+    color: $oc-gray-6;
 
     cite {
       display: block;
@@ -96,11 +119,47 @@
 }
 
 
+// Image //
+
+.block-image {
+  // TODO: Gallery
+  .position-drop-right &,
+  .position-drop-left & {
+    margin-top: $sp-tiny;
+    margin-bottom: $sp-tiny;
+  }
+}
+
+
+// Quote //
+
+.block-quote {
+  > p {
+    @extend %ts-quote;
+  }
+
+  cite {
+    display: block;
+  }
+}
+
+
 // Code //
 
 .block-code {
-  background-color: $oc-gray-8;
+  background-color: $oc-gray-1;
+
+  .position-full & {
+    padding-top: $sp-small;
+    padding-bottom: $sp-small;
+  }
+
+  code {
+    line-height: $lh-normal;
+    white-space: pre-wrap;
+  }
 }
+
 
 // Embed //
 

@@ -17,11 +17,16 @@ gulp.task('scripts-combined', () => {
 
 // Copy third-party JavaScript to the public assets folder.
 gulp.task('scripts-single', () => {
-  return gulp.src(config.src.single)
-    .pipe(plugins.changed(config.dest))
-    .pipe(plugins.uglify(config.minify.uglify))
-    .pipe(plugins.rename(config.minify.rename))
-    .pipe(gulp.dest(config.dest));
+  const bundles = config.src.single;
+
+  Object.keys(bundles).forEach(function(key) {
+    return gulp.src(bundles[key])
+      .pipe(plugins.concat(key))
+      .pipe(plugins.changed(config.dest))
+      .pipe(plugins.uglify(config.minify.uglify))
+      .pipe(plugins.rename(config.minify.rename))
+      .pipe(gulp.dest(config.dest));
+  });
 });
 
 // Copy third-party JavaScript to the public assets folder.

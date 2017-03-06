@@ -1,6 +1,6 @@
 {% import '_includes/helpers' as helpers %}
 
-<blockquote class="block-quote{% if block.position == 'center' %} block-blockQuote{% endif %}">
+<blockquote class="block-quote">
   {{ block.quote }}
   {% if block.cite | length %}
   <cite class="pt2 ts-app ta-right">— {{ helpers.striptags(block.cite) }}</cite>

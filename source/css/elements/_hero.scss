@@ -20,7 +20,7 @@
   }
 }
 
-.hero[style] {
+.hero[style^="background-image"] {
   padding-top: 6.75rem + $sp-large;
   padding-bottom: $sp-huge;
   background-color: $oc-gray-6;
@@ -46,7 +46,8 @@
   position: relative;
   z-index: 999;
 
-  .hero-light & * {
+  .has-color & *,
+  .has-image & * {
     color: $oc-white;
   }
 }

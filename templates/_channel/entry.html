@@ -11,16 +11,16 @@
 {% import '_includes/elements' as elements %}
 {% import '_includes/helpers' as helpers %}
 
-{% block critical %}
-  <style>
-    {{ source(_self ~ '.min.css', ignore_missing = true) }}
-  </style>
-{% endblock %}
-
 {% block head %}
   {{ parent() }}
 
   <link rel="amphtml" href="{{ entry.url }}/amp">
+{% endblock %}
+
+{% block critical %}
+  <style>
+    {{ source(_self ~ '.min.css', ignore_missing = true) }}
+  </style>
 {% endblock %}
 
 {% block main %}
@@ -39,69 +39,16 @@
     </header>
 
     {# -- CONTENT -- #}
-    <div class="content">
+    <div class="blocks">
+
+      {# Post description #}
       <div class="mw-medium">
         <h2 class="w100 ts-large">{{ entry.description }}</h2>
       </div>
 
-      {# Initialize a few variables #}
-      {% set lazyImage = false %}
-      {% set loadPrism = true %}
-      {% set prevPosition = '' %}
+      {# Body matrix #}
+      {% include '_includes/body' %}
 
-      {% for block in entry.body %}
-
-        {# Set position for current block #}
-        {% set position = block.position %}
-        {% if block.type.handle == 'text' %}
-          {% set position = 'center' %}
-        {% elseif block.type.handle == 'html' %}
-          {% set position = 'full' %}
-        {% endif %}
-
-        {# Start a new section if previous block is not positioned drop-left or drop-right #}
-        {% if prevPosition != 'drop-left' or 'drop-left' %}
-          {% switch position %}
-            {% case 'full' %}
-              <section>
-            {% case 'center' %}
-              <section class="mw-medium">
-            {% default %}
-              <section class="mw-large">
-          {% endswitch %}
-        {% endif %}
-
-          {# Determine float and width based on current position #}
-          {% switch position %}
-            {% case 'drop-left' %}
-              <div class="content-left w100">
-            {% case 'center' %}
-              <div class="w100">
-            {% case 'drop-right' %}
-              <div class="content-right w100">
-            {% case 'full' %}
-              <div>
-          {% endswitch %}
-
-            {# Output the appropriate block #}
-            {% include ('_layouts/partials/_block_' ~ block.type.handle) %}
-
-            {# Reset variables #}
-            {% if block.type.handle == "image" %}
-              {% set lazyImage = true %}
-            {% elseif block.type.handle == "code" %}
-              {% set loadPrism = false %}
-            {% endif %}
-
-          </div>
-
-        {% if position != 'left' %}
-          </section>
-        {% endif %}
-
-        {# Position of current block becomes position of previous block #}
-        {% set prevPosition = position %}
-      {% endfor %}
     </div>
 
     {# -- SHARE -- #}

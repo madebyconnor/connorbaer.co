@@ -19,7 +19,7 @@
   <header class="hero">
     <div class="mw-large ta-center">
       <div class="hero-text w100">
-        <h1 class="ts-title1">{{ category | capitalize }}</h1>
+        <h1 class="ts-title1">{{"Category" | t }}: {{ category | capitalize }}</h1>
         {% if category.description is defined %}
           <h2 class="ts-large fw-normal">{{ helpers.striptags(category.description) }}</h2>
         {% endif %}

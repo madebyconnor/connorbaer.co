@@ -17,6 +17,7 @@
 %ts-title2,
 .ts-title3,
 %ts-title3 {
+  font-family: $ff-mono;
   font-weight: bold;
   letter-spacing: -$ls-medium;
   line-height: $lh-small;
@@ -33,21 +34,17 @@
 
 .ts-title1,
 %ts-title1 {
-  font-family: $ff-mono;
   font-size: $fs-title1;
 }
 
 .ts-title2,
 %ts-title2 {
-  font-family: $ff-mono;
   font-size: $fs-title2;
 }
 
 .ts-title3,
 %ts-title3 {
-  font-family: $ff-mono;
   font-size: $fs-title3;
-  font-weight: $fw-sans-normal;
 }
 
 .ts-title4,
@@ -97,7 +94,7 @@
   font-family: $ff-sans;
   font-size: $fs-small;
   letter-spacing: $ls-small;
-  line-height: $lh-normal;
+  line-height: $lh-small;
 }
 
 
