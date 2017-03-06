@@ -33,7 +33,7 @@
 -#}
 
 
-{% set staticAssetsVersion = "006" %}
+{% set staticAssetsVersion = "007" %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}
 
 
@@ -107,6 +107,8 @@
         html.classList.remove('fonts-loading');
         html.classList.add('fonts-failed');
       });
+
+      const rellax = new Rellax('.js-rellax');
 
       rightHeight.init({
         selector: '.crds',

@@ -101,8 +101,8 @@ table {
 }
 
 hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: $sp-medium;
+  margin-bottom: $sp-medium;
   border: 0;
 
   &::before {

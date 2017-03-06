@@ -133,7 +133,7 @@
 .footer {
   padding-top: $sp-small;
   padding-bottom: $sp-small;
-  background-color: $oc-gray-1;
+  background-color: $oc-gray-9;
 }
 
 @media #{$bp-small-only} {
@@ -149,8 +149,7 @@
 .footer-legal {
   padding-top: $sp-small;
   padding-bottom: $sp-small;
-  border-top: 2px solid $oc-gray-2;
-  color: $oc-gray-4;
+  color: $oc-gray-6;
 
   .link {
     color: inherit;
@@ -165,8 +164,9 @@
 
 // Light theme //
 
+.footer,
 .has-color,
-.has-image .metabar {
+.has-image {
   .navigation-logo {
     fill: $oc-white;
   }

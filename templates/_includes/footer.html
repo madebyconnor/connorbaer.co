@@ -15,7 +15,7 @@
   {% minify %}
 
   <footer id="footer" class="footer" {% if entry is defined %}{% if entry.color and entry.color != '#000000' %}style="background-color: {{ entry.color }}"{% endif %}{% endif %}>
-    <div class="mw-large mb3 cf">
+    <div class="mw-large cf">
       <a class="navigation-brand footer-brand w1-3 mv2 fl-left" href="{{ siteUrl }}#" title="Home">
 
         {% include '_includes/logo' %}
@@ -34,7 +34,7 @@
     </div>
     <div class="mw-large">
       <div class="w100">
-        <h6 class="footer-legal ts-app">© {{ "now" | date("Y") }} Connor Bär. All rights reserved.</h6>
+        <h6 class="footer-legal ts-app ta-center">© {{ "now" | date("Y") }} Connor Bär. All rights reserved.</h6>
       </div>
     </div>
   </footer>

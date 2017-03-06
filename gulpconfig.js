@@ -142,6 +142,7 @@ module.exports = {
         modules + 'lazysizes/lazysizes.js',
         modules + 'fontfaceobserver/fontfaceobserver.standalone.js',
         modules + 'Right-Height/dist/js/right-height.js',
+        modules + 'rellax/rellax.js',
       ],
       single: {
         prism: [
@@ -153,7 +154,6 @@ module.exports = {
           modules + 'prismjs/components/prism-scss.js',
           modules + 'prismjs/components/prism-twig.js',
         ],
-        rellax: modules + 'rellax/rellax.js',
       },
       inline: [
         modules + 'fg-loadcss/src/loadCSS.js',

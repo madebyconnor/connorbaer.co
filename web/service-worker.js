@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["assets/css/styles.min.css","b7de61b07dd1a292202d5fb0d62551d2"],["assets/js/combined.min.js","42cb55e6455a4d7f8d600de5ef2df34d"],["assets/js/prism.min.js","8cf78e38ecc3481af25231485194442f"],["assets/js/rellax.min.js","5babd85a6e04d3a357e6f4cebc786940"]];
+var precacheConfig = [["assets/css/styles.min.css","df0463f840fbaf4bdc9e254ab7ba972d"],["assets/js/combined.min.js","04a01fabfac577d5a90d3756f5641333"],["assets/js/prism.min.js","8cf78e38ecc3481af25231485194442f"]];
 var cacheName = 'sw-precache-v3-connorbaer-' + (self.registration ? self.registration.scope : '');
 
 
