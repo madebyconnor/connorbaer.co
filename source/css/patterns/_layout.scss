@@ -10,13 +10,11 @@
 
 // Widths //
 
-$mw-large: 72rem;
-$mw-medium: 45rem;
-
 .w1-2,
 .w1-3,
 .w2-3,
 .w100,
+.mw-medium,
 .mw-large {
   display: block;
   width: 100%;
@@ -38,19 +36,10 @@ $mw-medium: 45rem;
   }
 }
 
-.w100 {
-  clear: both;
-}
-
 .mw-medium {
   max-width: $mw-medium;
   margin-right: auto;
   margin-left: auto;
-
-  @media #{$bp-medium} {
-    padding-right: $sp-large;
-    padding-left: $sp-large;
-  }
 }
 
 .mw-large {

@@ -116,7 +116,10 @@ module.exports = {
       css: dist + assets + 'css/styles.min.css',
       files: [
         { url: '', template: 'index' },
+        { url: 'creating', template: '_structure/index' },
+        { url: 'creating/deutsche-stiftung-uwc', template: '_structure/entry' },
         { url: 'writing', template: '_channel/index' },
+        { url: 'writing/africa-is-not-a-country', template: '_channel/entry' },
         { url: 'offline', template: 'offline' },
         { url: '503', template: '503' },
         { url: '404', template: '404' },

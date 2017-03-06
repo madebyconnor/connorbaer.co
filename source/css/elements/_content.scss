@@ -4,16 +4,25 @@
 
 
 .content {
-  margin-top: $sp-large;
-  margin-bottom: $sp-large;
+  margin: $sp-medium 0;
 
-  div * {
-    &:first-child {
-      margin-top: 0;
-    }
+  @media #{$bp-medium} {
+    margin: $sp-large 0;
+  }
+}
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+@media #{$bp-small} {
+  .content-right {
+    width: 24rem;
+    margin-top: $sp-tiny;
+    margin-left: $sp-medium;
+    float: right;
+  }
+
+  .content-left {
+    width: 24rem;
+    margin-top: $sp-tiny;
+    margin-right: $sp-medium;
+    float: left;
   }
 }

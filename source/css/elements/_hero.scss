@@ -7,7 +7,7 @@
 
 .hero {
   position: relative;
-  padding-top: 6.75rem + $sp-large;
+  padding-top: 6.75rem + $sp-medium;
   padding-bottom: $sp-large;
   background-color: $oc-gray-1;
   background-repeat: no-repeat;
@@ -16,12 +16,12 @@
   z-index: 1;
 
   @media #{$bp-small} {
-    padding-top: 5.25rem + $sp-large;
+    padding-top: 5.25rem + $sp-medium;
   }
 }
 
 .hero[style] {
-  padding-top: 6.75rem + $sp-huge;
+  padding-top: 6.75rem + $sp-large;
   padding-bottom: $sp-huge;
   background-color: $oc-gray-6;
 
@@ -31,15 +31,19 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba($oc-black, .25);
+    background-color: $oc-gray-9;
     content: "";
+    opacity: .2;
     z-index: 99;
+  }
+
+  .hero-text {
+    text-shadow: 0 0 12px rgba($oc-gray-9, .15);
   }
 }
 
 .hero-text {
   position: relative;
-  text-shadow: 0 0 12px rgba($oc-gray-9, .1);
   z-index: 999;
 
   .hero-light & * {

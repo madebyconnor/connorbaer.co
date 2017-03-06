@@ -2,6 +2,7 @@
   VARIABLES
 
   Media queries
+  Widths
   Spacing
   Typography
   Colors
@@ -17,6 +18,12 @@ $bp-medium: "screen and (min-width: 56.25em)";
 $bp-large: "screen and (min-width: 75em)";
 
 
+// Widths //
+
+$mw-large: 72rem;
+$mw-medium: 45rem;
+
+
 // Spacing
 
 $sp-tiny: 0.5rem;
@@ -29,39 +36,39 @@ $sp-huge: $sp-tiny * 10;
 // Typography
 
 @font-face {
-  font-family: "Ubuntu";
+  font-family: "Overpass";
   font-style: normal;
   font-weight: 400;
-  src: local("Ubuntu"), url(https://fonts.gstatic.com/s/ubuntu/v9/zvCUQcxqeoKhyOlbifSAaevvDin1pK8aKteLpeZ5c0A.woff2) format("woff2");
+  src: local("Overpass Regular"), local("Overpass-Regular"), url(https://fonts.gstatic.com/s/overpass/v1/o3S9a2vetxRRO8sKA6PL03YhjbSpvc47ee6xR_80Hnw.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 @font-face {
-  font-family: "Ubuntu";
+  font-family: "Overpass";
   font-style: normal;
   font-weight: 700;
-  src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url(https://fonts.gstatic.com/s/ubuntu/v9/0ihfXUL2emPh0ROJezvraJBw1xU1rKptJj_0jans920.woff2) format("woff2");
+  src: local("Overpass Bold"), local("Overpass-Bold"), url(https://fonts.gstatic.com/s/overpass/v1/z_QV2-z5a6o4brQE8JEVyogp9Q8gbYrhqGlRav_IXfk.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 @font-face {
-  font-family: "Ubuntu";
+  font-family: "Overpass";
   font-style: italic;
   font-weight: 400;
-  src: local("Ubuntu Italic"), local("Ubuntu-Italic"), url(https://fonts.gstatic.com/s/ubuntu/v9/WB6rgjTg_oRfj6mlXZJbb3YhjbSpvc47ee6xR_80Hnw.woff2) format("woff2");
+  src: local("Overpass Italic"), local("Overpass-Italic"), url(https://fonts.gstatic.com/s/overpass/v1/nFeT4yZLKoYlkcTXEa9P0gzyDMXhdD8sAj6OAJTFsBI.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 @font-face {
-  font-family: "Ubuntu Mono";
+  font-family: "Overpass Mono";
   font-style: normal;
   font-weight: 700;
-  src: local("Ubuntu Mono Bold"), local("UbuntuMono-Bold"), url(https://fonts.gstatic.com/s/ubuntumono/v6/ceqTZGKHipo8pJj4molytv79_ZuUxCigM2DespTnFaw.woff2) format("woff2");
+  src: local("Overpass Mono Bold"), local("OverpassMono-Bold"), url(https://fonts.gstatic.com/s/overpassmono/v2/JEQ6tXkANEo2u0wZ-MTOPNCbUiP4h8l_SeFbysZT7Cg.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
-$ff-sans: "Ubuntu", Arial, sans-serif;
+$ff-sans: "Overpass", Arial, sans-serif;
 $fw-sans-normal: 400;
 $fw-sans-bold: 700;
 
-$ff-mono: "Ubuntu Mono", Courier, monospace;
+$ff-mono: "Overpass Mono", Courier, monospace;
 $fw-mono-bold: 700;
 
 $fs-title1: 2.5rem; // 40px
@@ -71,8 +78,8 @@ $fs-large: 1.25rem; // 20px
 $fs-regular: 1rem; // 16px
 $fs-small: .875rem; // 14px
 
-$lh-large: 1.75;
-$lh-normal: 1.5;
+$lh-large: 2;
+$lh-normal: 1.75;
 $lh-small: 1.25;
 
 $ls-large: .12em;
@@ -97,4 +104,5 @@ $oc-primary-9: #13673d;
 // Animations//
 
 $an-short: .15s cubic-bezier(0, 0, 0.2, 1);
-$an-long: .3s cubic-bezier(0, 0, 0.2, 1);
+$an-medium: .25s cubic-bezier(0, 0, 0.2, 1);
+$an-long: .45s cubic-bezier(0, 0, 0.2, 1);

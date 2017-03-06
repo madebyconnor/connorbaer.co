@@ -18,6 +18,7 @@
 .ts-title3,
 %ts-title3 {
   font-weight: bold;
+  letter-spacing: -$ls-medium;
   line-height: $lh-small;
 
   a {
@@ -67,10 +68,10 @@
 
 .ts-quote,
 %ts-quote {
-  font-size: $fs-title2;
+  font-size: $fs-title3;
   font-style: italic;
   font-weight: normal;
-  line-height: $lh-small;
+  line-height: $lh-normal;
 }
 
 .ts-large,

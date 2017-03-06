@@ -12,6 +12,9 @@
 // Text //
 
 .block-text {
+  margin-top: $sp-medium;
+  margin-bottom: $sp-medium;
+
   > h1 {
     @extend %ts-title2;
   }
@@ -55,9 +58,20 @@
 }
 
 
+// Image //
+
+.block-image {
+  margin-top: $sp-large;
+  margin-bottom: $sp-large;
+}
+
+
 // Quote //
 
-.block-pullQuote {
+.block-quote {
+  margin-top: $sp-large;
+  margin-bottom: $sp-large;
+
   > p {
     @extend %ts-quote;
   }
@@ -65,19 +79,19 @@
   cite {
     display: block;
   }
-}
 
-.block-blockQuote {
-  > p {
-    @extend %ts-body;
+  &.block-blockQuote {
+    > p {
+      @extend %ts-body;
 
-    padding-left: $sp-small;
-    border-left: 3px solid $oc-primary-6;
-    color: $oc-gray-6;
-  }
+      padding-left: $sp-small;
+      border-left: 3px solid $oc-primary-6;
+      color: $oc-gray-6;
+    }
 
-  cite {
-    display: block;
+    cite {
+      display: block;
+    }
   }
 }
 

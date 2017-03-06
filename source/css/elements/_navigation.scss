@@ -23,14 +23,14 @@
 }
 
 .navigation-name {
-  transition: color $an-short;
+  transition: opacity $an-medium;
   font-family: $ff-sans;
   font-size: $fs-large;
   font-weight: $fw-sans-bold;
 
   &:hover,
   &:focus {
-    color: $oc-primary-6;
+    opacity: .72;
   }
 }
 
@@ -187,13 +187,6 @@
     fill: $oc-gray-9;
   }
 
-  .navigation-name {
-    &:hover,
-    &:focus {
-      color: $oc-primary-6;
-    }
-  }
-
   .navigation-cta a {
     border-color: $oc-primary-6;
     color: $oc-primary-6;
@@ -230,19 +223,14 @@
   .navigation-logo,
   .navigation-name {
     color: $oc-white;
+    text-shadow: 0 0 12px rgba($oc-gray-9, .15);
     fill: $oc-white;
-  }
-
-  .navigation-name {
-    &:hover,
-    &:focus {
-      color: $oc-gray-2;
-    }
   }
 
   .navigation-cta a {
     border-color: $oc-white;
     color: $oc-white;
+    text-shadow: 0 0 12px rgba($oc-gray-9, .15);
 
     &:hover,
     &:focus {
@@ -261,6 +249,7 @@
 
   .navigation-link {
     color: $oc-white;
+    text-shadow: 0 0 12px rgba($oc-gray-9, .15);
 
     @media #{$bp-small-only} {
       .navigation-active & {

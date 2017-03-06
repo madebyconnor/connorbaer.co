@@ -39,64 +39,70 @@
     </header>
 
     {# -- CONTENT -- #}
-    {# Initialize a few variables #}
-    {% set lazyImage = false %}
-    {% set loadPrism = true %}
-    {% set prevPosition = '' %}
+    <div class="content">
+      <div class="mw-medium">
+        <h2 class="w100 ts-large">{{ entry.description }}</h2>
+      </div>
 
-    {% for block in entry.body %}
+      {# Initialize a few variables #}
+      {% set lazyImage = false %}
+      {% set loadPrism = true %}
+      {% set prevPosition = '' %}
 
-      {# Set position for current block #}
-      {% set position = block.position %}
-      {% if block.type.handle == 'text' %}
-        {% set position = 'center' %}
-      {% elseif block.type.handle == 'html' %}
-        {% set position = 'full' %}
-      {% endif %}
+      {% for block in entry.body %}
 
-      {# Start a new section if previous block is not positioned drop-left or drop-right #}
-      {% if prevPosition != 'drop-left' or 'drop-left' %}
-        {% switch position %}
-          {% case 'full' %}
-            <section class="content">
-          {% case 'center' %}
-            <section class="content mw-medium">
-          {% default %}
-            <section class="content mw-large">
-        {% endswitch %}
-      {% endif %}
+        {# Set position for current block #}
+        {% set position = block.position %}
+        {% if block.type.handle == 'text' %}
+          {% set position = 'center' %}
+        {% elseif block.type.handle == 'html' %}
+          {% set position = 'full' %}
+        {% endif %}
 
-        {# Determine float and width based on current position #}
-        {% switch position %}
-          {% case 'drop-left' %}
-            <div class="fl-left mb4">
-          {% case 'center' %}
-            <div class="w100">
-          {% case 'drop-right' %}
-            <div class="fl-right mb4">
-          {% case 'full' %}
-            <div>
-        {% endswitch %}
+        {# Start a new section if previous block is not positioned drop-left or drop-right #}
+        {% if prevPosition != 'drop-left' or 'drop-left' %}
+          {% switch position %}
+            {% case 'full' %}
+              <section>
+            {% case 'center' %}
+              <section class="mw-medium">
+            {% default %}
+              <section class="mw-large">
+          {% endswitch %}
+        {% endif %}
 
-          {# Output the appropriate block #}
-          {% include ('_layouts/partials/_block_' ~ block.type.handle) %}
+          {# Determine float and width based on current position #}
+          {% switch position %}
+            {% case 'drop-left' %}
+              <div class="content-left w100">
+            {% case 'center' %}
+              <div class="w100">
+            {% case 'drop-right' %}
+              <div class="content-right w100">
+            {% case 'full' %}
+              <div>
+          {% endswitch %}
 
-          {# Reset variables #}
-          {% if block.type.handle == "image" %}
-            {% set lazyImage = true %}
-          {% elseif block.type.handle == "code" %}
-            {% set loadPrism = false %}
-          {% endif %}
+            {# Output the appropriate block #}
+            {% include ('_layouts/partials/_block_' ~ block.type.handle) %}
 
-        </div>
+            {# Reset variables #}
+            {% if block.type.handle == "image" %}
+              {% set lazyImage = true %}
+            {% elseif block.type.handle == "code" %}
+              {% set loadPrism = false %}
+            {% endif %}
 
-      {% if position != 'left' %}
-        </section>
-      {% endif %}
+          </div>
 
-      {# Position of current block becomes position of previous block #}
-      {% set prevPosition = position %}
-    {% endfor %}
+        {% if position != 'left' %}
+          </section>
+        {% endif %}
+
+        {# Position of current block becomes position of previous block #}
+        {% set prevPosition = position %}
+      {% endfor %}
+    </div>
 
     {# -- SHARE -- #}
     <div class="mw-medium mv4 ta-center">
