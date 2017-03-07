@@ -2,7 +2,14 @@
  # Entry template
  # -------------------
  #
- # See this entry for details on how Craft routes requests:
+ # This template gets loaded whenever an entry’s URL is
+ # requested. That’s because the section’s Template setting is
+ # set to _section/entry”, the path to this template.
+ #
+ # When this template is loaded, it will already have an ‘entry’
+ # variable, set to the requested entry.
+ #
+ # See this entry for more details on how Craft routes requests:
  # http://craftcms.com/docs/routing
  #}
 
@@ -11,43 +18,43 @@
 {% import '_includes/elements' as elements %}
 {% import '_includes/helpers' as helpers %}
 
-{% block head %}
+{% block links %}
   {{ parent() }}
 
   <link rel="amphtml" href="{{ entry.url }}/amp">
 {% endblock %}
 
-{% block critical %}
-  <style>
-    {{ source(_self ~ '.min.css', ignore_missing = true) }}
-  </style>
-{% endblock %}
 
 {% block main %}
-  {% cache %}
-  {% minify %}
 
   {# -- HERO -- #}
   <article>
-    <header class="hero">
-      {% if entry.image.one() %}
-        <div class="hero-background hero-image js-rellax" style="background-image: url('{{ entry.image.one().getUrl('large16x9') }}')"></div>
-      {% endif %}
-      <div class="hero-content mw-large ta-center">
-        <div class="hero-text w100">
-          <h1 class="mb1 ts-title1">{{ entry.title }}</h1>
-          <span class="ts-app">{{ elements.date(entry.postDate) }}{% if entry.category is not empty %}&nbsp;·&nbsp;{{ elements.category(entry) }}{% endif %}</span>
+    <header class="hero" {{ elements.radial(entry) }}>
+      <div class="hero-content mw-large">
+        <div class="hero-text ph2">
+          <h1 class="mb2 ts-title1">{{ entry.title }}</h1>
+          <h2 class="ts-large">{{ entry.description }}</h2>
+        </div>
+        <div class="hero-images ph2">
+          {% set images = entry.images %}
+
+          {% if images %}
+            {% for image in images %}
+              <div class="crd">
+                <img class="img-responsive"
+                     src="{{ image.getUrl('medium') }}"
+                     sizes="20vw"
+                     srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
+                     alt="{{ image.title }}">
+              </div>
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
     </header>
 
     {# -- CONTENT -- #}
     <div class="blocks">
-
-      {# Post description #}
-      <div class="mw-medium">
-        <h2 class="w100 ts-large">{{ entry.description }}</h2>
-      </div>
 
       {# Body matrix #}
       {% include '_includes/body' %}
@@ -70,13 +77,11 @@
 
   {% if relatedPosts | length == '3' %}
     <div class="mw-large mv4 cf">
-      <div class="cf">
-        <div class="w100 mt2">
-          <h4 class="ts-title4">{{ "Related Posts" | t}}</h4>
-        </div>
+      <div class="pv1 cf">
+        <h2 class="w100 ts-title3">Related Posts</h2>
 
         {% for post in relatedPosts %}
-          <article class="w1-3 fl-left mv3">
+          <article class="w1-3 fl-left mv2">
 
             {% set matrixBlock = post.body.type('image').one() %}
 
@@ -94,8 +99,7 @@
               {% endif %}
             {% endif %}
 
-            <h3 class="mt2 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-            <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+            <h3 class="mv2 ts-title4"><a class="ts-link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
           </article>
         {% endfor %}
 
@@ -103,6 +107,4 @@
     </div>
   {% endif %}
 
-  {% endminify %}
-  {% endcache %}
 {% endblock %}

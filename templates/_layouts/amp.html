@@ -9,24 +9,6 @@
  # This is the only place in our templates where we'll ever need to define that
  # stuff. All other templates will extend this one.
  #
- # This template is never accessed directly; instead it is extended by two child
- # templates:
- #
- #   * `_layouts/site.html`: A sub-layout, which in turn is extended by all the
- #                           main site templates.
- #
- #   * `offline.html`:       The template that we serve when the site is offline
- #
- # Any templates that extend this template can optionally set a `title` variable,
- # which will be output within the `<title>` tag, before the site name:
- #
- #     <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
- #
- # They can also optionally set a `bodyClass` variable, which will be output
- # within the `<body>` tag's `class=` attribute.
- #
- #     <body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>
- #
  # This template also defines 3 `block` regions, which child templates are free to
  # override:
  #
@@ -50,7 +32,7 @@
 -#}
 
 
-{% set staticAssetsVersion = "004" %}
+{% set staticAssetsVersion = "015" %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}
 
 
@@ -71,10 +53,11 @@
   {# -- AMP CUSTOM -- #}
   <style amp-custom>
     {{ source('_layouts/amp.min.css') }}
+    {% block custom %}{% endblock %}
   </style>
 
   {# -- TITLE -- #}
-  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+  <title>{% if entry is defined %}{{ entry.title }} - {% endif %}{{ siteName }}</title>
 
   {# -- SEOMATIC -- #}
   {% hook 'seomaticRender' %}
@@ -102,7 +85,7 @@
 {% endcache %}
 
 {# -- BODY CLASS -- #}
-<body class="{% if entry is defined %}{{ (entry.color and entry.color != '#000000') or (entry.image and entry.image.one()) ? 'hero-light' : 'hero-dark' }}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">
+<body class="{% if entry is defined %}{% if entry.colors and entry.colors.type('color') %}has-color{% elseif entry.image and entry.image.one() %}has-image{% endif %}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">
 
 {% block body %}
 
