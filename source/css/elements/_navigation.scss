@@ -160,6 +160,10 @@
     border: 2px solid $oc-primary-6;
     color: $oc-primary-6;
 
+    @media #{$bp-small-only} {
+      margin-top: $sp-small;
+    }
+
     &:hover,
     &:focus {
       background-color: $oc-primary-6;
