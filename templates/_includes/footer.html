@@ -15,28 +15,62 @@
   {% minify %}
 
   <footer id="footer" class="footer">
-    <div class="mw-large cf">
-      <a class="navigation-brand footer-brand w1-3 mv2 fl-left" href="{{ siteUrl }}#" title="Home">
+    <div class="footer-prefooter mw-medium mv4">
+      <h4 class="w100 ta-center">{{ footer.description }}</h4>
+    </div>
 
+    <div class="mw-medium mv2 cf">
+      <a class="footer-brand w1-3 mv2 fl-left" href="{{ siteUrl }}#" title="Home">
         {% include '_includes/logo' %}
-
       </a>
-      <div class="footer-navigation mv2 fl-left">
 
-        {{ elements.navigation(navigation) }}
+      <div class="footer-navigation mv2 ph2 fl-left">
+        <nav class="footer-nav">
+          <h5 class="mb1 ts-large fw-bold">{{ navigation.headline }}</h5>
+          <ul class="footer-navList">
+            {% for block in navigation.navigation %}
+              {% if not loop.last or not navigation.button %}
+                {% switch block.type %}
+                  {% case "navExternal" %}
+                    {% set navLink = block.navLink %}
+                    {% set navTitle = block.navTitle %}
+                  {% default %}
+                    {% set navLink = block.navEntry.one().url %}
+                    {% set navTitle = block.navTitle ? block.navTitle : block.navEntry.one().title %}
+                {% endswitch %}
 
+                <li>
+                  <a class="footer-navLink ts-app{% if block.navEntry and craft.app.request.segments | first == block.navEntry.one().uri %} footer-navActive{% endif %}" href="{{ navLink }}" title="{{ navTitle }}">{{ navTitle }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
       </div>
-      <div class="footer-social mv2 fl-right">
 
-        {{ elements.social() }}
+      <div class="footer-navigation mv2 ph2 fl-left">
+        <nav class="footer-nav">
+          <h5 class="mb1 ts-large fw-bold">{{ footer.headline }}</h5>
+          <ul class="footer-navList">
+            {% for block in footer.navigation %}
+              {% switch block.type %}
+                {% case "navExternal" %}
+                  {% set navLink = block.navLink %}
+                  {% set navTitle = block.navTitle %}
+                {% default %}
+                  {% set navLink = block.navEntry.one().url %}
+                  {% set navTitle = block.navTitle ? block.navTitle : block.navEntry.one().title %}
+              {% endswitch %}
 
+              <li>
+                <a class="footer-navLink ts-app{% if block.navEntry and craft.app.request.segments | first == block.navEntry.one().uri %} footer-navActive{% endif %}" href="{{ navLink }}" title="{{ navTitle }}">{{ navTitle }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
       </div>
     </div>
-    <div class="mw-large">
-      <div class="w100">
-        <h6 class="footer-legal ts-app ta-center">© {{ "now" | date("Y") }} Connor Bär. All rights reserved.</h6>
-      </div>
-    </div>
+    <small class="footer-legal ph3 ta-center"><span>© {{ "now" | date("Y") }} {{ siteName }}. All rights reserved.</span>·<span>Tel: <a href="tel:+4915121208376">(+49) 151 2120 8376</a></span>·<span>Email: <a href="mailto:hello@connorbaer.co">hello@connorbaer.co</a></span>·<span><a href="/legal">Legal</a></span></small>
   </footer>
   {% endminify %}
   {% endcache %}

@@ -3,7 +3,6 @@
  #
  # Category
  # Date
- # Navigation
  # Radial
  # Share
  # Social
@@ -21,33 +20,6 @@
 
 {% macro date(date) %}
 	<time datetime="{{ date | date("Y-m-d") }}">{{ date | date("F d, Y") }}</time>
-{% endmacro %}
-
-
-{# Navigation #}
-
-{% macro navigation(global) %}
-  <nav>
-    <ul class="navigation-list">
-
-      {% for block in global.navigation %}
-
-        {% if block.type == "navSingle" or block.type == "navSection" %}
-          {% set navLink = block.navEntry.one().url %}
-          {% set navTitle = block.navTitle ? block.navTitle : block.navEntry.one().title %}
-        {% elseif block.type == "navExternal" %}
-          {% set navLink = block.navLink %}
-          {% set navTitle = block.navTitle %}
-        {% endif %}
-
-        <li class="navigation-item {% if block.navEntry %}{% if craft.app.request.segments | first == block.navEntry.one().uri %} navigation-active{% endif %}{% endif %}">
-          <a class="navigation-link" href="{{ navLink }}" title="{{ navTitle }}">{{ navTitle | replace(' ', '&nbsp;') | raw }}</a>
-        </li>
-
-      {% endfor %}
-
-    </ul>
-  </nav>
 {% endmacro %}
 
 
@@ -102,5 +74,4 @@
       <path fill-rule="evenodd" d="M12 0C5.37 0 0 5.28 0 11.792c0 5.21 3.438 9.63 8.205 11.188.6.11.82-.254.82-.568 0-.28-.01-1.021-.014-2.004-3.34.712-4.043-1.582-4.043-1.582-.546-1.362-1.335-1.725-1.335-1.725-1.087-.73.084-.716.084-.716 1.204.083 1.837 1.215 1.837 1.215 1.071 1.802 2.81 1.282 3.495.98.109-.762.418-1.283.761-1.577-2.666-.295-5.466-1.31-5.466-5.827 0-1.287.465-2.34 1.234-3.165-.124-.298-.537-1.496.116-3.12 0 0 1.008-.317 3.3 1.208.957-.262 1.985-.392 3.005-.398 1.02.006 2.045.136 3.004.398 2.29-1.525 3.297-1.208 3.297-1.208.655 1.624.244 2.822.12 3.12.77.826 1.234 1.878 1.234 3.165 0 4.53-2.805 5.527-5.479 5.818.43.362.814 1.083.814 2.181 0 1.578-.014 2.85-.014 3.236 0 .317.216.682.825.567 4.765-1.56 8.2-5.977 8.2-11.186C24 5.28 18.627 0 12 0"/>
     </svg>
   </a>
-
 {% endmacro %}

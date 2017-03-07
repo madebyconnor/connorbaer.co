@@ -2,7 +2,7 @@
   TYPOGRAPHY
 
   Text styles
-  Links & underlines
+  Links
   Text align
   Font families
   Font weights
@@ -49,10 +49,10 @@
 
 .ts-title4,
 %ts-title4 {
+  padding-bottom: $sp-small;
   transition: color $an-short;
+  border-bottom: 1px solid $oc-gray-2;
   font-family: $ff-mono;
-  font-size: $fs-regular;
-  font-weight: $fw-sans-normal;
   letter-spacing: $ls-large;
   line-height: $lh-small;
   text-transform: uppercase;
@@ -67,7 +67,6 @@
 %ts-quote {
   font-size: $fs-title3;
   font-style: italic;
-  font-weight: normal;
   line-height: $lh-normal;
 }
 
@@ -75,7 +74,6 @@
 %ts-large {
   color: $oc-gray-7;
   font-size: $fs-large;
-  font-weight: normal;
   line-height: $lh-normal;
 }
 
@@ -83,8 +81,6 @@
 %ts-body {
   margin-top: $sp-small;
   margin-bottom: $sp-small;
-  font-size: $fs-regular;
-  font-weight: normal;
   line-height: $lh-large;
 }
 
@@ -96,9 +92,6 @@
   line-height: $lh-small;
 }
 
-
-// Links & underlines //
-
 .ts-quote a,
 %ts-quote a,
 .ts-large a,
@@ -107,8 +100,10 @@
 %ts-body a,
 .ts-app a,
 %ts-app a,
-.link {
+.ts-link,
+%ts-link {
   display: inline-block;
+  transition: box-shadow $an-short;
   color: $oc-primary-6;
   line-height: $lh-small;
 
@@ -117,11 +112,6 @@
     color: $oc-primary-6;
     box-shadow: inset 0 -.075em 0 0 $oc-primary-6;
   }
-}
-
-.underline {
-  color: $oc-gray-8;
-  text-decoration: underline;
 }
 
 
@@ -166,9 +156,4 @@
 .fw-bold,
 strong {
   font-weight: bold;
-
-  &.ff-mono,
-  .ff-mono & {
-    font-weight: $fw-mono-bold;
-  }
 }

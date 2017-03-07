@@ -4,7 +4,7 @@
 
 Hi, I'm Connor! I enjoy life as a web developer and machine learning engineer. Problem solving is my passion. [Say hi](https://twitter.com/connor_baer)!
 
-[This is my website](https://connorbaer.co). It's built with [CraftCMS](https://craftcms.com) and a lot of ❤️.
+[This is my website](https://connorbaer.co). It's built with [CraftCMS](https://craftcms.com) and a lot of 💜.
 
 ## Getting started
 

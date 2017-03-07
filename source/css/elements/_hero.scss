@@ -52,23 +52,15 @@
 
 .hero-content {
   position: relative;
-  padding-top: 7.125rem + $sp-large;
+  padding-top: 3.5rem + $sp-large;
   padding-bottom: $sp-large;
   z-index: 99;
-
-  @media #{$bp-small} {
-    padding-top: 4rem + $sp-large;
-  }
 
   .hero-animation + &,
   .hero-image + &,
   .hero-map + & {
-    padding-top: 7.125rem + $sp-huge;
+    padding-top: 3.5rem + $sp-huge;
     padding-bottom: $sp-huge;
-
-    @media #{$bp-small} {
-      padding-top: 4rem + $sp-huge;
-    }
 
     .hero-text {
       text-shadow: 0 0 12px rgba($oc-gray-9, .15);

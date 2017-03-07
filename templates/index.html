@@ -22,7 +22,7 @@
 
   {% minify %}
   <script>
-    loadjs(['{{ siteUrl ~ 'assets/js/particles.min.' ~ staticAssetsVersion ~ '.js' }}'], 'particles');
+    loadjs(['https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'], 'particles');
     loadjs.ready('particles', {
       success: function() {
         particlesJS('js-particles', {
@@ -137,8 +137,10 @@
   {% set posts = craft.entries.section('writing').limit('3') %}
 
   {% if posts %}
-    <section class="mw-large mv4 cf">
-      <h3 class="w100 mt3 ts-title4"><a href="/writing">Latest Thoughts</a></h3>
+    <section class="mw-large mv5 cf">
+      <div class="w100 mt3">
+        <h3 class=" ts-title4"><a href="/writing">Latest Thoughts</a></h3>
+      </div>
         {% for post in posts %}
           <article class="w1-3 fl-left mt3">
             <h3 class="mb1 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
@@ -153,8 +155,10 @@
   {% set lazyImage = false %}
 
   {% if items %}
-    <section class="mw-large mv4">
-      <h3 class="w100 mv3 ts-title4"><a href="/creating">Latest Projects</a></h3>
+    <section class="mw-large mv5">
+      <div class="w100 mv3">
+        <h3 class="ts-title4"><a href="/creating">Latest Projects</a></h3>
+      </div>
       {% for item in items %}
         <div class="w100">
           <div class="crd-hover mv2 r16-9">
