@@ -108,13 +108,14 @@
 .ts-app a,
 %ts-app a,
 .link {
+  display: inline-block;
   color: $oc-primary-6;
+  line-height: $lh-small;
 
   &:hover,
   &:focus {
     color: $oc-primary-6;
-    text-decoration: underline;
-    text-decoration-skip: skip;
+    box-shadow: inset 0 -.075em 0 0 $oc-primary-6;
   }
 }
 

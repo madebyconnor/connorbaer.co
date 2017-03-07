@@ -305,8 +305,8 @@ a.crd:focus,
 
   &:hover,
   &:focus {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 24px -6px rgba($oc-gray-9, 0.36);
+    transform: scale(1.0125);
+    box-shadow: 0 18px 12px -12px rgba($oc-gray-9, .24);
   }
 }
 

@@ -114,9 +114,14 @@
   left: 0;
   padding-top: $sp-small;
   z-index: 9999;
+  pointer-events: none;
 
   @media #{$bp-small} {
     padding-top: $sp-medium;
+  }
+
+  a {
+    pointer-events: all;
   }
 }
 
@@ -133,7 +138,8 @@
 .footer {
   padding-top: $sp-small;
   padding-bottom: $sp-small;
-  background-color: $oc-gray-9;
+  background: radial-gradient(ellipse at top 33% center, $oc-gray-2, $oc-white);
+  background-color: $oc-gray-1;
 }
 
 @media #{$bp-small-only} {

@@ -131,16 +131,18 @@ $ls-small: .03em;
 
 // Colors
 
-$oc-primary-0: #eefcf5;
-$oc-primary-1: #cbf6e0;
-$oc-primary-2: #a9efcc;
-$oc-primary-3: #86e9b8;
-$oc-primary-4: #64e3a3;
-$oc-primary-5: #41dc8f;
-$oc-primary-6: #26D07C;
-$oc-primary-7: #20ac66;
-$oc-primary-8: #198a52;
-$oc-primary-9: #13673d;
+$oc-primary: #50f;
+
+$oc-primary-0: scale-color($oc-primary, $lightness: 96%);
+$oc-primary-1: scale-color($oc-primary, $lightness: 80%);
+$oc-primary-2: scale-color($oc-primary, $lightness: 64%);
+$oc-primary-3: scale-color($oc-primary, $lightness: 48%);
+$oc-primary-4: scale-color($oc-primary, $lightness: 32%);
+$oc-primary-5: scale-color($oc-primary, $lightness: 16%);
+$oc-primary-6: $oc-primary;
+$oc-primary-7: scale-color($oc-primary, $lightness: -15%);
+$oc-primary-8: scale-color($oc-primary, $lightness: -30%);
+$oc-primary-9: scale-color($oc-primary, $lightness: -45%);
 
 
 // Animations//

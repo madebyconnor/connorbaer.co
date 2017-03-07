@@ -1,5 +1,5 @@
 {#
- # Homepage template
+ # Structure index template
  # ---------------
  #
  # See this page for details on how Craft routes requests:
@@ -40,7 +40,7 @@
         {% for item in items %}
           <section class="w100 mv4 ff-sans">
             <div class="crd-hover mv2 r16-9">
-              <a class="item-background" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }}">
+              <a class="item-background" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
 
                 {% set images = item.images %}
 
