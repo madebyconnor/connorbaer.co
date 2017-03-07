@@ -1,4 +1,4 @@
-{% if loadPrism %}
+{% if loadPrism and not amp is defined %}
   <script>
   loadjs(['{{ siteUrl ~ 'assets/js/prism.min.' ~ staticAssetsVersion ~ '.js' }}'], 'prism');
   </script>

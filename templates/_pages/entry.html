@@ -1,0 +1,53 @@
+{#
+ # Page template
+ # -------------------
+ #
+ # See this entry for details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layouts/base" %}
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+{% block critical %}
+  <style>
+    {{ source(_self ~ '.min.css', ignore_missing = true) }}
+  </style>
+{% endblock %}
+
+{% block main %}
+  {% cache %}
+  {% minify %}
+
+  {# -- HERO -- #}
+  <article>
+    <header class="hero" {{ elements.radial(entry) }}>
+      {% if entry.image.one() %}
+        <div class="hero-background hero-image js-rellax" style="background-image: url('{{ entry.image.one().getUrl('large16x9') }}')"></div>
+      {% endif %}
+      <div class="hero-content mw-large ta-center">
+        <div class="hero-text w100">
+          <h1 class="mb1 ts-title1">{{ entry.title }}</h1>
+        </div>
+      </div>
+    </header>
+
+    {# -- CONTENT -- #}
+    <div class="blocks">
+
+      {# Post description #}
+      <div class="mw-medium">
+        <h2 class="w100 ts-large">{{ entry.description }}</h2>
+      </div>
+
+      {# Body matrix #}
+      {% include '_includes/body' %}
+
+    </div>
+  </article>
+
+  {% endminify %}
+  {% endcache %}
+{% endblock %}

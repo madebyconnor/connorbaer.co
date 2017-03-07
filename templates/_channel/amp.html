@@ -85,12 +85,7 @@
 
               {% if image is defined %}
                 <a href="{{ post.url }}" title="{{ post.title }}">
-                  <amp-img src="image.getUrl('small16x9') }}"
-                       srcset="{{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
-                       width="{{ image.getWidth('small16x9') }}"
-                       height="{{ image.getHeight('small16x9') }}"
-                       layout="responsive"
-                       alt="{{ image.title }}">
+                  {{ elements.image(image, 'amp', '16x9') }}
                 </a>
               {% endif %}
             {% endif %}

@@ -134,7 +134,7 @@
   </article>
 
   {# -- LATEST POSTS -- #}
-  {% set posts = craft.entries.section('writing').limit('3') %}
+  {% set posts = craft.entries.section('posts').limit('3') %}
 
   {% if posts %}
     <section class="mw-large mv4 cf">
@@ -151,7 +151,7 @@
   {% endif %}
 
   {# -- LATEST PROJECTS -- #}
-  {% set items = craft.entries.section('creating').limit('3') %}
+  {% set items = craft.entries.section('projects').limit('3') %}
   {% set lazyImage = false %}
 
   {% if items %}
@@ -170,17 +170,9 @@
                 {% for image in images %}
                   <div class="crd item-image">
                     {% if lazyImage %}
-                      <img class="lazyload"
-                           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                           data-sizes="auto"
-                           data-srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
-                           alt="{{ image.title }}">
+                      {{ elements.image(image, 'lazyload') }}
                     {% else %}
-                      <img class="img-responsive"
-                           src="{{ image.getUrl('medium') }}"
-                           sizes="20vw"
-                           srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
-                           alt="{{ image.title }}">
+                      {{ elements.image(image, 'image') }}
                     {% endif %}
                   </div>
                 {% endfor %}

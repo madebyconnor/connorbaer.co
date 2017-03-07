@@ -120,6 +120,7 @@ module.exports = {
         { url: 'creating/deutsche-stiftung-uwc', template: '_structure/entry' },
         { url: 'writing', template: '_channel/index' },
         { url: 'writing/africa-is-not-a-country', template: '_channel/entry' },
+        { url: 'legal', template: '_pages/entry' },
       ],
     },
     amp: {
@@ -137,7 +138,6 @@ module.exports = {
         src + 'js/custom.js',
         modules + 'lazysizes/lazysizes.js',
         modules + 'fontfaceobserver/fontfaceobserver.standalone.js',
-        modules + 'Right-Height/dist/js/right-height.js',
         modules + 'rellax/rellax.js',
       ],
       single: {

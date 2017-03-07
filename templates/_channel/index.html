@@ -17,7 +17,7 @@
   </style>
 {% endblock %}
 
-{% set section = craft.app.request.segments | first %}
+{% set section = entry.source %}
 
 {% block main %}
 
@@ -45,11 +45,7 @@
 
         {% if image %}
           <a class="crd-hover" href="{{ featured.url }}" title="{{ featured.title }}">
-            <img class="img-responsive"
-                 src="{{ image.getUrl('medium16x9') }}"
-                 sizes="100vw, (min-width: 37.5em) 40vw, (min-width: 56.25em) 60vw"
-                 srcset="{{ image.getUrl('large16x9') }} {{ image.getWidth('large16x9') }}w, {{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
-                 alt="{{ image.title }}">
+            {{ elements.image(image) }}
           </a>
         {% endif %}
         <h2 class="mt3 ts-title2"><a href="{{ featured.url }}" title="{{ featured.title }}">{{ featured.title }}</a></h2>
