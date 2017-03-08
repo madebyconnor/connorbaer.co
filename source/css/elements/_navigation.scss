@@ -244,6 +244,14 @@
   }
 }
 
+.footer-brand {
+  width: 100%;
+
+  @media #{$bp-small} {
+    width: calc(100% / 3);
+  }
+}
+
 .footer-navigation {
   width: 50%;
   line-height: $lh-normal;

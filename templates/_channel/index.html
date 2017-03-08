@@ -1,5 +1,5 @@
 {#
- # Newsletter index template
+ # Channel overview template
  # -------------------
  #
  # See this page for details on how Craft routes requests:
@@ -35,31 +35,41 @@
     {# -- FEATURED POST -- #}
     {% cache %}
     {% minify %}
-    {% set featured = craft.entries.section(section).featured('1').one() %}
+    {% set featured = craft.entries.section(section).featured('1').limit('1') %}
 
     {% if featured %}
-      <article class="w100 mv4">
+      {% for post in featured %}
+        <article class="w100 mv4">
 
-        {# First image from matrix in post #}
-        {% set image = featured.image.one() %}
+          {# Featured image or first image from matrix blocks? #}
+          {% if post.image.one() %}
+            {% set image = post.image.one() %}
+          {% else %}
+            {% set imageBlock = post.body.type('image').one() %}
+            {% if imageBlock %}
+              {% set image = imageBlock.image.one() %}
+            {% endif %}
+          {% endif %}
 
-        {% if image %}
-          <a class="crd-hover" href="{{ featured.url }}" title="{{ featured.title }}">
-            {{ elements.image(image) }}
-          </a>
-        {% endif %}
-        <h2 class="mt3 ts-title2"><a href="{{ featured.url }}" title="{{ featured.title }}">{{ featured.title }}</a></h2>
-        <p class="mv1 ts-body">{{ helpers.striptags(featured.description) }}</p>
-        <span class="ts-app">{{ elements.date(featured.postDate) }}{% if featured.category is not empty %}&nbsp;·&nbsp;{{ elements.category(featured) }}{% endif %}</span>
-      </article>
+          {% if image is defined and image %}
+            <a href="{{ post.url }}" title="{{ post.title }}">
+              {{ elements.image(image) }}
+            </a>
+          {% endif %}
+          <h2 class="mt3 ts-title2"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+          <p class="mv1 ts-body">{{ helpers.striptags(post.description) }}</p>
+          <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+        </article>
+      {% endfor %}
     {% endif %}
 
-    {% endminify %}
-    {% endcache %}
-
     {# -- POSTS -- #}
-    {% minify %}
-    {% set posts = craft.entries.section(section).all() | without(featured) %}
+
+    {# Get the ids of the featured posts above #}
+    {% set featuredIds = featured.ids() %}
+
+    {# Get posts in section which don't have an id in featuredIds #}
+    {% set posts = craft.entries.section(section).id('and, not ' ~ featuredIds | join(', not ')) %}
 
     {% for post in posts %}
       <article class="w100 mv4">
@@ -69,7 +79,8 @@
       </article>
     {% endfor %}
 
-    {% endminify %}
-
   </div>
+
+  {% endminify %}
+  {% endcache %}
 {% endblock %}

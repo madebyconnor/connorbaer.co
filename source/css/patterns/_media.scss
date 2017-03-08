@@ -11,6 +11,7 @@
 // Ratios //
 
 .r16-9 {
+  display: block;
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
@@ -21,6 +22,32 @@
     right: 0;
     bottom: 0;
     left: 0;
+  }
+}
+
+.r1-1 {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+
+  > * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+a > img,
+.img-hover {
+  transition: opacity $an-medium;
+  backface-visibility: hidden;
+
+  &:hover,
+  &:focus {
+    opacity: 0.75;
   }
 }
 

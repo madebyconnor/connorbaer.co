@@ -139,7 +139,7 @@
   {% if posts %}
     <section class="mw-large mv4 cf">
       <div class="w100 mt3">
-        <h3 class=" ts-title4"><a href="/writing">Latest Thoughts</a></h3>
+        <h3 class=" ts-title4"><a href="/writing">Latest Posts</a></h3>
       </div>
         {% for post in posts %}
           <article class="w1-3 fl-left mt3">
@@ -150,39 +150,70 @@
     </section>
   {% endif %}
 
-  {# -- LATEST PROJECTS -- #}
-  {% set items = craft.entries.section('projects').limit('3') %}
-  {% set lazyImage = false %}
+  {# -- FEATURED PROJECTS -- #}
+  {% set featured = craft.entries.section('projects').featured('1').limit('2') %}
 
-  {% if items %}
-    <section class="mw-large mv4">
-      <div class="w100 mv3">
+  {% if featured %}
+    <section class="mw-large mv2 cf">
+      <div class="w100 mt3">
         <h3 class="ts-title4"><a href="/creating">Latest Projects</a></h3>
       </div>
-      {% for item in items %}
-        <div class="w100">
-          <div class="crd-hover mv2 r16-9">
-            <a class="item-background" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+      {% for item in featured %}
+        <article class="w1-2 fl-left mv3">
 
-              {% set images = item.images %}
+          {# Featured image or first image from matrix blocks? #}
+          {% if item.image.one() %}
+            {% set image = item.image.one() %}
+          {% else %}
+            {% set imageBlock = item.body.type('image').one() %}
+            {% if imageBlock %}
+              {% set image = imageBlock.image.one() %}
+            {% endif %}
+          {% endif %}
 
-              {% if images %}
-                {% for image in images %}
-                  <div class="crd item-image">
-                    {% if lazyImage %}
-                      {{ elements.image(image, 'lazyload') }}
-                    {% else %}
-                      {{ elements.image(image, 'image') }}
-                    {% endif %}
-                  </div>
-                {% endfor %}
-              {% endif %}
+          {% if image is defined and image %}
+            <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+              {{ elements.image(image, null, '1x1', '36rem') }}
             </a>
-          </div>
-          <p class="mb1 ts-app">{{ item.client.one().title }}</p>
-          <h3 class="ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
-        </div>
-        {% set lazyImage = true %}
+          {% endif %}
+          <h3 class="mv1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {# -- LATEST PROJECTS -- #}
+
+  {# Get the ids of the featured items above #}
+  {% set featuredIds = featured.ids() %}
+
+  {# Get items in section which don't have an id in featuredIds #}
+  {% set items = craft.entries.section('projects').id('and, not ' ~ featuredIds | join(', not ')).limit('3') %}
+
+  {% if items %}
+    <section class="mw-large mv2 cf">
+      {% for item in items %}
+        <article class="w1-3 fl-left mv2">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+
+            {# Featured image or first image from matrix blocks? #}
+            {% if item.image.one() %}
+              {% set image = item.image.one() %}
+            {% else %}
+              {% set imageBlock = item.body.type('image').one() %}
+              {% if imageBlock %}
+                {% set image = imageBlock.image.one() %}
+              {% endif %}
+            {% endif %}
+
+            {% if image is defined and image %}
+              {{ elements.image(image, 'lazyload', '1x1') }}
+            {% endif %}
+          </a>
+          <h3 class="mv1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
       {% endfor %}
     </section>
   {% endif %}

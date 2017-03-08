@@ -23,6 +23,12 @@
 }
 
 @media #{$bp-small} {
+  .w1-3 {
+    width: (100% / 2);
+  }
+}
+
+@media #{$bp-medium} {
   .w1-2 {
     width: (100% / 2);
   }

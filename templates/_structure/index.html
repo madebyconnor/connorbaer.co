@@ -1,5 +1,5 @@
 {#
- # Structure index template
+ # Structure overview template
  # ---------------
  #
  # See this page for details on how Craft routes requests:
@@ -24,58 +24,78 @@
   {% minify %}
 
   {# -- HERO -- #}
-  <article>
-    <header class="hero">
-      <div class="hero-content mw-large ta-center">
-        <div class="hero-text w100">
-          <h1 class="ts-title1">{{ entry.title }}</h1>
-        </div>
+  <header class="hero">
+    <div class="hero-content mw-large ta-center">
+      <div class="hero-text w100">
+        <h1 class="ts-title1">{{ entry.title }}</h1>
       </div>
-    </header>
+    </div>
+  </header>
 
-    {# -- Items -- #}
-    {% set items = craft.entries.section(section).all() %}
-    {% set lazyImage = false %}
+  {# -- FEATURED ITEMS -- #}
+  {% set featured = craft.entries.section(section).featured('1').limit('2') %}
 
-    {% if items %}
-      <div class="mw-large">
-        {% for item in items %}
-          <section class="w100 mv4 ff-sans">
-            <div class="crd-hover mv2 r16-9">
-              <a class="item-background" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+  {% if featured %}
+    <div class="mw-large mv3 cf">
+      {% for item in featured %}
+        <article class="w1-2 fl-left mv3">
 
-                {% set images = item.images %}
+          {# Featured image or first image from matrix blocks? #}
+          {% if item.image.one() %}
+            {% set image = item.image.one() %}
+          {% else %}
+            {% set imageBlock = item.body.type('image').one() %}
+            {% if imageBlock %}
+              {% set image = imageBlock.image.one() %}
+            {% endif %}
+          {% endif %}
 
-                {% if images %}
-                  {% for image in images %}
-                    <div class="crd item-image">
-                      {% if lazyImage %}
-                        <img class="lazyload"
-                             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                             data-sizes="auto"
-                             data-srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
-                             alt="{{ image.title }}">
-                      {% else %}
-                        <img class="img-responsive"
-                             src="{{ image.getUrl('medium') }}"
-                             sizes="20vw"
-                             srcset="{{ image.getUrl('medium') }} {{ image.getWidth('medium') }}w, {{ image.getUrl('small') }} {{ image.getWidth('small') }}w"
-                             alt="{{ image.title }}">
-                      {% endif %}
-                    </div>
-                  {% endfor %}
-                {% endif %}
-              </a>
-            </div>
-            <p class="mb1 ts-app">{{ item.client.one().title }}</p>
-            <h3 class="ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
-          </section>
-          {% set lazyImage = true %}
-        {% endfor %}
-      </div>
-    {% endif %}
+          {% if image is defined and image %}
+            <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+              {{ elements.image(image, null, '1x1', '36rem') }}
+            </a>
+          {% endif %}
+          <h3 class="mv1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-  </article>
+  {# -- ITEMS -- #}
+
+  {# Get the ids of the featured items above #}
+  {% set featuredIds = featured.ids() %}
+
+  {# Get items in section which don't have an id in featuredIds #}
+  {% set items = craft.entries.section(section).id('and, not ' ~ featuredIds | join(', not ')) %}
+
+  {% if items %}
+    <div class="mw-large mv2 cf">
+      {% for item in items %}
+        <article class="w1-3 fl-left mv2">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+
+            {# Featured image or first image from matrix blocks? #}
+            {% if item.image.one() %}
+              {% set image = item.image.one() %}
+            {% else %}
+              {% set imageBlock = item.body.type('image').one() %}
+              {% if imageBlock %}
+                {% set image = imageBlock.image.one() %}
+              {% endif %}
+            {% endif %}
+
+            {% if image is defined and image %}
+              {{ elements.image(image, 'lazyload', '1x1') }}
+            {% endif %}
+          </a>
+          <h3 class="mv1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  {% endif %}
 
   {% endminify %}
   {% endcache %}
