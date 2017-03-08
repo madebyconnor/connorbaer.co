@@ -28,6 +28,8 @@
 {% block main %}
 
   {# -- HERO -- #}
+  {% set image = entry.image.one() %}
+
   <article>
     <header class="hero" {{ elements.radial(entry) }}>
       <div class="hero-content hero-project mw-large js-rellax" data-rellax-speed="-5">
@@ -35,13 +37,11 @@
           <h1 class="mb1 ts-title1">{{ entry.title }}</h1>
           <h2 class="ts-large">{{ entry.description }}</h2>
         </div>
-        <div class="hero-projectImage">
-          {% set image = entry.image.one() %}
-
-          {% if image %}
+        {% if image %}
+          <div class="hero-projectImage">
             {{ elements.image(image, 'image', '1x1', '50vw') }}
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
       </div>
     </header>
 

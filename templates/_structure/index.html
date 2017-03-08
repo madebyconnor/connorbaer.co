@@ -39,22 +39,22 @@
     <div class="mw-large mv3 cf">
       {% for item in featured %}
         <article class="w1-2 fl-left mv3">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
 
-          {# Featured image or first image from matrix blocks? #}
-          {% if item.image.one() %}
-            {% set image = item.image.one() %}
-          {% else %}
-            {% set imageBlock = item.body.type('image').one() %}
-            {% if imageBlock %}
-              {% set image = imageBlock.image.one() %}
+            {# Featured image or first image from matrix blocks? #}
+            {% if item.image.one() %}
+              {% set image = item.image.one() %}
+            {% else %}
+              {% set imageBlock = item.body.type('image').one() %}
+              {% if imageBlock %}
+                {% set image = imageBlock.image.one() %}
+              {% endif %}
             {% endif %}
-          {% endif %}
 
-          {% if image is defined and image %}
-            <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+            {% if image is defined and image %}
               {{ elements.image(image, null, '1x1', '36rem') }}
-            </a>
-          {% endif %}
+            {% endif %}
+          </a>
           <h3 class="mv1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
           <p class="ts-app">{{ item.client.one().title }}</p>
         </article>
