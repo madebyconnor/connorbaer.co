@@ -4,11 +4,11 @@
 <figure class="block-image">
   {% for image in block.image %}
     {% if lazyImage and not amp is defined %}
-      {{ elements.image(image, 'lazyload', '16x9') }}
+      {{ elements.image(image, 'lazyload') }}
     {% elseif amp is defined %}
-      {{ elements.image(image, 'amp', '16x9') }}
+      {{ elements.image(image, 'amp') }}
     {% else %}
-      {{ elements.image(image, 'image', '16x9') }}
+      {{ elements.image(image, 'image') }}
     {% endif %}
   {% endfor %}
   {% if block.caption | length %}
