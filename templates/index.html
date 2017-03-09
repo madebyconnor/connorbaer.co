@@ -134,7 +134,7 @@
   </article>
 
   {# -- LATEST POSTS -- #}
-  {% set posts = craft.entries.section('posts').limit('3') %}
+  {% set posts = craft.entries.section('writing').limit('3') %}
 
   {% if posts %}
     <section class="mw-large mv4 cf">
@@ -151,7 +151,7 @@
   {% endif %}
 
   {# -- FEATURED PROJECTS -- #}
-  {% set featured = craft.entries.section('projects').featured('1').limit('2') %}
+  {% set featured = craft.entries.section('creating').featured('1').limit('2') %}
 
   {% if featured %}
     <section class="mw-large mv2 cf">
@@ -189,7 +189,7 @@
   {% set featuredIds = featured.ids() %}
 
   {# Get items in section which don't have an id in featuredIds #}
-  {% set items = craft.entries.section('projects').id('and, not ' ~ featuredIds | join(', not ')).limit('3') %}
+  {% set items = craft.entries.section('creating').id('and, not ' ~ featuredIds | join(', not ')).limit('3') %}
 
   {% if items %}
     <section class="mw-large mv2 cf">
