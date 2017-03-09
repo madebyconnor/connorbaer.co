@@ -27,7 +27,7 @@
 
     &:hover,
     &:focus {
-      color: $oc-primary-6;
+      color: $oc-one-6;
     }
   }
 }
@@ -51,15 +51,15 @@
 %ts-title4 {
   padding-bottom: $sp-small;
   transition: color $an-short;
-  border-bottom: 1px solid $oc-gray-2;
-  font-family: $ff-mono;
+  border-bottom: 1px solid $oc-gray-3;
+  font-family: $ff-sans;
   letter-spacing: $ls-large;
   line-height: $lh-small;
   text-transform: uppercase;
 
   a:hover,
   a:focus {
-    color: $oc-primary-6;
+    color: $oc-one-6;
   }
 }
 
@@ -104,13 +104,13 @@
 %ts-link {
   display: inline-block;
   transition: box-shadow $an-short;
-  color: $oc-primary-6;
+  color: $oc-one-6;
   line-height: $lh-small;
 
   &:hover,
   &:focus {
-    color: $oc-primary-6;
-    box-shadow: inset 0 -.075em 0 0 $oc-primary-6;
+    color: $oc-one-6;
+    box-shadow: inset 0 -.075em 0 0 $oc-one-6;
   }
 }
 

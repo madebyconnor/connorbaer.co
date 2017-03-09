@@ -34,8 +34,9 @@
     <header class="hero" {{ elements.radial(entry) }}>
       <div class="hero-content hero-project mw-large js-rellax" data-rellax-speed="-5">
         <div class="hero-text ph2">
-          <h1 class="mb1 ts-title1">{{ entry.title }}</h1>
-          <h2 class="ts-large">{{ entry.description }}</h2>
+          <h1 class="ts-title1">{{ entry.title }}</h1>
+          <h2 class="mt1 ts-large">{{ entry.description }}</h2>
+          <p class="mt2 ts-app">{{ entry.client.one().title }}</p>
         </div>
         {% if image %}
           <div class="hero-projectImage">

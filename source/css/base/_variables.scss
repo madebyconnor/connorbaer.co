@@ -131,18 +131,30 @@ $ls-small: .03em;
 
 // Colors
 
-$oc-primary: #50f;
+$oc-one: #50f;
+$oc-two: #00f4f7;
 
-$oc-primary-0: scale-color($oc-primary, $lightness: 96%);
-$oc-primary-1: scale-color($oc-primary, $lightness: 80%);
-$oc-primary-2: scale-color($oc-primary, $lightness: 64%);
-$oc-primary-3: scale-color($oc-primary, $lightness: 48%);
-$oc-primary-4: scale-color($oc-primary, $lightness: 32%);
-$oc-primary-5: scale-color($oc-primary, $lightness: 16%);
-$oc-primary-6: $oc-primary;
-$oc-primary-7: scale-color($oc-primary, $lightness: -15%);
-$oc-primary-8: scale-color($oc-primary, $lightness: -30%);
-$oc-primary-9: scale-color($oc-primary, $lightness: -45%);
+$oc-one-0: scale-color($oc-one, $lightness: 96%);
+$oc-one-1: scale-color($oc-one, $lightness: 80%);
+$oc-one-2: scale-color($oc-one, $lightness: 64%);
+$oc-one-3: scale-color($oc-one, $lightness: 48%);
+$oc-one-4: scale-color($oc-one, $lightness: 32%);
+$oc-one-5: scale-color($oc-one, $lightness: 16%);
+$oc-one-6: $oc-one;
+$oc-one-7: scale-color($oc-one, $lightness: -15%);
+$oc-one-8: scale-color($oc-one, $lightness: -30%);
+$oc-one-9: scale-color($oc-one, $lightness: -45%);
+
+$oc-two-0: scale-color($oc-two, $lightness: 96%);
+$oc-two-1: scale-color($oc-two, $lightness: 80%);
+$oc-two-2: scale-color($oc-two, $lightness: 64%);
+$oc-two-3: scale-color($oc-two, $lightness: 48%);
+$oc-two-4: scale-color($oc-two, $lightness: 32%);
+$oc-two-5: scale-color($oc-two, $lightness: 16%);
+$oc-two-6: $oc-two;
+$oc-two-7: scale-color($oc-two, $lightness: -15%);
+$oc-two-8: scale-color($oc-two, $lightness: -30%);
+$oc-two-9: scale-color($oc-two, $lightness: -45%);
 
 
 // Animations//

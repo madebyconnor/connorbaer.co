@@ -15,11 +15,11 @@
   margin: $sp-small 0;
   padding: .5rem .75rem;
   transition: background-color $an-medium, color $an-medium;
-  border: 3px solid $oc-primary-6;
+  border: 3px solid $oc-one-6;
   border-radius: $sp-tiny;
   outline: none;
   background-color: $oc-white;
-  color: $oc-primary-6;
+  color: $oc-one-6;
   font-size: $fs-regular;
   font-weight: $fw-sans-normal;
   letter-spacing: 1px;
@@ -28,7 +28,7 @@
 
   &:hover,
   &:focus {
-    background-color: $oc-primary-6;
+    background-color: $oc-one-6;
     color: $oc-white;
   }
 }
@@ -51,15 +51,15 @@
   // Active state
 
   &:focus {
-    border-color: $oc-primary-6;
+    border-color: $oc-one-6;
     outline: none;
 
     ~ .form-icon {
-      fill: $oc-primary-6;
+      fill: $oc-one-6;
     }
 
     ~ .form-label {
-      color: $oc-primary-6;
+      color: $oc-one-6;
     }
   }
 }
@@ -83,8 +83,8 @@ textarea {
 
   &:focus,
   &:active {
-    border-color: $oc-primary-6;
-    background-color: $oc-primary-0;
+    border-color: $oc-one-6;
+    background-color: $oc-one-0;
   }
 
   &:valid {
@@ -152,7 +152,7 @@ textarea {
 
 @keyframes inputHighlighter {
   from {
-    background: $oc-primary-1;
+    background: $oc-one-1;
   }
 
   to {

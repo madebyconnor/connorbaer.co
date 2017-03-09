@@ -6,6 +6,7 @@
  * list of the default settings in `vendor/craftcms/cms/src/config/defaults/general.php`.
  */
 
+
 return [
 	'*' => array(
 		'defaultWeekStartDay' => 1,

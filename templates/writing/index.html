@@ -17,7 +17,7 @@
   </style>
 {% endblock %}
 
-{% set section = entry.source %}
+{% set section = craft.app.request.segments | first %}
 
 {% block main %}
 
