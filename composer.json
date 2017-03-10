@@ -28,7 +28,9 @@
     "nystudio107/craft3-minify": "^1.2",
     "nystudio107/craft3-cookies": "^1.1",
     "nystudio107/craft3-recipe": "^1.0",
-    "craftcms/mailgun": "1.0.0.1"
+    "craftcms/mailgun": "1.0.0.1",
+    "dukt/twitter": "~2.0",
+    "barrelstrength/sproutnotes": "^2.0"
   },
   "scripts": {
     "post-root-package-install": [

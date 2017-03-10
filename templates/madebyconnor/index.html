@@ -1,0 +1,223 @@
+{#
+ # Homepage template
+ # ---------------
+ #
+ # See this page for details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layouts/base" %}
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+{% block critical %}
+  <style>
+    {{ source(_self ~ '.min.css', ignore_missing = true) }}
+  </style>
+{% endblock %}
+
+{% block head %}
+  {{ parent() }}
+
+  {% minify %}
+  <script>
+    loadjs(['https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'], 'particles');
+    loadjs.ready('particles', {
+      success: function() {
+        particlesJS('js-particles', {
+          'particles': {
+            'number': {
+              'value': 100,
+              'density': {
+                'enable': true,
+                'value_area': 800
+              }
+            },
+            'color': {
+              'value': '#5000f1'
+            },
+            'shape': {
+              'type': 'circle',
+              'polygon': {
+                'nb_sides': 5
+              },
+            },
+            'opacity': {
+              'value': 0.75,
+              'random': false,
+              'anim': {
+                'enable': false,
+                'speed': 1,
+                'opacity_min': 0.1,
+                'sync': false
+              }
+            },
+            'size': {
+              'value': 3,
+              'random': true,
+              'anim': {
+                'enable': false,
+                'speed': 40,
+                'size_min': 0.1,
+                'sync': false
+              }
+            },
+            'line_linked': {
+              'enable': true,
+              'distance': 150,
+              'color': '#868e96',
+              'opacity': 0.4,
+              'width': 1
+            },
+            'move': {
+              'enable': true,
+              'speed': 6,
+              'direction': 'none',
+              'random': false,
+              'straight': false,
+              'out_mode': 'out',
+              'bounce': false,
+              'attract': {
+                'enable': false,
+                'rotateX': 600,
+                'rotateY': 1200
+              }
+            }
+          },
+          'interactivity': {
+            'detect_on': 'canvas',
+            'events': {
+              'onhover': {
+                'enable': true,
+                'mode': 'repulse'
+              },
+              'onclick': {
+                'enable': true,
+                'mode': 'push'
+              },
+              'resize': true
+            },
+            'modes': {
+              'repulse': {
+                'distance': 100,
+                'duration': 0.4
+              },
+              'push': {
+                'particles_nb': 4
+              }
+            }
+          },
+          'retina_detect': true
+        });
+      }
+    });
+  </script>
+  {% endminify %}
+{% endblock %}
+
+{% block main %}
+  {% cache %}
+  {% minify %}
+
+  {# -- HERO -- #}
+  <article>
+    <header class="hero">
+      <div id="js-particles" class="hero-background hero-animation js-rellax" data-rellax-speed="-5"></div>
+      <div class="hero-content mw-medium ta-center">
+        <div class="hero-text w100">
+          <h1 class="ts-title1">{{ helpers.striptags(entry.title) }}</h1>
+          <h2 class="mt2 ts-large">{{ helpers.striptags(entry.description) }}</h2>
+        </div>
+      </div>
+    </header>
+  </article>
+
+  {# -- LATEST POSTS -- #}
+  {% set posts = craft.entries.section('writing').limit('3') %}
+
+  {% if posts %}
+    <section class="mw-large mv4 cf">
+      <div class="w100 mt3">
+        <h3 class=" ts-title4"><a href="/writing">Latest Posts</a></h3>
+      </div>
+        {% for post in posts %}
+          <article class="w1-3 fl-left mt3">
+            <h3 class="mb1 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+          </article>
+        {% endfor %}
+    </section>
+  {% endif %}
+
+  {# -- FEATURED PROJECTS -- #}
+  {% set featured = craft.entries.section('creating').featured('1').limit('2') %}
+
+  {% if featured %}
+    <section class="mw-large mv2 cf">
+      <div class="w100 mt3">
+        <h3 class="ts-title4"><a href="/creating">Latest Projects</a></h3>
+      </div>
+      {% for item in featured %}
+        <article class="w1-2 fl-left mv3">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+
+            {# Featured image or first image from matrix blocks? #}
+            {% if item.image.one() %}
+              {% set image = item.image.one() %}
+            {% else %}
+              {% set imageBlock = item.body.type('image').one() %}
+              {% if imageBlock %}
+                {% set image = imageBlock.image.one() %}
+              {% endif %}
+            {% endif %}
+
+            {% if image is defined and image %}
+              {{ elements.image(image, null, '1x1', '36rem') }}
+            {% endif %}
+          </a>
+          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {# -- LATEST PROJECTS -- #}
+
+  {# Get the ids of the featured items above #}
+  {% set featuredIds = featured.ids() %}
+
+  {# Get items in section which don't have an id in featuredIds #}
+  {% set items = craft.entries.section('creating').id('and, not ' ~ featuredIds | join(', not ')).limit('3') %}
+
+  {% if items %}
+    <section class="mw-large mv2 cf">
+      {% for item in items %}
+        <article class="w1-3 fl-left mv2">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+
+            {# Featured image or first image from matrix blocks? #}
+            {% if item.image.one() %}
+              {% set image = item.image.one() %}
+            {% else %}
+              {% set imageBlock = item.body.type('image').one() %}
+              {% if imageBlock %}
+                {% set image = imageBlock.image.one() %}
+              {% endif %}
+            {% endif %}
+
+            {% if image is defined and image %}
+              {{ elements.image(image, 'lazyload', '1x1') }}
+            {% endif %}
+          </a>
+          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% endminify %}
+  {% endcache %}
+{% endblock %}
