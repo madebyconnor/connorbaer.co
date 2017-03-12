@@ -32,7 +32,7 @@
 -#}
 
 
-{% set staticAssetsVersion = "021" %}
+{% set staticAssetsVersion = "022" %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}
 
 
@@ -57,14 +57,14 @@
 
     {% block critical %}{% endblock %}
 
-    <link rel="preload" href="{{ siteUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" type="text/css" href="{{ siteUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css"></noscript>
+    <link rel="preload" href="{{ craft.config.baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" type="text/css" href="{{ craft.config.baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css"></noscript>
     <script>
       {{ source('_includes/js/loadCSS.min.js') }}
       {{ source('_includes/js/cssrelpreload.min.js') }}
     </script>
   {% else %}
-    <link rel="stylesheet" type="text/css" href="{{ siteUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css">
+    <link rel="stylesheet" type="text/css" href="{{ craft.config.baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css">
   {% endif %}
 
   {# -- SERVICE WORKER -- #}
@@ -80,7 +80,7 @@
 
   {# -- COMBINED JAVASCRIPT -- #}
   <script>
-  loadjs(['{{ siteUrl ~ 'assets/js/combined.min.' ~ staticAssetsVersion ~ '.js' }}'], 'scripts');
+  loadjs(['{{ craft.config.baseUrl ~ 'assets/js/combined.min.' ~ staticAssetsVersion ~ '.js' }}'], 'scripts');
   loadjs.ready('scripts', {
     success: function() {
       const sans = new FontFaceObserver('Overpass', { weight: 400, });
@@ -106,6 +106,8 @@
         html.classList.remove('fonts-loading');
         html.classList.add('fonts-failed');
       });
+
+      objectFitImages();
 
       const rellax = new Rellax('.js-rellax');
     }

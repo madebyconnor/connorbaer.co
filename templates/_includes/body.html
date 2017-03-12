@@ -15,6 +15,7 @@
 {# Initialize a few variables #}
 {% set lazyImage = false %}
 {% set loadPrism = true %}
+{% set loadPhotoswipe = true %}
 {% set prevPosition = '' %}
 
 {% for block in entry.body %}
@@ -49,9 +50,10 @@
     {# Output the appropriate block #}
     {% include ('_includes/blocks/_block_' ~ block.type.handle) %}
 
-    {# Reset variables #}
+    {# Adjust variables #}
     {% if block.type.handle == "image" %}
       {% set lazyImage = true %}
+      {% set loadPhotoswipe = false %}
     {% elseif block.type.handle == "code" %}
       {% set loadPrism = false %}
     {% endif %}

@@ -1,0 +1,56 @@
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+{% set numberOfImages = block.images | length %}
+
+<div class="block-images">
+  {% for image in block.images %}
+    <figure class="block-image{% if not amp is defined %} block-image{{ numberOfImages }}{% endif %}">
+      {% if lazyImage and not amp is defined %}
+        <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
+          {{ elements.image(image, 'lazyload') }}
+        </a>
+      {% elseif amp is defined %}
+        {{ elements.image(image, 'amp') }}
+      {% else %}
+        <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
+          {{ elements.image(image, 'image') }}
+        </a>
+      {% endif %}
+    </figure>
+  {% endfor %}
+</div>
+{% if block.caption | length %}
+<figcaption class="block-caption mb2 ts-app">
+  {{ block.caption }}
+</figcaption>
+{% endif %}
+
+
+{% if loadPhotoswipe %}
+  <script>
+  loadjs(['{{ craft.config.baseUrl ~ 'assets/js/photoswipe.min.' ~ staticAssetsVersion ~ '.js' }}'], 'photoswipe');
+  loadjs.ready('photoswipe', {
+    success: function() {
+      initPhotoSwipeFromDOM('.block-images');
+    }
+  });
+  </script>
+
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+        PhotoSwipe keeps only 3 of them in the DOM to save memory.
+        Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+    </div>
+  </div>
+{% endif %}

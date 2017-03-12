@@ -12,7 +12,10 @@
 {% import '_includes/helpers' as helpers %}
 
 {% set section = craft.app.request.segments | first %}
-{% set entry = craft.entries.section(section).slug(slug)[0] %}
+{% set entry = craft.entries({
+  section: section,
+  slug: slug
+})[0] %}
 {% set amp = true %}
 
 {% block custom %}

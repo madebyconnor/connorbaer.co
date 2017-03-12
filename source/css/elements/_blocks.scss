@@ -2,11 +2,13 @@
   BLOCKS
 
   Positions
+  Caption
   Text
-  Image
   Quote
+  Images
+  Video
+  Tweet
   Code
-  Embed
 */
 
 
@@ -43,21 +45,33 @@
     margin-bottom: $sp-large;
   }
 
-  .position-drop-right div,
-  .position-drop-left div {
+  .position-drop-right > div,
+  .position-drop-left > div {
     width: 24rem;
     margin-top: $sp-tiny;
     margin-bottom: $sp-tiny;
   }
 
-  .position-drop-right div {
+  .position-drop-right > div {
     margin-left: $sp-small;
     float: right;
   }
 
-  .position-drop-left div {
+  .position-drop-left > div {
     margin-right: $sp-small;
     float: left;
+  }
+}
+
+
+// Caption //
+
+.block-caption {
+  .position-center &,
+  .position-full & {
+    margin-right: $sp-small;
+    margin-left: $sp-small;
+    text-align: center;
   }
 }
 
@@ -119,18 +133,6 @@
 }
 
 
-// Image //
-
-.block-image {
-  // TODO: Gallery
-  .position-drop-right &,
-  .position-drop-left & {
-    margin-top: $sp-tiny;
-    margin-bottom: $sp-tiny;
-  }
-}
-
-
 // Quote //
 
 .block-quote {
@@ -144,24 +146,59 @@
 }
 
 
-// Code //
+// Images //
 
-.block-code {
-  background-color: $oc-gray-1;
+.block-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
-  .position-full & {
-    padding-top: $sp-small;
-    padding-bottom: $sp-small;
+.block-image {
+  width: 100%;
+  margin-bottom: $sp-small;
+}
+
+.block-image2,
+.block-image3,
+.block-image4 {
+  display: block;
+  position: relative;
+  margin-bottom: $sp-small;
+
+  a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 
-  code {
-    line-height: $lh-normal;
-    white-space: pre-wrap;
+  img {
+    height: 100%;
+    font-family: "object-fit: cover";
+    object-fit: cover;
   }
 }
 
+.block-image2,
+.block-image4 {
+  width: calc(50% - #{$sp-tiny});
+  padding-bottom: calc(50% - #{$sp-tiny});
+}
 
-// Embed //
+.block-image3 {
+  width: calc(33% - #{$sp-tiny});
+  padding-bottom: calc(33% - #{$sp-tiny});
+}
+
+// Photoswipe
+.pswp .pswp__bg {
+  background: $oc-white;
+}
+
+
+// Video //
 
 .block-video {
   position: relative;
@@ -180,5 +217,22 @@
     left: 0;
     width: 100%;
     height: 100%;
+  }
+}
+
+
+// Code //
+
+.block-code {
+  background-color: $oc-gray-1;
+
+  .position-full & {
+    padding-top: $sp-small;
+    padding-bottom: $sp-small;
+  }
+
+  code {
+    line-height: $lh-normal;
+    white-space: pre-wrap;
   }
 }

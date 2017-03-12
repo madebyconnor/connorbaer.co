@@ -25,7 +25,7 @@
   <article>
     <header class="hero" {{ elements.radial(entry) }}>
       {% if entry.image.one() %}
-        <div class="hero-background hero-image js-rellax" style="background-image: url('{{ entry.image.one().getUrl('large16x9') }}')"></div>
+        <div class="hero-background hero-image js-rellax" style="background-image: url('{{ craft.config.baseUrl ~ entry.image.one().getUrl('large16x9') }}')"></div>
       {% endif %}
       <div class="hero-content mw-large ta-center">
         <div class="hero-text w100">

@@ -59,6 +59,7 @@ module.exports = {
         modules + 'normalize.css/normalize.css',
         modules + 'open-color/open-color.scss',
         modules + 'choices.js/assets/styles/scss/choices.scss',
+        modules + 'photoswipe/dist/photoswipe.css',
       ],
       rename: {
         prefix: '_',
@@ -138,6 +139,7 @@ module.exports = {
         src + 'js/custom.js',
         modules + 'lazysizes/lazysizes.js',
         modules + 'fontfaceobserver/fontfaceobserver.standalone.js',
+        modules + 'object-fit-images/dist/ofi.js',
         modules + 'rellax/rellax.js',
       ],
       single: {
@@ -151,6 +153,10 @@ module.exports = {
           modules + 'prismjs/components/prism-twig.js',
         ],
         particles: modules + 'particles.js/particles.js',
+        photoswipe: [
+          modules + 'photoswipe/dist/photoswipe.js',
+          src + 'js/photoswipe.js',
+        ],
       },
       inline: [
         modules + 'fg-loadcss/src/loadCSS.js',

@@ -18,6 +18,7 @@ return [
 		'enableTemplateCaching' => false,
 		'testToEmailAddress' => 'connor.baer@me.com',
 		'userSessionDuration' => 'P2W',
+		'baseUrl' => 'https://connorbaer.dev/',
 		'siteUrl' => array(
 			'connorbaer' => 'https://connorbaer.dev/',
 			'madebyconnor' => 'https://madebyconnor.dev/',
@@ -25,6 +26,7 @@ return [
 	),
 	'.co' => array(
 		'devMode' => false,
+		'baseUrl' => 'https://connorbaer.co/',
 		'siteUrl' => array(
 			'connorbaer' => 'https://connorbaer.co/',
 			'madebyconnor' => 'https://madebyconnor.co/',
