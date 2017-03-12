@@ -35,15 +35,20 @@
     {# -- FEATURED POST -- #}
     {% cache %}
     {% minify %}
-    {% set featured = craft.entries.section(section).featured('1').limit('1') %}
+    {% set featured = craft.entries({
+      section: section,
+      featured: '1',
+      with: ['image'],
+      limit: '1'
+    }) %}
 
     {% if featured %}
       {% for post in featured %}
         <article class="w100 mv4">
 
           {# Featured image or first image from matrix blocks? #}
-          {% if post.image.one() %}
-            {% set image = post.image.one() %}
+          {% if post.image[0] ?? null %}
+            {% set image = post.image[0] ?? null %}
           {% else %}
             {% set imageBlock = post.body.type('image').one() %}
             {% if imageBlock %}
@@ -69,7 +74,10 @@
     {% set featuredIds = featured.ids() %}
 
     {# Get posts in section which don't have an id in featuredIds #}
-    {% set posts = craft.entries.section(section).id('and, not ' ~ featuredIds | join(', not ')) %}
+    {% set posts = craft.entries({
+      section: section,
+      id: 'and, not ' ~ featuredIds | join(', not ')
+    }) %}
 
     {% for post in posts %}
       <article class="w100 mv4">

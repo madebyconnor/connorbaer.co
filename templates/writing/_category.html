@@ -29,7 +29,13 @@
 
   <div class="mw-large mv4">
     {# -- FEATURED -- #}
-    {% set featured = craft.entries.section(section).relatedTo(craft.categories.slug(category)).featured('1').one() %}
+    {% set featured = craft.entries({
+      section: section,
+      relatedTo: craft.categories.slug(category),
+      featured: '1',
+      with: ['image'],
+      limit: '1'
+    }) %}
 
     {% if featured %}
       <article>

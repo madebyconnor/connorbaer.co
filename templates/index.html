@@ -134,7 +134,10 @@
   </article>
 
   {# -- LATEST POSTS -- #}
-  {% set posts = craft.entries.section('writing').limit('3') %}
+  {% set posts = craft.entries({
+    section: 'writing',
+    limit: '3'
+  }) %}
 
   {% if posts %}
     <section class="mw-large mv4 cf">
@@ -151,9 +154,14 @@
   {% endif %}
 
   {# -- FEATURED PROJECTS -- #}
-  {% set featured = craft.entries.section('creating').featured('1').limit('2') %}
+  {% set featured = craft.entries({
+    section: 'creating',
+    featured: '1',
+    with: ['image'],
+    limit: '2'
+  }) %}
 
-  {% if featured %}
+  {% if featured | length == '2' %}
     <section class="mw-large mv2 cf">
       <div class="w100 mt3">
         <h3 class="ts-title4"><a href="/creating">Latest Projects</a></h3>
@@ -163,16 +171,8 @@
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
 
             {# Featured image or first image from matrix blocks? #}
-            {% if item.image.one() %}
-              {% set image = item.image.one() %}
-            {% else %}
-              {% set imageBlock = item.body.type('image').one() %}
-              {% if imageBlock %}
-                {% set image = imageBlock.image.one() %}
-              {% endif %}
-            {% endif %}
-
-            {% if image is defined and image %}
+            {% set image = item.image[0] ?? null %}
+            {% if image %}
               {{ elements.image(image, null, '1x1', '36rem') }}
             {% endif %}
           </a>
@@ -189,25 +189,20 @@
   {% set featuredIds = featured.ids() %}
 
   {# Get items in section which don't have an id in featuredIds #}
-  {% set items = craft.entries.section('creating').id('and, not ' ~ featuredIds | join(', not ')).limit('3') %}
+  {% set items = craft.entries({
+    section: 'creating',
+    id: 'and, not ' ~ featuredIds | join(', not '),
+    with: ['image'],
+    limit: '3'
+  }) %}
 
   {% if items %}
     <section class="mw-large mv2 cf">
       {% for item in items %}
         <article class="w1-3 fl-left mv2">
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
-
-            {# Featured image or first image from matrix blocks? #}
-            {% if item.image.one() %}
-              {% set image = item.image.one() %}
-            {% else %}
-              {% set imageBlock = item.body.type('image').one() %}
-              {% if imageBlock %}
-                {% set image = imageBlock.image.one() %}
-              {% endif %}
-            {% endif %}
-
-            {% if image is defined and image %}
+            {% set image = item.image[0] ?? null %}
+            {% if image %}
               {{ elements.image(image, 'lazyload', '1x1') }}
             {% endif %}
           </a>
