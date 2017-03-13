@@ -23,7 +23,7 @@ return [
 		'siteUrl' => array(
 			'connorbaer' => 'https://connorbaer.dev/',
 			'madebyconnor' => 'https://madebyconnor.dev/',
-			'madebyconnor_de' => 'https://madebyconnor_de.dev/',
+			'madebyconnor_de' => 'https://madebyconnor-de.dev/',
 		),
 	),
 	'connorbaer' => array(
