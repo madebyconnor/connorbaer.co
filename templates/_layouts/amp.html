@@ -57,7 +57,7 @@
   </style>
 
   {# -- TITLE -- #}
-  <title>{% if entry is defined %}{{ entry.title }} - {% endif %}{{ siteName }}</title>
+  <title>{% if entry is defined %}{{ entry.title }} - {% endif %}{{ siteName | split('·') | first }}</title>
 
   {# -- SEOMATIC -- #}
   {% hook 'seomaticRender' %}

@@ -72,7 +72,7 @@
         </nav>
       </div>
     </div>
-    <small class="footer-legal ph3 ta-center"><span>© {{ "now" | date("Y") }} {{ siteName }}. {{ "All rights reserved." | t }}</span>·<span>Tel: <a href="tel:+4915121208376">(+49) 151 2120 8376</a></span>·<span>Email: <a href="mailto:hello@connorbaer.co">hello@connorbaer.co</a></span>·<span><a href="/legal">{{ "Legal" | t }}</a></span></small>
+    <small class="footer-legal ph3 ta-center"><span>© {{ "now" | date("Y") }} {{ siteName | split('·') | first }}. {{ "All rights reserved." | t }}</span>·<span>Tel: <a href="tel:+4915121208376">(+49) 151 2120 8376</a></span>·<span>Email: <a href="mailto:hello@connorbaer.co">hello@connorbaer.co</a></span>·<span><a href="/legal">{{ "Legal" | t }}</a></span></small>
   </footer>
   {% endminify %}
   {% endcache %}

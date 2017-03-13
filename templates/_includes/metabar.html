@@ -20,12 +20,12 @@
     <div class="cf">
       <a class="metabar-brand ph2 fl-left" href="{{ siteUrl }}#" title="Home">
         {% include '_includes/logo' %}
-        <h1 class="metabar-name">{{ siteName }}</h1>
+        <h1 class="metabar-name">{{ siteName | split('·') | first }}</h1>
       </a>
 
       <div class="metabar-navigation fl-right">
         <input type="checkbox" id="metabar-toggle" class="metabar-toggle"/>
-        <label for="metabar-toggle" class="metabar-label ph2 ts-body"><span data-open="{{ "Menu" | t }}" data-close="{{ "Close" | t }}"></span></label>
+        <label for="metabar-toggle" class="metabar-label ph2 ts-body"><span data-open="{{ "Menu" | translate }}" data-close="{{ "Close" | translate }}"></span></label>
 
         <nav class="metabar-nav">
           <ul class="metabar-navList">
