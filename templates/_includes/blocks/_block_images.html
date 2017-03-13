@@ -3,18 +3,27 @@
 
 {% set numberOfImages = block.images | length %}
 
+{% switch position %}
+  {% case 'full' %}
+    {% set size = '100vw' %}
+  {% case 'center' %}
+    {% set size = '72rem' %}
+  {% default %}
+    {% set size = '24rem' %}
+{% endswitch %}
+
 <div class="block-images">
   {% for image in block.images %}
     <figure class="block-image{% if not amp is defined %} block-image{{ numberOfImages }}{% endif %}">
       {% if lazyImage and not amp is defined %}
         <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
-          {{ elements.image(image, 'lazyload') }}
+          {{ elements.image(image, 'lazyload', '', size) }}
         </a>
       {% elseif amp is defined %}
-        {{ elements.image(image, 'amp') }}
+        {{ elements.image(image, 'amp', '', size) }}
       {% else %}
         <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
-          {{ elements.image(image, 'image') }}
+          {{ elements.image(image, 'image', '', size) }}
         </a>
       {% endif %}
     </figure>
