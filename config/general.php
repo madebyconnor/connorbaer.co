@@ -22,6 +22,7 @@ return [
 		'siteUrl' => array(
 			'connorbaer' => 'https://connorbaer.dev/',
 			'madebyconnor' => 'https://madebyconnor.dev/',
+			'madebyconnor_de' => 'https://madebyconnor_de.dev/',
 		),
 	),
 	'.co' => array(
@@ -30,6 +31,16 @@ return [
 		'siteUrl' => array(
 			'connorbaer' => 'https://connorbaer.co/',
 			'madebyconnor' => 'https://madebyconnor.co/',
+			'madebyconnor_de' => 'https://madebyconnor.de/',
+		),
+	),
+	'.de' => array(
+		'devMode' => false,
+		'baseUrl' => 'https://connorbaer.co/',
+		'siteUrl' => array(
+			'connorbaer' => 'https://connorbaer.co/',
+			'madebyconnor' => 'https://madebyconnor.co/',
+			'madebyconnor_de' => 'https://madebyconnor.de/',
 		),
 	),
 ];
