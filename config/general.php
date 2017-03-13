@@ -9,6 +9,7 @@
 
 return [
 	'*' => array(
+		'devMode' => false,
 		'defaultWeekStartDay' => 1,
 		'omitScriptNameInUrls' => true,
 		'generateTransformsBeforePageLoad' => true,
@@ -25,20 +26,15 @@ return [
 			'madebyconnor_de' => 'https://madebyconnor_de.dev/',
 		),
 	),
-	'.co' => array(
-		'devMode' => false,
+	'connorbaer' => array(
 		'baseUrl' => 'https://connorbaer.co/',
 		'siteUrl' => array(
 			'connorbaer' => 'https://connorbaer.co/',
-			'madebyconnor' => 'https://madebyconnor.co/',
-			'madebyconnor_de' => 'https://madebyconnor.de/',
 		),
 	),
-	'.de' => array(
-		'devMode' => false,
+	'madebyconnor' => array(
 		'baseUrl' => 'https://connorbaer.co/',
 		'siteUrl' => array(
-			'connorbaer' => 'https://connorbaer.co/',
 			'madebyconnor' => 'https://madebyconnor.co/',
 			'madebyconnor_de' => 'https://madebyconnor.de/',
 		),
