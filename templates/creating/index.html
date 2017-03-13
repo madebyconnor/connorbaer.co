@@ -46,7 +46,7 @@
         <article class="w1-2 fl-left mv3">
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
             {% set image = item.image[0] ?? null %}
-            {% if  image %}
+            {% if image %}
               {{ elements.image(image, null, '1x1', '36rem') }}
             {% endif %}
           </a>
@@ -74,18 +74,8 @@
       {% for item in items %}
         <article class="w1-3 fl-left mv2">
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
-
-            {# Featured image or first image from matrix blocks? #}
-            {% if item.image.one() %}
-              {% set image = item.image.one() %}
-            {% else %}
-              {% set imageBlock = item.body.type('image').one() %}
-              {% if imageBlock %}
-                {% set image = imageBlock.image.one() %}
-              {% endif %}
-            {% endif %}
-
-            {% if image is defined and image %}
+            {% set image = item.image[0] ?? null %}
+            {% if image %}
               {{ elements.image(image, 'lazyload', '1x1') }}
             {% endif %}
           </a>

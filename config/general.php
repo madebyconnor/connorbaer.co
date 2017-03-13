@@ -15,7 +15,7 @@ return [
 		'generateTransformsBeforePageLoad' => true,
 	),
 	'.dev' => array(
-		// 'devMode' => true,
+		'devMode' => true,
 		'enableTemplateCaching' => false,
 		'testToEmailAddress' => 'connor.baer@me.com',
 		'userSessionDuration' => 'P2W',
