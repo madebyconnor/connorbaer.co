@@ -169,8 +169,6 @@
       {% for item in featured %}
         <article class="w1-2 fl-left mv3">
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
-
-            {# Featured image or first image from matrix blocks? #}
             {% set image = item.image[0] ?? null %}
             {% if image %}
               {{ elements.image(image, null, '1x1', '36rem') }}

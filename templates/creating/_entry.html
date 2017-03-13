@@ -61,43 +61,31 @@
   </article>
 
   {# -- RELATED ENTRIES -- #}
-  {% set relatedPosts = craft.entries({
+  {% set relatedItems = craft.entries({
     section: entry.section.handle,
     relatedTo: ['or ', entry.tags, entry.category],
     id: 'not ' ~ entry.id,
+    with: 'image',
     limit: '3',
   }) %}
 
-  {% if relatedPosts | length == '3' %}
+  {% if relatedItems | length == '3' %}
     <div class="mw-large mv4 cf">
-      <div class="pv1 cf">
-        <h2 class="w100 ts-title3">Related Posts</h2>
-
-        {% for post in relatedPosts %}
-          <article class="w1-3 fl-left mv2">
-
-            {% set matrixBlock = post.body.type('image').one() %}
-
-            {% if matrixBlock %}
-              {% set image = matrixBlock.image.one() %}
-
-              {% if image is defined %}
-                <a href="{{ post.url }}" title="{{ post.title }}">
-                  <img class="lazyload"
-                       src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                       data-sizes="auto"
-                       data-srcset="{{ image.getUrl('medium16x9') }} {{ image.getWidth('medium16x9') }}w, {{ image.getUrl('small16x9') }} {{ image.getWidth('small16x9') }}w"
-                       alt="{{ image.title }}">
-                </a>
-              {% endif %}
-            {% endif %}
-
-            <h3 class="mv2 ts-title4"><a class="ts-link" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-          </article>
-        {% endfor %}
-
+      <div class="w100 mt3">
+        <h3 class="ts-title4"><a href="/creating">Similar Projects</a></h3>
       </div>
+      {% for item in relatedItems %}
+        <article class="w1-3 fl-left mv2">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+            {% set image = item.image[0] ?? null %}
+            {% if image %}
+              {{ elements.image(image, null, '1x1', '36rem') }}
+            {% endif %}
+          </a>
+          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
     </div>
   {% endif %}
-
 {% endblock %}
