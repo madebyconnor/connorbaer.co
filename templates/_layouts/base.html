@@ -57,20 +57,20 @@
 
     {% block critical %}{% endblock %}
 
-    <link rel="preload" href="{{ craft.app.config.baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" type="text/css" href="{{ craft.app.config.baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css"></noscript>
+    <link rel="preload" href="{{ craft.app.config('baseUrl') }}assets/css/styles.min.{{ staticAssetsVersion }}.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" type="text/css" href="{{ craft.app.config('baseUrl') }}assets/css/styles.min.{{ staticAssetsVersion }}.css"></noscript>
     <script>
       {{ source('_includes/js/loadCSS.min.js') }}
       {{ source('_includes/js/cssrelpreload.min.js') }}
     </script>
   {% else %}
-    <link rel="stylesheet" type="text/css" href="{{ craft.app.config.baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css">
+    <link rel="stylesheet" type="text/css" href="{{ craft.app.config('baseUrl') }}assets/css/styles.min.{{ staticAssetsVersion }}.css">
   {% endif %}
 
   {# -- SERVICE WORKER -- #}
   {% minify %}
   <script>
-    'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('{{ craft.app.config.baseUrl }}/sw-{{ site.handle }}.js',{scope:'/'}).then(function(e){console.log('ServiceWorker registration successful with scope: ',e.scope),navigator.serviceWorker.controller&&navigator.serviceWorker.controller.postMessage({command:'trimCaches'})})['catch'](function(e){console.log('ServiceWorker registration failed: ',e)})});
+    'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('{{ craft.app.config('baseUrl') }}/sw-{{ site.handle }}.js',{scope:'/'}).then(function(e){console.log('ServiceWorker registration successful with scope: ',e.scope),navigator.serviceWorker.controller&&navigator.serviceWorker.controller.postMessage({command:'trimCaches'})})['catch'](function(e){console.log('ServiceWorker registration failed: ',e)})});
   </script>
 
   {# -- LOADJS -- #}
@@ -80,7 +80,7 @@
 
   {# -- COMBINED JAVASCRIPT -- #}
   <script>
-  loadjs(['{{ craft.app.config.baseUrl ~ 'assets/js/combined.min.' ~ staticAssetsVersion ~ '.js' }}'], 'scripts');
+  loadjs(['{{ craft.app.config('baseUrl') ~ 'assets/js/combined.min.' ~ staticAssetsVersion ~ '.js' }}'], 'scripts');
   loadjs.ready('scripts', {
     success: function() {
       const sans = new FontFaceObserver('Overpass', { weight: 400, });

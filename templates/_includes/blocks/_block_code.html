@@ -1,6 +1,6 @@
 {% if loadPrism and not amp is defined %}
   <script>
-  loadjs(['{{ craft.app.config.baseUrl ~ 'assets/js/prism.min.' ~ staticAssetsVersion ~ '.js' }}'], 'prism');
+  loadjs(['{{ craft.app.config('baseUrl') ~ 'assets/js/prism.min.' ~ staticAssetsVersion ~ '.js' }}'], 'prism');
   </script>
 {% endif %}
 
