@@ -31,7 +31,7 @@
   <article>
     <header class="hero">
       {% if entry.image.one() %}
-        <div class="hero-background hero-image js-rellax" data-rellax-speed="-5" style="background-image: url('{{ craft.app.config('baseUrl') ~ entry.image.one().getUrl('large16x9') }}')"></div>
+        <div class="hero-background hero-image js-rellax" data-rellax-speed="-5" style="background-image: url('{{ craft.app.config.get('baseUrl') ~ entry.image.one().getUrl('large16x9') }}')"></div>
       {% endif %}
       <div class="hero-content mw-large ta-center">
         <div class="hero-text w100">
