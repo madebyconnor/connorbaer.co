@@ -153,7 +153,7 @@
     </section>
   {% endif %}
 
-  {# -- FEATURED PROJECTS -- #}
+  {# -- FEATURED ITEMS -- #}
   {% set featured = craft.entries({
     section: 'creating',
     featured: '1',
@@ -162,46 +162,16 @@
   }) %}
 
   {% if featured | length == '2' %}
-    <section class="mw-large mv2 cf">
-      <div class="w100 mt3">
+    <section class="mw-large mv3 cf">
+      <div class="w100 mt3 mb1">
         <h3 class="ts-title4"><a href="/creating">Latest Projects</a></h3>
       </div>
       {% for item in featured %}
-        <article class="w1-2 fl-left mv3">
+        <article class="w1-2 fl-left mv2">
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
             {% set image = item.image[0] ?? null %}
             {% if image %}
               {{ elements.image(image, null, '1x1', '36rem') }}
-            {% endif %}
-          </a>
-          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
-          <p class="ts-app">{{ item.client.one().title }}</p>
-        </article>
-      {% endfor %}
-    </section>
-  {% endif %}
-
-  {# -- LATEST PROJECTS -- #}
-
-  {# Get the ids of the featured items above #}
-  {% set featuredIds = featured.ids() %}
-
-  {# Get items in section which don't have an id in featuredIds #}
-  {% set items = craft.entries({
-    section: 'creating',
-    id: 'and, not ' ~ featuredIds | join(', not '),
-    with: ['image'],
-    limit: '3'
-  }) %}
-
-  {% if items %}
-    <section class="mw-large mv2 cf">
-      {% for item in items %}
-        <article class="w1-3 fl-left mv2">
-          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
-            {% set image = item.image[0] ?? null %}
-            {% if image %}
-              {{ elements.image(image, 'lazyload', '1x1') }}
             {% endif %}
           </a>
           <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>

@@ -40,10 +40,10 @@
     limit: '2'
   }) %}
 
-  {% if featured %}
-    <div class="mw-large mv3 cf">
+  {% if featured | length == '2' %}
+    <section class="mw-large mv3 cf">
       {% for item in featured %}
-        <article class="w1-2 fl-left mv3">
+        <article class="w1-2 fl-left mv2">
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
             {% set image = item.image[0] ?? null %}
             {% if image %}
@@ -54,7 +54,7 @@
           <p class="ts-app">{{ item.client.one().title }}</p>
         </article>
       {% endfor %}
-    </div>
+    </section>
   {% endif %}
 
   {# -- ITEMS -- #}
@@ -70,7 +70,7 @@
   }) %}
 
   {% if items %}
-    <div class="mw-large mv2 cf">
+    <section class="mw-large mv3 cf">
       {% for item in items %}
         <article class="w1-3 fl-left mv2">
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
@@ -83,7 +83,7 @@
           <p class="ts-app">{{ item.client.one().title }}</p>
         </article>
       {% endfor %}
-    </div>
+    </section>
   {% endif %}
 
   {% endminify %}
