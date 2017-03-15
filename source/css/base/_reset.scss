@@ -23,7 +23,7 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* HTML5 display-role reset for older browsers */
+// HTML5 display-role reset for older browsers.
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
@@ -31,13 +31,17 @@ footer, header, hgroup, menu, nav, section {
 
 html {
   background-color: $oc-gray-8;
-  color: $oc-gray-8;
-  font-family: $ff-sans;
+  color: $oc-gray-9;
+  font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: $lh-large;
   font-feature-settings: "lnum", "salt";
   word-wrap: break-word;
   box-sizing: border-box;
+
+  &.fonts-loaded {
+    font-family: $ff-sans;
+  }
 
   @media screen and (max-width: 22.5em) {
     font-size: 14px;
@@ -59,24 +63,12 @@ html {
   box-sizing: inherit;
 }
 
-::selection {
-  background: $oc-primary-1;
-}
-
 body {
   position: relative;
   min-width: 100vw;
   min-height: 100vh;
   background-color: $oc-white;
   overflow-x: hidden;
-}
-
-.main {
-  padding-top: 6.75rem;
-
-  @media #{$bp-small} {
-    padding-top: 5.25rem;
-  }
 }
 
 a {
@@ -95,10 +87,10 @@ q {
   quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
   content: "";
   content: none;
 }
@@ -109,8 +101,8 @@ table {
 }
 
 hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: $sp-medium;
+  margin-bottom: $sp-medium;
   border: 0;
 
   &::before {

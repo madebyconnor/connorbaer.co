@@ -1,0 +1,67 @@
+{#
+ # Body Matrix
+ # --------------------------------
+ #
+ # This template is used to output HTML for the body matrix.
+ #
+ # An `entry` variable is expected to be defined.
+-#}
+
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+
+{# Initialize a few variables #}
+{% set lazyImage = false %}
+{% set loadPrism = true %}
+{% set loadPhotoswipe = true %}
+{% set prevPosition = '' %}
+
+{% for block in entry.body %}
+
+  {# Set position for current block #}
+  {% set position = block.position %}
+  {% if block.type.handle == 'text' %}
+    {% set position = 'text' %}
+  {% elseif block.type.handle == 'html' %}
+    {% set position = 'full' %}
+  {% endif %}
+
+  {# Start a new section with the appropriate width #}
+  {% switch position %}
+    {% case 'full' %}
+      <section class="position-full">
+        <div>
+    {% case 'center' %}
+      <section class="mw-large position-center">
+        <div class="w100">
+    {% case 'text' %}
+      <section class="mw-medium position-text">
+        <div class="w100">
+    {% case 'drop-right' %}
+      <section class="mw-large position-drop-right">
+        <div class="w100">
+    {% case 'drop-left' %}
+      <section class="mw-large position-drop-left">
+        <div class="w100">
+  {% endswitch %}
+
+    {# Output the appropriate block #}
+    {% include ('_includes/blocks/_block_' ~ block.type.handle) %}
+
+    {# Adjust variables #}
+    {% if block.type.handle == "image" %}
+      {% set lazyImage = true %}
+      {% set loadPhotoswipe = false %}
+    {% elseif block.type.handle == "code" %}
+      {% set loadPrism = false %}
+    {% endif %}
+
+  {# Close the section #}
+    </div>
+  </section>
+
+  {# Position of current block becomes position of previous block #}
+  {% set prevPosition = position %}
+{% endfor %}

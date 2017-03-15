@@ -38,7 +38,6 @@ gulp.task('build', (callback) => {
     'styles',
     'scripts'
   ],
-  'amp',
   callback);
 });
 
@@ -49,8 +48,9 @@ gulp.task('build', (callback) => {
 gulp.task('dist', (callback) => {
   sequence('setup',
   [
-    'revisions'
+    'styles-amp',
+    'styles-critical',
+    'service-worker'
   ],
-  'service-worker',
   callback);
 });

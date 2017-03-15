@@ -6,23 +6,37 @@ const gulp    = require('gulp'),
 ;
 
 
-// Copy third-party JavaScript to the public assets folder.
-gulp.task('scripts-single', () => {
-  return gulp.src(config.src.single)
-    .pipe(plugins.changed(config.dest))
-    .pipe(plugins.uglify(config.minify.uglify))
-    .pipe(plugins.rename(config.minify.rename))
-    .pipe(gulp.dest(config.dest));
-});
-
 // Minify scripts in place.
 gulp.task('scripts-combined', () => {
   return gulp.src(config.src.combined)
-    .pipe(plugins.concat('scripts.js'))
+    .pipe(plugins.concat(config.combined))
     .pipe(plugins.uglify(config.minify.uglify))
     .pipe(plugins.rename(config.minify.rename))
     .pipe(gulp.dest(config.dest));
 });
 
+// Copy third-party JavaScript to the public assets folder.
+gulp.task('scripts-single', () => {
+  const bundles = config.src.single;
+
+  Object.keys(bundles).forEach(function(key) {
+    return gulp.src(bundles[key])
+      .pipe(plugins.concat(key))
+      .pipe(plugins.changed(config.dest))
+      .pipe(plugins.uglify(config.minify.uglify))
+      .pipe(plugins.rename(config.minify.rename))
+      .pipe(gulp.dest(config.dest));
+  });
+});
+
+// Copy third-party JavaScript to the public assets folder.
+gulp.task('scripts-inline', () => {
+  return gulp.src(config.src.inline)
+    .pipe(plugins.changed(config.dest))
+    .pipe(plugins.uglify(config.minify.uglify))
+    .pipe(plugins.rename(config.minify.rename))
+    .pipe(gulp.dest(config.destInline));
+});
+
 // Master script task; lint -> bundle -> minify.
-gulp.task('scripts', ['scripts-single', 'scripts-combined']);
+gulp.task('scripts', ['scripts-combined', 'scripts-single', 'scripts-inline']);

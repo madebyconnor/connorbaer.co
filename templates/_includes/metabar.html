@@ -16,22 +16,38 @@
   {% cache %}
   {% minify %}
 
-  <header id="metabar" class="metabar wfull">
+  <header id="metabar" class="metabar w100">
     <div class="cf">
-      <a class="navigation-brand ph2 fl-left" href="{{ siteUrl }}#" title="Home">
-
+      <a class="metabar-brand ph2 fl-left" href="{{ siteUrl }}#" title="Home">
         {% include '_includes/logo' %}
-        {% include '_includes/name' %}
-
+        <h1 class="metabar-name">{{ siteName | split('·') | first }}</h1>
       </a>
-      <div class="ph2 fl-right">
 
-        {{ elements.cta() }}
-
-      </div>
       <div class="metabar-navigation fl-right">
+        <input type="checkbox" id="metabar-toggle" class="metabar-toggle"/>
+        <label for="metabar-toggle" class="metabar-label ph2 ts-body"><span data-open="{{ "Menu" | translate }}" data-close="{{ "Close" | translate }}"></span></label>
 
-        {{ elements.navigation(navigation) }}
+        <nav class="metabar-nav">
+          <ul class="metabar-navList">
+
+            {% for block in navigation.navigation %}
+              {% switch block.type %}
+                {% case "navExternal" %}
+                  {% set navLink = block.navLink %}
+                  {% set navTitle = block.navTitle %}
+                {% default %}
+                  {% set navLink = block.navEntry.one().url %}
+                  {% set navTitle = block.navTitle ? block.navTitle : block.navEntry.one().title %}
+              {% endswitch %}
+
+              <li class="ph2">
+                <a class="metabar-navLink{% if block.navEntry and craft.app.request.segments | first == block.navEntry.one().uri %} metabar-navActive{% endif %}{% if loop.last and navigation.button %} metabar-navButton{% endif %}" href="{{ navLink }}" title="{{ navTitle }}">{{ navTitle }}</a>
+              </li>
+
+            {% endfor %}
+
+          </ul>
+        </nav>
 
       </div>
     </div>

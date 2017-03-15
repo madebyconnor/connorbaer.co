@@ -11,6 +11,7 @@
 // Ratios //
 
 .r16-9 {
+  display: block;
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
@@ -24,6 +25,32 @@
   }
 }
 
+.r1-1 {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+
+  > * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+a > img,
+.img-hover {
+  transition: opacity $an-medium;
+  backface-visibility: hidden;
+
+  &:hover,
+  &:focus {
+    opacity: 0.75;
+  }
+}
+
 
 // Images //
 
@@ -34,22 +61,6 @@ img[data-sizes="auto"] {
   height: auto;
   vertical-align: middle; // Make sure images are scaled correctly.
 }
-
-.img-hover {
-  display: block;
-  overflow: hidden;
-
-  img {
-    transition: transform $an-long;
-    backface-visibility: hidden;
-
-    &:hover,
-    &:focus {
-      transform: scale(1.05);
-    }
-  }
-}
-
 
 // SVG //
 
@@ -66,7 +77,7 @@ img[data-sizes="auto"] {
     &:hover,
     &:focus {
       transform: scale(1.1);
-      fill: $oc-primary-6;
+      fill: $oc-one-6;
     }
   }
 }

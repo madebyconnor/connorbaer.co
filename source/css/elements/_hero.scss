@@ -1,0 +1,90 @@
+/*
+  Hero
+*/
+
+
+// Hero //
+
+.hero {
+  position: relative;
+  background: radial-gradient(ellipse at top 66% center, $oc-gray-2, $oc-white);
+  background-color: $oc-gray-1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  padding-top: 4rem;
+  z-index: 99;
+}
+
+.hero-text {
+  width: 100%;
+  padding-top: $sp-large;
+  padding-bottom: $sp-large;
+
+  .hero-animation + .hero-content &,
+  .hero-image + .hero-content & {
+    padding-top: $sp-huge;
+    padding-bottom: $sp-huge;
+    text-shadow: 0 0 12px rgba($oc-gray-9, .15);
+  }
+
+  .has-color & *,
+  .has-image & * {
+    color: $oc-white;
+  }
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+.hero-image {
+  background-color: $oc-gray-6;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $oc-gray-9;
+    content: "";
+    opacity: .2;
+    z-index: 99;
+  }
+}
+
+.hero-animation + .hero-content {
+  pointer-events: none;
+
+  a {
+    pointer-events: auto;
+  }
+}
+
+.hero-project {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  @media #{$bp-small} {
+    flex-wrap: nowrap;
+
+    > div {
+      width: 50%;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+/*
+  AMP
+
+  Dependencies
+  Base
+  Patterns
+  Elements
+*/
+
+
+// Dependencies //
+
+// Normalize: make browsers render things more consistently, from https://necolas.github.io/normalize.css/.
+@import "dependencies/normalize";
+// Open Color: an open-source color scheme, from https://yeun.github.io/open-color/.
+@import "dependencies/open-color";
+
+
+// Base //
+
+@import "base/variables";
+@import "base/reset";
+
+
+// Patterns //
+
+@import "patterns/type";
+@import "patterns/layout";
+@import "patterns/media";
+@import "patterns/form";
+
+
+// Elements //
+
+@import "elements/navigation";
+@import "elements/hero";
+@import "elements/blocks";

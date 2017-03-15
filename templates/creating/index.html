@@ -1,0 +1,91 @@
+{#
+ # Structure overview template
+ # ---------------
+ #
+ # See this page for details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layouts/base" %}
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+{% block critical %}
+  <style>
+    {{ source(_self ~ '.min.css', ignore_missing = true) }}
+  </style>
+{% endblock %}
+
+{% set section = craft.app.request.segments | first %}
+
+{% block main %}
+  {% cache %}
+  {% minify %}
+
+  {# -- HERO -- #}
+  <header class="hero">
+    <div class="hero-content mw-large ta-center">
+      <div class="hero-text w100">
+        <h1 class="ts-title1">{{ entry.title }}</h1>
+      </div>
+    </div>
+  </header>
+
+  {# -- FEATURED ITEMS -- #}
+  {% set featured = craft.entries({
+    section: section,
+    featured: '1',
+    with: ['image'],
+    limit: '2'
+  }) %}
+
+  {% if featured | length == '2' %}
+    <section class="mw-large mv3 cf">
+      {% for item in featured %}
+        <article class="w1-2 fl-left mv2">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+            {% set image = item.image[0] ?? null %}
+            {% if image %}
+              {{ elements.image(image, null, '1x1', '36rem') }}
+            {% endif %}
+          </a>
+          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {# -- ITEMS -- #}
+
+  {# Get the ids of the featured items above #}
+  {% set featuredIds = featured.ids() %}
+
+  {# Get items in section which don't have an id in featuredIds #}
+  {% set items = craft.entries({
+    section: section,
+    id: 'and, not ' ~ featuredIds | join(', not '),
+    with: ['image']
+  }) %}
+
+  {% if items %}
+    <section class="mw-large mv3 cf">
+      {% for item in items %}
+        <article class="w1-3 fl-left mv2">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+            {% set image = item.image[0] ?? null %}
+            {% if image %}
+              {{ elements.image(image, 'lazyload', '1x1') }}
+            {% endif %}
+          </a>
+          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% endminify %}
+  {% endcache %}
+{% endblock %}

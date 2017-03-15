@@ -2,58 +2,184 @@
  # Homepage template
  # ---------------
  #
- # When this template gets loaded, it will be because someone has accessed
- # http://yoursite.com/ (without any URI). Craft checks to see if you have
- # a Single section set to be the Homepage (as you do, by default), and
- # loads the section’s Template (this file). A special ‘entry’ variable
- # will already be set for you, assigned to the Homepage entry.
- #
- # It's worth noting that even if you didn't have a Homepage Single section,
- # as long as this template remains at craft/templates/index.html, it
- # would still be the one to get loaded when accessing http://yoursite.com/,
- # albeit without an ‘entry’ variable already set for you.
- #
- # See this page for more details on how Craft routes requests:
+ # See this page for details on how Craft routes requests:
  # http://craftcms.com/docs/routing
  #}
 
-
-{% extends "_layouts/site" %}
-
+{% extends "_layouts/base" %}
 
 {% import '_includes/elements' as elements %}
 {% import '_includes/helpers' as helpers %}
 
+{% block critical %}
+  <style>
+    {{ source(_self ~ '.min.css', ignore_missing = true) }}
+  </style>
+{% endblock %}
 
-{% block body %}
+{% block head %}
+  {{ parent() }}
+
+  {% minify %}
+  <script>
+    loadjs(['https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'], 'particles');
+    loadjs.ready('particles', {
+      success: function() {
+        particlesJS('js-particles', {
+          'particles': {
+            'number': {
+              'value': 100,
+              'density': {
+                'enable': true,
+                'value_area': 800
+              }
+            },
+            'color': {
+              'value': '#5000f1'
+            },
+            'shape': {
+              'type': 'circle',
+              'polygon': {
+                'nb_sides': 5
+              },
+            },
+            'opacity': {
+              'value': 0.75,
+              'random': false,
+              'anim': {
+                'enable': false,
+                'speed': 1,
+                'opacity_min': 0.1,
+                'sync': false
+              }
+            },
+            'size': {
+              'value': 3,
+              'random': true,
+              'anim': {
+                'enable': false,
+                'speed': 40,
+                'size_min': 0.1,
+                'sync': false
+              }
+            },
+            'line_linked': {
+              'enable': true,
+              'distance': 150,
+              'color': '#868e96',
+              'opacity': 0.4,
+              'width': 1
+            },
+            'move': {
+              'enable': true,
+              'speed': 6,
+              'direction': 'none',
+              'random': false,
+              'straight': false,
+              'out_mode': 'out',
+              'bounce': false,
+              'attract': {
+                'enable': false,
+                'rotateX': 600,
+                'rotateY': 1200
+              }
+            }
+          },
+          'interactivity': {
+            'detect_on': 'canvas',
+            'events': {
+              'onhover': {
+                'enable': true,
+                'mode': 'repulse'
+              },
+              'onclick': {
+                'enable': true,
+                'mode': 'push'
+              },
+              'resize': true
+            },
+            'modes': {
+              'repulse': {
+                'distance': 100,
+                'duration': 0.4
+              },
+              'push': {
+                'particles_nb': 4
+              }
+            }
+          },
+          'retina_detect': true
+        });
+      }
+    });
+  </script>
+  {% endminify %}
+{% endblock %}
+
+{% block main %}
   {% cache %}
   {% minify %}
 
-  <article class="wfull">
-    <header class="content-hero w100 ff-sans">
-      <h1 class="ts-title1">{{ helpers.striptags(entry.title) }}</h1>
-      <h2 class="ts-large fw-normal">{{ helpers.striptags(entry.description) }}</h2>
+  {# -- HERO -- #}
+  <article>
+    <header class="hero">
+      <div id="js-particles" class="hero-background hero-animation js-rellax" data-rellax-speed="-5"></div>
+      <div class="hero-content mw-medium ta-center">
+        <div class="hero-text w100">
+          <h1 class="ts-title1">{{ helpers.striptags(entry.title) }}</h1>
+          <h2 class="mt2 ts-large">{{ helpers.striptags(entry.description) }}</h2>
+        </div>
+      </div>
     </header>
   </article>
 
-  <section class="wfull mv3 cf">
-    <h3 class="w100 mv1 ts-title4">Latest Posts</h3>
-    <div class="crds">
-      {% set posts = craft.entries.section('writing').limit('2') %}
+  {# -- LATEST POSTS -- #}
+  {% set posts = craft.entries({
+    section: 'writing',
+    limit: '3'
+  }) %}
 
-      {% if posts %}
+  {% if posts %}
+    <section class="mw-large mv4 cf">
+      <div class="w100 mt3">
+        <h3 class=" ts-title4"><a href="/writing">Latest Posts</a></h3>
+      </div>
         {% for post in posts %}
-          <article class="w1-2 fl-left mv2 ff-serif">
-            <div class="crd crd-padding">
-              {{ elements.category(post) }}
-              <h3 class="mv2 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-              <p class="ts-body">{{ helpers.truncate(post.description | striptags(), 155) }}</p>
-            </div>
+          <article class="w1-3 fl-left mt3">
+            <h3 class="mb1 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
           </article>
         {% endfor %}
-      {% endif %}
-    </div>
-  </section>
+    </section>
+  {% endif %}
+
+  {# -- FEATURED ITEMS -- #}
+  {% set featured = craft.entries({
+    section: 'creating',
+    featured: '1',
+    with: ['image'],
+    limit: '2'
+  }) %}
+
+  {% if featured | length == '2' %}
+    <section class="mw-large mv3 cf">
+      <div class="w100 mt3 mb1">
+        <h3 class="ts-title4"><a href="/creating">Latest Projects</a></h3>
+      </div>
+      {% for item in featured %}
+        <article class="w1-2 fl-left mv2">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+            {% set image = item.image[0] ?? null %}
+            {% if image %}
+              {{ elements.image(image, null, '1x1', '36rem') }}
+            {% endif %}
+          </a>
+          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
 
   {% endminify %}
   {% endcache %}

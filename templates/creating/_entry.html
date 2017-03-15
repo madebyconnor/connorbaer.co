@@ -1,0 +1,91 @@
+{#
+ # Entry template
+ # -------------------
+ #
+ # This template gets loaded whenever an entry’s URL is
+ # requested. That’s because the section’s Template setting is
+ # set to _section/entry”, the path to this template.
+ #
+ # When this template is loaded, it will already have an ‘entry’
+ # variable, set to the requested entry.
+ #
+ # See this entry for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layouts/base" %}
+
+{% import '_includes/elements' as elements %}
+{% import '_includes/helpers' as helpers %}
+
+{% block links %}
+  {{ parent() }}
+
+  <link rel="amphtml" href="{{ entry.url }}/amp">
+{% endblock %}
+
+
+{% block main %}
+
+  {# -- HERO -- #}
+  {% set image = entry.image.one() %}
+
+  <article>
+    <header class="hero" {{ elements.radial(entry) }}>
+      <div class="hero-content hero-project mw-large js-rellax" data-rellax-speed="-5">
+        <div class="hero-text ph2">
+          <h1 class="ts-title1">{{ entry.title }}</h1>
+          <h2 class="mt1 ts-large">{{ entry.description }}</h2>
+          <p class="mt2 ts-app">{{ entry.client.one().title }}</p>
+        </div>
+        {% if image %}
+          <div class="hero-projectImage">
+            {{ elements.image(image, 'image', '1x1', '50vw') }}
+          </div>
+        {% endif %}
+      </div>
+    </header>
+
+    {# -- CONTENT -- #}
+    <div class="blocks">
+
+      {# Body matrix #}
+      {% include '_includes/body' %}
+
+    </div>
+
+    {# -- SHARE -- #}
+    <div class="mw-medium mv4 ta-center">
+      {{ elements.share(entry.title) }}
+    </div>
+  </article>
+
+  {# -- RELATED ENTRIES -- #}
+  {% set relatedItems = craft.entries({
+    section: entry.section.handle,
+    relatedTo: ['or ', entry.tags, entry.category],
+    id: 'not ' ~ entry.id,
+    with: 'image',
+    limit: '3',
+  }) %}
+
+  {% if relatedItems | length == '3' %}
+    <div class="mw-large mv4 cf">
+      <div class="w100 mt3 mb1">
+        <h3 class="ts-title4"><a href="/creating">Similar Projects</a></h3>
+      </div>
+      {% for item in relatedItems %}
+        <article class="w1-3 fl-left mv2">
+          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+            {% set image = item.image[0] ?? null %}
+            {% if image %}
+              {{ elements.image(image, null, '1x1', '36rem') }}
+            {% endif %}
+          </a>
+          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}

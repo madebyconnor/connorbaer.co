@@ -1,22 +1,20 @@
 // ==== GULP CONFIGURATION ==== //
 
-// 1. Variables
-// 2. BrowserSync
-// 3. Watch
-// 4. Update
-// 5. Clean
-// 6. Styles
-// 7. Scripts
-// 8. Icons
-// 9. Revisions
-// 10. AMP
-// 11. Service Worker
+// Variables
+// BrowserSync
+// Watch
+// Update
+// Clean
+// Styles
+// Scripts
+// Icons
+// Revisions
+// Service Worker
 
 
-// 1. Variables //
+// Variables //
 
 const pkg   = require('./package.json'), // Allows access to the project metadata from the package.json file.
-  project = pkg.name, // The name of the project, pulled from the package.json.
   src     = 'source/', // The raw material of the theme: custom scripts, SCSS source files, images, etc.; do not delete this folder!
   dist    = 'web/', // The webroot directory that will be accessible on your server.
   assets  = 'assets/', // A folder for your assets in the source and/or distribution directory.
@@ -28,12 +26,12 @@ const pkg   = require('./package.json'), // Allows access to the project metadat
 module.exports = {
 
 
-  // 2. BrowserSync
+  // BrowserSync
 
   browsersync: {
-    files: [dist + '**/*', tmplts + '**/*'],
-    port: 6000, // Port number for the live version of the site.
-    proxy: 'http://local.' + project + '/', // We need to use a proxy instead of the built-in server because WordPress has to do some server-side rendering for the theme to work.
+    files: [dist + assets + '**/*', tmplts + '**/*'],
+    port: 5000, // Port number for the live version of the site.
+    proxy: 'https://' + pkg.name + '.dev/', // We need to use a proxy instead of the built-in server because CraftCMS has to do some server-side rendering for the website to work.
     notify: false, // In-line notifications (the blocks of text saying whether you are connected to the BrowserSync server or not)
     ui: false, // Set to false if you don't need the browsersync UI
     open: false, // Set to false if you don't like the browser window opening automatically
@@ -44,7 +42,7 @@ module.exports = {
   },
 
 
-  // 3. Watch //
+  // Watch //
 
   watch: {
     styles:  [src + 'css/**/*.scss'],
@@ -52,7 +50,7 @@ module.exports = {
   },
 
 
-  // 4. Update  //
+  // Update  //
 
   update: {
     // Copies dependencies from package managers to `_scss` and renames them to allow for them to be imported as a Sass file.
@@ -61,6 +59,7 @@ module.exports = {
         modules + 'normalize.css/normalize.css',
         modules + 'open-color/open-color.scss',
         modules + 'choices.js/assets/styles/scss/choices.scss',
+        modules + 'photoswipe/dist/photoswipe.css',
       ],
       rename: {
         prefix: '_',
@@ -71,26 +70,20 @@ module.exports = {
   },
 
 
-  // 5. Clean //
+  // Clean //
 
   clean: {
-    tidy: [dist + '**/.DS_Store', dist + assets + 'revisions.json'], // A glob pattern matching junk files to clean out of `build`; feel free to add to this array.
+    tidy: [dist + '**/.DS_Store', dist + assets + 'revisions.json', tmplts + '**/*.min.css', dist + 'tmp-*'], // A glob pattern matching junk files to clean out of `build`; feel free to add to this array.
     css: [dist + assets + 'css/'], // Clean this out before creating a new distribution copy.
     js: [dist + assets + 'js/'], // Clean this out before creating a new distribution copy.
   },
 
 
-  // 6. Styles //
+  // Styles //
 
   styles: {
     src:  src + '**/**/*.scss',
     dest: dist + assets,
-    cssnano: {
-      autoprefixer: {
-        add: true,
-        browsers: ['> 3%', 'last 2 versions'], // This tool is magic and you should use it in all your projects :)
-      },
-    },
     libsass: { // Requires the libsass implementation of Sass (included in this package)
       includePaths: [bower, modules, src + 'css/'], // Adds Bower and npm directories to the load path so you can @import directly
       precision: 6,
@@ -98,21 +91,77 @@ module.exports = {
         return console.log(err);
       },
     },
+    minify: {
+      cssnano: {
+        autoprefixer: {
+          add: true,
+          browsers: ['> 3%', 'last 2 versions'], // This tool is magic and you should use it in all your projects :)
+        },
+      },
+      rename: {
+        extname: '.min.css',
+      },
+    },
+    critical: {
+      src: 'https://' + pkg.name + '.dev/',
+      dest: '../' + tmplts,
+      small: {
+        height: 732,
+        width: 412,
+      },
+      large: {
+        height: 1280,
+        width: 1280,
+      },
+      base: dist,
+      css: dist + assets + 'css/styles.min.css',
+      files: [
+        { url: '', template: 'index' },
+        { url: 'creating', template: 'creating/index' },
+        { url: 'creating/made-by-connor', template: 'creating/_entry' },
+        { url: 'writing', template: 'writing/index' },
+        { url: 'writing/africa-is-not-a-country', template: 'writing/_entry' },
+        { url: 'legal', template: '_pages/entry' },
+      ],
+    },
+    amp: {
+      src:  dist + assets + 'css/amp.min.css',
+      dest: tmplts + '_layouts/',
+    },
   },
 
 
-  // 7. Scripts //
+  // Scripts //
 
   scripts: {
     src: {
       combined: [
+        src + 'js/custom.js',
         modules + 'lazysizes/lazysizes.js',
-        modules + 'Right-Height/dist/js/right-height.js',
-        modules + 'headroom.js/dist/headroom.js',
-      ],
-      single: [
-        modules + 'prismjs/prism.js',
+        modules + 'fontfaceobserver/fontfaceobserver.standalone.js',
+        modules + 'object-fit-images/dist/ofi.js',
         modules + 'rellax/rellax.js',
+      ],
+      single: {
+        prism: [
+          modules + 'prismjs/prism.js',
+          modules + 'prismjs/components/prism-json.js',
+          modules + 'prismjs/components/prism-markdown.js',
+          modules + 'prismjs/components/prism-python.js',
+          modules + 'prismjs/components/prism-php.js',
+          modules + 'prismjs/components/prism-scss.js',
+          modules + 'prismjs/components/prism-twig.js',
+        ],
+        particles: modules + 'particles.js/particles.js',
+        photoswipe: [
+          modules + 'photoswipe/dist/photoswipe.js',
+          src + 'js/photoswipe.js',
+        ],
+      },
+      inline: [
+        modules + 'fg-loadcss/src/loadCSS.js',
+        modules + 'fg-loadcss/src/cssrelpreload.js',
+        modules + 'loadjs/dist/loadjs.js',
       ],
     },
     minify: {
@@ -121,11 +170,13 @@ module.exports = {
         extname: '.min.js',
       },
     },
+    combined: 'combined.js',
     dest: dist + assets + 'js/',
+    destInline: tmplts + '_inline/',
   },
 
 
-  // 8. Icons //
+  // Icons //
 
   icons: {
     src: src + 'favicons/*(*.png|*.jpg|*.jpeg)',
@@ -156,7 +207,7 @@ module.exports = {
   },
 
 
-  // 9. Revisions //
+  // Revisions //
 
   revisions: {
     css: dist + assets + '**/*.css',
@@ -170,19 +221,7 @@ module.exports = {
   },
 
 
-  // 10. AMP //
-
-  amp: {
-    src:     tmplts + '_amp/base-unstyled.html',
-    dest:    tmplts + '_amp/',
-    css: {
-      src:  dist + assets + 'css/styles.css',
-      dest: dist + assets + 'css/',
-    },
-  },
-
-
-  // 11. Service Worker //
+  // Service Worker //
 
   serviceWorker: {
     root:    dist,
@@ -210,17 +249,17 @@ module.exports = {
         options: {
           cache: {
             maxEntries: 1,
-            name: 'runtime-cache'
-          }
-        }
-      }],
+            name: 'runtime-cache',
+          },
+        },
+      },],
       staticFileGlobs: [
         dist + assets + '/css/**.css',
-        dist + assets + '/js/**.js'
+        dist + assets + '/js/**.js',
       ],
       stripPrefix: dist,
       // verbose defaults to false, but for the purposes of this demo, log more.
-      verbose: true
+      verbose: true,
     },
   },
 };

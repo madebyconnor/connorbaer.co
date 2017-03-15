@@ -157,7 +157,7 @@ $choices-button-offset: 8px !default;
     border-radius: $choices-border-radius-item;
     padding: 4px 10px;
     font-size: $choices-font-size-sm;
-    font-weight: 500;
+    font-weight: $fw-sans-normal;
     margin-right: 3.75px;
     margin-bottom: 3.75px;
     background-color: $choices-primary-color;

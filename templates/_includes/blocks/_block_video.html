@@ -1,0 +1,8 @@
+<div class="block-video">
+  {{ block.embed | raw }}
+</div>
+{% if block.caption | length %}
+<figcaption class="block-caption mt2 ts-app">
+  {{ block.caption }}
+</figcaption>
+{% endif %}

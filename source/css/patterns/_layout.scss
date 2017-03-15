@@ -10,13 +10,12 @@
 
 // Widths //
 
-$max-width: 60rem;
-
 .w1-2,
 .w1-3,
 .w2-3,
 .w100,
-.wfull {
+.mw-medium,
+.mw-large {
   display: block;
   width: 100%;
   padding-right: $sp-small;
@@ -24,6 +23,12 @@ $max-width: 60rem;
 }
 
 @media #{$bp-small} {
+  .w1-3 {
+    width: (100% / 2);
+  }
+}
+
+@media #{$bp-medium} {
   .w1-2 {
     width: (100% / 2);
   }
@@ -37,28 +42,14 @@ $max-width: 60rem;
   }
 }
 
-.w33 {
-  width: 100%;
-
-  @media #{$bp-small} {
-    width: (100% / 3);
-  }
+.mw-medium {
+  max-width: $mw-medium;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.w66 {
-  width: 100%;
-
-  @media #{$bp-small} {
-    width: (100% / 1.5);
-  }
-}
-
-.w100 {
-  clear: both;
-}
-
-.wfull {
-  max-width: $max-width;
+.mw-large {
+  max-width: $mw-large;
   margin-right: auto;
   margin-left: auto;
 
@@ -313,8 +304,16 @@ $max-width: 60rem;
 }
 
 a.crd:hover,
-a.crd:focus {
-  box-shadow: 0 0 24px 0 rgba($oc-gray-9, 0.48);
+a.crd:focus,
+.crd-hover {
+  display: block;
+  transition: box-shadow $an-medium, transform $an-medium;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.0125);
+    box-shadow: 0 18px 12px -12px rgba($oc-gray-9, .24);
+  }
 }
 
 .crd-padding {

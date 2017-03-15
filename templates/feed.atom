@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-    <title>{{ siteName }}</title>
+    <title>{{ siteName | split('·') | first }}</title>
     <link href="{{ siteUrl }}"/>
     <link type="application/atom+xml" rel="self" href="{{ craft.app.request.url }}"/>
     <updated>{{ now.atom }}</updated>
