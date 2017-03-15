@@ -22,6 +22,16 @@
   letter-spacing: -$ls-medium;
   line-height: $lh-small;
 
+  strong {
+    color: $oc-one-6;
+  }
+
+  em {
+    display: inline-block;
+    line-height: $lh-small;
+    box-shadow: inset 0 -.075em 0 0 $oc-one-6;
+  }
+
   a {
     transition: color $an-short;
 
@@ -109,7 +119,6 @@
 
   &:hover,
   &:focus {
-    color: $oc-one-6;
     box-shadow: inset 0 -.075em 0 0 $oc-one-6;
   }
 }
