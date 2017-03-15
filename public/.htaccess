@@ -4,40 +4,6 @@
 # ------------------------------------------------------------
 
 
-# ------------------------------------------------------------
-# MANAGE UPDATES & SITE OFFLINE
-# Update and uncomment these rules when we need to work on the site
-# while serving an offline message to visitors. Add permitted IPs as needed.
-# ------------------------------------------------------------
-
-# RewriteEngine on
-# RewriteCond %{REMOTE_HOST} !^76\.89\.128\.240
-# RewriteCond %{REQUEST_URI} !^/assets/utility-pages/offline-page.html
-# RewriteCond %{REQUEST_URI} !^/assets/utility-pages/offline-page-cp.html
-# RewriteCond %{REQUEST_URI} !^/assets/utility-pages/offline-logo.png
-# RewriteRule ^(.*)$ http://www.website.com/offline.html [R=302,L]
-
-
-# ----------------------------------------------------------------------
-# Password protect a specific environment to avoid search engines indexing
-# your site and still only use one .htaccess file across multiple environments
-# https://gist.github.com/1974022
-#
-# To generate a new htpassword run this line on the command line:
-# htpasswd -nb username password
-# ----------------------------------------------------------------------
-
-# SetEnvIf Host local.craft staging
-# AuthType Basic
-# AuthName "Under Construction"
-# AuthUserFile /protected/server/path/above/web/root/.htpasswd
-# Require valid-user
-# Order allow,deny
-# Allow from all
-# Deny from env=staging
-# Satisfy any
-
-
 # ----------------------------------------------------------------------
 # Proper MIME type for all files
 # ----------------------------------------------------------------------
@@ -45,44 +11,44 @@
 # JAVASCRIPT
 # Normalize to standard type (it's sniffed in IE anyways)
 # tools.ietf.org/html/rfc4329#section-7.2
-# AddType application/javascript         js jsonp
-# AddType application/json               json
+AddType application/javascript         js jsonp
+AddType application/json               json
 
 # Audio
-# AddType audio/ogg                      oga ogg
-# AddType audio/mp4                      m4a f4a f4b
+AddType audio/ogg                      oga ogg
+AddType audio/mp4                      m4a f4a f4b
 
 # Video
-# AddType video/ogg                      ogv
-# AddType video/mp4                      mp4 m4v f4v f4p
-# AddType video/webm                     webm
-# AddType video/x-flv                    flv
+AddType video/ogg                      ogv
+AddType video/mp4                      mp4 m4v f4v f4p
+AddType video/webm                     webm
+AddType video/x-flv                    flv
 
 # SVG
 # Required for svg webfonts on iPad
 # twitter.com/FontSquirrel/status/14855840545
-# AddType     image/svg+xml              svg svgz
-# AddEncoding gzip                       svgz
+AddType     image/svg+xml              svg svgz
+AddEncoding gzip                       svgz
 
 # Webfonts
-# AddType application/vnd.ms-fontobject  eot
-# AddType application/x-font-ttf         ttf ttc
-# AddType font/opentype                  otf
-# AddType application/x-font-woff        woff
+AddType application/vnd.ms-fontobject  eot
+AddType application/x-font-ttf         ttf ttc
+AddType font/opentype                  otf
+AddType application/x-font-woff        woff
 
 # Assorted types
-# AddType image/x-icon                        ico
-# AddType image/webp                          webp
-# AddType text/cache-manifest                 appcache manifest
-# AddType text/x-component                    htc
-# AddType application/xml                     rss atom xml rdf
-# AddType application/x-chrome-extension      crx
-# AddType application/x-opera-extension       oex
-# AddType application/x-xpinstall             xpi
-# AddType application/octet-stream            safariextz
-# AddType application/x-web-app-manifest+json webapp
-# AddType text/x-vcard                        vcf
-# AddType application/x-shockwave-flash       swf
+AddType image/x-icon                        ico
+AddType image/webp                          webp
+AddType text/cache-manifest                 appcache manifest
+AddType text/x-component                    htc
+AddType application/xml                     rss atom xml rdf
+AddType application/x-chrome-extension      crx
+AddType application/x-opera-extension       oex
+AddType application/x-xpinstall             xpi
+AddType application/octet-stream            safariextz
+AddType application/x-web-app-manifest+json webapp
+AddType text/x-vcard                        vcf
+AddType application/x-shockwave-flash       swf
 
 
 # ----------------------------------------------------------------------
@@ -202,13 +168,13 @@
 # ----------------------------------------------------------------------
 
 # FileETag None is not enough for every server.
-# <IfModule mod_headers.c>
-#   Header unset ETag
-# </IfModule>
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
 
 # Since we're sending far-future expires, we don't need ETags for
 # static content. developer.yahoo.com/performance/rules.html#etags
-# FileETag None
+FileETag None
 
 
 # ----------------------------------------------------------------------
@@ -260,8 +226,6 @@
 # ----------------------------------------------------------------------
 
 RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP_HOST} !^local\.(.*)$ [NC]
-RewriteCond %{HTTP_HOST} !^dev\.(.*)$ [NC]
 RewriteRule ^(admin/.*)$ https://%{SERVER_NAME}/$1 [R=301,L]
 
 
@@ -291,7 +255,7 @@ RewriteRule ^(.+)/$ /$1 [R=301,L]
 # ----------------------------------------------------------------------
 
 # Use UTF-8 encoding for anything served text/plain or text/html
-# AddDefaultCharset utf-8
+AddDefaultCharset utf-8
 
 # Force UTF-8 for a number of file formats
 AddCharset utf-8 .css .js .xml .json .rss .atom
@@ -365,6 +329,8 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 # ----------------------------------------------------------------------
 # Default Craft .htaccess
 # ----------------------------------------------------------------------
+
+Header set Access-Control-Allow-Origin "https://madebyconnor.de/"
 
 <IfModule mod_rewrite.c>
 	RewriteEngine On
