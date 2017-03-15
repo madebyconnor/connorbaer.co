@@ -330,7 +330,11 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 # Default Craft .htaccess
 # ----------------------------------------------------------------------
 
-Header set Access-Control-Allow-Origin "https://madebyconnor.de/"
+# Allow CORS for live preview
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "https://madebyconnor.de"
+  Header set Access-Control-Allow-Credentials: "true"
+</IfModule>
 
 <IfModule mod_rewrite.c>
 	RewriteEngine On
