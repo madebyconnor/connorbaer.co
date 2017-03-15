@@ -16,7 +16,7 @@
 
 const pkg   = require('./package.json'), // Allows access to the project metadata from the package.json file.
   src     = 'source/', // The raw material of the theme: custom scripts, SCSS source files, images, etc.; do not delete this folder!
-  dist    = 'web/', // The webroot directory that will be accessible on your server.
+  dist    = 'public/', // The webroot directory that will be accessible on your server.
   assets  = 'assets/', // A folder for your assets in the source and/or distribution directory.
   tmplts  = 'templates/', // The CraftCMS template folder.
   bower   = 'bower_components/', // Bower packages.
@@ -117,8 +117,8 @@ module.exports = {
       css: dist + assets + 'css/styles.min.css',
       files: [
         { url: '', template: 'index' },
-        { url: 'creating', template: 'creating/index' },
-        { url: 'creating/made-by-connor', template: 'creating/_entry' },
+        { url: 'work', template: 'work/index' },
+        { url: 'work/jekyll-themes', template: 'work/_entry' },
         { url: 'writing', template: 'writing/index' },
         { url: 'writing/africa-is-not-a-country', template: 'writing/_entry' },
         { url: 'legal', template: '_pages/entry' },
@@ -185,7 +185,7 @@ module.exports = {
       appDescription: pkg.description,
       developerName: pkg.author,
       background: '#ffffff',
-      theme_color: '#000000',
+      theme_color: '#5500ff',
       path: '/favicons/',
       url: pkg.homepage,
       display: 'standalone',
