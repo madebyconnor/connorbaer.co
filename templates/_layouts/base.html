@@ -32,7 +32,7 @@
 -#}
 
 
-{% set baseUrl = craft.app.config.get('environmentVariables').baseUrl %}
+{% set baseUrl = craft.app.config.get('baseUrl') %}
 
 {% set staticAssetsVersion = "024" %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}

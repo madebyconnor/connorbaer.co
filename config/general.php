@@ -13,10 +13,7 @@ return [
 		'defaultWeekStartDay' => 1,
 		'omitScriptNameInUrls' => true,
 		'generateTransformsBeforePageLoad' => true,
-		'environmentVariables' => array(
-			'basePath' => 'uploads/',
-			'baseUrl'  => 'https://madebyconnor.co/uploads/',
-		),
+		'baseUrl'  => 'https://madebyconnor.co/',
 		'siteUrl' => array(
 			'madebyconnor' => 'https://madebyconnor.co/',
 			'de' => 'https://madebyconnor.de/',
@@ -28,10 +25,7 @@ return [
 		'isSystemOn' => true,
 		'testToEmailAddress' => 'connor.baer@me.com',
 		'userSessionDuration' => 'P2W',
-		'environmentVariables' => array(
-			'basePath' => 'uploads/',
-			'baseUrl'  => 'https://madebyconnor.dev/uploads/',
-		),
+		'baseUrl'  => 'https://madebyconnor.dev/',
 		'siteUrl' => array(
 			'madebyconnor' => 'https://madebyconnor.dev',
 			'de' => 'https://madebyconnor-de.dev',
