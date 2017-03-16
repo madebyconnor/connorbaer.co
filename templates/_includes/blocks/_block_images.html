@@ -38,7 +38,7 @@
 
 {% if loadPhotoswipe %}
   <script>
-  loadjs(['{{ craft.app.config.get('baseUrl') ~ 'assets/js/photoswipe.min.' ~ staticAssetsVersion ~ '.js' }}'], 'photoswipe');
+  loadjs(['{{ baseUrl ~ 'assets/js/photoswipe.min.' ~ staticAssetsVersion ~ '.js' }}'], 'photoswipe');
   loadjs.ready('photoswipe', {
     success: function() {
       initPhotoSwipeFromDOM('.block-images');
