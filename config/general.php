@@ -15,7 +15,7 @@ return [
 		'generateTransformsBeforePageLoad' => true,
 		'environmentVariables' => array(
 			'basePath' => 'uploads/',
-			'baseUrl'  => 'https://madebyconnor.co/',
+			'baseUrl'  => 'https://madebyconnor.co/uploads/',
 		),
 		'siteUrl' => array(
 			'madebyconnor' => 'https://madebyconnor.co/',
@@ -30,7 +30,7 @@ return [
 		'userSessionDuration' => 'P2W',
 		'environmentVariables' => array(
 			'basePath' => 'uploads/',
-			'baseUrl'  => 'https://madebyconnor.dev/',
+			'baseUrl'  => 'https://madebyconnor.dev/uploads/',
 		),
 		'siteUrl' => array(
 			'madebyconnor' => 'https://madebyconnor.dev',
