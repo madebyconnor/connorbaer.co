@@ -334,6 +334,8 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 <IfModule mod_headers.c>
   Header set Access-Control-Allow-Origin "https://madebyconnor.de"
   Header set Access-Control-Allow-Credentials: "true"
+  Header set Access-Control-Allow-Methods: "GET, POST, OPTIONS,PUT"
+  Header set Access-Control-Allow-Headers: "Content-Type, Accept"
 </IfModule>
 
 <IfModule mod_rewrite.c>
