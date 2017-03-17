@@ -37,10 +37,10 @@
     section: section,
     featured: '1',
     with: ['image'],
-    limit: '2'
+    limit: 2
   }) %}
 
-  {% if featured | length == '2' %}
+  {% if featured | length >= '2' %}
     <section class="mw-large mv3 cf">
       {% for item in featured %}
         <article class="w1-2 fl-left mv2">

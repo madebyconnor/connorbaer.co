@@ -118,7 +118,7 @@ module.exports = {
       files: [
         { url: '', template: 'index' },
         { url: 'creating', template: 'creating/index' },
-        { url: 'creating/made-by-connor', template: 'creating/_entry' },
+        { url: 'creating/jekyll-themes', template: 'creating/_entry' },
         { url: 'writing', template: 'writing/index' },
         { url: 'writing/africa-is-not-a-country', template: 'writing/_entry' },
         { url: 'legal', template: '_pages/entry' },

@@ -32,7 +32,9 @@
 -#}
 
 
-{% set staticAssetsVersion = "022" %}
+{% set baseUrl = craft.app.config.get('baseUrl') %}
+
+{% set staticAssetsVersion = "024" %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}
 
 
@@ -57,20 +59,20 @@
 
     {% block critical %}{% endblock %}
 
-    <link rel="preload" href="{{ craft.app.config.get('baseUrl') }}assets/css/styles.min.{{ staticAssetsVersion }}.css" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" type="text/css" href="{{ craft.app.config.get('baseUrl') }}assets/css/styles.min.{{ staticAssetsVersion }}.css"></noscript>
+    <link rel="preload" href="{{ baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" type="text/css" href="{{ baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css"></noscript>
     <script>
       {{ source('_includes/js/loadCSS.min.js') }}
       {{ source('_includes/js/cssrelpreload.min.js') }}
     </script>
   {% else %}
-    <link rel="stylesheet" type="text/css" href="{{ craft.app.config.get('baseUrl') }}assets/css/styles.min.{{ staticAssetsVersion }}.css">
+    <link rel="stylesheet" type="text/css" href="{{ baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css">
   {% endif %}
 
   {# -- SERVICE WORKER -- #}
   {% minify %}
   <script>
-    'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('{{ craft.app.config.get('baseUrl') }}/service-worker.js',{scope:'/'}).then(function(e){console.log('ServiceWorker registration successful with scope: ',e.scope),navigator.serviceWorker.controller&&navigator.serviceWorker.controller.postMessage({command:'trimCaches'})})['catch'](function(e){console.log('ServiceWorker registration failed: ',e)})});
+    'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('{{ baseUrl }}service-worker.js',{scope:'/'}).then(function(e){console.log('ServiceWorker registration successful with scope: ',e.scope),navigator.serviceWorker.controller&&navigator.serviceWorker.controller.postMessage({command:'trimCaches'})})['catch'](function(e){console.log('ServiceWorker registration failed: ',e)})});
   </script>
 
   {# -- LOADJS -- #}
@@ -80,7 +82,7 @@
 
   {# -- COMBINED JAVASCRIPT -- #}
   <script>
-  loadjs(['{{ craft.app.config.get('baseUrl') ~ 'assets/js/combined.min.' ~ staticAssetsVersion ~ '.js' }}'], 'scripts');
+  loadjs(['{{ baseUrl ~ 'assets/js/combined.min.' ~ staticAssetsVersion ~ '.js' }}'], 'scripts');
   loadjs.ready('scripts', {
     success: function() {
       const sans = new FontFaceObserver('Overpass', { weight: 400, });
@@ -114,7 +116,10 @@
   });
   </script>
 
-  <script type="text/javascript">$crisp=[];CRISP_WEBSITE_ID="5cff1e35-2074-4ea7-805a-77d53d25feec";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.im/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+  {# -- CRISP -- #}
+  {% if not craft.app.request.isLivePreview or not craft.app.config.get('devMode') %}
+    <script type="text/javascript">$crisp=[];CRISP_WEBSITE_ID="5cff1e35-2074-4ea7-805a-77d53d25feec";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.im/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+  {% endif %}
 
   {# -- SEOMATIC -- #}
   {% hook 'seomaticRender' %}

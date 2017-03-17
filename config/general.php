@@ -13,6 +13,10 @@ return [
 		'defaultWeekStartDay' => 1,
 		'omitScriptNameInUrls' => true,
 		'generateTransformsBeforePageLoad' => true,
+		'baseUrl' => 'https://connorbaer.co/',
+		'siteUrl' => array(
+			'connorbaer' => 'https://connorbaer.co/',
+		),
 	),
 	'.dev' => array(
 		'devMode' => true,
@@ -22,21 +26,6 @@ return [
 		'baseUrl' => 'https://connorbaer.dev/',
 		'siteUrl' => array(
 			'connorbaer' => 'https://connorbaer.dev/',
-			'madebyconnor' => 'https://madebyconnor.dev/',
-			'madebyconnor_de' => 'https://madebyconnor-de.dev/',
-		),
-	),
-	'connorbaer' => array(
-		'baseUrl' => 'https://connorbaer.co/',
-		'siteUrl' => array(
-			'connorbaer' => 'https://connorbaer.co/',
-		),
-	),
-	'madebyconnor' => array(
-		'baseUrl' => 'https://connorbaer.co/',
-		'siteUrl' => array(
-			'madebyconnor' => 'https://madebyconnor.co/',
-			'madebyconnor_de' => 'https://madebyconnor.de/',
 		),
 	),
 ];
