@@ -33,8 +33,6 @@
 
 
 {% set baseUrl = craft.app.config.get('baseUrl') %}
-
-{% set staticAssetsVersion = "024" %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}
 
 
@@ -52,21 +50,23 @@
   <title>{% if entry is defined %}{{ entry.title }} · {% endif %}{{ siteName | split('·') | first }}</title>
 
   {# -- CRITICAL CSS -- #}
-  {% set cacheVal = getCookie('critical-css') %}
 
-  {% if not cacheVal or cacheVal != staticAssetsVersion or craft.app.config.get('devMode') %}
-    {{ setCookie('critical-css', staticAssetsVersion, now | date_modify("+7 days").timestamp ) }}
+  {% set currentCache = getCookie('critical-css') %}
+  {% set newCache = rev('css/styles.min.css') %}
+
+  {% if not currentCache or currentCache != newCache or craft.app.config.get('devMode') %}
+    {{ setCookie('critical-css', newCache, now | date_modify("+7 days").timestamp ) }}
 
     {% block critical %}{% endblock %}
 
-    <link rel="preload" href="{{ baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" type="text/css" href="{{ baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css"></noscript>
+    <link rel="preload" href="{{ baseUrl ~ newCache }}" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" type="text/css" href="{{ baseUrl ~ newCache }}"></noscript>
     <script>
       {{ source('_includes/js/loadCSS.min.js') }}
       {{ source('_includes/js/cssrelpreload.min.js') }}
     </script>
   {% else %}
-    <link rel="stylesheet" type="text/css" href="{{ baseUrl }}assets/css/styles.min.{{ staticAssetsVersion }}.css">
+    <link rel="stylesheet" type="text/css" href="{{ baseUrl ~ newCache }}">
   {% endif %}
 
   {# -- SERVICE WORKER -- #}
@@ -82,7 +82,7 @@
 
   {# -- COMBINED JAVASCRIPT -- #}
   <script>
-  loadjs(['{{ baseUrl ~ 'assets/js/combined.min.' ~ staticAssetsVersion ~ '.js' }}'], 'scripts');
+  loadjs(['{{ baseUrl ~ rev('js/combined.min.js') }}'], 'scripts');
   loadjs.ready('scripts', {
     success: function() {
       const sans = new FontFaceObserver('Overpass', { weight: 400, });

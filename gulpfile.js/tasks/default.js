@@ -23,7 +23,7 @@ gulp.task('default', ['watch']);
 gulp.task('setup', (callback) => {
   sequence('update', 'icons',
   [
-    'default'
+    'default',
   ],
   callback);
 });
@@ -36,7 +36,7 @@ gulp.task('build', (callback) => {
   sequence('clean',
   [
     'styles',
-    'scripts'
+    'scripts',
   ],
   callback);
 });
@@ -50,7 +50,8 @@ gulp.task('dist', (callback) => {
   [
     'styles-amp',
     'styles-critical',
-    'service-worker'
+    'revisions',
+    'service-worker',
   ],
   callback);
 });

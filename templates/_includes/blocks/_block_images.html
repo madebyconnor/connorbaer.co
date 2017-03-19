@@ -38,7 +38,7 @@
 
 {% if loadPhotoswipe and not amp is defined %}
   <script>
-  loadjs(['{{ baseUrl ~ 'assets/js/photoswipe.min.' ~ staticAssetsVersion ~ '.js' }}'], 'photoswipe');
+  loadjs(['{{ baseUrl ~ rev('js/photoswipe.min.js') }}'], 'photoswipe');
   loadjs.ready('photoswipe', {
     success: function() {
       initPhotoSwipeFromDOM('.block-images');
