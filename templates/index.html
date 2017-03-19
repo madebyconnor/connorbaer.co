@@ -17,113 +17,16 @@
   </style>
 {% endblock %}
 
-{% block head %}
-  {{ parent() }}
-
-  {% minify %}
-  <script>
-    loadjs(['https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'], 'particles');
-    loadjs.ready('particles', {
-      success: function() {
-        particlesJS('js-particles', {
-          'particles': {
-            'number': {
-              'value': 100,
-              'density': {
-                'enable': true,
-                'value_area': 800
-              }
-            },
-            'color': {
-              'value': '#5000f1'
-            },
-            'shape': {
-              'type': 'circle',
-              'polygon': {
-                'nb_sides': 5
-              },
-            },
-            'opacity': {
-              'value': 0.75,
-              'random': false,
-              'anim': {
-                'enable': false,
-                'speed': 1,
-                'opacity_min': 0.1,
-                'sync': false
-              }
-            },
-            'size': {
-              'value': 3,
-              'random': true,
-              'anim': {
-                'enable': false,
-                'speed': 40,
-                'size_min': 0.1,
-                'sync': false
-              }
-            },
-            'line_linked': {
-              'enable': true,
-              'distance': 150,
-              'color': '#868e96',
-              'opacity': 0.4,
-              'width': 1
-            },
-            'move': {
-              'enable': true,
-              'speed': 6,
-              'direction': 'none',
-              'random': false,
-              'straight': false,
-              'out_mode': 'out',
-              'bounce': false,
-              'attract': {
-                'enable': false,
-                'rotateX': 600,
-                'rotateY': 1200
-              }
-            }
-          },
-          'interactivity': {
-            'detect_on': 'canvas',
-            'events': {
-              'onhover': {
-                'enable': true,
-                'mode': 'repulse'
-              },
-              'onclick': {
-                'enable': true,
-                'mode': 'push'
-              },
-              'resize': true
-            },
-            'modes': {
-              'repulse': {
-                'distance': 100,
-                'duration': 0.4
-              },
-              'push': {
-                'particles_nb': 4
-              }
-            }
-          },
-          'retina_detect': true
-        });
-      }
-    });
-  </script>
-  {% endminify %}
-{% endblock %}
-
 {% block main %}
   {% cache %}
   {% minify %}
 
   {# -- HERO -- #}
   <article>
-    <header class="hero">
-      <div id="js-particles" class="hero-background hero-animation js-rellax" data-rellax-speed="-5"></div>
+    <header class="hero" {{ elements.radial(entry) }}>
+      {% if entry.image.one() %}
+        <div class="hero-background hero-image js-rellax" style="background-image: url('{{ entry.image.one().getUrl('large16x9') }}')"></div>
+      {% endif %}
       <div class="hero-content mw-medium ta-center">
         <div class="hero-text w100">
           <h1 class="ts-title1">{{ helpers.striptags(entry.title) }}</h1>
@@ -142,7 +45,7 @@
   {% if posts %}
     <section class="mw-large mv4 cf">
       <div class="w100 mt3">
-        <h3 class=" ts-title4"><a href="/writing">Latest Posts</a></h3>
+        <h3 class="ts-title4"><a href="/writing">Latest Posts</a></h3>
       </div>
         {% for post in posts %}
           <article class="w1-3 fl-left mt3">
