@@ -117,7 +117,7 @@
   </script>
 
   {# -- CRISP -- #}
-  {% if not craft.app.request.isLivePreview or not craft.app.config.get('devMode') %}
+  {% if not craft.app.request.isLivePreview and not craft.app.config.get('devMode') %}
     <script type="text/javascript">$crisp=[];CRISP_WEBSITE_ID="4e4ff4c7-b0c9-432e-8eb6-e18ebb57746d";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.im/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
   {% endif %}
 
