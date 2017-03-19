@@ -36,7 +36,7 @@
 {% endif %}
 
 
-{% if loadPhotoswipe %}
+{% if loadPhotoswipe and not amp is defined %}
   <script>
   loadjs(['{{ baseUrl ~ 'assets/js/photoswipe.min.' ~ staticAssetsVersion ~ '.js' }}'], 'photoswipe');
   loadjs.ready('photoswipe', {
