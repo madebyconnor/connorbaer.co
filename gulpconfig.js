@@ -119,8 +119,6 @@ module.exports = {
         { url: '', template: 'index' },
         { url: 'work', template: 'work/index' },
         { url: 'work/jekyll-themes', template: 'work/_entry' },
-        { url: 'writing', template: 'writing/index' },
-        { url: 'writing/africa-is-not-a-country', template: 'writing/_entry' },
         { url: 'legal', template: '_pages/entry' },
       ],
     },

@@ -8,7 +8,7 @@ const gulp    = require('gulp'),
 
 
 // Build stylesheets from source Sass files, post-process, write source maps (for debugging) with libsass, and version the file.
-gulp.task('styles-amp', () => {
+gulp.task('styles', () => {
   return gulp.src(config.src)
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init()) // Note that sourcemaps need to be initialized with libsass
@@ -21,7 +21,7 @@ gulp.task('styles-amp', () => {
 
 
 // Inject accelerated mobile pages CSS into the HTML head.
-gulp.task('styles', ['styles-amp'], () => {
+gulp.task('styles-amp', () => {
   return gulp.src(config.amp.src)
     .pipe(gulp.dest(config.amp.dest));
 });
@@ -39,6 +39,7 @@ function doSynchronousLoop(data, processor, done) {
         }
       });
     };
+
     loop(data, 0, processor, done);
   } else {
     done();
@@ -62,7 +63,7 @@ function criticalCSS(element, i, callback) {
     }, {
       height: config.critical.large.height,
       width: config.critical.large.width,
-    }],
+    },],
   }, (err, output) => {
     console.log(err);
     callback();
