@@ -4,9 +4,8 @@
 /.idea
 /config/license.key
 /scripts/.env.sh
-/web/uploads/
-/web/github-log.txt
-/public
+/public/uploads/
+/public/github-log.txt
 
 # Install by running `bower install` #
 /bower_components/
