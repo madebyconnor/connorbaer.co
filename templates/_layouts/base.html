@@ -32,7 +32,8 @@
 -#}
 
 
-{% set baseUrl = craft.app.config.get('baseUrl') %}
+{% set baseUrl = craft.app.config.getGeneral.baseUrl %}
+{% set devMode = craft.app.config.getGeneral.devMode %}
 {% set FontFaceObserver = getCookie("FontFaceObserver") %}
 
 
@@ -54,7 +55,7 @@
   {% set currentCache = getCookie('critical-css') %}
   {% set newCache = rev('css/styles.min.css') %}
 
-  {% if not currentCache or currentCache != newCache or craft.app.config.get('devMode') %}
+  {% if not currentCache or currentCache != newCache or devMode %}
     {{ setCookie('critical-css', newCache, now | date_modify("+7 days").timestamp ) }}
 
     {% block critical %}{% endblock %}
@@ -117,7 +118,7 @@
   </script>
 
   {# -- CRISP -- #}
-  {% if not craft.app.request.isLivePreview or not craft.app.config.get('devMode') %}
+  {% if not craft.app.request.isLivePreview or not devMode %}
     <script type="text/javascript">$crisp=[];CRISP_WEBSITE_ID="5cff1e35-2074-4ea7-805a-77d53d25feec";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.im/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
   {% endif %}
 
@@ -167,7 +168,7 @@
 
 {% block foot %}
   {# -- GOOGLE ANALYTICS -- #}
-  {% if not craft.app.request.isLivePreview or not craft.app.config.get('devMode') %}
+  {% if not craft.app.request.isLivePreview or not devMode %}
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
