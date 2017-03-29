@@ -12,24 +12,25 @@
 
 .button {
   display: inline-block;
-  margin: $sp-small 0;
-  padding: .5rem .75rem;
-  transition: background-color $an-medium, color $an-medium;
-  border: 3px solid $oc-one-6;
-  border-radius: $sp-tiny;
+  padding: 0 $sp-small;
+  transition: border-color $an-medium, background-color $an-medium, color $an-medium, box-shadow $an-medium;
+  border: 2px solid $oc-black;
   outline: none;
   background-color: $oc-white;
-  color: $oc-one-6;
+  color: $oc-black;
   font-size: $fs-regular;
   font-weight: $fw-sans-normal;
   letter-spacing: 1px;
   text-decoration: none;
+  box-shadow: 4px 4px 0 $sh-color;
   cursor: pointer;
 
   &:hover,
   &:focus {
+    border-color: $oc-one-6;
     background-color: $oc-one-6;
     color: $oc-white;
+    box-shadow: 4px 4px 0 $oc-two-6;
   }
 }
 

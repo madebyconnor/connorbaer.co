@@ -20,21 +20,97 @@
 {% set section = craft.app.request.segments | first %}
 
 {% block main %}
+  {% cache %}
+  {% minify %}
 
   {# -- HERO -- #}
-  <header class="hero">
-    <div class="hero-content mw-large ta-center">
-      <div class="hero-text w100">
-        <h1 class="ts-title1">{{ entry.title }}</h1>
-      </div>
+  <header class="hero ctnr-l">
+    <div class="hero-content w100 mv4">
+      <h1 class="ts-title1 ts-shadow">{{ entry.title }}</h1>
     </div>
   </header>
 
-  <div class="mw-medium">
+
+  <div class="ctnr-l">
 
     {# -- FEATURED POST -- #}
-    {% cache %}
-    {% minify %}
+    {% set featured = craft.entries({
+      section: section,
+      featured: '1',
+      with: ['image'],
+      limit: '1'
+    }) %}
+
+    {% if featured %}
+      {% for post in featured %}
+        <article class="w100 mv4">
+
+          {# Featured image or first image from matrix blocks? #}
+          {% if post.image[0] ?? null %}
+            {% set image = post.image[0] ?? null %}
+          {% else %}
+            {% set imageBlock = post.body.type('image').one() %}
+            {% if imageBlock %}
+              {% set image = imageBlock.image.one() %}
+            {% endif %}
+          {% endif %}
+
+          {% if image is defined and image %}
+            <a href="{{ post.url }}" title="{{ post.title }}">
+              {{ elements.image(image, '16x9') }}
+            </a>
+          {% endif %}
+          <h2 class="mt3 ts-title2"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+          <p class="mv1 ts-body">{{ helpers.striptags(post.description) }}</p>
+          <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+        </article>
+      {% endfor %}
+    {% endif %}
+
+    {# -- POSTS -- #}
+
+    {# Get the ids of the featured posts above #}
+    {% set featuredIds = featured.ids() %}
+
+    {# Get posts in section which don't have an id in featuredIds #}
+    {% set posts = craft.entries({
+      section: section,
+      id: 'and, not ' ~ featuredIds | join(', not ')
+    }) %}
+
+    <div class="posts w100">
+
+      {% for post in posts %}
+        <article class="post mv2 fl-left">
+          <a class="ov-ctnr" href="{{ post.url }}" title="{{ post.title }}">
+            <div class="w4-5 ov-center js-rellax" data-rellax-speed="0.5" data-rellax-percentage="0.5">
+              <h3 class="ts-title2 ts-shadow">{{ post.title }}</h3>
+            </div>
+            <div class="w4-5 fl-right js-rellax" data-rellax-speed="-0.5" data-rellax-percentage="0.5">
+              {# Featured image or first image from matrix blocks? #}
+              {% if post.image[0] ?? null %}
+                {% set image = post.image[0] ?? null %}
+              {% else %}
+                {% set imageBlock = post.body.type('image').one() %}
+                {% if imageBlock %}
+                  {% set image = imageBlock.image.one() %}
+                {% endif %}
+              {% endif %}
+
+              {% if image is defined and image %}
+                {{ elements.image(image, '16x9') }}
+              {% endif %}
+            </div>
+          </a>
+        </article>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  <div class="ctnr-l">
+
+    {# -- FEATURED POST -- #}
     {% set featured = craft.entries({
       section: section,
       featured: '1',

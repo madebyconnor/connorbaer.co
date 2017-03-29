@@ -16,7 +16,7 @@
 
 const pkg   = require('./package.json'), // Allows access to the project metadata from the package.json file.
   src     = 'source/', // The raw material of the theme: custom scripts, SCSS source files, images, etc.; do not delete this folder!
-  dist    = 'web/', // The webroot directory that will be accessible on your server.
+  dist    = 'public/', // The webroot directory that will be accessible on your server.
   assets  = 'assets/', // A folder for your assets in the source and/or distribution directory.
   tmplts  = 'templates/', // The CraftCMS template folder.
   bower   = 'bower_components/', // Bower packages.
@@ -141,6 +141,7 @@ module.exports = {
         modules + 'fontfaceobserver/fontfaceobserver.standalone.js',
         modules + 'object-fit-images/dist/ofi.js',
         modules + 'rellax/rellax.js',
+        modules + 'suncalc/suncalc.js',
       ],
       single: {
         prism: [

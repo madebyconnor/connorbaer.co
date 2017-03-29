@@ -40,7 +40,7 @@
   }
 }
 
-a > img,
+a img,
 .img-hover {
   transition: opacity $an-medium;
   backface-visibility: hidden;
@@ -49,6 +49,11 @@ a > img,
   &:focus {
     opacity: 0.75;
   }
+}
+
+a:hover img,
+a:focus img {
+  opacity: 0.75;
 }
 
 

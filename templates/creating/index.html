@@ -25,7 +25,7 @@
 
   {# -- HERO -- #}
   <header class="hero">
-    <div class="hero-content mw-large ta-center">
+    <div class="hero-content ctnr-l ta-center">
       <div class="hero-text w100">
         <h1 class="ts-title1">{{ entry.title }}</h1>
       </div>
@@ -41,7 +41,7 @@
   }) %}
 
   {% if featured | length >= '2' %}
-    <section class="mw-large mv3 cf">
+    <section class="ctnr-l mv3 cf">
       {% for item in featured %}
         <article class="w1-2 fl-left mv2">
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
@@ -70,7 +70,7 @@
   }) %}
 
   {% if items %}
-    <section class="mw-large mv3 cf">
+    <section class="ctnr-l mv3 cf">
       {% for item in items %}
         <article class="w1-3 fl-left mv2">
           <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">

@@ -17,7 +17,7 @@
 {% block main %}
   {# -- HERO -- #}
   <header class="hero">
-    <div class="hero-content mw-large ta-center">
+    <div class="hero-content ctnr-l ta-center">
       <div class="hero-text w100">
         <h1 class="ts-title1">{{"Category" | t }}: {{ category | capitalize }}</h1>
         {% if category.description is defined %}
@@ -27,7 +27,7 @@
     </div>
   </header>
 
-  <div class="mw-large mv4">
+  <div class="ctnr-l mv4">
     {# -- FEATURED -- #}
     {% set featured = craft.entries({
       section: section,

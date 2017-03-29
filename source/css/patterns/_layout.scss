@@ -2,6 +2,8 @@
   LAYOUT
 
   Widths
+    Containers
+    Columns
   Positions
   Spacing
   Cards
@@ -10,16 +12,49 @@
 
 // Widths //
 
-.w1-2,
-.w1-3,
-.w2-3,
-.w100,
-.mw-medium,
-.mw-large {
+// Containers
+
+.ctnr-l {
+  display: block;
+  width: 100%;
+  max-width: $mw-large;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $sp-small;
+  padding-left: $sp-small;
+
+  @media #{$bp-medium} {
+    padding-right: $sp-large;
+    padding-left: $sp-large;
+  }
+}
+
+.ctnr-s {
+  display: block;
+  width: 100%;
+
+  @media #{$bp-small} {
+    width: 100% / 5 * 4;
+  }
+}
+
+// Columns
+
+.w100 {
   display: block;
   width: 100%;
   padding-right: $sp-small;
   padding-left: $sp-small;
+}
+
+$w-columns: 5;
+
+@media #{$bp-small} {
+  @for $i from 1 through $w-columns {
+    .w#{$i}-#{$w-columns} {
+      width: 100% / $w-columns * $i;
+    }
+  }
 }
 
 @media #{$bp-small} {
@@ -39,23 +74,6 @@
 
   .w2-3 {
     width: (100% / 1.5);
-  }
-}
-
-.mw-medium {
-  max-width: $mw-medium;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.mw-large {
-  max-width: $mw-large;
-  margin-right: auto;
-  margin-left: auto;
-
-  @media #{$bp-medium} {
-    padding-right: $sp-large;
-    padding-left: $sp-large;
   }
 }
 
@@ -92,6 +110,22 @@
   display: table;
   clear: right;
   content: "";
+}
+
+.ov-ctnr {
+  display: block;
+  position: relative;
+  height: 100%;
+}
+
+.ov-center {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  z-index: 99;
 }
 
 

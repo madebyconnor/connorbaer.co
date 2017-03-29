@@ -23,16 +23,30 @@
 
   {# -- HERO -- #}
   <article>
-    <header class="hero" {{ elements.radial(entry) }}>
-      {% if entry.image.one() %}
-        <div class="hero-background hero-image js-rellax" style="background-image: url('{{ entry.image.one().getUrl('large16x9') }}')"></div>
-      {% endif %}
-      <div class="hero-content mw-medium ta-center">
-        <div class="hero-text w100">
-          <h1 class="ts-title1">{{ helpers.striptags(entry.title) }}</h1>
-          <h2 class="mt2 ts-large">{{ helpers.striptags(entry.description) }}</h2>
+    <header class="hero ctnr-l">
+      {% if currentUser and currentUser.username == 'connorbaer' %}
+        <div class="hero-content mv4 cf">
+          <div class="hero-text w2-5 js-rellax" data-rellax-speed="1">
+            <h1 class="ts-title1 ts-shadow">Hello Connor.</h1>
+            <a class="button mt2" href="/about">About me</a>
+          </div>
+          <div class="hero-image w4-5 fl-right js-rellax" data-rellax-speed="1">
+            {% if entry.image.one() %}
+              {{ elements.image(entry.image.one(), null, '16x9') }}
+            {% endif %}
         </div>
-      </div>
+      {% else %}
+        <div class="hero-content mv4 cf">
+          <div class="hero-text w2-5 js-rellax" data-rellax-speed="1">
+            <h1 class="ts-title1 ts-shadow">{{ helpers.striptags(entry.title) }}</h1>
+            <a class="button mt2" href="/about">About me</a>
+          </div>
+          <div class="hero-image w4-5 fl-right js-rellax" data-rellax-speed="1">
+            {% if entry.image.one() %}
+              {{ elements.image(entry.image.one(), null, '16x9') }}
+            {% endif %}
+        </div>
+      {% endif %}
     </header>
   </article>
 
@@ -43,7 +57,7 @@
   }) %}
 
   {% if posts %}
-    <section class="mw-large mv4 cf">
+    <section class="ctnr-l mv4 cf">
       <div class="w100 mt3">
         <h3 class="ts-title4"><a href="/writing">Latest Posts</a></h3>
       </div>
@@ -65,7 +79,7 @@
   }) %}
 
   {% if featured | length >= '2' %}
-    <section class="mw-large mv3 cf">
+    <section class="ctnr-l mv3 cf">
       <div class="w100 mt3 mb1">
         <h3 class="ts-title4"><a href="/creating">Latest Projects</a></h3>
       </div>

@@ -36,7 +36,7 @@
       {% if entry.image.one() %}
         <div class="hero-background hero-image"></div>
       {% endif %}
-      <div class="hero-content mw-large ta-center">
+      <div class="hero-content ctnr-l ta-center">
         <div class="hero-text w100">
           <h1 class="mb1 ts-title1">{{ entry.title }}</h1>
           <span class="ts-app">{{ elements.date(entry.postDate) }}{% if entry.category is not empty %}&nbsp;·&nbsp;{{ elements.category(entry) }}{% endif %}</span>
@@ -48,7 +48,7 @@
     <div class="blocks">
 
       {# Post description #}
-      <div class="mw-medium">
+      <div class="ctnr-s">
         <h2 class="w100 ts-large">{{ entry.description }}</h2>
       </div>
 
@@ -58,7 +58,7 @@
     </div>
 
     {# -- SHARE -- #}
-    <div class="mw-medium mv4 ta-center">
+    <div class="ctnr-s mv4 ta-center">
       {{ elements.share(entry.title) }}
     </div>
   </article>
@@ -72,7 +72,7 @@
   }) %}
 
   {% if relatedPosts | length == '3' %}
-    <div class="mw-large mv4 cf">
+    <div class="ctnr-l mv4 cf">
       <div class="cf">
         <div class="w100 mt2">
           <h4 class="ts-title4">{{ "Related Posts" | t}}</h4>

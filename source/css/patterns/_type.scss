@@ -17,19 +17,9 @@
 %ts-title2,
 .ts-title3,
 %ts-title3 {
-  font-family: $ff-mono;
-  font-weight: bold;
-  letter-spacing: -$ls-medium;
+  font-family: $ff-sans;
+  font-weight: $fw-sans-bold;
   line-height: $lh-small;
-
-  a {
-    transition: color $an-short;
-
-    &:hover,
-    &:focus {
-      color: $oc-one-6;
-    }
-  }
 }
 
 .ts-title1,
@@ -49,10 +39,10 @@
 
 .ts-title4,
 %ts-title4 {
-  padding-bottom: $sp-small;
   transition: color $an-short;
-  border-bottom: 1px solid $oc-gray-3;
   font-family: $ff-sans;
+  font-size: $fs-small;
+  font-weight: $fw-sans-bold;
   letter-spacing: $ls-large;
   line-height: $lh-small;
   text-transform: uppercase;
@@ -92,6 +82,12 @@
   line-height: $lh-small;
 }
 
+.ts-title1 a,
+%ts-title1 a,
+.ts-title2 a,
+%ts-title2 a,
+.ts-title3 a,
+%ts-title3 a,
 .ts-quote a,
 %ts-quote a,
 .ts-large a,
@@ -102,15 +98,27 @@
 %ts-app a,
 .ts-link,
 %ts-link {
-  display: inline-block;
-  transition: box-shadow $an-short;
+  transition: color $an-medium, text-shadow $an-medium;
   color: $oc-one-6;
-  line-height: $lh-small;
 
   &:hover,
   &:focus {
     color: $oc-one-6;
-    box-shadow: inset 0 -.075em 0 0 $oc-one-6;
+    text-shadow: $sh-offset $sh-offset $oc-two-6;
+  }
+}
+
+.ts-shadow {
+  text-shadow: $sh-offset $sh-offset $sh-color;
+
+  a {
+    transition: color $an-short, text-shadow $an-short;
+
+    &:hover,
+    &:focus {
+      color: $oc-one-6;
+      text-shadow: $sh-offset $sh-offset $oc-two-6;
+    }
   }
 }
 

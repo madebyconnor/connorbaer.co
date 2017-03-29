@@ -38,6 +38,8 @@
     "photoswipe": "^4.1.1",
     "prismjs": "^1.6.0",
     "rellax": "^1.0.0",
+    "suncalc": "^1.8.0",
+    "tachyons-sass": "^4.7.1",
     "typi": "^2.3.0"
   },
   "devDependencies": {

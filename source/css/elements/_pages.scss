@@ -1,0 +1,37 @@
+/*
+  PAGES
+
+  Single
+    Homepage
+  Channel
+    Writing
+  Section
+*/
+
+// Channel //
+
+// Writing
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.post {
+  position: relative;
+  width: 100%;
+
+  @media #{$bp-small} {
+    width: 100% / 20 * 9;
+  }
+}
+
+.post-text {
+  width: 100% / 9 * 8;
+}
+
+.post-image {
+  width: 100% / 9 * 8;
+  margin-top: 2.75rem;
+}
