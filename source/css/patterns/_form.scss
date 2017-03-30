@@ -12,16 +12,17 @@
 
 .button {
   display: inline-block;
-  padding: 0 $sp-small;
+  padding: .25rem $sp-small;
   transition: border-color $an-medium, background-color $an-medium, color $an-medium, box-shadow $an-medium;
   border: 2px solid $oc-black;
   outline: none;
-  background-color: $oc-white;
-  color: $oc-black;
-  font-size: $fs-regular;
+  background-color: white;
+  color: black;
+  font-size: $fs-small;
   font-weight: $fw-sans-normal;
-  letter-spacing: 1px;
+  letter-spacing: $ls-large;
   text-decoration: none;
+  text-transform: uppercase;
   box-shadow: 4px 4px 0 $sh-color;
   cursor: pointer;
 

@@ -23,25 +23,23 @@
 
   {# -- HERO -- #}
   <article>
-    <header class="hero ctnr-l">
-      {% if currentUser and currentUser.username == 'connorbaer' %}
-        <div class="hero-content mv4 cf">
-          <div class="hero-text w2-5 js-rellax" data-rellax-speed="1">
+    <header class="ctnr-l mv5">
+      {% if currentUser and currentUser.username == 'tim' %}
+        <div class="ov-ctnr cf">
+          <div class="ov-center w2-5">
             <h1 class="ts-title1 ts-shadow">Hello Connor.</h1>
-            <a class="button mt2" href="/about">About me</a>
+            <p class="ts-body">I am web developer with a background in design and a penchant for speed and usability.</p>
+            <a class="button mt1" href="/about">About me</a>
           </div>
-          <div class="hero-image w4-5 fl-right js-rellax" data-rellax-speed="1">
-            {% if entry.image.one() %}
-              {{ elements.image(entry.image.one(), null, '16x9') }}
-            {% endif %}
+          <div class="w4-5 fl-right">
         </div>
       {% else %}
-        <div class="hero-content mv4 cf">
-          <div class="hero-text w2-5 js-rellax" data-rellax-speed="1">
+        <div class="ov-ctnr cf">
+          <div class="ov-center w2-5 js-rellax" data-rellax-speed="1">
             <h1 class="ts-title1 ts-shadow">{{ helpers.striptags(entry.title) }}</h1>
-            <a class="button mt2" href="/about">About me</a>
+            <a class="button mt3" href="/about">About me</a>
           </div>
-          <div class="hero-image w4-5 fl-right js-rellax" data-rellax-speed="1">
+          <div class="w4-5 fl-right js-rellax" data-rellax-speed="1">
             {% if entry.image.one() %}
               {{ elements.image(entry.image.one(), null, '16x9') }}
             {% endif %}
@@ -49,6 +47,26 @@
       {% endif %}
     </header>
   </article>
+
+  {# -- FEATURED ITEMS -- #}
+  {% set featured = craft.entries({
+    section: 'creating',
+    featured: '1',
+    with: ['image'],
+    limit: '2'
+  }) %}
+  {% set lazyImage = false %}
+
+  {% if featured | length >= '2' %}
+    <section class="ctnr-l mv3 cf">
+      {% for item in featured %}
+
+        {% include ['_includes/types/' ~ item.type.handle, '_includes/types/default'] %}
+        {% set lazyImage = true %}
+
+      {% endfor %}
+    </section>
+  {% endif %}
 
   {# -- LATEST POSTS -- #}
   {% set posts = craft.entries({
@@ -67,34 +85,6 @@
             <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
           </article>
         {% endfor %}
-    </section>
-  {% endif %}
-
-  {# -- FEATURED ITEMS -- #}
-  {% set featured = craft.entries({
-    section: 'creating',
-    featured: '1',
-    with: ['image'],
-    limit: '2'
-  }) %}
-
-  {% if featured | length >= '2' %}
-    <section class="ctnr-l mv3 cf">
-      <div class="w100 mt3 mb1">
-        <h3 class="ts-title4"><a href="/creating">Latest Projects</a></h3>
-      </div>
-      {% for item in featured %}
-        <article class="w1-2 fl-left mv2">
-          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
-            {% set image = item.image[0] ?? null %}
-            {% if image %}
-              {{ elements.image(image, null, '1x1', '36rem') }}
-            {% endif %}
-          </a>
-          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
-          <p class="ts-app">{{ item.client.one().title }}</p>
-        </article>
-      {% endfor %}
     </section>
   {% endif %}
 

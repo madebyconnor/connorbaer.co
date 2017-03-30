@@ -42,7 +42,6 @@
   transition: color $an-short;
   font-family: $ff-sans;
   font-size: $fs-small;
-  font-weight: $fw-sans-bold;
   letter-spacing: $ls-large;
   line-height: $lh-small;
   text-transform: uppercase;
@@ -119,6 +118,24 @@
       color: $oc-one-6;
       text-shadow: $sh-offset $sh-offset $oc-two-6;
     }
+  }
+}
+
+.ts-background {
+  display: inline;
+  padding: .125rem $sp-tiny .125rem 0;
+  transition: padding $an-medium, background-color $an-medium, color $an-medium;
+  background-color: $oc-white;
+  color: $oc-gray-9;
+  box-decoration-break: clone;
+
+  a#{&}:hover,
+  a#{&}:focus,
+  a:hover &,
+  a:focus & {
+    padding-left: $sp-tiny;
+    background-color: $oc-gray-9;
+    color: $oc-white;
   }
 }
 

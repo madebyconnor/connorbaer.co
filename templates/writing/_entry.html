@@ -29,16 +29,28 @@
 
   {# -- HERO -- #}
   <article>
-    <header class="hero ctnr-l">
-      <div class="ov-ctnr mv4 cf">
-        <div class="w2-5 ov-center js-rellax" data-rellax-speed="0.75">
+    <header class="ctnr-l mv5">
+      <div class="ov-ctnr cf">
+        <div class="w2-5 ov-center">
           <span class="ts-app mb1">{{ elements.date(entry.postDate) }}{% if entry.category is not empty %}&nbsp;·&nbsp;{{ elements.category(entry) }}{% endif %}</span>
-          <h1 class="ts-title1 ts-shadow">{{ entry.title }}</h1>
+          <h1 class="ts-title1">
+            <span class="ts-background">{{ entry.title }}</span>
+          </h1>
         </div>
-        <div class="w4-5 fl-right js-rellax" data-rellax-speed="-0.75">
-          {% if entry.image.one() %}
-            {{ elements.image(entry.image.one(), null, '16x9') }}
-          {% endif %}
+        {% set image = entry.image.one() %}
+        {% if image %}
+        <div class="w4-5 fl-right js-photoswipe">
+          <figure>
+            {% if amp is defined %}
+              {{ elements.image(image, null, '16x9') }}
+            {% else %}
+              <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
+                {{ elements.image(image, null, '16x9') }}
+              </a>
+            {% endif %}
+          <figure>
+        </div>
+        {% endif %}
       </div>
     </header>
 
@@ -96,6 +108,34 @@
           </article>
         {% endfor %}
 
+      </div>
+    </div>
+  {% endif %}
+
+  {% if not amp is defined %}
+    <script>
+    loadjs(['{{ baseUrl ~ rev('js/photoswipe.min.js') }}'], 'photoswipe');
+    loadjs.ready('photoswipe', {
+      success: function() {
+        initPhotoSwipeFromDOM('.js-photoswipe');
+      }
+    });
+    </script>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+      <div class="pswp__bg"></div>
+
+      <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+          PhotoSwipe keeps only 3 of them in the DOM to save memory.
+          Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
       </div>
     </div>
   {% endif %}

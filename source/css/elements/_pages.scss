@@ -35,3 +35,93 @@
   width: 100% / 9 * 8;
   margin-top: 2.75rem;
 }
+
+// Section //
+
+// Projects
+
+.project {
+  position: relative;
+  margin-top: 2 * $sp-huge;
+}
+
+.project-background {
+  position: absolute;
+  right: $sp-medium;
+  left: $sp-medium;
+  height: 100%;
+
+  @media #{$bp-small} {
+    right: 0;
+    left: 0;
+  }
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  float: right;
+  overflow: hidden;
+
+  @media #{$bp-small} {
+    width: 60%;
+    margin-top: -5%;
+    margin-right: 5%;
+    margin-bottom: -5%;
+  }
+}
+
+.project-title {
+  position: relative;
+  z-index: 9;
+
+  @media #{$bp-small-only} {
+    padding: $sp-small 0 $sp-medium;
+  }
+
+  @media #{$bp-small} {
+    position: absolute;
+    top: $sp-large;
+    left: -$sp-small;
+    width: 60%;
+  }
+}
+
+.project-button {
+  position: relative;
+  left: $sp-large;
+  z-index: 9;
+
+  @media #{$bp-small-only} {
+    padding: $sp-medium 0;
+  }
+
+  @media #{$bp-small} {
+    position: absolute;
+    bottom: $sp-large;
+    left: $sp-small;
+  }
+}
+
+
+/*
+  Hero
+*/
+
+
+// Hero //
+
+.hero-project {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  @media #{$bp-small} {
+    flex-wrap: nowrap;
+
+    > div {
+      width: 50%;
+    }
+  }
+}

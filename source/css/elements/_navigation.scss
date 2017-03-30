@@ -132,12 +132,12 @@
   text-align: center;
 
   @media #{$bp-small} {
-    font-size: $fs-regular;
+    font-size: $fs-small;
 
     &:hover,
     &:focus,
     &.metabar-navActive {
-      border-bottom: 2px solid $oc-one-6;
+      border-bottom: 2px solid $oc-two-6;
     }
 
     &:hover,

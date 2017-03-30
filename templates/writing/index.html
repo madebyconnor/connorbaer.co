@@ -24,8 +24,8 @@
   {% minify %}
 
   {# -- HERO -- #}
-  <header class="hero ctnr-l">
-    <div class="hero-content w100 mv4">
+  <header class="ctnr-l mv5">
+    <div class="w100">
       <h1 class="ts-title1 ts-shadow">{{ entry.title }}</h1>
     </div>
   </header>
@@ -82,11 +82,13 @@
 
       {% for post in posts %}
         <article class="post mv2 fl-left">
-          <a class="ov-ctnr" href="{{ post.url }}" title="{{ post.title }}">
-            <div class="w4-5 ov-center js-rellax" data-rellax-speed="0.5" data-rellax-percentage="0.5">
-              <h3 class="ts-title2 ts-shadow">{{ post.title }}</h3>
+          <a class="ov-ctnr cf" href="{{ post.url }}" title="{{ post.title }}">
+            <div class="w4-5 ov-center">
+              <h3 class="ts-title2">
+                <span class="ts-background">{{ post.title }}</span>
+              </h3>
             </div>
-            <div class="w4-5 fl-right js-rellax" data-rellax-speed="-0.5" data-rellax-percentage="0.5">
+            <div class="w4-5 fl-right">
               {# Featured image or first image from matrix blocks? #}
               {% if post.image[0] ?? null %}
                 {% set image = post.image[0] ?? null %}
@@ -102,6 +104,10 @@
               {% endif %}
             </div>
           </a>
+          <div class="w4-5 fl-right">
+            <p class="ts-body mb1">{{ helpers.truncate(post.description) }}</p>
+            <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+          </div>
         </article>
       {% endfor %}
 

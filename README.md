@@ -1,4 +1,4 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0200cfc81a1146bc87ed0407fdd4cd29)](https://www.codacy.com/app/connor_baer/connorbaer-co?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=connor-baer/connorbaer.co&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0200cfc81a1146bc87ed0407fdd4cd29)](https://www.codacy.com/app/connor_baer/connorbaer-co?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=connor-baer/connorbaer.co&amp;utm_campaign=Badge_Grade) [![Greenkeeper badge](https://badges.greenkeeper.io/connor-baer/connorbaer.svg)](https://greenkeeper.io/)
 
 # Connor Bär 🐼
 

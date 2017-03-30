@@ -116,9 +116,7 @@
 
       objectFitImages();
 
-      const rellax = new Rellax('.js-rellax', {
-        round: false,
-      });
+      const rellax = new Rellax('.js-rellax');
 
       {% if currentUser and currentUser.username == 'connorbaer' %}
         if (navigator.geolocation) {

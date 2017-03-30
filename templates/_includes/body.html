@@ -15,7 +15,6 @@
 {# Initialize a few variables #}
 {% set lazyImage = false %}
 {% set loadPrism = true %}
-{% set loadPhotoswipe = true %}
 {% set prevPosition = '' %}
 
 {% for block in entry.body %}
@@ -53,7 +52,6 @@
     {# Adjust variables #}
     {% if block.type.handle == "image" %}
       {% set lazyImage = true %}
-      {% set loadPhotoswipe = false %}
     {% elseif block.type.handle == "code" %}
       {% set loadPrism = false %}
     {% endif %}
