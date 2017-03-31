@@ -10,8 +10,6 @@ $output        = array();
 $output[] = date( 'Y-m-d, H:i:s', time() ) . "\n";
 // Update the repo.
 $output[] = "GitHub Pull\n============================\n" . shell_exec( 'cd ' . $repo . ' && git pull origin ' . $branch ) . "\n";
-// Update dependencies.
-$output[] = "Composer Update\n============================\n" . shell_exec( 'cd ' . $repo . ' && composer update' );
 
 // Redirect output to logs.
 file_put_contents( rtrim( getcwd(), '/' ) . '/github-log.txt', implode( "\n", $output ) . "\n----------------------------\n", FILE_APPEND );
