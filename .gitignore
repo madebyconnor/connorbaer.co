@@ -5,7 +5,7 @@
 /config/license.key
 /scripts/.env.sh
 /public/uploads/
-/public/github-log.txt
+/public/*.txt
 
 # Install by running `bower install` #
 /bower_components/
