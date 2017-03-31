@@ -41,13 +41,15 @@ fi
 dbxcli rm -f ${REMOTE_DROPBOX_PATH}
 dbxcli mkdir ${REMOTE_DROPBOX_PATH}
 
-# Sync the local backups to the Dropbox backup directory
-for FILE in ${LOCAL_BACKUPS_PATH}*
+# Sync the local database backups to the Dropbox backup directory
+FILES=$(find ${LOCAL_BACKUPS_PATH} -type f -name '*.sql.gz')
+
+for FILE in $FILES
     do
         dbxcli put ${FILE} ${REMOTE_DROPBOX_PATH}
     done
 
-echo "*** Synced backups to ${REMOTE_DROPBOX_PATH}"
+echo "*** Synced database backups to ${REMOTE_DROPBOX_PATH}"
 
 # Normal exit
 exit 0
