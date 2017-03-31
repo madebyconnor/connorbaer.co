@@ -31,25 +31,25 @@ do
     fi
 done
 
+# Set the compressed backup file name
+BACKUP_FILE_NAME="backup-$(date '+%Y%m%d-%H%M%S').tar.gz"
+
 # Make sure the local backup directory exists
 if [[ ! -d "${LOCAL_BACKUPS_PATH}" ]] ; then
     echo "Creating backup directory ${LOCAL_BACKUPS_PATH}"
     mkdir -p "${LOCAL_BACKUPS_PATH}"
 fi
 
-# Wipe the Dropbox backup directory
-dbxcli rm -f ${REMOTE_DROPBOX_PATH}
-dbxcli mkdir ${REMOTE_DROPBOX_PATH}
+# Archive and compress the local backup directory
+tar -zcf "${BACKUP_FILE_NAME}" "${LOCAL_BACKUPS_PATH}"
 
-# Sync the local database backups to the Dropbox backup directory
-FILES=$(find ${LOCAL_BACKUPS_PATH} -type f -name '*.sql.gz')
+# Upload the compressed backup to the Dropbox backup directory
+dbxcli put "${BACKUP_FILE_NAME}" "${REMOTE_DROPBOX_PATH}${BACKUP_FILE_NAME}"
 
-for FILE in $FILES
-    do
-        dbxcli put ${FILE} ${REMOTE_DROPBOX_PATH}
-    done
+# Clean up the compressed backup file
+rm -f "${BACKUP_FILE_NAME}"
 
-echo "*** Synced database backups to ${REMOTE_DROPBOX_PATH}"
+echo "*** Synced backups to ${REMOTE_DROPBOX_PATH}"
 
 # Normal exit
 exit 0
