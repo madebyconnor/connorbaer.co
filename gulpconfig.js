@@ -103,7 +103,7 @@ module.exports = {
       },
     },
     critical: {
-      src: 'https://' + pkg.name + '.dev/',
+      src: 'http://' + pkg.name + '.dev/',
       dest: '../' + tmplts,
       small: {
         height: 732,

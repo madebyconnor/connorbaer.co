@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["assets/css/amp.min.css","34ad27ad13e9d87af151cdfc1fae9b67"],["assets/css/styles.min.css","09c52d9254281cf9a33d1e9305fe98f1"],["assets/js/combined.min.js","57c512fa81e671f3a4a3172d9425154f"],["assets/js/particles.min.js","713cdd383887d7a8d158a16e17723c30"],["assets/js/photoswipe.min.js","773784a854951856df5d2601ecf68a1d"],["assets/js/prism.min.js","f1ab1f831161beabcf188467c71a116d"]];
+var precacheConfig = [["assets/css/amp.min.css","863e861857acdce3d5dfa21cd451cb59"],["assets/css/styles-dark.min.css","c31f792b5bb6a70f75d377cd7b41dfa1"],["assets/css/styles.min.css","0c82879a08e22d0727596f6040d4a733"],["assets/js/combined.min.js","0cefad2c797a73c4a35320fcd74e1c60"],["assets/js/particles.min.js","713cdd383887d7a8d158a16e17723c30"],["assets/js/photoswipe.min.js","dd97acacb0fa5d9ab597d3784a09cbfa"],["assets/js/prism.min.js","f1ab1f831161beabcf188467c71a116d"]];
 var cacheName = 'sw-precache-v3-connorbaer-' + (self.registration ? self.registration.scope : '');
 
 
