@@ -32,12 +32,14 @@
 -#}
 
 
-{% set baseUrl = craft.app.config.get('baseUrl') %}
-{% set FontFaceObserver = getCookie("FontFaceObserver") %}
+{# -- DRY -- #}
+{% set baseUrl = craft.app.config.getGeneral.baseUrl %}
+{% set devMode = craft.app.config.getGeneral.devMode %}
+{% set livePreview = craft.app.request.isLivePreview %}
 
 
 <!doctype html>
-<html amp lang="{{ craft.app.language }}"{% if FontFaceObserver %} class="fonts-loaded"{% endif %}>
+<html amp lang="{{ craft.app.language }}">
 
 {% cache %}
 <head>
