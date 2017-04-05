@@ -21,19 +21,21 @@
   {% cache %}
   {% minify %}
 
-  {# -- HERO -- #}
   <article>
-    <header class="hero" {{ elements.radial(entry) }}>
-      {% if entry.image.one() %}
-        <div class="hero-background hero-image js-rellax" style="background-image: url('{{ entry.image.one().getUrl('large16x9') }}')"></div>
-      {% endif %}
-      <div class="hero-content mw-medium ta-center">
-        <div class="hero-text w100">
-          <h1 class="ts-title1">{{ helpers.striptags(entry.title) }}</h1>
-          <h2 class="mt2 ts-large">{{ helpers.striptags(entry.description) }}</h2>
-        </div>
+
+    {# -- HEADER -- #}
+    <header class="ctnr-l">
+      <div class="header header--narrow w100 mv5">
+        <h1 class="header__title header__title--color">{{ entry.title | striptags() }}&nbsp;</h1>
+        <h2 class="header__subtitle">{{ entry.description | striptags() }}</h2>
       </div>
+      {% if entry.image.one() %}
+        <div class="header__image w100 mv5">
+          {{ elements.image(entry.image.one(), '16x9') }}
+        </div>
+      {% endif %}
     </header>
+
   </article>
 
   {# -- LATEST POSTS -- #}
@@ -43,44 +45,16 @@
   }) %}
 
   {% if posts %}
-    <section class="mw-large mv4 cf">
+    <section class="ctnr-l mv4 cf">
       <div class="w100 mt3">
-        <h3 class="ts-title4"><a href="/writing">Latest Posts</a></h3>
+        <h3 class="ts-app"><a href="/writing">Latest Writings</a></h3>
       </div>
         {% for post in posts %}
-          <article class="w1-3 fl-left mt3">
-            <h3 class="mb1 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-            <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+          <article class="w1-3 fl-left mt2">
+            <h3 class="mb1 fs-t1 fw-bold lh1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <span class="ts-subtle fs-s1">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
           </article>
         {% endfor %}
-    </section>
-  {% endif %}
-
-  {# -- FEATURED ITEMS -- #}
-  {% set featured = craft.entries({
-    section: 'creating',
-    featured: '1',
-    with: ['image'],
-    limit: '2'
-  }) %}
-
-  {% if featured | length >= '2' %}
-    <section class="mw-large mv3 cf">
-      <div class="w100 mt3 mb1">
-        <h3 class="ts-title4"><a href="/creating">Latest Projects</a></h3>
-      </div>
-      {% for item in featured %}
-        <article class="w1-2 fl-left mv2">
-          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
-            {% set image = item.image[0] ?? null %}
-            {% if image %}
-              {{ elements.image(image, null, '1x1', '36rem') }}
-            {% endif %}
-          </a>
-          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
-          <p class="ts-app">{{ item.client.one().title }}</p>
-        </article>
-      {% endfor %}
     </section>
   {% endif %}
 

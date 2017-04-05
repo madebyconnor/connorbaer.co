@@ -17,17 +17,17 @@
 {% block main %}
   {# -- HERO -- #}
   <header class="hero">
-    <div class="hero-content mw-large ta-center">
+    <div class="hero-content ctnr-l ta-center">
       <div class="hero-text w100">
-        <h1 class="ts-title1">{{"Category" | t }}: {{ category | capitalize }}</h1>
+        <h1 class="fs-t3">{{"Category" | t }}: {{ category | capitalize }}</h1>
         {% if category.description is defined %}
-          <h2 class="ts-large fw-normal">{{ helpers.striptags(category.description) }}</h2>
+          <h2 class="fs-t1 fw-normal">{{ helpers.striptags(category.description) }}</h2>
         {% endif %}
       </div>
     </div>
   </header>
 
-  <div class="mw-large mv4">
+  <div class="ctnr-l mv4">
     {# -- FEATURED -- #}
     {% set featured = craft.entries({
       section: section,
@@ -56,12 +56,12 @@
           {% endif %}
         {% endif %}
         <header>
-          <h2 class="mt2 ts-title2"><a href="{{ featured.url }}" title="{{ featured.title }}">{{ featured.title }}</a></h2>
+          <h2 class="mt2 fs-t2"><a href="{{ featured.url }}" title="{{ featured.title }}">{{ featured.title }}</a></h2>
         </header>
         <footer class="mv1">
-          {{ elements.date(featured.postDate) }}{% if featured.category is not empty %}<span class="ts-app">&nbsp;·&nbsp;</span>{{ elements.category(featured) }}{% endif %}
+          {{ elements.date(featured.postDate) }}{% if featured.category is not empty %}<span class="ts-app fs-s1">&nbsp;·&nbsp;</span>{{ elements.category(featured) }}{% endif %}
         </footer>
-        <p class="mv1 ts-body">{{ helpers.striptags(featured.description) }}</p>
+        <p class="mv1">{{ helpers.striptags(featured.description) }}</p>
       </article>
     {% endif %}
 
@@ -87,9 +87,9 @@
               </a>
             {% endif %}
           {% endif %}
-          <h3 class="mt2 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-          <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
-          <p class="mv1 ts-body">{{ helpers.truncate(post.description| striptags()) }}</p>
+          <h3 class="mt2 fs-t1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+          <span class="ts-app fs-s1">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+          <p class="mv1">{{ helpers.truncate(post.description| striptags()) }}</p>
         </article>
       {% endfor %}
     </div>

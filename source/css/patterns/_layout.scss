@@ -2,6 +2,8 @@
   LAYOUT
 
   Widths
+    Containers
+    Columns
   Positions
   Spacing
   Cards
@@ -10,12 +12,38 @@
 
 // Widths //
 
-.w1-2,
+// Containers
+
+.ctnr-l,
+.ctnr-s {
+  display: block;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $sp-small;
+  padding-left: $sp-small;
+
+  @media #{$bp-medium} {
+    padding-right: $sp-large;
+    padding-left: $sp-large;
+  }
+}
+
+.ctnr-l {
+  max-width: $mw-large;
+}
+
+.ctnr-s {
+  @media #{$bp-small} {
+    max-width: $mw-large / 7 * 5;
+  }
+}
+
+// Columns
+
 .w1-3,
 .w2-3,
-.w100,
-.mw-medium,
-.mw-large {
+.w100 {
   display: block;
   width: 100%;
   padding-right: $sp-small;
@@ -39,23 +67,6 @@
 
   .w2-3 {
     width: (100% / 1.5);
-  }
-}
-
-.mw-medium {
-  max-width: $mw-medium;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.mw-large {
-  max-width: $mw-large;
-  margin-right: auto;
-  margin-left: auto;
-
-  @media #{$bp-medium} {
-    padding-right: $sp-large;
-    padding-left: $sp-large;
   }
 }
 

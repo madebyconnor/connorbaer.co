@@ -19,6 +19,32 @@
 // Base //
 
 @import "base/variables";
+
+$oc-white: $oc-gray-9;
+$oc-black: white;
+
+$oc-temp-0: $oc-gray-9;
+$oc-temp-1: $oc-gray-8;
+$oc-temp-2: $oc-gray-7;
+$oc-temp-3: $oc-gray-6;
+$oc-temp-4: $oc-gray-5;
+$oc-temp-5: $oc-gray-4;
+$oc-temp-6: $oc-gray-3;
+$oc-temp-7: $oc-gray-2;
+$oc-temp-8: $oc-gray-1;
+$oc-temp-9: $oc-gray-0;
+
+$oc-gray-0: $oc-temp-0;
+$oc-gray-1: $oc-temp-1;
+$oc-gray-2: $oc-temp-2;
+$oc-gray-3: $oc-temp-3;
+$oc-gray-4: $oc-temp-4;
+$oc-gray-5: $oc-temp-5;
+$oc-gray-6: $oc-temp-6;
+$oc-gray-7: $oc-temp-7;
+$oc-gray-8: $oc-temp-8;
+$oc-gray-9: $oc-temp-9;
+
 @import "base/reset";
 
 

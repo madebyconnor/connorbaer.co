@@ -40,8 +40,8 @@
   }
 }
 
-a > img,
-.img-hover {
+a.hover img,
+img.hover {
   transition: opacity $an-medium;
   backface-visibility: hidden;
 

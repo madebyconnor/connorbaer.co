@@ -32,12 +32,14 @@
 -#}
 
 
+{# -- DRY -- #}
 {% set baseUrl = craft.app.config.getGeneral.baseUrl %}
-{% set FontFaceObserver = getCookie("FontFaceObserver") %}
+{% set devMode = craft.app.config.getGeneral.devMode %}
+{% set livePreview = craft.app.request.isLivePreview %}
 
 
 <!doctype html>
-<html amp lang="{{ craft.app.language }}"{% if FontFaceObserver %} class="fonts-loaded"{% endif %}>
+<html amp lang="{{ craft.app.language }}">
 
 {% cache %}
 <head>
@@ -92,7 +94,7 @@
   {# -- METABAR -- #}
   {% include '_includes/metabar' %}
 
-  <main id="main">
+  <main id="main" class="main" role="main">
 
     {% block main %}{% endblock %}
 

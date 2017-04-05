@@ -4,7 +4,7 @@
  # Category
  # Date
  # Image
- # Radial
+ # Password
  # Share
  # Social
 -#}
@@ -52,14 +52,25 @@
 {% endmacro %}
 
 
-{# Radial #}
+{# Password #}
 
-{% macro radial(entry) %}
-  {% spaceless %}
-    {% if entry.colors.type('color').one() %}
-      style="background: radial-gradient(ellipse at bottom, {% for color in entry.colors.type('color') | reverse %}{{ color.color }}{% if not loop.last %}, {% endif %}{% endfor %});"
-    {% endif %}
-  {% endspaceless %}
+{% macro passphrase(entry) %}
+	{% set passphrase = craft.app.request.getQueryParam('passphrase') %}
+
+	<div class="ctnr-s mv5">
+		<div class="w100">
+			<h1 class="mv3 fs-t3 fw-bold lh1 ta-center">This page is password-protected. 🔐</h1>
+			<form class="form{% if passphrase and entry.passphrase != passphrase %} form--error{% endif %}" action="" method="get">
+				<fieldset class="form__group">
+					<label class="form__label" for="passphrase">Enter the passphrase:</label>
+					<input id="passphrase" class="form__input" type="password" name="passphrase" autocomplete="off" autofocus="true" maxlength="16" placeholder="Passphrase" required="true">
+					<span class="form__highlight"></span>
+					<span class="form__error">Your passphrase was not correct. Please try again.</span>
+				</fieldset>
+				<button class="button form__button" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></button>
+			</form>
+		</div>
+	</div>
 {% endmacro %}
 
 
@@ -78,7 +89,7 @@
       <path fill-rule="evenodd" d="M22.566 0H1.339C.574 0 0 .576 0 1.344v21.312C0 23.424.574 24 1.339 24h11.474v-9.312H9.657V11.04h3.156V8.448c0-3.072 1.912-4.8 4.685-4.8 1.339 0 2.486.096 2.773.096v3.264h-1.912c-1.53 0-1.817.672-1.817 1.728v2.304h3.538l-.478 3.648h-3.06V24h6.12c.764 0 1.338-.576 1.338-1.344V1.344C23.904.576 23.33 0 22.566 0z"/>
     </svg>
   </a>
-  <span class="ts-app">Share this page!</span>
+  <span class="ts-subtle fs-s1">Share this page!</span>
 {% endmacro %}
 
 

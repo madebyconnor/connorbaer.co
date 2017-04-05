@@ -16,7 +16,7 @@
 
 const pkg   = require('./package.json'), // Allows access to the project metadata from the package.json file.
   src     = 'source/', // The raw material of the theme: custom scripts, SCSS source files, images, etc.; do not delete this folder!
-  dist    = 'web/', // The webroot directory that will be accessible on your server.
+  dist    = 'public/', // The webroot directory that will be accessible on your server.
   assets  = 'assets/', // A folder for your assets in the source and/or distribution directory.
   tmplts  = 'templates/', // The CraftCMS template folder.
   bower   = 'bower_components/', // Bower packages.
@@ -31,7 +31,7 @@ module.exports = {
   browsersync: {
     files: [dist + assets + '**/*', tmplts + '**/*'],
     port: 5000, // Port number for the live version of the site.
-    proxy: 'https://' + pkg.name + '.dev/', // We need to use a proxy instead of the built-in server because CraftCMS has to do some server-side rendering for the website to work.
+    proxy: 'http://' + pkg.name + '.dev/', // We need to use a proxy instead of the built-in server because CraftCMS has to do some server-side rendering for the website to work.
     notify: false, // In-line notifications (the blocks of text saying whether you are connected to the BrowserSync server or not)
     ui: false, // Set to false if you don't need the browsersync UI
     open: false, // Set to false if you don't like the browser window opening automatically
@@ -103,7 +103,7 @@ module.exports = {
       },
     },
     critical: {
-      src: 'https://' + pkg.name + '.dev/',
+      src: 'http://' + pkg.name + '.dev/',
       dest: '../' + tmplts,
       small: {
         height: 732,
@@ -140,7 +140,8 @@ module.exports = {
         modules + 'lazysizes/lazysizes.js',
         modules + 'fontfaceobserver/fontfaceobserver.standalone.js',
         modules + 'object-fit-images/dist/ofi.js',
-        modules + 'rellax/rellax.js',
+        modules + 'headroom.js/dist/headroom.js',
+        modules + 'suncalc/suncalc.js',
       ],
       single: {
         prism: [

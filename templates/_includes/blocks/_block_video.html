@@ -1,8 +1,8 @@
 <div class="block-video">
-  {{ block.embed | raw }}
+  {{ block.video | raw }}
 </div>
 {% if block.caption | length %}
-<figcaption class="block-caption mt2 ts-app">
+<figcaption class="block-caption mt2 ts-subtle fs-s1">
   {{ block.caption }}
 </figcaption>
 {% endif %}

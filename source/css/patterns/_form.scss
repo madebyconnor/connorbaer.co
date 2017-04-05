@@ -8,44 +8,36 @@
 */
 
 
-// Buttons //
+.form {
+  position: relative;
+  border: 1px solid $oc-gray-4;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
 
-.button {
-  display: inline-block;
-  margin: $sp-small 0;
-  padding: .5rem .75rem;
-  transition: background-color $an-medium, color $an-medium;
-  border: 3px solid $oc-one-6;
-  border-radius: $sp-tiny;
-  outline: none;
-  background-color: $oc-white;
-  color: $oc-one-6;
-  font-size: $fs-regular;
-  font-weight: $fw-sans-normal;
-  letter-spacing: 1px;
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    background-color: $oc-one-6;
-    color: $oc-white;
+  &.form--error {
+    border-color: $oc-red-6;
   }
+}
+
+.form__group {
+  display: inline-block;
+  position: relative;
+  padding: $sp-tiny $sp-small;
 }
 
 
 // Inputs //
 
-.form-input {
+.form__input {
   display: block;
   width: 100%;
-  padding: .5rem .75rem;
+  padding: 0;
   transition: border-color $an-short;
-  border: 2px solid $oc-gray-6;
-  border-radius: $sp-tiny;
+  border: 0;
   outline: none;
   background-color: $oc-white;
   font-family: $ff-sans;
+  font-size: $fs-t1;
   resize: none;
 
   // Active state
@@ -68,7 +60,7 @@ textarea {
   resize: vertical;
 }
 
-.form-select {
+.form__select {
   display: block;
   width: 100%;
   height: 2.25rem;
@@ -92,13 +84,39 @@ textarea {
   }
 }
 
+.form__highlight {
+  position: absolute;
+  bottom: $sp-tiny;
+  left: $sp-small;
+  width: 50%;
+  height: $sp-medium;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.form__input:focus ~ .form__highlight {
+  animation: inputHighlighter $an-long;
+}
+
+@keyframes inputHighlighter {
+  from {
+    background: $oc-one-2;
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
 
 // Labels //
 
-.form-group {
-  position: relative;
-  margin-top: $sp-medium;
-  margin-bottom: $sp-small;
+.form__label,
+.form__error {
+  display: block;
+  color: $oc-gray-6;
+  font-size: $fs-s2;
 }
 
 .form-icon {
@@ -110,53 +128,70 @@ textarea {
   fill: $oc-gray-6;
 }
 
-.form-hint {
-  margin-top: $sp-small;
-}
-
-.form-error {
+.form__error {
+  display: none;
   color: $oc-red-6;
 
-  + .form-input {
-    border-color: $oc-red-6;
+  .form--error & {
+    display: block;
   }
 }
 
-.form-label {
+
+// Buttons //
+
+.form__button {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  min-width: 20%;
+  height: calc(100% + 2px);
+}
+
+.button,
+[role="button"] {
   @extend %ts-app;
 
-  position: absolute;
-  top: 0;
-}
+  display: inline-block;
+  padding: $sp-tiny $sp-small;
+  transition: border-color $an-medium, box-shadow $an-medium, background-color $an-medium, color $an-medium;
+  border: 2px solid $oc-one-6;
+  border-radius: 4px;
+  outline: none;
+  background-color: $oc-one-6;
+  color: white;
+  font-size: $fs-s2;
+  line-height: 1;
+  cursor: pointer;
 
-
-// Highlighter //
-
-.form-highlight {
-  position: absolute;
-  bottom: .5rem;
-  left: 1rem;
-  width: 33%;
-  height: 1.25rem;
-  opacity: 0.25;
-  pointer-events: none;
-}
-
-// Active state
-
-.form-input:focus ~ .form-highlight {
-  animation: inputHighlighter $an-long;
-}
-
-// Animations
-
-@keyframes inputHighlighter {
-  from {
-    background: $oc-one-1;
+  &:hover,
+  &:focus {
+    border-color: $oc-one-5;
+    background-color: $oc-one-5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
   }
 
-  to {
-    width: 0;
-    background: transparent;
+  svg {
+    fill: white;
+  }
+}
+
+.button--ghost {
+  transition: background-color $an-medium;
+  background-color: transparent;
+  color: $oc-one-6;
+
+  &:hover,
+  &:focus {
+    background-color: $oc-one-5;
+    color: white;
+
+    svg {
+      fill: white;
+    }
+  }
+
+  svg {
+    fill: $oc-one-6;
   }
 }
