@@ -58,7 +58,7 @@
 
           {% if image is defined and image %}
             <a href="{{ post.url }}" title="{{ post.title }}">
-              {{ elements.image(image, '16x9') }}
+              {{ elements.image(image, 'normal', '16x9', '42rem' ) }}
             </a>
           {% endif %}
           <h2 class="mt3 fs-t2 fw-bold lh1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
