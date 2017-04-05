@@ -21,52 +21,22 @@
   {% cache %}
   {% minify %}
 
-  {# -- HERO -- #}
   <article>
-    <header class="ctnr-l mv5">
-      {% if currentUser and currentUser.username == 'tim' %}
-        <div class="ov-ctnr cf">
-          <div class="ov-center w2-5">
-            <h1 class="ts-title1 ts-shadow">Hello Connor.</h1>
-            <p class="ts-body">I am web developer with a background in design and a penchant for speed and usability.</p>
-            <a class="button mt1" href="/about">About me</a>
-          </div>
-          <div class="w4-5 fl-right">
-        </div>
-      {% else %}
-        <div class="ov-ctnr cf">
-          <div class="ov-center w2-5 js-rellax" data-rellax-speed="1">
-            <h1 class="ts-title1 ts-shadow">{{ helpers.striptags(entry.title) }}</h1>
-            <a class="button mt3" href="/about">About me</a>
-          </div>
-          <div class="w4-5 fl-right js-rellax" data-rellax-speed="1">
-            {% if entry.image.one() %}
-              {{ elements.image(entry.image.one(), null, '16x9') }}
-            {% endif %}
+
+    {# -- HEADER -- #}
+    <header class="ctnr-l">
+      <div class="header header--narrow w100 mv5">
+        <h1 class="header__title header__title--color">{{ entry.title | striptags() }}&nbsp;</h1>
+        <h2 class="header__subtitle">{{ entry.description | striptags() }}</h2>
+      </div>
+      {% if entry.image.one() %}
+        <div class="header__image w100 mv5">
+          {{ elements.image(entry.image.one(), '16x9') }}
         </div>
       {% endif %}
     </header>
+
   </article>
-
-  {# -- FEATURED ITEMS -- #}
-  {% set featured = craft.entries({
-    section: 'creating',
-    featured: '1',
-    with: ['image'],
-    limit: '2'
-  }) %}
-  {% set lazyImage = false %}
-
-  {% if featured | length >= '2' %}
-    <section class="ctnr-l mv3 cf">
-      {% for item in featured %}
-
-        {% include ['_includes/types/' ~ item.type.handle, '_includes/types/default'] %}
-        {% set lazyImage = true %}
-
-      {% endfor %}
-    </section>
-  {% endif %}
 
   {# -- LATEST POSTS -- #}
   {% set posts = craft.entries({
@@ -77,12 +47,12 @@
   {% if posts %}
     <section class="ctnr-l mv4 cf">
       <div class="w100 mt3">
-        <h3 class="ts-title4"><a href="/writing">Latest Posts</a></h3>
+        <h3 class="ts-app"><a href="/writing">Latest Writings</a></h3>
       </div>
         {% for post in posts %}
-          <article class="w1-3 fl-left mt3">
-            <h3 class="mb1 ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-            <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+          <article class="w1-3 fl-left mt2">
+            <h3 class="mb1 fs-t1 fw-bold lh1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <span class="ts-subtle fs-s1">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
           </article>
         {% endfor %}
     </section>

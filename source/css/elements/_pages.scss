@@ -1,127 +1,60 @@
 /*
   PAGES
 
-  Single
-    Homepage
-  Channel
-    Writing
-  Section
+  Header
 */
 
-// Channel //
 
-// Writing
+// Header //
 
-.posts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.post {
-  position: relative;
-  width: 100%;
+.header {
+  font-size: $fs-t3;
+  line-height: $lh-small;
 
   @media #{$bp-small} {
-    width: 100% / 20 * 9;
+    > * {
+      display: inline;
+    }
   }
 }
 
-.post-text {
-  width: 100% / 9 * 8;
-}
-
-.post-image {
-  width: 100% / 9 * 8;
-  margin-top: 2.75rem;
-}
-
-// Section //
-
-// Projects
-
-.project {
-  position: relative;
-  margin-top: 2 * $sp-huge;
-}
-
-.project-background {
-  position: absolute;
-  right: $sp-medium;
-  left: $sp-medium;
-  height: 100%;
-
-  @media #{$bp-small} {
-    right: 0;
-    left: 0;
+.header--narrow {
+  @media #{$bp-medium} {
+    max-width: 80%;
   }
 }
 
-.project-image {
-  width: 100%;
-  height: 100%;
-  float: right;
+.header__title {
+  font-weight: $fw-sans-bold;
+}
+
+.header__title--color {
+  color: $oc-one-6;
+}
+
+.header__subtitle {
+  color: $oc-gray-8;
+  font-weight: $fw-sans-light;
+
+  @media #{$bp-small-only} {
+    margin-top: $sp-tiny;
+    font-size: $fs-t2;
+  }
+}
+
+.header__meta {
+  display: block;
+}
+
+.header__image {
+  position: relative;
+  height: 14rem;
   overflow: hidden;
 
-  @media #{$bp-small} {
-    width: 60%;
-    margin-top: -5%;
-    margin-right: 5%;
-    margin-bottom: -5%;
-  }
-}
-
-.project-title {
-  position: relative;
-  z-index: 9;
-
-  @media #{$bp-small-only} {
-    padding: $sp-small 0 $sp-medium;
-  }
-
-  @media #{$bp-small} {
+  > figure {
     position: absolute;
-    top: $sp-large;
-    left: -$sp-small;
-    width: 60%;
-  }
-}
-
-.project-button {
-  position: relative;
-  left: $sp-large;
-  z-index: 9;
-
-  @media #{$bp-small-only} {
-    padding: $sp-medium 0;
-  }
-
-  @media #{$bp-small} {
-    position: absolute;
-    bottom: $sp-large;
-    left: $sp-small;
-  }
-}
-
-
-/*
-  Hero
-*/
-
-
-// Hero //
-
-.hero-project {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-
-  @media #{$bp-small} {
-    flex-wrap: nowrap;
-
-    > div {
-      width: 50%;
-    }
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
   }
 }

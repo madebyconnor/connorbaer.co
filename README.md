@@ -1,8 +1,6 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0200cfc81a1146bc87ed0407fdd4cd29)](https://www.codacy.com/app/connor_baer/connorbaer-co?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=connor-baer/connorbaer.co&amp;utm_campaign=Badge_Grade) [![Greenkeeper badge](https://badges.greenkeeper.io/connor-baer/connorbaer.svg)](https://greenkeeper.io/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0200cfc81a1146bc87ed0407fdd4cd29)](https://www.codacy.com/app/connor_baer/connorbaer-co?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=connor-baer/connorbaer.co&amp;utm_campaign=Badge_Grade)
 
 # Connor Bär 🐼
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/connor-baer/connorbaer.svg)](https://greenkeeper.io/)
 
 Hi, I'm Connor! I enjoy life as a web developer and machine learning engineer. Problem solving is my passion. [Say hi](https://twitter.com/connor_baer)!
 

@@ -80,20 +80,21 @@
 
 .block-text {
   > h1 {
-    @extend %ts-title2;
+    font-size: $fs-t3;
   }
 
   > h2 {
-    @extend %ts-title3;
+    font-size: $fs-t2;
   }
 
   > h3 {
-    @extend %ts-title4;
+    font-size: $fs-t1;
   }
 
   > p,
   > blockquote {
-    @extend %ts-body;
+    margin-top: $sp-tiny;
+    margin-bottom: $sp-tiny;
   }
 
   ul,
@@ -137,7 +138,8 @@
 
 .block-quote {
   > p {
-    @extend %ts-quote;
+    font-size: $fs-t2;
+    font-style: italic;
   }
 
   cite {

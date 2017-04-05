@@ -2,140 +2,36 @@
   TYPOGRAPHY
 
   Text styles
-  Links
   Text align
   Font families
+  Font sizes
   Font weights
+  Line heights
 */
 
 
 // Text styles //
 
-.ts-title1,
-%ts-title1,
-.ts-title2,
-%ts-title2,
-.ts-title3,
-%ts-title3 {
-  font-family: $ff-sans;
-  font-weight: $fw-sans-bold;
-  line-height: $lh-small;
-}
-
-.ts-title1,
-%ts-title1 {
-  font-size: $fs-title1;
-}
-
-.ts-title2,
-%ts-title2 {
-  font-size: $fs-title2;
-}
-
-.ts-title3,
-%ts-title3 {
-  font-size: $fs-title3;
-}
-
-.ts-title4,
-%ts-title4 {
-  transition: color $an-short;
-  font-family: $ff-sans;
-  font-size: $fs-small;
-  letter-spacing: $ls-large;
-  line-height: $lh-small;
-  text-transform: uppercase;
-
-  a:hover,
-  a:focus {
-    color: $oc-one-6;
-  }
-}
-
-.ts-quote,
-%ts-quote {
-  font-size: $fs-title3;
-  font-style: italic;
-  line-height: $lh-normal;
-}
-
-.ts-large,
-%ts-large {
-  color: $oc-gray-7;
-  font-size: $fs-large;
-  line-height: $lh-normal;
-}
-
-.ts-body,
-%ts-body {
-  margin-top: $sp-small;
-  margin-bottom: $sp-small;
-  line-height: $lh-large;
+.ts-subtle,
+%ts-subtle {
+  color: $oc-gray-6;
 }
 
 .ts-app,
 %ts-app {
-  color: $oc-gray-6;
-  font-family: $ff-sans;
-  font-size: $fs-small;
-  line-height: $lh-small;
+  letter-spacing: $ls-large;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
-.ts-title1 a,
-%ts-title1 a,
-.ts-title2 a,
-%ts-title2 a,
-.ts-title3 a,
-%ts-title3 a,
-.ts-quote a,
-%ts-quote a,
-.ts-large a,
-%ts-large a,
-.ts-body a,
-%ts-body a,
-.ts-app a,
-%ts-app a,
 .ts-link,
 %ts-link {
-  transition: color $an-medium, text-shadow $an-medium;
+  transition: color $an-medium;
   color: $oc-one-6;
 
   &:hover,
   &:focus {
     color: $oc-one-6;
-    text-shadow: $sh-offset $sh-offset $oc-two-6;
-  }
-}
-
-.ts-shadow {
-  text-shadow: $sh-offset $sh-offset $sh-color;
-
-  a {
-    transition: color $an-short, text-shadow $an-short;
-
-    &:hover,
-    &:focus {
-      color: $oc-one-6;
-      text-shadow: $sh-offset $sh-offset $oc-two-6;
-    }
-  }
-}
-
-.ts-background {
-  display: inline;
-  padding: .125rem $sp-tiny .125rem 0;
-  transition: padding $an-medium, background-color $an-medium, color $an-medium;
-  background-color: $oc-white;
-  color: $oc-gray-9;
-  box-decoration-break: clone;
-
-  a#{&}:hover,
-  a#{&}:focus,
-  a:hover &,
-  a:focus & {
-    padding-left: $sp-tiny;
-    background-color: $oc-gray-9;
-    color: $oc-white;
   }
 }
 
@@ -159,26 +55,76 @@
 
 .ff-sans {
   font-family: $ff-sans;
-  font-weight: $fw-sans-normal;
 }
 
 .ff-mono {
   font-family: $ff-mono;
-  font-weight: $fw-mono-bold;
+}
+
+
+// Font sizes //
+
+.fs-t4,
+%fs-t4 {
+  font-size: $fs-t4;
+}
+
+.fs-t3,
+%fs-t3 {
+  font-size: $fs-t3;
+}
+
+.fs-t2,
+%fs-t2 {
+  font-size: $fs-t2;
+}
+
+.fs-t1,
+%fs-t1 {
+  font-size: $fs-t1;
+}
+
+.fs-0,
+%fs-0 {
+  font-size: $fs-0;
+}
+
+.fs-s1,
+%fs-s1 {
+  font-size: $fs-s1;
+}
+
+.fs-s2,
+%fs-s2 {
+  font-size: $fs-s2;
 }
 
 
 // Font weights //
 
+.fw-light {
+  font-weight: $fw-sans-light;
+}
+
 .fw-normal {
   font-weight: $fw-sans-normal;
 }
 
-.fw-semibold {
-  font-weight: 600;
-}
-
 .fw-bold,
 strong {
-  font-weight: bold;
+  font-weight: $fw-sans-bold;
+}
+
+// Line heights //
+
+.lh3 {
+  line-height: $lh-large;
+}
+
+.lh2 {
+  line-height: $lh-normal;
+}
+
+.lh1 {
+  line-height: $lh-small;
 }

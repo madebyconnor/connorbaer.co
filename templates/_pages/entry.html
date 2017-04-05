@@ -21,32 +21,50 @@
   {% cache %}
   {% minify %}
 
-  {# -- HERO -- #}
-  <article>
-    <header class="hero" {{ elements.radial(entry) }}>
-      {% if entry.image.one() %}
-        <div class="hero-background hero-image js-rellax" style="background-image: url('{{ entry.image.one().getUrl('large16x9') }}')"></div>
-      {% endif %}
-      <div class="hero-content ctnr-l ta-center">
-        <div class="hero-text w100">
-          <h1 class="mb1 ts-title1">{{ entry.title }}</h1>
+  {% if entry.passphrase is empty or entry.passphrase == craft.app.request.getQueryParam('passphrase') or livePreview %}
+
+    <article>
+
+      <header>
+        {% set image = entry.image.one() %}
+        {% if image %}
+        <div class="header__image js-photoswipe">
+          <figure>
+            {% if amp is defined %}
+              {{ elements.image(image, null, '16x9') }}
+            {% else %}
+              <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
+                {{ elements.image(image, null, '16x9') }}
+              </a>
+            {% endif %}
+          <figure>
         </div>
+        {% endif %}
+
+        <div  class="ctnr-s mv4">
+          <div class="header w100 ta-center">
+            <h1 class="header__title fs-t4">{{ entry.title | striptags() }}&nbsp;</h1>
+          </div>
+        </div>
+      </header>
+
+      {# -- CONTENT -- #}
+      <div class="blocks cf">
+
+        {# Post description #}
+        <div class="ctnr-s">
+          <h2 class="w100 fs-t1 fw-light">{{ entry.description }}</h2>
+        </div>
+
+        {# Body matrix #}
+        {% include '_includes/body' %}
+
       </div>
-    </header>
+    </article>
 
-    {# -- CONTENT -- #}
-    <div class="blocks">
-
-      {# Post description #}
-      <div class="ctnr-s">
-        <h2 class="w100 ts-large">{{ entry.description }}</h2>
-      </div>
-
-      {# Body matrix #}
-      {% include '_includes/body' %}
-
-    </div>
-  </article>
+  {% else %}
+    {{ elements.passphrase(entry) }}
+  {% endif %}
 
   {% endminify %}
   {% endcache %}

@@ -31,12 +31,12 @@
   {% set image = entry.image.one() %}
 
   <article>
-    <header class="hero" {{ elements.radial(entry) }}>
+    <header class="hero">
       <div class="hero-content hero-project ctnr-l js-rellax" data-rellax-speed="-5">
         <div class="hero-text ph2">
-          <h1 class="ts-title1">{{ entry.title }}</h1>
-          <h2 class="mt1 ts-large">{{ entry.description }}</h2>
-          <p class="mt2 ts-app">{{ entry.client.one().title }}</p>
+          <h1 class="fs-t3">{{ entry.title }}</h1>
+          <h2 class="mt1 fs-t1">{{ entry.description }}</h2>
+          <p class="mt2 ts-app fs-s1">{{ entry.client.one().title }}</p>
         </div>
         {% if image %}
           <div class="hero-projectImage">
@@ -72,18 +72,18 @@
   {% if relatedItems | length == '3' %}
     <div class="ctnr-l mv4 cf">
       <div class="w100 mt3 mb1">
-        <h3 class="ts-title4"><a href="/creating">Similar Projects</a></h3>
+        <h3 class="ts-app fs-s1 fs-t1"><a href="/creating">Similar Projects</a></h3>
       </div>
       {% for item in relatedItems %}
         <article class="w1-3 fl-left mv2">
-          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+          <a class="r1-1" href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
             {% set image = item.image[0] ?? null %}
             {% if image %}
               {{ elements.image(image, null, '1x1', '36rem') }}
             {% endif %}
           </a>
-          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
-          <p class="ts-app">{{ item.client.one().title }}</p>
+          <h3 class="mt2 mb1 fs-t1"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app fs-s1">{{ item.client.one().title }}</p>
         </article>
       {% endfor %}
     </div>

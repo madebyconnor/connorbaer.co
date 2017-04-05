@@ -5,8 +5,8 @@
   <div class="project cf">
     <span class="project-background" style="background-color: {{ item.colors.one().color }}"></span>
     <div class="project-title">
-      <span class="ts-title4">{{ item.type.handle }}</span>
-      <h2 class="ts-title1 ts-shadow"><a href="{{ item.url }}" title="{{ item.title | striptags() }}">{{ item.title | striptags() }}</a></h2>
+      <span class="ts-app fs-s1 fs-t1">{{ item.type.handle }}</span>
+      <h2 class="fs-t3 ts-shadow"><a href="{{ item.url }}" title="{{ item.title | striptags() }}">{{ item.title | striptags() }}</a></h2>
     </div>
     <div class="project-image">
       {% set image = item.image[0] ?? null %}

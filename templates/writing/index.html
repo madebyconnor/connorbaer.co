@@ -23,20 +23,21 @@
   {% cache %}
   {% minify %}
 
-  {# -- HERO -- #}
-  <header class="ctnr-l mv5">
-    <div class="w100">
-      <h1 class="ts-title1 ts-shadow">{{ entry.title }}</h1>
+  {# -- Header -- #}
+  <header class="ctnr-s mv5">
+    <div class="header w100">
+      <h1 class="header__title header__title--color">{{ entry.title | striptags() }}&nbsp;</h1>
+      <h2 class="header__subtitle">{{ entry.description | striptags() }}</h2>
     </div>
   </header>
 
-
-  <div class="ctnr-l">
+  <div class="ctnr-s">
 
     {# -- FEATURED POST -- #}
     {% set featured = craft.entries({
       section: section,
       featured: '1',
+      passphrase: ':empty:',
       with: ['image'],
       limit: '1'
     }) %}
@@ -60,9 +61,9 @@
               {{ elements.image(image, '16x9') }}
             </a>
           {% endif %}
-          <h2 class="mt3 ts-title2"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-          <p class="mv1 ts-body">{{ helpers.striptags(post.description) }}</p>
-          <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+          <h2 class="mt3 fs-t2 fw-bold lh1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+          <p class="mb1">{{ helpers.striptags(post.description) }}</p>
+          <span class="ts-subtle fs-s1">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
         </article>
       {% endfor %}
     {% endif %}
@@ -75,97 +76,15 @@
     {# Get posts in section which don't have an id in featuredIds #}
     {% set posts = craft.entries({
       section: section,
-      id: 'and, not ' ~ featuredIds | join(', not ')
-    }) %}
-
-    <div class="posts w100">
-
-      {% for post in posts %}
-        <article class="post mv2 fl-left">
-          <a class="ov-ctnr cf" href="{{ post.url }}" title="{{ post.title }}">
-            <div class="w4-5 ov-center">
-              <h3 class="ts-title2">
-                <span class="ts-background">{{ post.title }}</span>
-              </h3>
-            </div>
-            <div class="w4-5 fl-right">
-              {# Featured image or first image from matrix blocks? #}
-              {% if post.image[0] ?? null %}
-                {% set image = post.image[0] ?? null %}
-              {% else %}
-                {% set imageBlock = post.body.type('image').one() %}
-                {% if imageBlock %}
-                  {% set image = imageBlock.image.one() %}
-                {% endif %}
-              {% endif %}
-
-              {% if image is defined and image %}
-                {{ elements.image(image, '16x9') }}
-              {% endif %}
-            </div>
-          </a>
-          <div class="w4-5 fl-right">
-            <p class="ts-body mb1">{{ helpers.truncate(post.description) }}</p>
-            <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
-          </div>
-        </article>
-      {% endfor %}
-
-    </div>
-  </div>
-
-  <div class="ctnr-l">
-
-    {# -- FEATURED POST -- #}
-    {% set featured = craft.entries({
-      section: section,
-      featured: '1',
-      with: ['image'],
-      limit: '1'
-    }) %}
-
-    {% if featured %}
-      {% for post in featured %}
-        <article class="w100 mv4">
-
-          {# Featured image or first image from matrix blocks? #}
-          {% if post.image[0] ?? null %}
-            {% set image = post.image[0] ?? null %}
-          {% else %}
-            {% set imageBlock = post.body.type('image').one() %}
-            {% if imageBlock %}
-              {% set image = imageBlock.image.one() %}
-            {% endif %}
-          {% endif %}
-
-          {% if image is defined and image %}
-            <a href="{{ post.url }}" title="{{ post.title }}">
-              {{ elements.image(image) }}
-            </a>
-          {% endif %}
-          <h2 class="mt3 ts-title2"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-          <p class="mv1 ts-body">{{ helpers.striptags(post.description) }}</p>
-          <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
-        </article>
-      {% endfor %}
-    {% endif %}
-
-    {# -- POSTS -- #}
-
-    {# Get the ids of the featured posts above #}
-    {% set featuredIds = featured.ids() %}
-
-    {# Get posts in section which don't have an id in featuredIds #}
-    {% set posts = craft.entries({
-      section: section,
+      passphrase: ':empty:',
       id: 'and, not ' ~ featuredIds | join(', not ')
     }) %}
 
     {% for post in posts %}
       <article class="w100 mv4">
-        <h3 class="ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-        <p class="mv1 ts-body">{{ helpers.truncate(post.description| striptags()) }}</p>
-        <span class="ts-app">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
+        <h3 class="fs-t2 fw-bold lh1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+        <p class="mb1">{{ helpers.truncate(post.description| striptags()) }}</p>
+        <span class="ts-subtle fs-s1">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
       </article>
     {% endfor %}
 

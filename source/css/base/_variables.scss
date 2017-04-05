@@ -30,20 +30,18 @@ $sp-huge: $sp-tiny * 12;
 
 // Widths //
 
-$mw-large: 50rem + (2 * $sp-small) + (2 * $sp-large);
+$mw-large: 60rem + (2 * $sp-small) + (2 * $sp-large);
 
 
 // Typography //
 
-/* latin-ext */
 @font-face {
   font-family: "Overpass";
   font-style: normal;
-  font-weight: 400;
-  src: local("Overpass Regular"), local("Overpass-Regular"), url(https://fonts.gstatic.com/s/overpass/v1/xf9_Q4u6c0bcCd8geHaSgxkAz4rYn47Zy2rvigWQf6w.woff2) format("woff2");
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+  font-weight: 300;
+  src: local("Overpass Light"), local("Overpass-Light"), url(https://fonts.gstatic.com/s/overpass/v1/tgqY5qOfB6w1HP32JTSrLIgp9Q8gbYrhqGlRav_IXfk.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
-/* latin */
 @font-face {
   font-family: "Overpass";
   font-style: normal;
@@ -51,31 +49,13 @@ $mw-large: 50rem + (2 * $sp-small) + (2 * $sp-large);
   src: local("Overpass Regular"), local("Overpass-Regular"), url(https://fonts.gstatic.com/s/overpass/v1/o3S9a2vetxRRO8sKA6PL03YhjbSpvc47ee6xR_80Hnw.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
-/* latin-ext */
 @font-face {
   font-family: "Overpass";
   font-style: normal;
-  font-weight: 800;
-  src: local("Overpass ExtraBold"), local("Overpass-ExtraBold"), url(https://fonts.gstatic.com/s/overpass/v1/goNCKHOqyloXE_JB8agupaE8kM4xWR1_1bYURRojRGc.woff2) format("woff2");
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: "Overpass";
-  font-style: normal;
-  font-weight: 800;
-  src: local("Overpass ExtraBold"), local("Overpass-ExtraBold"), url(https://fonts.gstatic.com/s/overpass/v1/goNCKHOqyloXE_JB8agupYgp9Q8gbYrhqGlRav_IXfk.woff2) format("woff2");
+  font-weight: 700;
+  src: local("Overpass Bold"), local("Overpass-Bold"), url(https://fonts.gstatic.com/s/overpass/v1/z_QV2-z5a6o4brQE8JEVyogp9Q8gbYrhqGlRav_IXfk.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
-/* latin-ext */
-@font-face {
-  font-family: "Overpass";
-  font-style: italic;
-  font-weight: 400;
-  src: local("Overpass Italic"), local("Overpass-Italic"), url(https://fonts.gstatic.com/s/overpass/v1/zWeSFOtQujTgbIw6reSB5gsYbbCjybiHxArTLjt7FRU.woff2) format("woff2");
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
 @font-face {
   font-family: "Overpass";
   font-style: italic;
@@ -83,50 +63,42 @@ $mw-large: 50rem + (2 * $sp-small) + (2 * $sp-large);
   src: local("Overpass Italic"), local("Overpass-Italic"), url(https://fonts.gstatic.com/s/overpass/v1/nFeT4yZLKoYlkcTXEa9P0gzyDMXhdD8sAj6OAJTFsBI.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
-/* latin-ext */
 @font-face {
   font-family: "Overpass Mono";
   font-style: normal;
-  font-weight: 400;
-  src: local("Overpass Mono Regular"), local("OverpassMono-Regular"), url(https://fonts.gstatic.com/s/overpassmono/v2/MarHoIqW2hy_po97b_wS9tZXQWU7WlSDbWsNPOIoHjQ.woff2) format("woff2");
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: "Overpass Mono";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Overpass Mono Regular"), local("OverpassMono-Regular"), url(https://fonts.gstatic.com/s/overpassmono/v2/MarHoIqW2hy_po97b_wS9nn3cbdKJftHIk87C9ihfO8.woff2) format("woff2");
+  font-weight: 300;
+  src: local("Overpass Mono Light"), local("OverpassMono-Light"), url(https://fonts.gstatic.com/s/overpassmono/v2/JEQ6tXkANEo2u0wZ-MTOPPcf5V02NicV_al97J7jqh4.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
 $ff-sans: "Overpass", Arial, sans-serif;
+$fw-sans-light: 300;
 $fw-sans-normal: 400;
 $fw-sans-bold: 700;
 
 $ff-mono: "Overpass Mono", Courier, monospace;
-$fw-mono-bold: 700;
 
-$fs-title1: 2.5rem; // 40px
-$fs-title2: 2rem; // 32px
-$fs-title3: 1.5rem; // 24px
-$fs-large: 1.25rem; // 20px
-$fs-regular: 1rem; // 16px
-$fs-small: .875rem; // 14px
+$fs-t4: 2.5rem;  // 40px
+$fs-t3: 2rem;    // 32px
+$fs-t2: 1.5rem;  // 24px
+$fs-t1: 1.25rem; // 20px
+$fs-0:  1rem;    // 16px
+$fs-s1: .875rem; // 14px
+$fs-s2: .75rem;  // 12px
 
 $lh-large: 2;
 $lh-normal: 1.75;
-$lh-small: 1.25;
+$lh-small: 1.4;
 
-$ls-large: .12em;
-$ls-medium: .06em;
-$ls-small: .03em;
+$ls-large: .1em;
+$ls-medium: .05em;
+$ls-small: .025em;
 
 
 // Colors //
 
-$oc-one: #50f;
-$oc-two: #00f4f7;
+$oc-one: #ee3a51; // #1fb7e3
+$oc-two: #ff512f; // #00ccd2
 
 $oc-one-0: scale-color($oc-one, $lightness: 96%);
 $oc-one-1: scale-color($oc-one, $lightness: 80%);
@@ -149,12 +121,6 @@ $oc-two-6: $oc-two;
 $oc-two-7: scale-color($oc-two, $lightness: -15%);
 $oc-two-8: scale-color($oc-two, $lightness: -30%);
 $oc-two-9: scale-color($oc-two, $lightness: -45%);
-
-
-// Shadows //
-
-$sh-offset: 0.075em;
-$sh-color: $oc-gray-3;
 
 
 // Animations //

@@ -24,9 +24,9 @@
 
     {# Page title #}
     <header class="content-hero w100 ff-serif">
-      <h1 class="ts-title1">{{ category | capitalize }}</h1>
+      <h1 class="fs-t3">{{ category | capitalize }}</h1>
       {% if category.description is defined %}
-        <h2 class="ts-large fw-normal">{{ helpers.striptags(category.description) }}</h2>
+        <h2 class="fs-t1 fw-normal">{{ helpers.striptags(category.description) }}</h2>
       {% endif %}
     </header>
 
@@ -52,12 +52,12 @@
           {% endif %}
         {% endif %}
         <header>
-          <h2 class="mt2 ts-title2"><a href="{{ featured.url }}" title="{{ featured.title }}">{{ featured.title }}</a></h2>
+          <h2 class="mt2 fs-t2"><a href="{{ featured.url }}" title="{{ featured.title }}">{{ featured.title }}</a></h2>
         </header>
         <footer class="mv1">
-          {{ elements.date(featured.postDate) }}{% if featured.category is not empty %}<span class="ts-app">&nbsp;·&nbsp;</span>{{ elements.category(featured) }}{% endif %}
+          {{ elements.date(featured.postDate) }}{% if featured.category is not empty %}<span class="ts-app fs-s1">&nbsp;·&nbsp;</span>{{ elements.category(featured) }}{% endif %}
         </footer>
-        <p class="mv1 ts-body">{{ helpers.striptags(featured.description) }}</p>
+        <p class="mv1">{{ helpers.striptags(featured.description) }}</p>
       </article>
     {% endif %}
 
@@ -84,11 +84,11 @@
             {% endif %}
           {% endif %}
           <header class="mv2">
-            <h3 class="ts-title3"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+            <h3 class="fs-t1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
           </header>
-          <p class="mv1 ts-body">{{ helpers.truncate(post.description| striptags()) }}</p>
+          <p class="mv1">{{ helpers.truncate(post.description| striptags()) }}</p>
           <footer class="mt1">
-            {{ elements.date(post.postDate) }}{% if post.category is not empty %}<span class="ts-app">&nbsp;·&nbsp;</span>{{ elements.category(post) }}{% endif %}
+            {{ elements.date(post.postDate) }}{% if post.category is not empty %}<span class="ts-app fs-s1">&nbsp;·&nbsp;</span>{{ elements.category(post) }}{% endif %}
           </footer>
         </article>
       {% endfor %}

@@ -92,15 +92,17 @@
   loadjs(['{{ baseUrl ~ rev('js/combined.min.js') }}'], 'scripts');
   loadjs.ready('scripts', {
     success: function() {
+      const sansLight = new FontFaceObserver('Overpass', { weight: 300, });
       const sans = new FontFaceObserver('Overpass', { weight: 400, });
       const sansItalic = new FontFaceObserver('Overpass', { weight: 400, style: 'italic' });
-      const sansBold = new FontFaceObserver('Overpass', { weight: 800, });
-      const mono = new FontFaceObserver('Overpass Mono', { weight: 400, });
+      const sansBold = new FontFaceObserver('Overpass', { weight: 700, });
+      const mono = new FontFaceObserver('Overpass Mono', { weight: 300, });
       const html = document.documentElement;
 
       html.classList.add('fonts-loading');
 
       Promise.all([
+        sansLight.load(),
         sans.load(),
         sansItalic.load(),
         sansBold.load(),
@@ -116,7 +118,9 @@
 
       objectFitImages();
 
-      const rellax = new Rellax('.js-rellax');
+      const body = document.getElementById('js-headroom');
+      const headroom = new Headroom(body);
+      headroom.init();
 
       {% if currentUser and currentUser.username == 'connorbaer' %}
         if (navigator.geolocation) {
@@ -161,14 +165,14 @@
 </head>
 
 {# -- BODY CLASS -- #}
-<body class="{% if entry is defined %}{% if entry.colors and entry.colors.type('color').one() %}has-color{% elseif entry.image and entry.image.one() %}has-image{% endif %}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">
+<body id="js-headroom" class="{{ entry is defined ? entry.section.handle : craft.app.request.segments | first }} {% if entry is defined %}{% if entry.image and entry.image.one() %} has-image{% endif %}{% endif %}">
 
 {% block body %}
 
   {# -- METABAR -- #}
   {% include '_includes/metabar' %}
 
-  <main id="main">
+  <main id="main" class="main" role="main">
 
     {% block main %}{% endblock %}
 
