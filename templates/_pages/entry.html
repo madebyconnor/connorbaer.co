@@ -31,18 +31,14 @@
         {% if image %}
         <div class="header__image js-photoswipe">
           <figure>
-            {% if amp is defined %}
+            <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
               {{ elements.image(image, null, '16x9') }}
-            {% else %}
-              <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
-                {{ elements.image(image, null, '16x9') }}
-              </a>
-            {% endif %}
+            </a>
           <figure>
         </div>
         {% endif %}
 
-        <div  class="ctnr-s mv4">
+        <div class="ctnr-s mv5">
           <div class="header w100 ta-center">
             <h1 class="header__title fs-t4">{{ entry.title | striptags() }}&nbsp;</h1>
           </div>

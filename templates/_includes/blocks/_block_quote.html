@@ -1,6 +1,6 @@
 {% import '_includes/helpers' as helpers %}
 
-<blockquote class="block-quote">
+<blockquote class="block-quote lh1">
   {{ block.quote }}
   {% if block.cite | length %}
   <cite class="pt2 ts-subtle fs-s1 ta-right">— {{ helpers.striptags(block.cite) }}</cite>

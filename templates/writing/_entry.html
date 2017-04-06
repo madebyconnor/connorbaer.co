@@ -36,18 +36,14 @@
         {% if image %}
         <div class="header__image js-photoswipe">
           <figure>
-            {% if amp is defined %}
+            <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
               {{ elements.image(image, null, '16x9') }}
-            {% else %}
-              <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
-                {{ elements.image(image, null, '16x9') }}
-              </a>
-            {% endif %}
+            </a>
           <figure>
         </div>
         {% endif %}
 
-        <div  class="ctnr-s mv4">
+        <div class="ctnr-s mv5">
           <div class="header w100 ta-center">
             <h1 class="header__title fs-t4">{{ entry.title | striptags() }}&nbsp;</h1>
             <span class="header__meta mv2 fs-s1 ts-subtle">{{ elements.date(entry.postDate) }}{% if entry.category is not empty %}&nbsp;·&nbsp;{{ elements.category(entry) }}{% endif %}</span>
@@ -115,33 +111,31 @@
       </div>
     {% endif %}
 
-    {% if not amp is defined %}
-      <script>
-      loadjs(['{{ baseUrl ~ rev('js/photoswipe.min.js') }}'], 'photoswipe');
-      loadjs.ready('photoswipe', {
-        success: function() {
-          initPhotoSwipeFromDOM('.js-photoswipe');
-        }
-      });
-      </script>
+    <script>
+    loadjs(['{{ baseUrl ~ rev('js/photoswipe.min.js') }}'], 'photoswipe');
+    loadjs.ready('photoswipe', {
+      success: function() {
+        initPhotoSwipeFromDOM('.js-photoswipe');
+      }
+    });
+    </script>
 
-      <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
-        <div class="pswp__bg"></div>
+      <div class="pswp__bg"></div>
 
-        <div class="pswp__scroll-wrap">
+      <div class="pswp__scroll-wrap">
 
-          <!-- Container that holds slides.
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-          <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-          </div>
+        <!-- Container that holds slides.
+          PhotoSwipe keeps only 3 of them in the DOM to save memory.
+          Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
         </div>
       </div>
-    {% endif %}
+    </div>
 
     {% endminify %}
     {% endcache %}
