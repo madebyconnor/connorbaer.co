@@ -76,8 +76,6 @@
   {% endif %}
 
   {# -- SERVICE WORKER -- #}
-  {% cache %}
-  {% minify %}
   <script>
     'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('{{ baseUrl }}service-worker.js',{scope:'/'}).then(function(e){console.log('ServiceWorker registration successful with scope: ',e.scope),navigator.serviceWorker.controller&&navigator.serviceWorker.controller.postMessage({command:'trimCaches'})})['catch'](function(e){console.log('ServiceWorker registration failed: ',e)})});
   </script>
@@ -122,7 +120,7 @@
       const headroom = new Headroom(body);
       headroom.init();
 
-      {% if currentUser and currentUser.username == 'connorbaer' %}
+      {% if currentUser %}
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(sunTimes, sunTimes);
         } else {
@@ -133,6 +131,9 @@
     }
   });
   </script>
+
+  {% cache %}
+  {% minify %}
 
   {# -- SEOMATIC -- #}
   {% hook 'seomaticRender' %}
