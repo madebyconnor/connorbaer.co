@@ -61,7 +61,7 @@
 		<div class="w100">
 			<h1 class="mv3 fs-t3 fw-bold lh1 ta-center">This page is password-protected. 🔐</h1>
 			<form class="form{% if passphrase and entry.passphrase != passphrase %} form--error{% endif %}" action="{{ craft.app.request.getUrl() }}" method="GET" accept-charset="utf-8">
-				{{ getCsrfInput() }}
+				{{ csrfInput() }}
 				<fieldset class="form__group">
 					<label class="form__label" for="passphrase">Enter the passphrase:</label>
 					<input id="passphrase" class="form__input" type="password" name="passphrase" autocomplete="off" autofocus="true" maxlength="16" placeholder="Passphrase" required="true">
