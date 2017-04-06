@@ -60,12 +60,13 @@
 	<div class="ctnr-s mv5">
 		<div class="w100">
 			<h1 class="mv3 fs-t3 fw-bold lh1 ta-center">This page is password-protected. 🔐</h1>
-			<form class="form{% if passphrase and entry.passphrase != passphrase %} form--error{% endif %}" action="" method="get">
+			<form class="form{% if passphrase and entry.passphrase != passphrase %} form--error{% endif %}" action="{{ craft.app.request.getUrl() }}" method="GET" accept-charset="utf-8">
+				{{ getCsrfInput() }}
 				<fieldset class="form__group">
 					<label class="form__label" for="passphrase">Enter the passphrase:</label>
 					<input id="passphrase" class="form__input" type="password" name="passphrase" autocomplete="off" autofocus="true" maxlength="16" placeholder="Passphrase" required="true">
 					<span class="form__highlight"></span>
-					<span class="form__error">Your passphrase was not correct. Please try again.</span>
+					<span class="form__error">The passphrase '{{ passphrase }}' is not correct. Please try again.</span>
 				</fieldset>
 				<button class="button form__button" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></button>
 			</form>
