@@ -18,13 +18,14 @@
 {% endblock %}
 
 {% block main %}
-  {% cache %}
-  {% minify %}
 
   {% if entry.passphrase is empty or entry.passphrase == craft.app.request.getQueryParam('passphrase') or livePreview %}
+    {% cache %}
+    {% minify %}
 
     <article>
 
+      {# -- HEADER -- #}
       <header>
         {% set image = entry.image.one() %}
         {% if image %}
@@ -62,10 +63,10 @@
       </div>
     </article>
 
+    {% endminify %}
+    {% endcache %}
   {% else %}
     {{ elements.passphrase(entry) }}
   {% endif %}
 
-  {% endminify %}
-  {% endcache %}
 {% endblock %}

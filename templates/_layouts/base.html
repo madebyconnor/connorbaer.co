@@ -134,11 +134,6 @@
   });
   </script>
 
-  {# -- CRISP -- #}
-  {% if not livePreview and not devMode %}
-    <script type="text/javascript">$crisp=[];CRISP_WEBSITE_ID="5cff1e35-2074-4ea7-805a-77d53d25feec";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.im/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-  {% endif %}
-
   {# -- SEOMATIC -- #}
   {% hook 'seomaticRender' %}
 
