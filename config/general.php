@@ -16,7 +16,7 @@ return [
 		'baseUrl'  => 'https://madebyconnor.co/',
 		'siteUrl' => array(
 			'madebyconnor' => 'https://madebyconnor.co/',
-			'de' => 'https://madebyconnor.de/',
+			'madebyconnor_de' => 'https://madebyconnor.de/',
 		),
 	),
 	'.dev' => array(
@@ -28,7 +28,7 @@ return [
 		'baseUrl'  => 'https://madebyconnor.dev/',
 		'siteUrl' => array(
 			'madebyconnor' => 'https://madebyconnor.dev',
-			'de' => 'https://madebyconnor-de.dev',
+			'madebyconnor_de' => 'https://de.madebyconnor.dev',
 		),
 	),
 ];

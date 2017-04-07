@@ -31,7 +31,6 @@
  #             Child templates can use this to include Javascript files, etc.
 -#}
 
-
 {# -- DRY -- #}
 {% set baseUrl = craft.app.config.getGeneral.baseUrl %}
 {% set devMode = craft.app.config.getGeneral.devMode %}
@@ -40,12 +39,10 @@
 {# -- COOKIES -- #}
 {% set currentCache = getCookie('criticalCss') %}
 {% set fontFaceObserver = getCookie("fontFaceObserver") %}
-
+{% set darkMode = getCookie('darkMode') %}
 
 <!doctype html>
 <html lang="{{ craft.app.language }}"{% if fontFaceObserver %} class="fonts-loaded"{% endif %}>
-
-{% cache %}
 <head>
 
 {% block head %}
@@ -56,26 +53,29 @@
   <title>{% if entry is defined %}{{ entry.title }} · {% endif %}{{ siteName | split('·') | first }}</title>
 
   {# -- CRITICAL CSS -- #}
-
-  {% set newCache = rev('css/styles.min.css') %}
+  {% set styles = 'css/styles.min.css' %}
+  {% if darkMode == 'true' %}
+    {% set styles = 'css/styles-dark.min.css' %}
+    <title>{{darkMode}}</title>
+  {% endif %}
+  {% set newCache = rev(styles) %}
 
   {% if not currentCache or currentCache != newCache or devMode %}
-    {{ setCookie('critical-css', newCache, now | date_modify("+7 days").timestamp ) }}
+    {{ setCookie('criticalCss', newCache, now | date_modify("+7 days").timestamp ) }}
 
     {% block critical %}{% endblock %}
 
-    <link rel="preload" href="{{ baseUrl ~ newCache }}" as="style" onload="this.rel='stylesheet'">
+    <link id="styles" rel="preload" href="{{ baseUrl ~ newCache }}" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" type="text/css" href="{{ baseUrl ~ newCache }}"></noscript>
     <script>
       {{ source('_includes/js/loadCSS.min.js') }}
       {{ source('_includes/js/cssrelpreload.min.js') }}
     </script>
   {% else %}
-    <link rel="stylesheet" type="text/css" href="{{ baseUrl ~ newCache }}">
+    <link id="styles" rel="stylesheet" type="text/css" href="{{ baseUrl ~ newCache }}">
   {% endif %}
 
   {# -- SERVICE WORKER -- #}
-  {% minify %}
   <script>
     'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('{{ baseUrl }}service-worker.js',{scope:'/'}).then(function(e){console.log('ServiceWorker registration successful with scope: ',e.scope),navigator.serviceWorker.controller&&navigator.serviceWorker.controller.postMessage({command:'trimCaches'})})['catch'](function(e){console.log('ServiceWorker registration failed: ',e)})});
   </script>
@@ -90,25 +90,25 @@
   loadjs(['{{ baseUrl ~ rev('js/combined.min.js') }}'], 'scripts');
   loadjs.ready('scripts', {
     success: function() {
+      const sansLight = new FontFaceObserver('Overpass', { weight: 300, });
       const sans = new FontFaceObserver('Overpass', { weight: 400, });
       const sansItalic = new FontFaceObserver('Overpass', { weight: 400, style: 'italic' });
       const sansBold = new FontFaceObserver('Overpass', { weight: 700, });
-      const mono = new FontFaceObserver('Overpass Mono', { weight: 400, });
-      const monoBold = new FontFaceObserver('Overpass Mono', { weight: 700, });
+      const mono = new FontFaceObserver('Overpass Mono', { weight: 300, });
       const html = document.documentElement;
 
       html.classList.add('fonts-loading');
 
       Promise.all([
+        sansLight.load(),
         sans.load(),
         sansItalic.load(),
         sansBold.load(),
         mono.load(),
-        monoBold.load(),
       ]).then(function () {
         html.classList.remove('fonts-loading');
         html.classList.add('fonts-loaded');
-        setCookie('FontFaceObserver', true, 7);
+        setCookie('fontFaceObserver', true, 7);
       }).catch(function () {
         html.classList.remove('fonts-loading');
         html.classList.add('fonts-failed');
@@ -116,10 +116,15 @@
 
       objectFitImages();
 
-      const rellax = new Rellax('.js-rellax');
+      const body = document.getElementById('js-headroom');
+      const headroom = new Headroom(body);
+      headroom.init();
     }
   });
   </script>
+
+  {% cache %}
+  {% minify %}
 
   {# -- CRISP -- #}
   {% if not livePreview or not devMode %}
@@ -146,20 +151,20 @@
   <link rel="home" href="{{ siteUrl }}" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="/feed.atom">
   {% endminify %}
+  {% endcache %}
 {% endblock %}
 
 </head>
-{% endcache %}
 
 {# -- BODY CLASS -- #}
-<body class="{% if entry is defined %}{% if entry.colors and entry.colors.type('color').one() %}has-color{% elseif entry.image and entry.image.one() %}has-image{% endif %}{% endif %} {{ entry is defined ? entry.section.handle : craft.app.request.segments | first }}">
-
+<body id="js-headroom" class="{{ entry is defined ? entry.section.handle : craft.app.request.segments | first }} {% if entry is defined %}{% if entry.image and entry.image.one() %} has-image{% endif %}{% endif %}">
+<!--- You know, rather than reading the source like a chump, you can see it all on GitHub like a champ: https://github.com/connor-baer/connorbaer.co --->
 {% block body %}
 
   {# -- METABAR -- #}
   {% include '_includes/metabar' %}
 
-  <main id="main">
+  <main id="main" class="main" role="main">
 
     {% block main %}{% endblock %}
 
@@ -172,7 +177,7 @@
 
 {% block foot %}
   {# -- GOOGLE ANALYTICS -- #}
-  {% if not livePreview or not devMode %}
+  {% if not livePreview and not devMode %}
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -23,12 +23,11 @@
   {% cache %}
   {% minify %}
 
-  {# -- HERO -- #}
-  <header class="hero">
-    <div class="hero-content mw-large ta-center">
-      <div class="hero-text w100">
-        <h1 class="ts-title1">{{ entry.title }}</h1>
-      </div>
+  {# -- Header -- #}
+  <header class="ctnr-l mv5">
+    <div class="header header--narrow w100">
+      <h1 class="header__title header__title--color">{{ entry.title | striptags() }}&nbsp;</h1>
+      <h2 class="header__subtitle">{{ entry.description | striptags() }}</h2>
     </div>
   </header>
 
@@ -37,21 +36,21 @@
     section: section,
     featured: '1',
     with: ['image'],
-    limit: '2'
+    limit: 2
   }) %}
 
-  {% if featured | length == '2' %}
-    <section class="mw-large mv3 cf">
+  {% if featured | length >= '2' %}
+    <section class="ctnr-l mv3 cf">
       {% for item in featured %}
         <article class="w1-2 fl-left mv2">
-          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+          <a class="r1-1" href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
             {% set image = item.image[0] ?? null %}
             {% if image %}
               {{ elements.image(image, null, '1x1', '36rem') }}
             {% endif %}
           </a>
-          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
-          <p class="ts-app">{{ item.client.one().title }}</p>
+          <h3 class="mt2 mb1 fs-t1"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app fs-s1">{{ item.client.one().title }}</p>
         </article>
       {% endfor %}
     </section>
@@ -70,17 +69,17 @@
   }) %}
 
   {% if items %}
-    <section class="mw-large mv3 cf">
+    <section class="ctnr-l mv3 cf">
       {% for item in items %}
         <article class="w1-3 fl-left mv2">
-          <a class="r1-1" {{ elements.radial(item) }} href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+          <a class="r1-1" href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
             {% set image = item.image[0] ?? null %}
             {% if image %}
               {{ elements.image(image, 'lazyload', '1x1') }}
             {% endif %}
           </a>
-          <h3 class="mt2 mb1 ts-title3"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
-          <p class="ts-app">{{ item.client.one().title }}</p>
+          <h3 class="mt2 mb1 fs-t1"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="ts-app fs-s1">{{ item.client.one().title }}</p>
         </article>
       {% endfor %}
     </section>

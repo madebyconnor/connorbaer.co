@@ -8,22 +8,26 @@
 
 {# Truncate #}
 
-{% macro truncate(input, limit = 155) %}
+{% macro truncate(input, limit = 155, delimiter = '…') %}
+{% spaceless %}
 	{% if input | length < limit %}
-		{{ input }}
+		{{ input | striptags }}
 	{% else %}
-		{% set text = input | slice(0, limit) %}
+		{% set text = input | striptags | slice(0, limit) %}
 		{% set words = text | split(' ') %}
 		{% set number = words | length %}
 		{% set result = words | slice(0, number - 1) | join(' ') %}
 
-    {{ result }}…
+    {{ result ~ delimiter}}
 	{% endif %}
+{% endspaceless %}
 {% endmacro %}
 
 
 {# Strip Tags #}
 
-{% macro striptags(input) %}
-	{{ input | striptags('<a><br><strong><em>') | raw }}
+{% macro striptags(input, tags = '<a><br><strong><em>') %}
+{% spaceless %}
+	{{ input | striptags(tags) | raw }}
+{% endspaceless %}
 {% endmacro %}

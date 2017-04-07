@@ -1,8 +1,9 @@
 {
-  "css/amp.min.css": "css/amp-d75a365dae.min.css",
-  "css/styles.min.css": "css/styles-62d39ce1f8.min.css",
-  "js/combined.min.js": "js/combined-18ad6e7928.min.js",
+  "css/amp.min.css": "css/amp-71a71823d0.min.css",
+  "css/styles-dark.min.css": "css/styles-dark-21f69c5058.min.css",
+  "css/styles.min.css": "css/styles-21b0a84a6a.min.css",
+  "js/combined.min.js": "js/combined-b3e0d9a09a.min.js",
   "js/particles.min.js": "js/particles-713cdd3838.min.js",
-  "js/photoswipe.min.js": "js/photoswipe-dedb50f6e1.min.js",
-  "js/prism.min.js": "js/prism-f1ab1f8311.min.js"
+  "js/photoswipe.min.js": "js/photoswipe-cf57ffe9d0.min.js",
+  "js/prism.min.js": "js/prism-81066491e3.min.js"
 }

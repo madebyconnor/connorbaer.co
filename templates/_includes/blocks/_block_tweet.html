@@ -8,7 +8,7 @@
 <div class="block-tweet">
   <img src="{{ imageUrl }}"/>
 
-  <cite><a href="{{ url }}" title="{{ author }}">{{ author }}</a></cite>
+  <cite><a href="{{ url }}" title="{{ author }}">{{ author ~ tweet }}</a></cite>
 
   <blockquote>{{ tweet.text | autoLinkTweet({
     urlClass: "twitter-url",

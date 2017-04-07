@@ -31,7 +31,7 @@ module.exports = {
   browsersync: {
     files: [dist + assets + '**/*', tmplts + '**/*'],
     port: 5000, // Port number for the live version of the site.
-    proxy: 'https://' + pkg.name + '.dev/', // We need to use a proxy instead of the built-in server because CraftCMS has to do some server-side rendering for the website to work.
+    proxy: 'http://' + pkg.name + '.dev/', // We need to use a proxy instead of the built-in server because CraftCMS has to do some server-side rendering for the website to work.
     notify: false, // In-line notifications (the blocks of text saying whether you are connected to the BrowserSync server or not)
     ui: false, // Set to false if you don't need the browsersync UI
     open: false, // Set to false if you don't like the browser window opening automatically
@@ -103,7 +103,7 @@ module.exports = {
       },
     },
     critical: {
-      src: 'https://' + pkg.name + '.dev/',
+      src: 'http://' + pkg.name + '.dev/',
       dest: '../' + tmplts,
       small: {
         height: 732,
@@ -117,8 +117,8 @@ module.exports = {
       css: dist + assets + 'css/styles.min.css',
       files: [
         { url: '', template: 'index' },
-        { url: 'work', template: 'work/index' },
-        { url: 'work/jekyll-themes', template: 'work/_entry' },
+        { url: 'creating', template: 'creating/index' },
+        { url: 'creating/side-project/jekyll-themes', template: 'creating/_entry' },
         { url: 'legal', template: '_pages/entry' },
       ],
     },
@@ -138,7 +138,8 @@ module.exports = {
         modules + 'lazysizes/lazysizes.js',
         modules + 'fontfaceobserver/fontfaceobserver.standalone.js',
         modules + 'object-fit-images/dist/ofi.js',
-        modules + 'rellax/rellax.js',
+        modules + 'headroom.js/dist/headroom.js',
+        modules + 'suncalc/suncalc.js',
       ],
       single: {
         prism: [

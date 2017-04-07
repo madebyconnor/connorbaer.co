@@ -16,65 +16,14 @@
 
   <footer id="footer" class="footer">
     {% if footer.description %}
-      <div class="footer-prefooter mw-medium mv4">
-        <h4 class="w100 ta-center">{{ footer.description }}</h4>
+      <div class="footer-prefooter ctnr-l mv4">
+        <h4 class="w100 fw-light ta-center lh1">{{ footer.description }}</h4>
       </div>
     {% endif %}
 
-    <div class="mw-medium mv2 cf">
-      <div class="footer-brand mv2 ph2 fl-left">
-        <a href="{{ siteUrl }}#" title="Home">
-          {% include '_includes/logo' %}
-        </a>
-      </div>
-
-      <div class="footer-navigation mv2 ph2 fl-left">
-        <nav class="footer-nav">
-          <h5 class="mb1 ts-large fw-bold">{{ navigation.headline }}</h5>
-          <ul class="footer-navList">
-            {% for block in navigation.navigation %}
-              {% if not loop.last or not navigation.button %}
-                {% switch block.type %}
-                  {% case "navExternal" %}
-                    {% set navLink = block.navLink %}
-                    {% set navTitle = block.navTitle %}
-                  {% default %}
-                    {% set navLink = block.navEntry.one().url %}
-                    {% set navTitle = block.navTitle ? block.navTitle : block.navEntry.one().title %}
-                {% endswitch %}
-
-                <li>
-                  <a class="footer-navLink ts-app{% if block.navEntry and craft.app.request.segments | first == block.navEntry.one().uri %} footer-navActive{% endif %}" href="{{ navLink }}" title="{{ navTitle }}">{{ navTitle }}</a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </nav>
-      </div>
-
-      <div class="footer-navigation mv2 ph2 fl-left">
-        <nav class="footer-nav">
-          <h5 class="mb1 ts-large fw-bold">{{ footer.headline }}</h5>
-          <ul class="footer-navList">
-            {% for block in footer.navigation %}
-              {% switch block.type %}
-                {% case "navExternal" %}
-                  {% set navLink = block.navLink %}
-                  {% set navTitle = block.navTitle %}
-                {% default %}
-                  {% set navLink = block.navEntry.one().url %}
-                  {% set navTitle = block.navTitle ? block.navTitle : block.navEntry.one().title %}
-              {% endswitch %}
-              <li>
-                <a class="footer-navLink ts-app{% if block.navEntry and craft.app.request.segments | first == block.navEntry.one().uri %} footer-navActive{% endif %}" href="{{ navLink }}" title="{{ navTitle }}">{{ navTitle }}</a>
-              </li>
-            {% endfor %}
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <small class="footer-legal ph3 ta-center"><span>© {{ "now" | date("Y") }} {{ siteName | split('·') | first }}. {{ "All rights reserved." | translate }}</span>·<span>{{ "Tel" | translate }}: <a href="tel:+4915121208376">(+49) 151 2120 8376</a></span>·<span>{{ "Email" | translate }}: <a href="mailto:hi@madebyconnor.co">hi@madebyconnor.co</a></span>·<span><a href="/legal">{{ "Legal" | translate }}</a></span></small>
+    <small class="footer-legal ph3 ta-center"><span>© {{ "now" | date("Y") }} {{ siteName | split('·') | first }}. {{ "All rights reserved." | translate }}</span>·<span>{{ "Tel" | translate }}: <a href="tel:+4915121208376" title="Call us">(+49) 151 2120 8376</a></span>·<span>{{ "Email" | translate }}: <a href="mailto:hi@madebyconnor.co" title="Send us a message">hi@madebyconnor.co</a></span>·<span><a href="/legal">{{ "Legal" | translate }}</a></span></small>
   </footer>
+
   {% endminify %}
   {% endcache %}
 {% endblock %}

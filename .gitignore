@@ -4,7 +4,7 @@
 /.idea
 /config/license.key
 /scripts/.env.sh
-/public/uploads/
+/public/uploads/*
 
 # Install by running `bower install` #
 /bower_components/
