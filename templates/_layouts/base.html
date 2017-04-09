@@ -1,34 +1,6 @@
 {#
  # The base layout template
  # ------------------------
- #
- # This template defines the base HTML structure for our site: the DTD, the
- # `<html>`, `<head>`, `<title>`, and `<body>` tags, plus some `<meta>` tags and
- # a `<link rel="stylesheet">` tag that includes our main CSS file.
- #
- # This is the only place in our templates where we'll ever need to define that
- # stuff. All other templates will extend this one.
- #
- # This template also defines 3 `block` regions, which child templates are free to
- # override:
- #
- #   * `head`: This block wraps the entire default contents of our `<head>` tag.
- #             If a child template wishes to add more to the head, they can do so
- #             like this:
- #
- #                 {% block head %}
- #                     {{ parent() }}
- #                     <!-- additional stuff -->
- #                 {% endblock %}
- #
- #             Calling `{{ parent() }}` will output the contents of the `head`
- #             block that are already defined in this template.
- #
- #   * `body`: This block is placed directly after the opening `<body>` tag.
- #             Child templates can use this to define the main body contents.
- #
- #   * `foot`: This block is placed directly before the closing `</body>` tag.
- #             Child templates can use this to include Javascript files, etc.
 -#}
 
 {# -- DRY -- #}
@@ -39,10 +11,10 @@
 {# -- COOKIES -- #}
 {% set currentCache = getCookie('criticalCss') %}
 {% set fontFaceObserver = getCookie("fontFaceObserver") %}
-{% set darkMode = getCookie('darkMode') %}
+{% set darkMode = getCookie("darkMode") %}
 
 <!doctype html>
-<html lang="{{ craft.app.language }}"{% if fontFaceObserver %} class="fonts-loaded"{% endif %}>
+<html lang="{{ craft.app.language }}" class="{% if fontFaceObserver == 'true' %}fonts-loaded {% endif %}{% if darkMode == 'true' %} theme-dark{% endif %}">
 <head>
 
 {% block head %}
@@ -53,19 +25,14 @@
   <title>{% if entry is defined %}{{ entry.title }} · {% endif %}{{ siteName | split('·') | first }}</title>
 
   {# -- CRITICAL CSS -- #}
-  {% set styles = 'css/styles.min.css' %}
-  {% if darkMode == 'true' %}
-    {% set styles = 'css/styles-dark.min.css' %}
-    <title>{{darkMode}}</title>
-  {% endif %}
-  {% set newCache = rev(styles) %}
+  {% set newCache = rev('css/styles.min.css') %}
 
   {% if not currentCache or currentCache != newCache or devMode %}
     {{ setCookie('criticalCss', newCache, now | date_modify("+7 days").timestamp ) }}
 
     {% block critical %}{% endblock %}
 
-    <link id="styles" rel="preload" href="{{ baseUrl ~ newCache }}" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="{{ baseUrl ~ newCache }}" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" type="text/css" href="{{ baseUrl ~ newCache }}"></noscript>
     <script>
       {{ source('_includes/js/loadCSS.min.js') }}
@@ -74,6 +41,10 @@
   {% else %}
     <link id="styles" rel="stylesheet" type="text/css" href="{{ baseUrl ~ newCache }}">
   {% endif %}
+
+  {# -- GOOGLE FONTS -- #}
+  <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Overpass:300,300i,400,700" rel="stylesheet">
+
 
   {# -- SERVICE WORKER -- #}
   <script>
@@ -94,7 +65,7 @@
       const sans = new FontFaceObserver('Overpass', { weight: 400, });
       const sansItalic = new FontFaceObserver('Overpass', { weight: 400, style: 'italic' });
       const sansBold = new FontFaceObserver('Overpass', { weight: 700, });
-      const mono = new FontFaceObserver('Overpass Mono', { weight: 300, });
+      const mono = new FontFaceObserver('Overpass Mono', { weight: 400, });
       const html = document.documentElement;
 
       html.classList.add('fonts-loading');
@@ -119,18 +90,20 @@
       const body = document.getElementById('js-headroom');
       const headroom = new Headroom(body);
       headroom.init();
-
-      {% if currentUser %}
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(sunTimes, sunTimes);
-        } else {
-          console.log('Geolocation is not supported by this browser.');
-          sunTimes();
-        }
-      {% endif %}
     }
   });
   </script>
+
+  {# -- UPDATE YOUR FUCKING BROWSER -- #}
+  <!--[if IE]>
+  <script>
+    if (window.confirm('You’re using an outdated browser. You won’t be able to use all functionality on this website. Please update to a new browser.')) {
+      window.open('http://outdatedbrowser.com/en', '_blank');
+    } else {
+      window.alert('Your choice! However, you’re vulnerable to security risks.')
+    };
+  </script>
+  <![endif]-->
 
   {% cache %}
   {% minify %}
@@ -162,7 +135,7 @@
 
 {# -- BODY CLASS -- #}
 <body id="js-headroom" class="{{ entry is defined ? entry.section.handle : craft.app.request.segments | first }} {% if entry is defined %}{% if entry.image and entry.image.one() %} has-image{% endif %}{% endif %}">
-<!--- You know, rather than reading the source like a chump, you can see it all on GitHub like a champ: https://github.com/connor-baer/connorbaer.co --->
+<!-- You know, rather than reading the source like a chump, you can see it all on GitHub like a champ: https://github.com/connor-baer/connorbaer.co -->
 {% block body %}
 
   {# -- METABAR -- #}

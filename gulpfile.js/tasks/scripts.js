@@ -10,6 +10,7 @@ const gulp    = require('gulp'),
 gulp.task('scripts-combined', () => {
   return gulp.src(config.src.combined)
     .pipe(plugins.concat(config.combined))
+    .pipe(plugins.babel({presets: [['es2015', { 'modules': false }]]}))
     .pipe(plugins.uglify(config.minify.uglify))
     .pipe(plugins.rename(config.minify.rename))
     .pipe(gulp.dest(config.dest));
@@ -23,6 +24,7 @@ gulp.task('scripts-single', () => {
     return gulp.src(bundles[key])
       .pipe(plugins.concat(key))
       .pipe(plugins.changed(config.dest))
+      .pipe(plugins.babel({presets: ['es2015']}))
       .pipe(plugins.uglify(config.minify.uglify))
       .pipe(plugins.rename(config.minify.rename))
       .pipe(gulp.dest(config.dest));

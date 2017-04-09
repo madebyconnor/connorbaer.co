@@ -5,7 +5,7 @@ Prism template by Connor Bär
 */
 code[class*="language-"],
 pre[class*="language-"] {
-  background: $oc-gray-1;
+  background: var(--oc-gray-1);
   color: #5e6687;
   font-family: $ff-mono;
   font-size: $fs-s1;
@@ -46,7 +46,7 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: $oc-gray-6;
+  color: var(--oc-gray-6);
 }
 
 .token.punctuation {

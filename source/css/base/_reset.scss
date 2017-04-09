@@ -30,8 +30,9 @@ footer, header, hgroup, menu, nav, section {
 }
 
 html {
-  background-color: $oc-gray-8;
-  color: $oc-gray-9;
+  transition: background-color $an-short, color $an-short;
+  background-color: var(--oc-gray-8);
+  color: var(--oc-gray-9);
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: $lh-large;
@@ -66,7 +67,8 @@ body {
   position: relative;
   min-width: 100vw;
   min-height: 100vh;
-  background-color: $oc-white;
+  transition: background-color $an-short;
+  background-color: var(--oc-white);
   overflow-x: hidden;
 }
 
@@ -116,7 +118,7 @@ hr {
   &::before {
     display: block;
     height: 2px;
-    background-color: $oc-gray-3;
+    background-color: var(--oc-gray-3);
     content: "";
   }
 }

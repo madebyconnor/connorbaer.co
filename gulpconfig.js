@@ -136,12 +136,14 @@ module.exports = {
   scripts: {
     src: {
       combined: [
-        src + 'js/custom.js',
         modules + 'lazysizes/lazysizes.js',
-        modules + 'fontfaceobserver/fontfaceobserver.standalone.js',
+        modules + 'fontfaceobserver/fontfaceobserver.js',
         modules + 'object-fit-images/dist/ofi.js',
         modules + 'headroom.js/dist/headroom.js',
         modules + 'suncalc/suncalc.js',
+        src + 'js/alertify.js',
+        src + 'js/polyfills.js',
+        src + 'js/custom.js',
       ],
       single: {
         prism: [
@@ -153,7 +155,6 @@ module.exports = {
           modules + 'prismjs/components/prism-scss.js',
           modules + 'prismjs/components/prism-twig.js',
         ],
-        particles: modules + 'particles.js/particles.js',
         photoswipe: [
           modules + 'photoswipe/dist/photoswipe.js',
           src + 'js/photoswipe.js',

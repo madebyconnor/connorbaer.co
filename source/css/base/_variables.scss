@@ -35,42 +35,6 @@ $mw-large: 60rem + (2 * $sp-small) + (2 * $sp-large);
 
 // Typography //
 
-@font-face {
-  font-family: "Overpass";
-  font-style: normal;
-  font-weight: 300;
-  src: local("Overpass Light"), local("Overpass-Light"), url(https://fonts.gstatic.com/s/overpass/v1/tgqY5qOfB6w1HP32JTSrLIgp9Q8gbYrhqGlRav_IXfk.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-@font-face {
-  font-family: "Overpass";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Overpass Regular"), local("Overpass-Regular"), url(https://fonts.gstatic.com/s/overpass/v1/o3S9a2vetxRRO8sKA6PL03YhjbSpvc47ee6xR_80Hnw.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-@font-face {
-  font-family: "Overpass";
-  font-style: normal;
-  font-weight: 700;
-  src: local("Overpass Bold"), local("Overpass-Bold"), url(https://fonts.gstatic.com/s/overpass/v1/z_QV2-z5a6o4brQE8JEVyogp9Q8gbYrhqGlRav_IXfk.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-@font-face {
-  font-family: "Overpass";
-  font-style: italic;
-  font-weight: 400;
-  src: local("Overpass Italic"), local("Overpass-Italic"), url(https://fonts.gstatic.com/s/overpass/v1/nFeT4yZLKoYlkcTXEa9P0gzyDMXhdD8sAj6OAJTFsBI.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-@font-face {
-  font-family: "Overpass Mono";
-  font-style: normal;
-  font-weight: 300;
-  src: local("Overpass Mono Light"), local("OverpassMono-Light"), url(https://fonts.gstatic.com/s/overpassmono/v2/JEQ6tXkANEo2u0wZ-MTOPPcf5V02NicV_al97J7jqh4.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-
 $ff-sans: "Overpass", Arial, sans-serif;
 $fw-sans-light: 300;
 $fw-sans-normal: 400;
@@ -96,6 +60,38 @@ $ls-small: .025em;
 
 
 // Colors //
+
+:root {
+  #{--oc-white}: $oc-white;
+  #{--oc-black}: $oc-black;
+
+  #{--oc-gray-0}: $oc-gray-0;
+  #{--oc-gray-1}: $oc-gray-1;
+  #{--oc-gray-2}: $oc-gray-2;
+  #{--oc-gray-3}: $oc-gray-3;
+  #{--oc-gray-4}: $oc-gray-4;
+  #{--oc-gray-5}: $oc-gray-5;
+  #{--oc-gray-6}: $oc-gray-6;
+  #{--oc-gray-7}: $oc-gray-7;
+  #{--oc-gray-8}: $oc-gray-8;
+  #{--oc-gray-9}: $oc-gray-9;
+}
+
+.theme-dark {
+  #{--oc-white}: $oc-gray-9;
+  #{--oc-black}: white;
+
+  #{--oc-gray-0}: $oc-gray-9;
+  #{--oc-gray-1}: $oc-gray-8;
+  #{--oc-gray-2}: $oc-gray-7;
+  #{--oc-gray-3}: $oc-gray-6;
+  #{--oc-gray-4}: $oc-gray-5;
+  #{--oc-gray-5}: $oc-gray-4;
+  #{--oc-gray-6}: $oc-gray-3;
+  #{--oc-gray-7}: $oc-gray-2;
+  #{--oc-gray-8}: $oc-gray-1;
+  #{--oc-gray-9}: $oc-gray-0;
+}
 
 $oc-one: #ee3a51; // #1fb7e3
 $oc-two: #ff512f; // #00ccd2

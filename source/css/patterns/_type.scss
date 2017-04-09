@@ -14,7 +14,8 @@
 
 .ts-subtle,
 %ts-subtle {
-  color: $oc-gray-6;
+  color: var(--oc-gray-6);
+  font-weight: $fw-sans-light;
 }
 
 .ts-app,
@@ -82,6 +83,7 @@
 .fs-t1,
 %fs-t1 {
   font-size: $fs-t1;
+  color: var(--oc-gray-9);
 }
 
 .fs-0,

@@ -88,7 +88,24 @@
   }
 
   > h3 {
+    font-size: $fs-t2;
+    font-weight: $fw-sans-bold;
+  }
+
+  > h4 {
     font-size: $fs-t1;
+    font-weight: $fw-sans-bold;
+  }
+
+  > h5 {
+    font-size: $fs-t1;
+  }
+
+  > h6 {
+    @extend %ts-app;
+    @extend %ts-subtle;
+
+    font-size: $fs-s1;
   }
 
   > p,
@@ -125,7 +142,7 @@
   blockquote {
     padding-left: $sp-small;
     border-left: 4px solid $oc-one-2;
-    color: $oc-gray-6;
+    color: var(--oc-gray-6);
 
     cite {
       display: block;
@@ -159,7 +176,7 @@
 .block-image {
   width: 100%;
   margin-bottom: $sp-small;
-  background-color: $oc-gray-0;
+  background-color: var(--oc-gray-0);
 }
 
 .block-image2,
@@ -197,7 +214,7 @@
 
 // Photoswipe
 .pswp .pswp__bg {
-  background: $oc-white;
+  background: var(--oc-white);
 }
 
 
@@ -227,7 +244,7 @@
 // Code //
 
 .block-code {
-  background-color: $oc-gray-1;
+  background-color: var(--oc-gray-1);
 
   .position-full & {
     padding-top: $sp-small;

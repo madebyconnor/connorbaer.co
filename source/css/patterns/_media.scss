@@ -69,7 +69,7 @@ img[data-sizes="auto"] {
   height: $sp-small;
   margin-right: $sp-small;
   vertical-align: middle;
-  fill: $oc-gray-6;
+  fill: var(--oc-gray-6);
 
   a & {
     transition: fill $an-short, transform $an-short;

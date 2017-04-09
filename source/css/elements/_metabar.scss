@@ -8,19 +8,15 @@
 
 
 .metabar {
-  display: flex;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  flex-wrap: wrap;
-  justify-content: space-between;
   max-width: 100vw;
   padding-top: .75rem;
   padding-bottom: .75rem;
-  transition: box-shadow $an-medium;
-  border-bottom: 1px solid rgba($oc-white, .98);
-  background-color: rgba($oc-white, .98);
+  transition: box-shadow $an-medium, background-color $an-short;
+  background-color: var(--oc-white);
   z-index: 999;
 
   @media #{$bp-small} {
@@ -34,9 +30,14 @@
   }
 }
 
+.metabar__top {
+  display: flex;
+  justify-content: space-between;
+}
+
 // Brand //
 
-.metabar-brand {
+.metabar__brand {
   position: relative;
   z-index: 999999;
 }
@@ -49,10 +50,10 @@
   vertical-align: middle;
 }
 
-.metabar-name {
+.metabar__name {
   display: inline-block;
   transition: opacity $an-medium;
-  color: $oc-gray-9;
+  color: var(--oc-gray-9);
   font-family: $ff-sans;
   font-size: $fs-t1;
   font-weight: $fw-sans-bold;
@@ -65,49 +66,15 @@
   }
 }
 
-// Navigation //
-
-.metabar-nav {
-  flex-basis: 100%;
-  padding-top: $sp-small;
-  text-align: center;
-
-  @media #{$bp-small} {
-    position: absolute;
-    right: 0;
-    left: 0;
-    padding-top: 0;
-  }
-}
-
-.metabar-navList {
-  display: inline-flex;
-  justify-content: space-between;
-}
-
-.metabar-navLink {
-  display: block;
-  height: 100%;
-  transition: background-color $an-medium, color $an-medium;
-  color: $oc-gray-6;
-  text-align: center;
-
-  &:hover,
-  &:focus,
-  &.metabar-navActive {
-    color: $oc-gray-9;
-  }
-}
-
 
 // Call To Action //
 
-.metabar-cta {
+.metabar__cta {
   position: relative;
   z-index: 999999;
 }
 
-.metabar-darkMode {
+.metabar__darkMode {
   display: inline-block;
   padding: 0 $sp-small;
   transition: fill $an-medium;
@@ -117,10 +84,45 @@
   cursor: pointer;
   vertical-align: middle;
   z-index: 999;
-  fill: $oc-gray-6;
+  fill: var(--oc-gray-6);
 
   &:hover,
   &:focus {
-    fill: $oc-gray-8;
+    fill: var(--oc-gray-8);
+  }
+}
+
+
+// Navigation //
+
+.metabar__nav {
+  flex-basis: 100%;
+  padding-top: .75rem;
+  text-align: center;
+
+  @media #{$bp-small} {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+}
+
+.metabar__navList {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.metabar__navLink {
+  display: block;
+  height: 100%;
+  transition: background-color $an-medium, color $an-medium;
+  color: var(--oc-gray-6);
+  text-align: center;
+
+  &:hover,
+  &:focus,
+  &.is-active {
+    color: var(--oc-gray-9);
   }
 }

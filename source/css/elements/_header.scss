@@ -3,6 +3,7 @@
 */
 
 .header {
+  max-width: $mw-large / 7 * 5;
   font-size: $fs-t3;
   line-height: $lh-small;
 
@@ -10,12 +11,6 @@
     > * {
       display: inline;
     }
-  }
-}
-
-.header--narrow {
-  @media #{$bp-medium} {
-    max-width: 80%;
   }
 }
 
@@ -28,7 +23,7 @@
 }
 
 .header__subtitle {
-  color: $oc-gray-8;
+  color: var(--oc-gray-8);
   font-weight: $fw-sans-light;
 
   @media #{$bp-small-only} {

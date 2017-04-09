@@ -26,19 +26,20 @@
     </div>
   </header>
 
+  {# -- POSTS -- #}
   <div class="ctnr-s">
-    {# -- FEATURED -- #}
-    {% set featured = craft.entries({
+
+    {# Get posts in section which don't have an id in featuredIds #}
+    {% set posts = craft.entries({
       section: section,
       relatedTo: craft.categories.slug(category),
-      featured: '1',
-      with: ['image'],
-      limit: '1'
+      with: ['image']
     }) %}
 
-    {% if featured %}
-      {% for post in featured %}
-        <article class="w100 mv4">
+    {% for post in posts %}
+      <article class="w100 mv4">
+
+        {% if post.featured %}
 
           {# Featured image or first image from matrix blocks? #}
           {% if post.image[0] ?? null %}
@@ -51,35 +52,19 @@
           {% endif %}
 
           {% if image is defined and image %}
+
             <a class="hover" href="{{ post.url }}" title="{{ post.title }}">
               {{ elements.image(image, 'normal', '16x9', '42rem' ) }}
             </a>
+
           {% endif %}
-          <h2 class="mt3 fs-t2 fw-bold lh1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-          <p class="mt1">{% if post.passphrase is empty %}{{ helpers.striptags(post.description) }}{% else %}This post is password-protected. Click to view the post.{% endif %}</p>
-          <span class="ts-subtle fs-s1">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
-        </article>
-      {% endfor %}
-    {% endif %}
+        {% endif %}
 
-    {# -- POSTS -- #}
-
-    {# Get the ids of the featured posts above #}
-    {% set featuredIds = featured.ids() %}
-
-    {# Get posts in section which don't have an id in featuredIds #}
-    {% set posts = craft.entries({
-      section: section,
-      relatedTo: craft.categories.slug(category),
-      id: 'and, not ' ~ featuredIds | join(', not ')
-    }) %}
-
-    {% for post in posts %}
-      <article class="w100 mv4">
-        <h3 class="fs-t2 fw-bold lh1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-        <p class="mt1">{% if post.passphrase is empty %}{{ helpers.truncate(post.description| striptags()) }}{% else %}This post is password-protected. Click to view the post.{% endif %}</p>
+        <h2 class="mt3 fs-t2 fw-bold lh1"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+        <p class="mt1">{% if post.passphrase is empty %}{{ helpers.striptags(post.description) }}{% else %}This post is password-protected. Click to view the post.{% endif %}</p>
         <span class="ts-subtle fs-s1">{{ elements.date(post.postDate) }}{% if post.category is not empty %}&nbsp;·&nbsp;{{ elements.category(post) }}{% endif %}</span>
       </article>
+
     {% endfor %}
 
   </div>

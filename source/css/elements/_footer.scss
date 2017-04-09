@@ -9,7 +9,7 @@
 
 .footer {
   padding-top: $sp-small;
-  background-color: $oc-gray-0;
+  background-color: var(--oc-gray-0);
 }
 
 // Prefooter //
@@ -64,8 +64,8 @@
   display: block;
   padding-top: $sp-tiny;
   padding-bottom: $sp-tiny;
-  border-top: 1px solid $oc-gray-2;
-  color: $oc-gray-4;
+  border-top: 1px solid var(--oc-gray-2);
+  color: var(--oc-gray-4);
   font-family: $ff-mono;
   font-size: $fs-s2;
   font-weight: 300;

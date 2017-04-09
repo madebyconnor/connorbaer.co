@@ -1,73 +1,131 @@
-function setCookie(cookieName, cookieValue, nDays) {
-  var today = new Date();
-  var expire = new Date();
+/**
+ * Set a cookie
+ *
+ * @param {String} cookieName  Name of the cookie
+ * @param {String} cookieValue  Value of the cookie
+ * @param {Integer} nDays  Number of days after which the cookie will expire, default: 1
+ */
+function setCookie(cookieName, cookieValue, nDays = 1) {
 
-  if (nDays == null || nDays === 0) {
-    nDays = 1;
-  }
+  let today = new Date();
+  let expire = new Date();
 
   expire.setTime(today.getTime() + 3600000 * 24 * nDays);
-  document.cookie = cookieName + '=' + escape(cookieValue) + ';expires=' + expire.toGMTString();
+  document.cookie = cookieName + '=' + escape(cookieValue) + ';expires=' + expire.toGMTString() + '; path=/';
 }
 
+/**
+ * Get a cookie
+ *
+ * @param  {String} cookieName  Name of the cookie
+ *
+ * @return {String}  Value of the cookie
+ */
 function getCookie(cookieName) {
-  var value = '; ' + document.cookie;
-  var parts = value.split('; ' + cookieName + '=');
+
+  let value = '; ' + document.cookie;
+  let parts = value.split('; ' + cookieName + '=');
+
   if (parts.length === 2) {
     return parts.pop().split(';').shift();
   }
 }
 
+/**
+ * Toggle the dark theme
+ *
+ * @param  {Boolean} darkMode  Turn darkmode on/off, optional
+ */
 function toggleDarkness(darkMode) {
-  if (typeof darkMode === 'undefined') {
-    darkMode = (getCookie('darkMode') === 'true') ? false : true;
-  }
 
+  darkCookie = (getCookie('darkMode') === 'true') ? false : true;
+  darkMode = (typeof darkMode !== 'undefined') ? darkMode : darkCookie;
+
+  const html = document.documentElement;
+
+  if (darkMode) {
+    html.classList.add('theme-dark');
+  } else {
+    html.classList.remove('theme-dark');
+  }
   setCookie('darkMode', darkMode, 1);
-  location.reload();
+  alertify
+    .closeLogOnClick(true)
+    .log('Darkmode turned ' + ((darkMode === true) ? 'on' : 'off') + '.');
 }
 
-function joinTheDarkSide(sunrise, sunset) {
-  // Get current military time.
-  var now = new Date();
-  var time = Number(now.getHours() + '' + ('0' + now.getMinutes()).slice(-2));
-  var darkMode = (getCookie('darkMode') === null) ? false : getCookie('darkMode');
+/**
+ * Ask to toggle dark theme based on time
+ *
+ * @param  {Integer} sunrise  Time of sun rise, default: 0700
+ * @param  {Integer} sunset  Time of sunset, default: 2000
+ * @param  {Boolean} auto  Toggle darkmode automatically, default: false
+ */
+function joinTheDarkSide(auto, sunrise = 700, sunset = 2100) {
+
+  auto = (typeof auto !== 'undefined') ? auto : getCookie('darthVader');
+
+  let now = new Date();
+  let time = Number(('0' + now.getHours()).slice(-2) + '' + ('0' + now.getMinutes()).slice(-2));
+  let darkMode = (getCookie('darkMode') === null) ? false : getCookie('darkMode');
 
   if (time < sunrise || time > sunset) {
-    var askedDark = (getCookie('askedDark') === null) ? false : getCookie('askedDark');
+    let askedDark = (sessionStorage.getItem('askedDark') === null) ? false : sessionStorage.getItem('askedDark');
 
-    if (!darkMode && !askedDark) {
-      setCookie('askedDark', true, 0.25);
-      toggleDarkness(confirm('Looks like it’s getting late! Want to turn on dark mode?'));
+    if (!darkMode && auto) {
+      toggleDarkness(true);
+    } else if (!darkMode && !askedDark) {
+      sessionStorage.setItem('askedDark', true);
+      alertify
+        .okBtn('Turn On')
+        .cancelBtn('Cancel')
+        .confirm('It’s getting late! Want to turn on dark mode?', function () {
+          toggleDarkness(true);
+        });
     }
   } else {
-    var askedLight = (getCookie('askedLight') === null) ? false : getCookie('askedLight');
+    let askedLight = (sessionStorage.getItem('askedLight') === null) ? false : sessionStorage.getItem('askedLight');
 
-    if (darkMode && !askedLight) {
-      setCookie('askedLight', true, 0.25);
-      toggleDarkness(confirm('Looks like the sun is shining! Want to turn off dark mode?'));
+    if (darkMode && auto) {
+      toggleDarkness(false);
+    } else if (darkMode && !askedLight) {
+      sessionStorage.setItem('askedLight', true);
+      alertify
+        .okBtn('Turn Off')
+        .cancelBtn('Cancel')
+        .confirm('Dawn is here! Want to turn off dark mode?', function () {
+          toggleDarkness(false);
+        });
     }
   }
 
-  console.log('🕐 ' + time + ' | 😎 ' + darkMode);
-
   // Run every 2 minutes.
-  setTimeout(joinTheDarkSide, 120000, sunrise, sunset);
+  setTimeout(joinTheDarkSide, 120000, sunrise, sunset, auto);
 }
 
-function sunTimes(position) {
-  // Default sunlight times.
-  var sunrise = 700;
-  var sunset = 2000;
+/**
+ * Automatically toggle dark theme
+ *
+ * @param  {Integer} sunrise  When the sun rises, default: 0700
+ * @param  {Integer} sunset  When the sun sets, default: 2000
+ */
+function darthVader() {
+  if (navigator.geolocation) {
+
+    navigator.geolocation.getCurrentPosition(sunTimes, sunTimes);
+  } else {
+    console.log('Geolocation is not supported by this browser.');
+    sunTimes();
+  }
 
   if (position) {
     // Calculate accurate sunlight times.
-    var lat = position.coords.latitude;
-    var long = position.coords.longitude;
-    var times = SunCalc.getTimes(new Date(), lat, long);
+    const lat = position.coords.latitude;
+    const long = position.coords.longitude;
+    const times = SunCalc.getTimes(new Date(), lat, long);
 
-    sunrise = Number(times.sunrise.getHours() + '' + times.sunrise.getMinutes());
-    sunset = Number(times.sunset.getHours() + '' + times.sunset.getMinutes());
+    sunrise = Number(('0' + times.sunrise.getHours()).slice(-2) + '' + ('0' + times.sunrise.getMinutes()).slice(-2));
+    sunset = Number(('0' + times.sunset.getHours()).slice(-2) + '' + ('0' + times.sunset.getMinutes()).slice(-2));
   }
 
   console.log('☀️ ' + sunrise + ' | 🌙 ' +  sunset);
