@@ -37,7 +37,8 @@
     {# Get posts in section which don't have an id in featuredIds #}
     {% set posts = craft.entries({
       section: section,
-      with: ['image']
+      with: ['image'],
+      limit: '10'
     }) %}
 
     {% for post in posts %}
