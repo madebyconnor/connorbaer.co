@@ -18,7 +18,6 @@
 {% endblock %}
 
 {% block main %}
-  {% cache %}
   {% minify %}
 
   <article>
@@ -48,7 +47,7 @@
   {% if posts %}
     <section class="ctnr-l mv4 cf">
       <div class="w100 mt3">
-        <h3 class="ts-app fs-s1"><a href="/writing">Latest Writings</a></h3>
+        <h3 class="ts-app fs-s1"><a href="/blog">Latest Posts</a></h3>
       </div>
         {% for post in posts %}
           <article class="w1-3 fl-left mv2">
@@ -78,6 +77,35 @@
     </section>
   {% endif %}
 
+  {# -- FEATURED ITEMS -- #}
+  {% set featured = craft.entries({
+    section: 'work',
+    featured: '1',
+    passphrase: ':empty:',
+    with: ['image'],
+    limit: '3'
+  }) %}
+
+  {% if featured %}
+    <section class="ctnr-l mv5">
+      <div class="w100 mt3">
+        <h3 class="ts-app fs-s1"><a href="/work">Latest Work</a></h3>
+      </div>
+
+      {% for item in featured %}
+        <article class="w100 mv2">
+          <a class="hover" href="{{ item.url }}" title="{{ item.title }} for {{ item.client.one().title }}">
+            {% set image = item.image[0] ?? null %}
+            {% if image %}
+              {{ elements.image(image) }}
+            {% endif %}
+          </a>
+          <h3 class="mt1 fs-t1 fw-bold"><a class="ts-link" href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></h3>
+          <p class="fs-s1">{{ item.client.one().title }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
   {% endminify %}
-  {% endcache %}
 {% endblock %}
