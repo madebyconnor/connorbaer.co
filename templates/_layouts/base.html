@@ -84,7 +84,10 @@
       objectFitImages();
 
       const body = document.getElementById('js-headroom');
-      const headroom = new Headroom(body);
+      const headroom = new Headroom(body, {
+        offset : 64,
+        tolerance : 8,
+      });
       headroom.init();
     }
   });

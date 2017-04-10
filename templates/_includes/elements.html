@@ -13,7 +13,7 @@
 {# Category #}
 
 {% macro category(entry) %}
-	<span>{% for category in craft.categories.relatedTo(entry) %}<a href="{{ category.url }}" title="{{ category.title | capitalize }}">{{ category.title | capitalize }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
+	<span>{% for category in craft.categories.relatedTo(entry) %}<a class="ts-link" href="{{ category.url }}" title="{{ category.title | capitalize }}">{{ category.title | capitalize }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
 {% endmacro %}
 
 

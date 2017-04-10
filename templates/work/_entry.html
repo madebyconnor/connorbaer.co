@@ -2,14 +2,7 @@
  # Entry template
  # -------------------
  #
- # This template gets loaded whenever an entry’s URL is
- # requested. That’s because the section’s Template setting is
- # set to _section/entry”, the path to this template.
- #
- # When this template is loaded, it will already have an ‘entry’
- # variable, set to the requested entry.
- #
- # See this entry for more details on how Craft routes requests:
+ # See this page for details on how Craft routes requests:
  # http://craftcms.com/docs/routing
  #}
 
@@ -17,12 +10,6 @@
 
 {% import '_includes/elements' as elements %}
 {% import '_includes/helpers' as helpers %}
-
-{% block links %}
-  {{ parent() }}
-
-  <link rel="amphtml" href="{{ entry.url }}/amp">
-{% endblock %}
 
 
 {% block main %}
@@ -41,28 +28,37 @@
             <h2 class="header__subtitle">{{ entry.description | striptags() }}</h2>
           </div>
         </div>
+
         {% set image = entry.image.one() %}
+
         {% if image %}
           <div class="mv5 js-photoswipe">
             <figure>
-              <a href="{{ image.getUrl('large') }}" data-size="{{ image.getWidth('large') }}x{{ image.getHeight('large') }}">
-                {{ elements.image(image) }}
+              <a href="{{ image.getUrl('large16x9') }}" data-size="{{ image.getWidth('large16x9') }}x{{ image.getHeight('large16x9') }}">
+                {{ elements.image(image, 'normal', '16x9', '100vw') }}
               </a>
             <figure>
           </div>
         {% endif %}
+
         <div class="ctnr-l mv4 cf">
           <div class="w2-3 fl-left mv2">
             <h3 class="ts-app ts-subtle fs-s2 mb1">{{ "Overview" | translate }}</h3>
-            <h2 class="fs-t2 fw-light">{{ entry.description | striptags() }}</h2>
+            <h2 class="fs-t2 fw-light">{{ entry.introduction | striptags() }}</h2>
           </div>
           <div class="w1-3 fl-right mv2">
             <h3 class="ts-app ts-subtle fs-s2 mb1">{{ "Involvement" | translate }}</h3>
-            <p>{{ entry.description | striptags() }}</p>
+            <ul>
+
+              {% for tag in entry.skills %}
+                <li>{{ tag.title | capitalize }}</li>
+              {% endfor %}
+
+            </ul>
           </div>
           <div class="w1-3 fl-right mv2">
             <h3 class="ts-app ts-subtle fs-s2 mb1">{{ "Client" | translate }}</h3>
-            <p>{% if entry.client.one().website %}<a href="{{ entry.client.one().website }}" target="_blank" rel="noreferrer">{{ entry.client.one().title }}</a>{% else %}{{ entry.client.one().title }}{% endif %}</p>
+            <p>{% if entry.client.one().website %}<a class="ts-link" href="{{ entry.client.one().website }}" target="_blank" rel="noreferrer">{{ entry.client.one().title }}</a>{% else %}{{ entry.client.one().title }}{% endif %}</p>
           </div>
         </div>
 

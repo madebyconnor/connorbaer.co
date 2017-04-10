@@ -16,6 +16,10 @@
   margin-top: $sp-medium;
   margin-bottom: $sp-medium;
 
+  img {
+    background-color: var(--oc-gray-1);
+  }
+
   @media #{$bp-small} {
     margin-top: $sp-large;
     margin-bottom: $sp-large;
@@ -112,6 +116,13 @@
   > blockquote {
     margin-top: $sp-tiny;
     margin-bottom: $sp-tiny;
+  }
+
+  a {
+    @extend %ts-link;
+
+    color: $oc-one-6;
+    font-weight: $fw-sans-bold;
   }
 
   ul,

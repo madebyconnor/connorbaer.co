@@ -39,19 +39,15 @@
         {% endif %}
 
         <div class="ctnr-s mv5">
-          <div class="header w100 ta-center">
-            <h1 class="header__title fs-t4">{{ entry.title | striptags() }}&nbsp;</h1>
+          <div class="header w100">
+            <h1 class="header__title header__title--color">{{ entry.title | striptags() }}&nbsp;</h1>
+            <h2 class="header__subtitle">{{ entry.description | striptags() }}</h2>
           </div>
         </div>
       </header>
 
       {# -- CONTENT -- #}
       <div class="blocks cf">
-
-        {# Post description #}
-        <div class="ctnr-s">
-          <h2 class="w100 fs-t1 fw-light">{{ entry.description }}</h2>
-        </div>
 
         {# Body matrix #}
         {% include '_includes/body' %}

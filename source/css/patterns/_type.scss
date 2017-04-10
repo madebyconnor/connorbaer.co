@@ -27,12 +27,13 @@
 
 .ts-link,
 %ts-link {
-  transition: color $an-medium;
-  color: $oc-one-6;
+  display: inline;
+  transition: box-shadow $an-short;
+  line-height: $lh-small;
 
   &:hover,
   &:focus {
-    color: $oc-one-6;
+    box-shadow: inset 0 -.08em 0 0 $oc-one-6;
   }
 }
 

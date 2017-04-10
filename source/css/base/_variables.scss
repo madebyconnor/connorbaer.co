@@ -30,7 +30,7 @@ $sp-huge: $sp-tiny * 12;
 
 // Widths //
 
-$mw-large: 60rem + (2 * $sp-small) + (2 * $sp-large);
+$mw-large: 64rem + (2 * $sp-small) + (2 * $sp-large);
 
 
 // Typography //
@@ -78,7 +78,7 @@ $fw-sans-bold: 700;
 
 $ff-mono: "Overpass Mono", Courier, monospace;
 
-$fs-t4: 2.5rem;  // 40px
+$fs-t4: 2.25rem; // 36px
 $fs-t3: 2rem;    // 32px
 $fs-t2: 1.5rem;  // 24px
 $fs-t1: 1.25rem; // 20px
