@@ -17,10 +17,7 @@
   </style>
 {% endblock %}
 
-{% set section = craft.app.request.segments | first %}
-
 {% block main %}
-  {% cache %}
   {% minify %}
 
   {# -- Header -- #}
@@ -34,11 +31,11 @@
   {# -- POSTS -- #}
   <div class="ctnr-s">
 
-    {# Get posts in section which don't have an id in featuredIds #}
+    {% set section = craft.app.request.segments | first %}
+
     {% set posts = craft.entries({
       section: section,
-      with: ['image'],
-      limit: '10'
+      with: ['image']
     }) %}
 
     {% for post in posts %}
@@ -75,5 +72,4 @@
   </div>
 
   {% endminify %}
-  {% endcache %}
 {% endblock %}
